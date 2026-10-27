@@ -1,22 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  Copy,
-  Check,
-  Sparkles,
-  ArrowUpRight,
-} from "lucide-react";
-import { projects, profile, copy } from "@/data/portfolio";
+import { ArrowUpRight } from "lucide-react";
+import { projects, copy } from "@/data/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
 import { ThreeHalftoneCanvas } from "@/components/tai-ui/ThreeHalftoneCanvas";
 import { TaiHeader } from "@/components/tai-ui/TaiHeader";
 import { MaskedTextReveal } from "@/components/tai-ui/MaskedTextReveal";
 import { HeroSection } from "@/components/tai-ui/HeroSection";
-import { SkillsFan } from "@/components/tai-ui/SkillsFan";
+import { SkillsGrid } from "@/components/tai-ui/SkillsGrid";
 import { ScrollIndicator } from "@/components/tai-ui/ScrollIndicator";
 import { ButtonTextRoll } from "@/components/tai-ui/ButtonTextRoll";
 import { ParallaxProductCover } from "@/components/tai-ui/ParallaxProductCover";
@@ -26,13 +19,8 @@ import { ArrowRoll } from "@/components/tai-ui/ArrowRoll";
 import { SmoothScroll } from "@/components/tai-ui/SmoothScroll";
 import { WipeButton } from "@/components/tai-ui/WipeButton";
 import { LanguageTransition } from "@/components/tai-ui/LanguageTransition";
-import {
-  OpenAiIcon,
-  GeminiIcon,
-  ClaudeIcon,
-  PerplexityIcon,
-  ManusIcon,
-} from "@/components/tai-ui/AiBrandIcons";
+import { PagePreloader } from "@/components/tai-ui/PagePreloader";
+import { StudioFooter } from "@/components/tai-ui/StudioFooter";
 import "./studio.css";
 
 export default function PortfolioPage() {
@@ -40,9 +28,7 @@ export default function PortfolioPage() {
   const t = copy[language];
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [copiedCli, setCopiedCli] = useState<string | null>(null);
-  const [liveTime, setLiveTime] = useState<string>("");
-  const [liveDate, setLiveDate] = useState<string>("");
+
 
   // Set Browser Title to ThinkAI Studio
   useEffect(() => {
@@ -54,20 +40,8 @@ export default function PortfolioPage() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  // Bottom Ocean Interactive "Hold to create waves" State
-  const [isOceanHovered, setIsOceanHovered] = useState(false);
-  const [isOceanHolding, setIsOceanHolding] = useState(false);
-  const [isEquilibrium, setIsEquilibrium] = useState(false);
-  const [holdProgress, setHoldProgress] = useState(0);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const oceanZoneRef = useRef<HTMLDivElement>(null);
-  const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleCopy = (cmd: string) => {
-    navigator.clipboard.writeText(cmd);
-    setCopiedCli(cmd);
-    setTimeout(() => setCopiedCli(null), 2000);
-  };
+
 
   // Auto-advancing Carousel with Progress Bar Timer
   useEffect(() => {
@@ -98,120 +72,13 @@ export default function PortfolioPage() {
     setProgress(0);
   };
 
-  // Update Vietnam Live Time & Date (Asia/Ho_Chi_Minh)
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setLiveTime(
-        now.toLocaleTimeString(language === "vi" ? "vi-VN" : "en-US", {
-          timeZone: "Asia/Ho_Chi_Minh",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        })
-      );
-      setLiveDate(
-        now
-          .toLocaleDateString(language === "vi" ? "vi-VN" : "en-US", {
-            timeZone: "Asia/Ho_Chi_Minh",
-            weekday: "short",
-            month: "short",
-            day: "2-digit",
-          })
-          .toUpperCase()
-      );
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, [language]);
 
-  // ─── BOTTOM OCEAN INTERACTIVE HOLD LOGIC ───
-  const updateStirBridge = useCallback((stir: number, clientX?: number, clientY?: number) => {
-    const bridge = (window as unknown as { __setOceanStir?: (s: number, x?: number, y?: number) => void }).__setOceanStir;
-    if (bridge) {
-      if (typeof clientX === "number" && typeof clientY === "number") {
-        const nx = clientX / window.innerWidth;
-        const ny = clientY / window.innerHeight;
-        bridge(stir, nx, ny);
-      } else {
-        bridge(stir);
-      }
-    }
-  }, []);
-
-  const handleOceanMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    setCursorPos({ x: e.clientX, y: e.clientY });
-    if (isOceanHolding) {
-      updateStirBridge(0.75, e.clientX, e.clientY);
-    }
-  };
-
-  const startHolding = (clientX: number, clientY: number) => {
-    setIsOceanHolding(true);
-    setIsEquilibrium(false);
-    setCursorPos({ x: clientX, y: clientY });
-    updateStirBridge(0.25, clientX, clientY);
-
-    let p = 0;
-    if (holdTimerRef.current) clearInterval(holdTimerRef.current);
-    holdTimerRef.current = setInterval(() => {
-      p += 3;
-      if (p >= 100) {
-        p = 100;
-        setIsEquilibrium(true);
-        updateStirBridge(0.85, clientX, clientY);
-      } else {
-        updateStirBridge(0.25 + (p / 100) * 0.5, clientX, clientY);
-      }
-      setHoldProgress(p);
-    }, 30);
-  };
-
-  const stopHolding = () => {
-    setIsOceanHolding(false);
-    if (holdTimerRef.current) {
-      clearInterval(holdTimerRef.current);
-      holdTimerRef.current = null;
-    }
-    updateStirBridge(0.0);
-    setTimeout(() => {
-      setHoldProgress(0);
-      setIsEquilibrium(false);
-    }, 900);
-  };
-
-  const aiPlatforms = [
-    {
-      name: "ChatGPT",
-      icon: OpenAiIcon,
-      url: `https://chatgpt.com/?q=${encodeURIComponent(t.footer.askAiPrompt)}`,
-    },
-    {
-      name: "Gemini",
-      icon: GeminiIcon,
-      url: `https://gemini.google.com/app?prompt=${encodeURIComponent(t.footer.askAiPrompt)}`,
-    },
-    {
-      name: "Claude",
-      icon: ClaudeIcon,
-      url: `https://claude.ai/new?q=${encodeURIComponent(t.footer.askAiPrompt)}`,
-    },
-    {
-      name: "Perplexity",
-      icon: PerplexityIcon,
-      url: `https://www.perplexity.ai/search?q=${encodeURIComponent(t.footer.askAiPrompt)}`,
-    },
-    {
-      name: "Manus",
-      icon: ManusIcon,
-      url: `https://manus.im/?q=${encodeURIComponent(t.footer.askAiPrompt)}`,
-    },
-  ];
 
   return (
     <div className="tai-studio-root selection:bg-white selection:text-black relative min-h-screen">
+      {/* ─── INITIAL STUDIO PRELOADER SCREEN ─── */}
+      <PagePreloader />
+
       {/* ─── 120HZ ULTRA-SMOOTH MOMENTUM SCROLLING ENGINE (LENIS) ─── */}
       <SmoothScroll isLocked={isAboutOpen || isContactOpen} />
 
@@ -343,7 +210,7 @@ export default function PortfolioPage() {
                   return (
                     <div key={project.id} className="tai-paper p-6 sm:p-10 lg:p-12 rounded-[16px] my-10 border border-black/10 shadow-2xl">
                       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                        {/* Media Cover */}
+                        {/* Column 1 (Span 7): Media Preview */}
                         <div className="lg:col-span-7">
                           <ParallaxProductCover
                             image={project.preview.image}
@@ -355,22 +222,16 @@ export default function PortfolioPage() {
                           />
                         </div>
 
-                        {/* Right: Editorial in Paper Palette */}
+                        {/* Column 2 (Span 5): Editorial SoraLabs Studio Style */}
                         <div className="lg:col-span-5 space-y-6">
-                          <div className="flex items-center gap-3 font-mono text-xs">
-                            <span className="px-2.5 py-1 rounded-[10px] bg-black/10 text-black border border-black/20 font-bold tracking-wider">
-                              {project.mark}
-                            </span>
-                            <div className="flex-1 flex items-center gap-2">
-                              <div className="h-[1px] flex-1 bg-black/20" />
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#2D5A3D]" />
-                              <div className="h-[1px] flex-1 bg-black/20" />
-                            </div>
-                            <span className="px-2.5 py-1 rounded-[10px] border border-black/20 text-[#4A4A4A] font-mono font-semibold bg-black/[0.04]">
-                              {indexStr} / {totalStr}
+                          {/* Micro-tag */}
+                          <div>
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-[8px] bg-black/10 text-black border border-black/20 font-mono text-xs font-bold tracking-wider">
+                              {indexStr} / {totalStr} · {project.mark}
                             </span>
                           </div>
 
+                          {/* Title & Category Eyebrow */}
                           <LanguageTransition langKey={language} className="space-y-2">
                             <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1A1A1A] uppercase">
                               {project.content[language].title}
@@ -380,65 +241,50 @@ export default function PortfolioPage() {
                             </p>
                           </LanguageTransition>
 
+                          {/* Punchy 2-line Value Proposition Summary */}
                           <LanguageTransition langKey={language} as="p" className="text-[#333333] text-sm sm:text-base leading-relaxed">
                             {project.content[language].summary}
                           </LanguageTransition>
 
+                          {/* Tech Chips */}
                           <div className="flex flex-wrap gap-1.5 pt-1">
-                            {project.stack.map((item) => (
+                            {project.stack.slice(0, 5).map((item) => (
                               <span
                                 key={item}
-                                className="px-2.5 py-1 rounded-[10px] font-mono text-xs bg-black/[0.05] text-[#1A1A1A] border border-black/15 hover:border-black/30 transition-colors"
+                                 className="px-2.5 py-1 rounded-[10px] font-mono text-xs bg-black/[0.05] text-[#1A1A1A] border border-black/15 hover:border-black/30 transition-colors"
                               >
                                 {item}
                               </span>
                             ))}
                           </div>
 
-                          <div className="p-4 rounded-[10px] bg-[#EFEAE2] border border-black/15 space-y-3 shadow-inner">
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="flex items-center gap-2">
-                                <span className="px-2 py-0.5 rounded-[10px] bg-black text-white font-mono text-xs font-bold">
-                                  {project.metric.value}
-                                </span>
-                                <span className="font-mono text-xs sm:text-sm font-bold text-[#2D5A3D]">
-                                  <LanguageTransition langKey={language} as="span">
-                                    {project.metric.label[language].split("•")[0]?.trim()}
-                                  </LanguageTransition>
-                                </span>
-                              </div>
-                            </div>
-                            <p className="font-mono text-xs text-[#4A4A4A] truncate">
-                              <LanguageTransition langKey={language} as="span">
-                                {project.metric.label[language]}
-                              </LanguageTransition>
-                            </p>
-                          </div>
+                          {/* Action Row */}
+                          <div className="flex flex-wrap items-center gap-4 pt-2">
+                            <WipeButton
+                              as="a"
+                              href={`/products/${project.id}`}
+                              wipeColor="#1A1A1A"
+                              textColor="#1A1A1A"
+                              hoverTextColor="#ffffff"
+                              borderColor="rgba(0, 0, 0, 0.25)"
+                              hoverBorderColor="#1A1A1A"
+                              className="px-5 py-2.5 rounded-[10px] bg-black/[0.06] text-xs font-mono font-bold uppercase tracking-wider shadow-sm"
+                            >
+                              <span>{t.work.exploreCaseStudy}</span>
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            </WipeButton>
 
-                          <div className="flex flex-wrap items-center gap-3 pt-2">
                             {project.liveUrl && (
                               <a
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-[#1A1A1A] text-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors shadow-lg w-full sm:w-auto"
+                                className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-neutral-700 hover:text-black uppercase tracking-wider transition-colors px-2 py-1"
                               >
-                                <LanguageTransition langKey={language} as="span">
-                                  {t.work.openSystem}
-                                </LanguageTransition>
-                                <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+                                <span>{t.work.visitLive}</span>
+                                <ArrowUpRight className="w-3.5 h-3.5" />
                               </a>
                             )}
-
-                            <Link
-                              href={`/products/${project.id}`}
-                              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-white hover:bg-neutral-100 border border-black/20 hover:border-black/40 text-black font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer w-full sm:w-auto shadow-sm"
-                            >
-                              <LanguageTransition langKey={language} as="span">
-                                {t.work.architecture}
-                              </LanguageTransition>
-                              <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-                            </Link>
                           </div>
                         </div>
                       </div>
@@ -449,8 +295,7 @@ export default function PortfolioPage() {
                 return (
                   <div key={project.id} className="py-14 sm:py-16 first:pt-0 last:pb-0">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                      
-                      {/* Left: 16:10 Monolithic Media Cover with Scroll Parallax Scrub (Span 7) */}
+                      {/* Column 1 (Span 7): Media Preview */}
                       <div className="lg:col-span-7">
                         <ParallaxProductCover
                           image={project.preview.image}
@@ -462,20 +307,12 @@ export default function PortfolioPage() {
                         />
                       </div>
 
-                      {/* Right: Editorial & Telemetry Column (Span 5) */}
+                      {/* Column 2 (Span 5): Editorial SoraLabs Studio Style */}
                       <div className="lg:col-span-5 space-y-6">
-                        {/* Micrographic Header: [MARK] ─── ● ─── 01/03 */}
-                        <div className="flex items-center gap-3 font-mono text-xs">
-                          <span className="px-2.5 py-1 rounded-[10px] bg-white/10 text-white border border-white/20 font-bold tracking-wider">
-                            {project.mark}
-                          </span>
-                          <div className="flex-1 flex items-center gap-2">
-                            <div className="h-[1px] flex-1 bg-white/25" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                            <div className="h-[1px] flex-1 bg-white/25" />
-                          </div>
-                          <span className="px-2.5 py-1 rounded-[10px] border border-white/20 text-neutral-300 font-mono font-semibold bg-white/[0.04]">
-                            {indexStr} / {totalStr}
+                        {/* Micro-tag */}
+                        <div>
+                          <span className="inline-flex items-center px-2.5 py-1 rounded-[8px] bg-white/10 text-white border border-white/20 font-mono text-xs font-bold tracking-wider">
+                            {indexStr} / {totalStr} · {project.mark}
                           </span>
                         </div>
 
@@ -484,7 +321,7 @@ export default function PortfolioPage() {
                           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white uppercase">
                             {project.content[language].title}
                           </h3>
-                          <p className="text-xs sm:text-sm font-mono text-neutral-300 uppercase tracking-wider font-semibold">
+                          <p className="text-xs sm:text-sm font-mono text-neutral-400 uppercase tracking-wider font-semibold">
                             {project.content[language].category}
                           </p>
                         </LanguageTransition>
@@ -494,9 +331,9 @@ export default function PortfolioPage() {
                           {project.content[language].summary}
                         </LanguageTransition>
 
-                        {/* Tech Stack Chips */}
+                        {/* Tech Chips */}
                         <div className="flex flex-wrap gap-1.5 pt-1">
-                          {project.stack.map((item) => (
+                          {project.stack.slice(0, 5).map((item) => (
                             <span
                               key={item}
                               className="px-2.5 py-1 rounded-[10px] font-mono text-xs bg-[#141418] text-neutral-200 border border-white/15 hover:border-white/30 transition-colors"
@@ -506,73 +343,34 @@ export default function PortfolioPage() {
                           ))}
                         </div>
 
-                        {/* Telemetry Result Block */}
-                        <div className="p-4 rounded-[10px] bg-[#0f0f13] border border-white/15 space-y-3 shadow-inner">
-                          <div className="flex items-center justify-between gap-2">
-                            <div className="flex items-center gap-2">
-                              <span className="px-2 py-0.5 rounded-[10px] bg-white text-black font-mono text-xs font-bold">
-                                {project.metric.value}
-                              </span>
-                              <span className="font-mono text-xs sm:text-sm font-bold text-emerald-400">
-                                <LanguageTransition langKey={language} as="span">
-                                  {project.metric.label[language].split("•")[0]?.trim()}
-                                </LanguageTransition>
-                              </span>
-                            </div>
-                            {project.cliCommand && (
-                              <button
-                                type="button"
-                                onClick={() => handleCopy(project.cliCommand!)}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-white/10 hover:bg-white/20 text-neutral-100 hover:text-white border border-white/20 hover:border-white/40 font-mono text-xs font-semibold transition-colors cursor-pointer shrink-0"
-                              >
-                                {copiedCli === project.cliCommand ? (
-                                  <>
-                                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                                    <span className="text-emerald-400 font-bold">{t.work.copied}</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Copy className="w-3.5 h-3.5 text-neutral-300" />
-                                    <span>{t.work.copyCli}</span>
-                                  </>
-                                )}
-                              </button>
-                            )}
-                          </div>
-                          <p className="font-mono text-xs text-neutral-300 truncate">
-                            <LanguageTransition langKey={language} as="span">
-                              {project.metric.label[language]}
-                            </LanguageTransition>
-                          </p>
-                        </div>
+                        {/* Action Row */}
+                        <div className="flex flex-wrap items-center gap-4 pt-2">
+                          <WipeButton
+                            as="a"
+                            href={`/products/${project.id}`}
+                            wipeColor="#ffffff"
+                            textColor="#ffffff"
+                            hoverTextColor="#05070a"
+                            borderColor="rgba(255, 255, 255, 0.25)"
+                            hoverBorderColor="#ffffff"
+                            className="px-5 py-2.5 rounded-[10px] bg-white/10 text-xs font-mono font-bold uppercase tracking-wider shadow-md"
+                          >
+                            <span>{t.work.exploreCaseStudy}</span>
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </WipeButton>
 
-                        {/* Dual Action CTAs: Open System + Architecture Deep Dive */}
-                        <div className="flex flex-wrap items-center gap-3 pt-2">
                           {project.liveUrl && (
                             <a
                               href={project.liveUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-lg w-full sm:w-auto"
+                              className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neutral-400 hover:text-white uppercase tracking-wider transition-colors px-2 py-1"
                             >
-                              <LanguageTransition langKey={language} as="span">
-                                {t.work.openSystem}
-                              </LanguageTransition>
-                              <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                              <span>{t.work.visitLive}</span>
+                              <ArrowUpRight className="w-3.5 h-3.5" />
                             </a>
                           )}
-
-                          <Link
-                            href={`/products/${project.id}`}
-                            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-[#16161b] hover:bg-[#222228] border border-white/25 hover:border-white/50 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer w-full sm:w-auto"
-                          >
-                            <LanguageTransition langKey={language} as="span">
-                              {t.work.architecture}
-                            </LanguageTransition>
-                            <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
-                          </Link>
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -583,8 +381,8 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* ─── 06. SKILLS CARD FAN (Synchronized 3.5° Mathematical Fan Deck) ─── */}
-      <SkillsFan />
+      {/* ─── 06. SKILLS SECTION (12 Individual Skill Cards with Scroll Stagger) ─── */}
+      <SkillsGrid />
 
       {/* ─── 07. CALL TO ACTION CLOSURE ─── */}
       <section id="contact" className="relative z-10 min-h-[92vh] flex items-center justify-center py-28 px-6 bg-transparent pointer-events-none">
@@ -621,335 +419,11 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* ─── 08. STUDIO FOOTER & INTERACTIVE OCEAN ZONE (Balanced & Refined Proportion) ─── */}
-      <footer className="relative z-20 bg-transparent pt-0 pb-0">
-        {/* Upper Footer Sheet */}
-        <div className="bg-[#111113] pt-20 sm:pt-24 pb-14 sm:pb-16 border-t border-white/[0.08] shadow-2xl">
-          <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16 space-y-14 sm:space-y-16">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-start">
-              {/* Col 1: Navigation Label */}
-              <div className="md:col-span-2 flex items-start gap-2 text-sm font-bold text-neutral-300">
-                <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 mt-1" />
-                <LanguageTransition langKey={language} as="span">
-                  {t.footer.navigation}
-                </LanguageTransition>
-              </div>
-
-              {/* Col 2: Vertical Navigation Links with Balanced Scale & Forward Wipe */}
-              <div className="md:col-span-4 flex flex-col gap-1.5 font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.0]">
-                <WipeButton
-                  as="a"
-                  href="/about"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-[10px] cursor-pointer w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
-                >
-                  <LanguageTransition langKey={language} as="span">
-                    {t.nav.about}
-                  </LanguageTransition>
-                </WipeButton>
-                <WipeButton
-                  as="a"
-                  href="#products"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-[10px] w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
-                >
-                  <LanguageTransition langKey={language} as="span">
-                    {t.nav.work}
-                  </LanguageTransition>
-                </WipeButton>
-                <WipeButton
-                  as="a"
-                  href="#work"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-[10px] w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
-                >
-                  <LanguageTransition langKey={language} as="span">
-                    {t.nav.experience}
-                  </LanguageTransition>
-                </WipeButton>
-                <WipeButton
-                  as="a"
-                  href="#contact"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-[10px] w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
-                >
-                  <LanguageTransition langKey={language} as="span">
-                    {t.nav.contact}
-                  </LanguageTransition>
-                </WipeButton>
-              </div>
-
-              {/* Col 3: Studio Details & AI Glyphs */}
-              <div className="md:col-span-3 space-y-8 text-sm">
-                <div className="space-y-2">
-                  <LanguageTransition langKey={language} as="div" className="text-neutral-500 uppercase tracking-widest font-mono text-xs font-bold">
-                    {t.footer.studioDetails}
-                  </LanguageTransition>
-                  <div>
-                    <WipeButton
-                      as="a"
-                      href={profile.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      wipeColor="#ffffff"
-                      textColor="#ffffff"
-                      hoverTextColor="#05070a"
-                      className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] font-mono font-bold text-sm"
-                    >
-                      bnhminh1010 / ops ↗
-                    </WipeButton>
-                  </div>
-                  <div>
-                    <WipeButton
-                      as="a"
-                      href={`mailto:${profile.email}`}
-                      wipeColor="#ffffff"
-                      textColor="#ffffff"
-                      hoverTextColor="#05070a"
-                      className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] font-mono text-sm"
-                    >
-                      ↳ {profile.email}
-                    </WipeButton>
-                  </div>
-                  <LanguageTransition langKey={language} as="div" className="text-neutral-400 leading-relaxed pt-2 text-xs font-light">
-                    {t.footer.location.based}<br />
-                    {t.footer.location.mode}
-                  </LanguageTransition>
-                </div>
-
-                {/* Ask AI Section with Direct Deep-Links to ChatGPT, Gemini, Claude, Perplexity, Manus */}
-                <div className="space-y-3 pt-1">
-                  <div className="flex items-center justify-between">
-                    <LanguageTransition langKey={language} as="div" className="text-neutral-500 uppercase tracking-widest font-mono text-xs font-bold">
-                      {t.footer.askAiTitle}
-                    </LanguageTransition>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-white">
-                    {aiPlatforms.map((platform) => {
-                      const IconComponent = platform.icon;
-                      return (
-                        <WipeButton
-                          key={platform.name}
-                          onClick={() => {
-                            if (navigator.clipboard) {
-                              navigator.clipboard.writeText(t.footer.askAiPrompt);
-                            }
-                            window.open(platform.url, "_blank", "noopener,noreferrer");
-                          }}
-                          wipeColor="#ffffff"
-                          textColor="#ffffff"
-                          hoverTextColor="#05070a"
-                          ariaLabel={t.footer.askAiAria.replace("{name}", platform.name)}
-                          className="w-9 h-9 rounded-[10px] flex items-center justify-center cursor-pointer select-none border border-white/15 bg-white/[0.04] shadow-md"
-                        >
-                          <IconComponent className="w-4 h-4" />
-                        </WipeButton>
-                      );
-                    })}
-                  </div>
-                  <LanguageTransition langKey={language} as="div" className="text-xs font-mono text-neutral-400 leading-relaxed max-w-xs">
-                    {t.footer.askAiHint}
-                  </LanguageTransition>
-                </div>
-              </div>
-
-              {/* Col 4: Socials with Forward Wipe */}
-              <div className="md:col-span-3 space-y-2 text-sm font-semibold text-white">
-                <LanguageTransition langKey={language} as="div" className="text-neutral-500 uppercase tracking-widest font-mono text-xs font-bold mb-3">
-                  {t.footer.connect}
-                </LanguageTransition>
-                <div>
-                  <WipeButton
-                    as="a"
-                    href={profile.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    wipeColor="#ffffff"
-                    textColor="#ffffff"
-                    hoverTextColor="#05070a"
-                    className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] text-sm"
-                  >
-                    GitHub ↗
-                  </WipeButton>
-                </div>
-                <div>
-                  <WipeButton
-                    as="a"
-                    href={profile.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    wipeColor="#ffffff"
-                    textColor="#ffffff"
-                    hoverTextColor="#05070a"
-                    className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] text-sm"
-                  >
-                    LinkedIn ↗
-                  </WipeButton>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-between pt-8 sm:pt-10 text-xs font-mono text-neutral-400 border-t border-white/[0.08] gap-4">
-              <div>
-                {language === "vi" ? "Việt Nam" : "Vietnam"} {liveTime || "02:35:57 PM"} <br />
-                {liveDate || "MON, AUG 31"}
-              </div>
-              <div className="text-center">
-                <WipeButton
-                  as="a"
-                  href="#top"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05070a"
-                  className="px-2.5 py-1 rounded-[10px] inline-block text-xs"
-                >
-                  <LanguageTransition langKey={language} as="span">
-                    {t.footer.backToTop}
-                  </LanguageTransition>
-                </WipeButton>{" "}
-                <br />
-                <LanguageTransition langKey={language} as="span" className="text-white mt-0.5 inline-block">
-                  {t.footer.availability}
-                </LanguageTransition>
-              </div>
-              <div className="text-right">
-                <LanguageTransition langKey={language} as="span">
-                  ©{new Date().getFullYear()} {t.footer.copyright}
-                </LanguageTransition>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ─── 09. FULL-BLEED BOTTOM INTERACTIVE OCEAN WINDOW (Polished Minimalist Design) ─── */}
-        <div
-          id="interactive-ocean-zone"
-          ref={oceanZoneRef}
-          onMouseEnter={() => setIsOceanHovered(true)}
-          onMouseLeave={() => {
-            setIsOceanHovered(false);
-            stopHolding();
-          }}
-          onMouseMove={handleOceanMouseMove}
-          onMouseDown={(e) => startHolding(e.clientX, e.clientY)}
-          onMouseUp={stopHolding}
-          onTouchStart={(e) => {
-            if (e.touches[0]) startHolding(e.touches[0].clientX, e.touches[0].clientY);
-          }}
-          onTouchEnd={stopHolding}
-          className="tai-ocean-interactive-zone relative w-full min-h-[13rem] sm:h-72 lg:h-80 bg-transparent border-t border-b border-white/[0.08] flex flex-col sm:flex-row items-center justify-center sm:justify-between px-4 sm:px-12 lg:px-20 xl:px-24 gap-4 py-8 sm:py-0 overflow-hidden"
-        >
-          {/* Studio Brand Mark & Glyph with Glassmorphic Badge (Click to Reload to Top) */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              if (typeof window !== "undefined") {
-                if ("scrollRestoration" in history) {
-                  history.scrollRestoration = "manual";
-                }
-                window.scrollTo(0, 0);
-                if (window.location.hash) {
-                  window.location.replace(window.location.pathname);
-                } else {
-                  window.location.reload();
-                }
-              }
-            }}
-            className="relative z-10 inline-flex items-center justify-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-[10px] bg-black/50 border border-white/20 backdrop-blur-md text-white font-bold text-xs sm:text-sm tracking-wider uppercase font-mono shadow-2xl pointer-events-auto cursor-pointer hover:bg-black/70 transition-all leading-none shrink-0"
-            aria-label={t.ocean.reloadAria}
-          >
-            <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-[4px] overflow-hidden shrink-0 flex items-center justify-center">
-              <Image
-                src="/images/thinkai_studio_logo.png"
-                alt="ThinkAI Studio"
-                fill
-                sizes="24px"
-                className="object-contain"
-              />
-            </div>
-            <span className="whitespace-nowrap inline-flex items-center leading-none select-none text-[11px] sm:text-xs md:text-sm">
-              THINKAI STUDIO / BINH MINH
-            </span>
-          </button>
-
-          <div className="relative z-10 hidden md:inline-flex items-center justify-center px-4 py-2.5 rounded-[10px] bg-black/50 border border-white/20 backdrop-blur-md text-white font-mono text-xs sm:text-sm tracking-wide shadow-2xl leading-none pointer-events-none whitespace-nowrap">
-            <LanguageTransition langKey={language} as="span" className="leading-none">
-              {t.ocean.quote}
-            </LanguageTransition>
-          </div>
-
-          {/* Polished Floating Interactive Hold Pill (ThinkAI Studio) */}
-          <AnimatePresence>
-            {isOceanHovered && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  position: "fixed",
-                  left: cursorPos.x + 18,
-                  top: cursorPos.y + 18,
-                  zIndex: 9999,
-                  pointerEvents: "none",
-                }}
-                className={`tai-hold-pill ${isOceanHolding ? "is-holding" : ""}`}
-              >
-                {/* SVG Circular Progress Ring */}
-                <svg className="tai-hold-ring" viewBox="0 0 24 24">
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9"
-                    fill="none"
-                    stroke="rgba(255, 255, 255, 0.2)"
-                    strokeWidth="2.5"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9"
-                    fill="none"
-                    strokeWidth="2.5"
-                    strokeDasharray={56.54}
-                    strokeDashoffset={56.54 - (56.54 * holdProgress) / 100}
-                    strokeLinecap="round"
-                    className="tai-hold-ring-circle"
-                  />
-                </svg>
-
-                <span className="flex items-center gap-2 font-mono text-[11px] sm:text-xs">
-                  {holdProgress >= 100 || isEquilibrium ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="text-emerald-300 font-bold tracking-wide">
-                        {t.ocean.equilibrium}
-                      </span>
-                    </>
-                  ) : isOceanHolding ? (
-                    <>
-                      <Sparkles className="w-3.5 h-3.5 text-white animate-spin shrink-0" />
-                      <span>{t.ocean.stirring} {holdProgress}%</span>
-                    </>
-                  ) : (
-                    <span>{t.ocean.holdPrompt}</span>
-                  )}
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </footer>
+      {/* ─── 08. OUTRIDER-STYLE COBALT BLUE STUDIO FOOTER ─── */}
+      <StudioFooter
+        onOpenAbout={() => setIsAboutOpen(true)}
+        onOpenContact={() => setIsContactOpen(true)}
+      />
 
       {/* ─── 10. ABOUT THE STUDIO DRAWER ─── */}
       <AboutDrawer
