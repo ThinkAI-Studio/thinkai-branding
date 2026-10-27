@@ -41,8 +41,7 @@ export function ParallaxProductCover({
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[16/10] w-full bg-[#0a0a0d] border border-white/10 hover:border-white/25 transition-colors duration-500 overflow-hidden group shadow-2xl select-none"
-      style={{ clipPath: "inset(0 0 0 0)" }}
+      className="relative aspect-[16/10] w-full bg-[#0a0a0d] border border-white/10 hover:border-white/25 transition-colors duration-500 rounded-[16px] overflow-hidden group shadow-2xl select-none"
     >
       {/* Parallax Image Layer with 1.15 Scale for Edge-to-Edge Scrubbing */}
       <motion.div
@@ -60,19 +59,18 @@ export function ParallaxProductCover({
       </motion.div>
 
       {/* Hairline Specular Inset Border */}
-      <div className="absolute inset-0 pointer-events-none border border-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
+      <div className="absolute inset-0 pointer-events-none rounded-[16px] border border-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
 
       {/* Floating Status Pill (Top Right) */}
-      <div className="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 font-mono text-[10px] text-emerald-400 font-bold tracking-wider uppercase">
+      <div className="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] bg-black/80 backdrop-blur-md border border-white/15 font-mono text-[10px] text-emerald-400 font-bold tracking-wider uppercase">
         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
         <span>{status}</span>
       </div>
 
       {/* Floating Mark Pill (Top Left) */}
-      <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5 px-2 py-0.5 bg-black/80 backdrop-blur-md border border-white/15 font-mono text-[10px] text-neutral-300 font-bold uppercase">
+      <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5 px-2 py-0.5 rounded-[8px] bg-black/80 backdrop-blur-md border border-white/15 font-mono text-[10px] text-neutral-300 font-bold uppercase">
         <span>{mark}</span>
       </div>
-
       {/* Floating Domain Pill (Bottom Left) */}
       {liveUrl && (
         <div className="absolute bottom-3.5 left-3.5 z-10">
@@ -80,7 +78,7 @@ export function ParallaxProductCover({
             href={liveUrl}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-3 py-1.5 bg-black/85 backdrop-blur-md border border-white/20 hover:border-white font-mono text-xs text-neutral-200 hover:text-white transition-all shadow-lg group/link"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-[8px] bg-black/85 backdrop-blur-md border border-white/20 hover:border-white font-mono text-xs text-neutral-200 hover:text-white transition-all shadow-lg group/link"
           >
             <Lock className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
             <span className="truncate max-w-[200px] sm:max-w-[280px]">
