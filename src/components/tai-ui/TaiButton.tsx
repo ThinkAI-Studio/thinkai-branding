@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { TAI_EASE } from "@/lib/motion";
 
 export const taiButtonVariants = cva(
-  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-none font-mono text-xs tracking-wider uppercase transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
+  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-[10px] font-mono text-xs tracking-wider uppercase transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
   {
     variants: {
       variant: {
@@ -63,7 +63,7 @@ export const TaiButton = React.forwardRef<HTMLButtonElement, TaiButtonProps>(
       return (
         <Slot
           className={cn(taiButtonVariants({ variant, size, className }))}
-          ref={ref as any}
+          ref={ref as React.Ref<HTMLElement>}
           {...props}
         >
           {children}
@@ -91,13 +91,12 @@ export const TaiButton = React.forwardRef<HTMLButtonElement, TaiButtonProps>(
 
     return (
       <Component
-        ref={ref as any}
-        // @ts-ignore
+        ref={ref as React.Ref<HTMLButtonElement & HTMLAnchorElement>}
         href={href}
         className={cn(taiButtonVariants({ variant, size, className }))}
         whileHover="hover"
         whileTap={{ scale: prefersReduced ? 1 : 0.98 }}
-        {...(props as any)}
+        {...(props as Record<string, unknown>)}
       >
         {/* Ambient Top Light Reflection Sweep */}
         {variant !== "ghost" && (

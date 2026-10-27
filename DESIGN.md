@@ -21,20 +21,21 @@ ThinkAI Studio được xây dựng dựa trên nguyên lý **"Infrastructure-Gr
    - **Dynamic Alpha Hairlines:** Dùng viền trong suốt `border-white/[0.07]` và `border-white/[0.18]` để thích ứng hoàn hảo trên mọi lớp nền.
    - **LED Status Glow:** Màu xanh danh nghĩa `#4ade80` đi kèm hiệu ứng quang học vi mô `drop-shadow-[0_0_6px_rgba(74,222,128,0.45)]`.
 
-2. **Sharp Architectural Geometry (Hình Học Góc Cạnh Kiến Trúc 4px Grid):**
-   - **100% Zero Border-Radius**: Toàn bộ buttons, cards, dialogs, drawers, inputs và pills đều giữ góc vuông 90° sắc nét (`border-radius: 0px !important`).
-   - **Mathematical 4px Grid**: Mọi padding, margin đều là bội số nghiêm ngặt của 4 (không có số ngẫu nhiên).
-   - **Crisp Focus Rings**: Khung focus bàn phím vuông vức, độ tương phản sắc nét (`outline: 2px solid rgba(255,255,255,0.85)`).
-
+2. **10px Precision Geometric System (Hệ Thống Bo Góc Chính Xác 10px & 16px):**
+   - **10px Precision Radius**: Toàn bộ buttons, cards, dialogs, inputs và tags sử dụng bo góc kỹ thuật 10px chuẩn xác (`rounded-[10px]`).
+   - **16px Large Containers**: Khung mockup lớn, container modal và thẻ bao bọc sử dụng bán kính 16px (`rounded-[16px]`).
+   - **Section Exit Tucks**: Hiệu ứng cuộn nén thẻ thoát phần sử dụng bo góc dưới `0 0 16px 16px`.
+   - **Mathematical 4px Grid**: Mọi padding, margin đều là bội số nghiêm ngặt của 4.
+   - **Crisp Focus Rings**: Khung focus bàn phím sắc nét, bo nhẹ theo hình khối (`outline: 2px solid rgba(255,255,255,0.85)`).
 3. **Analog Micro-Grain Tactility (Chất Cảm Vật Lý Tương Tự):**
    - Phủ một lớp film micro-grain (`SVG feTurbulence baseFrequency 1.4, opacity 0.135, background-size: 80px`) lên toàn bộ màn hình.
    - Hiệu ứng kính mờ `backdrop-blur-xl bg-black/40` trên thanh điều hướng để tương phản với hình khối 0px phía dưới.
 
 4. **Tectonic Motion Mechanics (Vật Lý Chuyển Động Kiến Trúc):**
-   - Chuyển động không bồng bềnh mà mang trọng lượng cơ học (Heavy Frictionless Mechanics).
+   - Chuyển động cơ học kỹ thuật mượt mà với ngăn xếp kép **Motion 13 + GSAP 3.15 (ScrollTrigger & InertiaPlugin) + Lenis 1.3**.
    - **Spring Physics**: `{ damping: 32, stiffness: 280, mass: 1 }` và Easing Luxury `cubic-bezier(0.16, 1, 0.3, 1)`.
    - **Mechanical Click Feedback**: Nén cơ học `active:scale-[0.98]` trên mọi phần tử tương tác.
-   - **Tectonic Spatial Shift**: Các panel và drawer trượt đa tầng tuyến tính (Z/X Parallax) thay vì co giãn scale mềm.
+   - **Sora UI Registry Integration**: Tích hợp các module tương tác cao cấp từ `@soralabs` (magnetic-cards, text-reveal-mask, dual-wipe-reveal, tilt-card).
 
 ---
 
@@ -50,10 +51,12 @@ ThinkAI Studio được xây dựng dựa trên nguyên lý **"Infrastructure-Gr
   --color-tai-border: rgba(255, 255, 255, 0.07);        /* Viền hairline alpha */
   --color-tai-border-strong: rgba(255, 255, 255, 0.18); /* Viền hover / active */
   --color-tai-green: #4ade80;          /* Trạng thái danh nghĩa LED */
+  --radius-card: 10px;                 /* Thẻ, nút bấm, input, tag */
+  --radius-container: 16px;            /* Khung lớn, container */
+  --radius-tuck: 0 0 16px 16px;        /* Nén thoát thẻ section */
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
 }
-```
 
 ### 2.2. Thang Typography (Typography Scale)
 

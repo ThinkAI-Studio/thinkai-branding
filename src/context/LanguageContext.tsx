@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useSyncExternalStore } from "react";
+import { createContext, useContext, useEffect, useSyncExternalStore } from "react";
 import type { Language } from "@/data/portfolio";
 
 type LanguageContextValue = {
@@ -54,16 +54,12 @@ function getServerLanguage(): Language {
   return "en";
 }
 
+const emptySubscribe = () => () => {};
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const storeLanguage = useSyncExternalStore(subscribeToLanguage, readLanguage, getServerLanguage);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const language = mounted ? storeLanguage : "en";
-
   useEffect(() => {
     if (mounted) {
       document.documentElement.lang = language;

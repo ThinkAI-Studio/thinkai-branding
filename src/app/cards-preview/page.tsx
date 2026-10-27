@@ -4,25 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Terminal,
   ArrowUpRight,
   Copy,
   Check,
   ChevronLeft,
   ChevronRight,
-  Layers,
-  LayoutGrid,
-  Monitor,
-  Cpu,
-  ShieldCheck,
-  Sparkles,
   ExternalLink,
-  Activity,
-  Server,
-  Box,
-  Globe,
-  SlidersHorizontal,
-  Code2,
   Lock,
 } from "lucide-react";
 import { TAI_EASE } from "@/lib/motion";
@@ -124,7 +111,7 @@ export default function CardsPreviewPage() {
       {/* ─── TOP CONTROL BAR (STICKY NAV) ─── */}
       <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#0c0c0e]/95 backdrop-blur-md px-6 sm:px-10 py-3.5 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 rounded-none bg-emerald-400 animate-pulse" />
+          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="font-mono text-xs tracking-widest uppercase font-bold text-white">
             THINKAI STUDIO · PRODUCT CARDS PROTOTYPE LAB
           </span>
@@ -144,7 +131,7 @@ export default function CardsPreviewPage() {
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveType(tab.id as any)}
+              onClick={() => setActiveType(tab.id as "all" | "split" | "console" | "rail" | "bento")}
               className={`px-3 py-1.5 text-xs font-mono transition-colors ${
                 activeType === tab.id
                   ? "bg-white text-black font-bold"
@@ -212,7 +199,7 @@ export default function CardsPreviewPage() {
                               <span className="w-2 h-2 bg-white/20" />
                               <span className="w-2 h-2 bg-white/20" />
                               <span className="font-mono text-[10px] text-neutral-400 pl-2 uppercase">
-                                {prod.mark} // {prod.id}
+                                {prod.mark} {"//"} {prod.id}
                               </span>
                             </div>
                             <div className="flex items-center gap-2 font-mono text-[10px] text-emerald-400">
@@ -618,7 +605,7 @@ export default function CardsPreviewPage() {
                     />
                     <div className="absolute top-3 left-3 flex items-center gap-2">
                       <span className="px-2 py-0.5 bg-black/80 backdrop-blur-md text-white font-mono text-[10px] border border-white/20 font-bold">
-                        {prod.mark} // {prod.index}
+                        {prod.mark} {"//"} {prod.index}
                       </span>
                     </div>
                     <div className="absolute top-3 right-3">

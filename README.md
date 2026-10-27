@@ -13,16 +13,16 @@
 
 *Architected for zero-trust delivery, bare-metal reliability, and 0px editorial precision.*
 
-[![Production Status](https://img.shields.io/badge/PRODUCTION-ONLINE-08080a?style=flat-square&logo=vercel&logoColor=white)](https://binhminh.thinkai.id.vn)
+[![Production Status](https://img.shields.io/badge/PRODUCTION-ONLINE-08080a?style=flat-square&logo=vercel&logoColor=white)](https://thinkai.id.vn)
 [![CI/CD Quality](https://img.shields.io/badge/CI%2FCD-GREEN%20GATE-08080a?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/bnhminh1010/portfolio/actions/workflows/quality.yml)
 [![Security SAST](https://img.shields.io/badge/SAST-CodeQL%20PASS-08080a?style=flat-square&logo=github&logoColor=white)](https://github.com/bnhminh1010/portfolio/actions/workflows/security.yml)
-[![Lighthouse](https://img.shields.io/badge/LIGHTHOUSE-100%2F100-4ade80?style=flat-square&logoColor=08080a)](https://binhminh.thinkai.id.vn)
+[![Lighthouse](https://img.shields.io/badge/LIGHTHOUSE-100%2F100-4ade80?style=flat-square&logoColor=08080a)](https://thinkai.id.vn)
 [![Node Engine](https://img.shields.io/badge/NODE-24.x%20LTS-08080a?style=flat-square&logo=nodedotjs&logoColor=white)](./.nvmrc)
 [![Design System](https://img.shields.io/badge/DESIGN-tai--ui%20v1.1-08080a?style=flat-square&logoColor=white)](./DESIGN.md)
 
 <p align="center">
-  <a href="https://binhminh.thinkai.id.vn">Live Portfolio</a> •
-  <a href="https://binhminh.thinkai.id.vn/cv">DevOps CV (PDF)</a> •
+  <a href="https://thinkai.id.vn">ThinkAI Studio</a> •
+  <a href="/cv">DevOps CV (PDF)</a> •
   <a href="https://hostdeck.thinkai.id.vn">HomeLab Dashboard</a> •
   <a href="#%EF%B8%8F-architecture--delivery-pipeline">Architecture</a> •
   <a href="#-design-system--visual-taste-tai-ui">Design System</a>
@@ -34,12 +34,11 @@
 
 ## ⚡ Overview & Executive Pitch
 
-Welcome to the source repository for **Bình Minh's Developer Portfolio & Systems Engineering Showcase**. 
+Welcome to the source repository for **ThinkAI Studio — Engineering Showcase & Product Portfolio**. 
 
-This platform serves a dual purpose:
-1. **DevOps & Infrastructure Showcase:** Demonstrating container orchestration (Rootless Podman, K3s), GitOps delivery paths (Argo CD, GitHub Actions), host hardening (systemd, ZRAM, Tailscale WireGuard mesh), and immutable CI/CD security gates.
-2. **ThinkAI Studio Flagship:** Showcasing the design philosophy of **ThinkAI Studio**—an infrastructure-grade aesthetic defined by **0px sharp geometry**, Obsidian depth (`#08080a`), WebGL halftone shaders, and a component distribution registry ([`thinkai-ui`](https://github.com/ThinkAI-Studio/thinkai-ui)).
-
+This platform serves as the premier studio showcase:
+1. **Studio Product Portfolio:** Full architectural case studies for flagship studio products: **ThinkAI UI** (decentralized CLI component registry), **Wind** (commissioned 3D poetry reader & teaching archive with zero-asset procedural Web Audio), **HostDeck** (self-hosted operations workbench over Tailscale mesh), and **ThinkAI** (K3s GitOps delivery pipeline).
+2. **Technical Craft & Motion:** An infrastructure-grade aesthetic defined by **10px precision geometry**, Obsidian depth (`#08080a`), scoped warm paper contrast (`.tai-paper`), Three.js procedural noise caustics, and a synchronized dual motion stack (**Motion 13 + GSAP 3.15 ScrollTrigger/InertiaPlugin + Lenis 1.3**).
 > **Philosophy:** *“Engineering systems that are easier to ship, operate, observe, and recover.”*
 
 ---
@@ -48,11 +47,10 @@ This platform serves a dual purpose:
 
 | Target Endpoint | Classification | Core Stack | Security & Ingress Model |
 | :--- | :--- | :--- | :--- |
-| [**binhminh.thinkai.id.vn**](https://binhminh.thinkai.id.vn) | Production Portfolio | Next.js 16, React 19, Tailwind v4, Three.js | Vercel Global Edge, Zero Runtime Secrets, Static Caching |
-| [**binhminh.thinkai.id.vn/cv**](https://binhminh.thinkai.id.vn/cv) | DevOps Resume (PDF) | PDF.js / Stream Engine | Single-Page Direct Stream, Canonical PDF Source |
-| [**hostdeck.thinkai.id.vn**](https://github.com/bnhminh1010/HomeLab-Dashboard) | Private Ops Workbench | Go 1.22, Podman, Tailscale, SQLite, WS | WireGuard Private Mesh, Host-Agent Isolation, WAL SQLite |
-| [**learning.thinkai.id.vn**](https://github.com/ThinkAI-team/thinkai-backend) | Education DevSecOps | Spring Boot 3, K3s, Docker, Argo CD, Trivy | 2-Pod K3s GitOps, Multi-Stage OCI Images, SAST Gated |
-
+| [**/**](https://thinkai.id.vn) | Studio Showcase | Next.js 16, React 19, Tailwind v4, Three.js, GSAP 3.15 | Vercel Global Edge, Zero Runtime Secrets, Static Caching |
+| [**/products/[slug]**](https://thinkai.id.vn/products/wind) | Case Studies (4 Products) | Next.js SSG, Prose Paginator, Procedural Web Audio | Static Site Generation, Verifiable Git Ledgers, Zero Secrets |
+| [**/about**](https://thinkai.id.vn/about) | Studio Profile & Principles | React 19, Tailwind v4, Motion 13 | Static SSG, Direct Contact & Verification |
+| [**/cv**](/cv) | DevOps Resume (PDF) | PDF.js / Stream Engine | Single-Page Direct Stream, Canonical PDF Source |
 ---
 
 ## 🏗️ Architecture & Delivery Pipeline
@@ -109,9 +107,9 @@ flowchart LR
 
 Built on the **ThinkAI Studio Design Specification** ([`DESIGN.md`](./DESIGN.md)):
 
-* **0px Architectural Geometry:** 100% zero border-radius (`border-radius: 0px !important`) across all cards, dialogs, pills, and inputs.
-* **Obsidian Monochromatic Depth:** Deep hắc thạch canvases (`#08080a`, `#0d0d10`, `#131316`) paired with linear-grade 1px top-inset highlights (`shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]`) and dynamic alpha borders (`border-white/[0.07]`).
-* **WebGL Ocean Halftone Shader:** Custom Three.js procedural shader with smooth camera interpolation and automatic resource shutdown on background tabs.
+* **10px Precision Geometry:** 10px border-radius (`rounded-[10px]`) for cards/buttons/inputs, 16px (`rounded-[16px]`) for large containers, and `0 0 16px 16px` for section exit tucks.
+* **Obsidian Depth & Scoped Paper Contrast:** Deep hắc thạch base canvases (`#08080a`, `#0d0d10`, `#131316`) contrasted with ONE scoped warm paper section (`.tai-paper`) reserved exclusively for the Wind literary platform.
+* **Dual Motion Engine & Sora UI:** Synchronized Lenis 1.3 momentum scrolling, GSAP 3.15 ScrollTrigger (Hero tuck, 3.5° card fan deck), and Sora UI interactive components (`@soralabs`).
 * **WCAG AAA Reduced-Motion Engine:** Full 4-tier motion accessibility (`Bail`, `Snap-to-End`, `Collapse`, `Reduce`) guaranteeing zero vestibular triggers.
 * **Component Registry (`thinkai-ui`):** Modern registry-first UI distribution model ([`registry/registry.json`](./registry/registry.json)), installable directly into external projects via `npx thinkai-ui`.
 
@@ -123,10 +121,9 @@ Built on the **ThinkAI Studio Design Specification** ([`DESIGN.md`](./DESIGN.md)
 HURDLE: INFRASTRUCTURE & BACKEND        CRAFT: INTERFACE & EXPERIENCE
 ├── Go (Golang) / Spring Boot (Java 21) ├── Next.js 16 (App Router / Turbopack)
 ├── Rootless Podman & Docker Engine      ├── React 19 + React Compiler
-├── Kubernetes (K3s) & Argo CD GitOps    ├── Tailwind CSS v4 + CVA Engine
-├── Tailscale WireGuard Mesh Networking  ├── Three.js WebGL Shaders & Lenis 120Hz
-└── SQLite (WAL) / PostgreSQL / Redis    └── Motion (Hardware-accelerated)
-```
+├── Kubernetes (K3s) & Argo CD GitOps    ├── Tailwind CSS v4 + 10px Precision System
+├── Tailscale WireGuard Mesh Networking  ├── Three.js WebGL & Lenis 1.3 Smooth Scroll
+└── SQLite (WAL) / PostgreSQL / Supabase └── Motion 13 + GSAP 3.15 + Sora UI Registry
 
 ---
 

@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export type Language = "en" | "vi";
 
 export type Localized<T> = Record<Language, T>;
@@ -43,13 +45,13 @@ export type ArchitectureMetadata = {
 };
 
 export type Project = {
-  id: "thinkai-ui" | "homelab" | "thinkai";
+  id: "thinkai-ui" | "wind" | "homelab" | "thinkai";
   repo: string;
   liveUrl?: string;
   cliCommand?: string;
   period: string;
   stack: string[];
-  accent: "teal" | "pink" | "emerald";
+  accent: "teal" | "pink" | "emerald" | "amber";
   mark: string;
   metric: {
     value: string;
@@ -85,7 +87,7 @@ export const profile = {
   email: "pata10102004@gmail.com",
   phone: "+84 372 064 929",
   location: "Thu Duc, Ho Chi Minh City, Vietnam",
-  domain: "https://binhminh.thinkai.id.vn",
+  domain: SITE_URL,
   github: "https://github.com/bnhminh1010",
   linkedin: "https://www.linkedin.com/in/b%C3%ACnh-minh-4a953434b/",
 };
@@ -426,7 +428,7 @@ export const copy: Localized<PortfolioCopy> = {
       askAiPrompt: `Please analyze and summarize the background, engineering skills, and portfolio of Binh Minh (Nguyen Binh Minh), a DevOps & Systems Engineer based in Vietnam and the creator of ThinkAI Studio.
 
 Key information & resources:
-- Portfolio & Studio: https://binhminh.thinkai.id.vn
+- Studio: https://thinkai.id.vn
 - GitHub: https://github.com/bnhminh1010
 - Key Production Projects & Systems:
   1. HostDeck Bare-Metal Console (https://hostdeck.thinkai.id.vn) - Homelab multi-node observability, rootless Podman container orchestration, automated backups, and 1-line CLI installer.
@@ -643,7 +645,7 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
       askAiPrompt: `Vui lòng phân tích và tóm tắt năng lực kỹ thuật, tiểu sử và portfolio của Nguyễn Bình Minh (Bình Minh), Kỹ sư DevOps & Hệ thống tại Việt Nam và là nhà sáng lập ThinkAI Studio.
 
 Thông tin và tài nguyên chính:
-- Portfolio & Studio: https://binhminh.thinkai.id.vn
+- Studio: https://thinkai.id.vn
 - GitHub: https://github.com/bnhminh1010
 - Các dự án và hệ thống trọng điểm:
   1. HostDeck Bare-Metal Console (https://hostdeck.thinkai.id.vn) - Giám sát bare-metal homelab đa node, điều phối container Podman rootless, sao lưu SQLite tự động và bộ cài CLI 1 dòng lệnh.
@@ -866,6 +868,197 @@ export const projects: Project[] = [
           },
           branch: "main",
           url: "https://ui.thinkai.id.vn/r/registry.json",
+          verified: true,
+        },
+      ],
+    },
+  },
+  {
+    id: "wind",
+    repo: "https://github.com/bnhminh1010/wind",
+    liveUrl: "https://huuthinh.thinkai.id.vn",
+    period: "2026",
+    stack: ["Next.js 15", "React 19", "Tailwind CSS", "Three.js", "Web Audio API", "Supabase"],
+    accent: "emerald",
+    mark: "WIND",
+    metric: {
+      value: "0-ASSET",
+      label: {
+        en: "100% Procedural Web Audio • 3D Page-Flip Engine",
+        vi: "100% Web Audio Toán Học • Bộ Lật Trang 3D Chân Thực",
+      },
+    },
+    evidence: {
+      cv: "Commissioned personalised literary platform & digital teaching archive with 3D paginated book-spread virtualization and zero-asset procedural audio.",
+      repository: [
+        { claim: "Dual-Paradigm Typography & Paginated Book-Spread Virtualization", url: "https://huuthinh.thinkai.id.vn" },
+        { claim: "Zero-Dependency Procedural Web Audio Synthesis & Rustling Throttle", url: "https://huuthinh.thinkai.id.vn" },
+        { claim: "Resilient Multi-Tier Data Service with Supabase & File-System Fallback", url: "https://huuthinh.thinkai.id.vn" },
+      ],
+    },
+    preview: {
+      assetStem: "wind-preview",
+      image: "/images/products/wind/wind-cover.webp",
+      ready: true,
+      capture: {
+        en: "Interactive 3D dual-spread folio reader with authentic paper curling, seasonal atmosphere shaders, and multi-tier collections bookshelf.",
+        vi: "Bộ đọc sách 3D hai trang mở với độ uốn cong trang thực tế, hiệu ứng bóng đổ và bốn mùa chuyển sắc.",
+      },
+    },
+    content: {
+      en: {
+        category: "Commissioned Platform & Digital Teaching Archive",
+        title: "Wind",
+        summary: "A commissioned literary platform and digital teaching archive featuring a 3D page-flip reader, four-season atmosphere shaders, multi-tier bookshelf, and 100% procedural Web Audio synthesis.",
+        story: {
+          problem: "Classical Vietnamese poetry requires strict rhythmic indentation (Lục bát 6-8, Song thất lục bát, Đường luật) while prose requires continuous typographic flow. In a 3D book spread, lines cannot break arbitrarily across pages without disorientation, while ambient paper micro-interactions must avoid audio file latency.",
+          approach: "Developed a dual-paradigm paginated book-spread virtualizer (prose-paginator.ts) paired with realistic 3D page-flip physics, a procedural Brown-noise Web Audio synthesizer sweeping bandpass filters (600Hz → 2200Hz → 350Hz), and a 4-tier resilient data cascade with Supabase and local JSON fallback.",
+          outcome: "Delivered a zero-asset audio footprint, sub-16ms page-flip interactions, 100% offline resilience on classroom networks, and zero-downtime database fallback.",
+        },
+        diagramLabel: "Supabase / JSON Fallback → Paginated Spread Engine → 3D Page-Flip Mesh → Procedural Web Audio",
+      },
+      vi: {
+        category: "Nền Tảng Độc Bản & Thi Quán Đường Đại",
+        title: "Wind",
+        summary: "Nền tảng thi phẩm độc bản kiêm giáo cụ giảng dạy văn học với bộ lật trang 3D chân thực, hiệu ứng bốn mùa chuyển sắc, giá sách đa tầng và âm thanh tổng hợp toán học zero-asset.",
+        story: {
+          problem: "Thơ cổ điển Việt Nam đòi hỏi ngắt nhịp và thụt lề nghiêm ngặt (Lục bát 6-8, Song thất lục bát, Đường luật), trong khi tản văn đòi hỏi luồng chữ liền mạch. Trên trang sách 3D mở đôi, chữ không thể ngắt tuỳ tiện giữa trang trái và phải, đồng thời hiệu ứng lật trang không được tải file âm thanh nặng làm trễ tương tác.",
+          approach: "Xây dựng thuật toán phân trang kép (prose-paginator.ts) tính toán hạn mức từ và bảo toàn khổ thơ, kết hợp vật lý lật trang 3D, bộ tổng hợp âm thanh Web Audio procedural từ nhiễu Brown lọc dải tần (600Hz → 2200Hz → 350Hz) và kiến trúc dữ liệu 4 tầng chống sập kết hợp Supabase cùng JSON dự phòng.",
+          outcome: "Loại bỏ hoàn toàn file âm thanh ngoại vi (0kB audio asset), độ trễ lật sách dưới 16ms, hoạt động ổn định 100% trên mạng trường học ngay cả khi mất kết nối đám mây.",
+        },
+        diagramLabel: "Supabase / JSON Dự Phòng → Bộ Phân Trang Kép → Mesh Lật Sách 3D → Âm Thanh Procedural",
+      },
+    },
+    architecture: {
+      specId: "SPEC-WIND-2026",
+      constraint: {
+        en: "Constraint: Zero-Asset Audio & Offline Teaching Resilience",
+        vi: "Ràng buộc: Zero-Asset Âm Thanh & Bền Bỉ Ngoại Tuyến Giảng Dạy",
+      },
+      mechanism: {
+        en: "Mechanism: Dual-Paradigm Book Virtualization & Procedural Audio",
+        vi: "Cơ chế: Phân Trang Kép Sách 3D & Tổng Hợp Âm Thanh Procedural",
+      },
+      standard: {
+        en: "Standard: 60FPS 3D Page Flip & Sub-16ms Synthesizer Latency",
+        vi: "Tiêu chuẩn: Lật Sách 3D 60FPS & Độ Trễ Âm Thanh Dưới 16ms",
+      },
+      flowSteps: [
+        {
+          step: "01",
+          title: "Data Cascade",
+          protocol: "Supabase / JSON Fallback",
+          status: "RESILIENT",
+          subtitle: {
+            en: "4-tier data cascade: memory cache → Supabase PostgreSQL → local JSON → mock",
+            vi: "Phân tầng dữ liệu 4 lớp: memory cache → Supabase PostgreSQL → JSON nội bộ → mock",
+          },
+        },
+        {
+          step: "02",
+          title: "Spread Virtualizer",
+          protocol: "prose-paginator.ts",
+          status: "FORMATTED",
+          subtitle: {
+            en: "Genre-aware pagination packing 120-180 words or preserving strict stanza units",
+            vi: "Phân trang theo thể loại: gói 120-180 từ cho tản văn và giữ nguyên khổ thơ",
+          },
+        },
+        {
+          step: "03",
+          title: "3D Page-Flip Mesh",
+          protocol: "WebGL & CSS 3D",
+          status: "RENDERED",
+          subtitle: {
+            en: "Dual-page folio with realistic page curling, spine shading, and vermilion seal",
+            vi: "Mô hình trang đôi với độ uốn mép trang chân thực, bóng gáy sách và triện son",
+          },
+        },
+        {
+          step: "04",
+          title: "Procedural Audio",
+          protocol: "Web Audio API",
+          status: "SYNTHESIZED",
+          subtitle: {
+            en: "Random-walk Brown noise swept via Biquad filter (600Hz → 2200Hz → 350Hz)",
+            vi: "Nhiễu Brown random-walk quét qua bộ lọc Biquad (600Hz → 2200Hz → 350Hz)",
+          },
+        },
+      ],
+      securityCards: [
+        {
+          title: {
+            en: "Zero External Audio Execution",
+            vi: "Không nạp file âm thanh ngoại vi",
+          },
+          description: {
+            en: "All auditory feedback is synthesized mathematically in Web Audio API. Zero external MP3/WAV files are requested, eliminating audio decode overhead, CDN latency, and browser autoplay blocks.",
+            vi: "Toàn bộ âm thanh được tổng hợp thuần toán học trong Web Audio API. Không tải bất kỳ file MP3/WAV nào, triệt tiêu độ trễ mạng, chi phí giải mã và rào cản autoplay của trình duyệt.",
+          },
+          tag: "ZERO-ASSET",
+          icon: "code",
+        },
+        {
+          title: {
+            en: "4-Tier Resilient Offline Fallback",
+            vi: "Dự phòng 4 tầng ngoại tuyến bền bỉ",
+          },
+          description: {
+            en: "Graceful degradation from Supabase PostgreSQL to local JSON file-system and memory fallback ensures classroom lecture continuity even during network drops.",
+            vi: "Khả năng suy giảm êm dịu từ Supabase PostgreSQL sang file JSON cục bộ và bộ nhớ đệm giúp bài giảng trong lớp học không bao giờ bị gián đoạn khi mạng chập chờn.",
+          },
+          tag: "FAILOVER READY",
+          icon: "shield",
+        },
+        {
+          title: {
+            en: "Atomic PostgreSQL RPC Telemetry",
+            vi: "Bộ đếm nguyên tử PostgreSQL RPC",
+          },
+          description: {
+            en: "Poem view counters utilize PostgreSQL SECURITY DEFINER RPC functions with atomic UPDATE ... RETURNING, preventing race conditions under concurrent classroom access.",
+            vi: "Bộ đếm lượt đọc thơ chạy qua hàm PostgreSQL RPC với quyền SECURITY DEFINER và câu lệnh UPDATE ... RETURNING nguyên tử, loại trừ xung đột đồng thời.",
+          },
+          tag: "ATOMIC ACID",
+          icon: "lock",
+        },
+        {
+          title: {
+            en: "Stanza-Preserving Typographic Security",
+            vi: "Bảo toàn thể loại và niêm luật thơ",
+          },
+          description: {
+            en: "Rigorous genre heuristics prevent breaking Lục bát 6-8 alternating indentation, Đường luật octaves, and stanza units across book spreads.",
+            vi: "Quy chuẩn thụt lề Lục bát 6-8, niêm luật Đường luật và cấu trúc khổ thơ được thuật toán bảo toàn nguyên bản, không bị cắt ngang trang tùy tiện.",
+          },
+          tag: "TYPOGRAPHY SAFE",
+          icon: "check",
+        },
+      ],
+      specSnippet: {
+        filename: "src/lib/book-audio.ts",
+        language: "typescript",
+        code: `// Brown noise paper page-turn synthesis (180ms)\nconst buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);\nconst output = buffer.getChannelData(0);\nlet lastOut = 0.0;\nfor (let i = 0; i < bufferSize; i++) {\n  const white = Math.random() * 2 - 1;\n  output[i] = (lastOut + 0.025 * white) / 1.02;\n  lastOut = output[i];\n  output[i] *= 4.2;\n}\nconst filter = ctx.createBiquadFilter();\nfilter.type = "bandpass";\nfilter.frequency.setValueAtTime(600, now);\nfilter.frequency.exponentialRampToValueAtTime(2200, now + 0.06);\nfilter.frequency.exponentialRampToValueAtTime(350, now + 0.18);\nfilter.Q.setValueAtTime(1.6, now);`,
+      },
+      provenance: [
+        {
+          hash: "7f4c19a",
+          message: {
+            en: "feat: dual-paradigm prose & verse paginated book-spread virtualizer",
+            vi: "feat: bộ phân trang sách 3D kép bảo toàn khổ thơ và ngắt đoạn tản văn",
+          },
+          branch: "main",
+          url: "https://huuthinh.thinkai.id.vn",
+          verified: true,
+        },
+        {
+          hash: "3b8e512",
+          message: {
+            en: "feat: procedural Web Audio page-curl & leaf-rustle synthesis engine",
+            vi: "feat: engine tổng hợp âm thanh lật sách và xào xạc lá cây bằng Web Audio",
+          },
+          branch: "main",
+          url: "https://huuthinh.thinkai.id.vn",
           verified: true,
         },
       ],

@@ -64,7 +64,7 @@ export function ParallaxProductCover({
 
       {/* Floating Status Pill (Top Right) */}
       <div className="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 font-mono text-[10px] text-emerald-400 font-bold tracking-wider uppercase">
-        <span className="w-1.5 h-1.5 rounded-none bg-emerald-400 animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
         <span>{status}</span>
       </div>
 
