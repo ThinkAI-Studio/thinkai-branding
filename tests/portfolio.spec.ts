@@ -124,8 +124,8 @@ test("mobile menu can be opened and closed repeatedly without losing buttons", a
   await expect(drawer).toBeVisible();
   await expect(drawer.getByRole("button", { name: /about|giới thiệu/i })).toBeVisible();
   await expect(drawer.getByRole("button", { name: /products|sản phẩm/i })).toBeVisible();
-  await expect(drawer.getByRole("button", { name: /experience|kinh nghiệm/i })).toBeVisible();
   await expect(drawer.getByRole("button", { name: /contact|liên hệ/i })).toBeVisible();
+  await expect(drawer.getByRole("button", { name: /cv|resume/i })).toBeVisible();
 });
 
 test("defaults to Vietnamese when browser system language is vi-VN", async ({ browser }) => {
@@ -146,7 +146,7 @@ test("architecture and case study product route is responsive and accessible", a
   await expect(page.locator("body")).toBeVisible();
 
   // Find the first architecture link in the Products section
-  const archLink = page.getByRole("link", { name: /architecture|kiến trúc/i }).first();
+  const archLink = page.getByRole("link", { name: /case study|architecture|kiến trúc/i }).first();
   await expect(archLink).toBeVisible();
   await archLink.click();
 
