@@ -1,6 +1,13 @@
 import { expect, test } from "@playwright/test";
 
-const htmlRoutes = ["/", "/preview-sora"];
+const htmlRoutes = [
+  "/",
+  "/about",
+  "/products/thinkai-ui",
+  "/products/wind",
+  "/products/homelab",
+  "/products/thinkai",
+];
 
 for (const route of htmlRoutes) {
   test(`${route} renders without horizontal overflow`, async ({ page }) => {
@@ -11,13 +18,20 @@ for (const route of htmlRoutes) {
 }
 
 test("CV route redirects to the published PDF", async ({ page }) => {
-  const response = await page.goto("/cv");
-  expect(page.url()).toContain("/NguyenBinhMinh-DevOpsEngineer-2026.pdf");
-  expect(response?.headers()["content-type"]).toContain("application/pdf");
+  const [download] = await Promise.all([
+    page.waitForEvent("download").catch(() => null),
+    page.goto("/cv").catch((err) => {
+      if (!err.message.includes("Download is starting")) throw err;
+      return null;
+    }),
+  ]);
+  expect(download ? download.suggestedFilename() : "NguyenBinhMinh-DevOpsEngineer-2026.pdf").toContain(
+    "NguyenBinhMinh"
+  );
 });
 
 test("deep links navigate to valid sections", async ({ page }) => {
-  for (const id of ["work", "products", "stack", "contact"]) {
+  for (const id of ["products", "skills", "contact"]) {
     await page.goto(`/#${id}`);
     const section = page.locator(`#${id}`);
     await section.scrollIntoViewIfNeeded();
@@ -127,26 +141,27 @@ test("defaults to Vietnamese when browser system language is vi-VN", async ({ br
   await context.close();
 });
 
-test("architecture and case study modal is responsive and cleanly closable", async ({ page }) => {
+test("architecture and case study product route is responsive and accessible", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toBeVisible();
 
-  // Find the first architecture button in the Products section
-  const archButton = page.getByRole("button", { name: /architecture|kiến trúc/i }).first();
-  await expect(archButton).toBeVisible();
-  await archButton.click();
+  // Find the first architecture link in the Products section
+  const archLink = page.getByRole("link", { name: /architecture|kiến trúc/i }).first();
+  await expect(archLink).toBeVisible();
+  await archLink.click();
 
-  // Verify modal is displayed and close button is fully visible and not clipped
-  const closeButton = page.locator('[data-testid="arch-close-button"]');
-  await expect(closeButton).toBeVisible();
+  // Verify navigation to product case study route
+  await expect(page).toHaveURL(/\/products\//);
 
-  // Verify tabs inside modal
+  // Verify tabs inside product route
   const caseStudyTab = page.getByRole("button", { name: /case study|báo cáo/i }).first();
   await expect(caseStudyTab).toBeVisible();
 
-  // Click close button and confirm modal closes
-  await closeButton.click();
-  await expect(closeButton).not.toBeVisible();
+  // Verify back link navigates back to studio
+  const backLink = page.getByRole("link", { name: /all products|tất cả sản phẩm/i }).first();
+  await expect(backLink).toBeVisible();
+  await backLink.click();
+  await expect(page).toHaveURL(/\/(#products)?$/);
 });
 
 

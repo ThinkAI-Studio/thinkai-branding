@@ -18,8 +18,8 @@ const socialImage = "/og-image.png?v=20260901";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://binhminh.thinkai.id.vn"),
-  title: "ThinkAI Studio",
-  description: "ThinkAI Studio: Reliable infrastructure as code, rootless container orchestration, and continuous GitOps delivery platforms.",
+  title: "ThinkAI Studio — Engineering Showcase & Product Portfolio",
+  description: "ThinkAI Studio: Infrastructure as code, zero-trust container orchestration, and high-craft editorial web platforms.",
   icons: {
     icon: [
       { url: "/icon.png?v=20260902", sizes: "512x512", type: "image/png" },
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico?v=20260902"],
   },
   openGraph: {
-    title: "ThinkAI Studio",
-    description: "ThinkAI Studio: Reliable infrastructure as code, rootless container orchestration, and continuous GitOps delivery platforms.",
+    title: "ThinkAI Studio — Engineering Showcase & Product Portfolio",
+    description: "ThinkAI Studio: Infrastructure as code, zero-trust container orchestration, and high-craft editorial web platforms.",
     url: "/",
     siteName: "ThinkAI Studio",
     images: [{ url: socialImage, width: 1200, height: 630, alt: "ThinkAI Studio: DevOps & Systems Engineer" }],
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ThinkAI Studio",
-    description: "ThinkAI Studio: Reliable infrastructure as code, rootless container orchestration, and continuous GitOps delivery platforms.",
+    title: "ThinkAI Studio — Engineering Showcase & Product Portfolio",
+    description: "ThinkAI Studio: Infrastructure as code, zero-trust container orchestration, and high-craft editorial web platforms.",
     images: [socialImage],
   },
 };

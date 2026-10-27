@@ -4,13 +4,13 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   use: {
-    baseURL: "http://127.0.0.1:3001",
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3005",
     trace: "retain-on-failure",
     launchOptions: process.env.CI ? undefined : { executablePath: "/usr/bin/google-chrome" },
   },
   webServer: {
-    command: "npm run start -- -p 3001",
-    url: "http://127.0.0.1:3001",
+    command: "npm run start -- -p 3005",
+    url: "http://127.0.0.1:3005",
     reuseExistingServer: false,
     timeout: 30_000,
   },

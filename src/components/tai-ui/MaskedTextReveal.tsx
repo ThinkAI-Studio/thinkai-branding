@@ -59,7 +59,6 @@ export function MaskedTextReveal({
   const items = splitBy === "lines" ? text.split("\n") : text.split(" ");
 
   return (
-    // @ts-ignore
     <Component ref={containerRef} className={cn("block", className)}>
       {items.map((item, idx) => (
         <span
