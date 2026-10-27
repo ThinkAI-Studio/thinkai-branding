@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { WipeButton } from "./WipeButton";
@@ -19,6 +20,7 @@ interface TaiHeaderProps {
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
+  const router = useRouter();
   const { language, toggleLanguage, setLanguage } = useLanguage();
   const prefersReduced = useReducedMotion();
   const t = copy[language];
@@ -314,7 +316,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                   label: t.nav.about,
                   action: () => {
                     if (onOpenAbout) onOpenAbout();
-                    else window.location.href = "/about";
+                    else router.push("/about");
                   },
                 },
                 { label: t.nav.work, action: () => handleNavClick("products") },
