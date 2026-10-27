@@ -23,8 +23,14 @@ Keep direct pushes to `main` restricted to maintainers. This is an external GitH
 
 1. Open the Vercel preview from the pull request.
 2. Check `/`, `/cv` and `/lab` at desktop and mobile widths.
-3. Confirm `https://binhminh.thinkai.id.vn/og-image.png` returns the current 1200×630 PNG.
+3. Confirm `https://thinkai.id.vn/og-image.png` returns the current 1200×630 PNG.
 4. Merge only after Quality, Security, Dependency Review and Vercel Preview checks succeed.
+
+## Domain Migration & DNS (Infrastructure Task)
+
+> **TODO (Infrastructure):** The domain migration from `binhminh.thinkai.id.vn` to `thinkai.id.vn` for this ThinkAI Studio project is an external Vercel dashboard and DNS configuration step outside this repository.
+> 1. Attach `thinkai.id.vn` as the primary canonical production domain for this repository on Vercel.
+> 2. `binhminh.thinkai.id.vn` is strictly reserved for the future standalone personal portfolio repository when that repository is deployed.
 
 ## Rollback
 

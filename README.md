@@ -13,16 +13,16 @@
 
 *Architected for zero-trust delivery, bare-metal reliability, and 0px editorial precision.*
 
-[![Production Status](https://img.shields.io/badge/PRODUCTION-ONLINE-08080a?style=flat-square&logo=vercel&logoColor=white)](https://binhminh.thinkai.id.vn)
+[![Production Status](https://img.shields.io/badge/PRODUCTION-ONLINE-08080a?style=flat-square&logo=vercel&logoColor=white)](https://thinkai.id.vn)
 [![CI/CD Quality](https://img.shields.io/badge/CI%2FCD-GREEN%20GATE-08080a?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/bnhminh1010/portfolio/actions/workflows/quality.yml)
 [![Security SAST](https://img.shields.io/badge/SAST-CodeQL%20PASS-08080a?style=flat-square&logo=github&logoColor=white)](https://github.com/bnhminh1010/portfolio/actions/workflows/security.yml)
-[![Lighthouse](https://img.shields.io/badge/LIGHTHOUSE-100%2F100-4ade80?style=flat-square&logoColor=08080a)](https://binhminh.thinkai.id.vn)
+[![Lighthouse](https://img.shields.io/badge/LIGHTHOUSE-100%2F100-4ade80?style=flat-square&logoColor=08080a)](https://thinkai.id.vn)
 [![Node Engine](https://img.shields.io/badge/NODE-24.x%20LTS-08080a?style=flat-square&logo=nodedotjs&logoColor=white)](./.nvmrc)
 [![Design System](https://img.shields.io/badge/DESIGN-tai--ui%20v1.1-08080a?style=flat-square&logoColor=white)](./DESIGN.md)
 
 <p align="center">
-  <a href="https://binhminh.thinkai.id.vn">Live Portfolio</a> •
-  <a href="https://binhminh.thinkai.id.vn/cv">DevOps CV (PDF)</a> •
+  <a href="https://thinkai.id.vn">ThinkAI Studio</a> •
+  <a href="/cv">DevOps CV (PDF)</a> •
   <a href="https://hostdeck.thinkai.id.vn">HomeLab Dashboard</a> •
   <a href="#%EF%B8%8F-architecture--delivery-pipeline">Architecture</a> •
   <a href="#-design-system--visual-taste-tai-ui">Design System</a>
@@ -47,10 +47,10 @@ This platform serves as the premier studio showcase:
 
 | Target Endpoint | Classification | Core Stack | Security & Ingress Model |
 | :--- | :--- | :--- | :--- |
-| [**/**](https://binhminh.thinkai.id.vn) | Studio Showcase | Next.js 16, React 19, Tailwind v4, Three.js, GSAP 3.15 | Vercel Global Edge, Zero Runtime Secrets, Static Caching |
-| [**/products/[slug]**](https://binhminh.thinkai.id.vn/products/wind) | Case Studies (4 Products) | Next.js SSG, Prose Paginator, Procedural Web Audio | Static Site Generation, Verifiable Git Ledgers, Zero Secrets |
-| [**/about**](https://binhminh.thinkai.id.vn/about) | Studio Profile & Principles | React 19, Tailwind v4, Motion 13 | Static SSG, Direct Contact & Verification |
-| [**/cv**](https://binhminh.thinkai.id.vn/cv) | DevOps Resume (PDF) | PDF.js / Stream Engine | Single-Page Direct Stream, Canonical PDF Source |
+| [**/**](https://thinkai.id.vn) | Studio Showcase | Next.js 16, React 19, Tailwind v4, Three.js, GSAP 3.15 | Vercel Global Edge, Zero Runtime Secrets, Static Caching |
+| [**/products/[slug]**](https://thinkai.id.vn/products/wind) | Case Studies (4 Products) | Next.js SSG, Prose Paginator, Procedural Web Audio | Static Site Generation, Verifiable Git Ledgers, Zero Secrets |
+| [**/about**](https://thinkai.id.vn/about) | Studio Profile & Principles | React 19, Tailwind v4, Motion 13 | Static SSG, Direct Contact & Verification |
+| [**/cv**](/cv) | DevOps Resume (PDF) | PDF.js / Stream Engine | Single-Page Direct Stream, Canonical PDF Source |
 ---
 
 ## 🏗️ Architecture & Delivery Pipeline

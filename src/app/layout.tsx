@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
 const barlowCondensed = localFont({
   src: [
@@ -17,9 +18,9 @@ const barlowCondensed = localFont({
 const socialImage = "/og-image.png?v=20260901";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://binhminh.thinkai.id.vn"),
-  title: "ThinkAI Studio — Engineering Showcase & Product Portfolio",
-  description: "ThinkAI Studio: Infrastructure as code, zero-trust container orchestration, and high-craft editorial web platforms.",
+  metadataBase: new URL(SITE_URL),
+  title: `${SITE_NAME} — Engineering Showcase & Product Portfolio`,
+  description: SITE_DESCRIPTION,
   icons: {
     icon: [
       { url: "/icon.png?v=20260902", sizes: "512x512", type: "image/png" },
@@ -31,19 +32,22 @@ export const metadata: Metadata = {
     ],
     shortcut: ["/favicon.ico?v=20260902"],
   },
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
-    title: "ThinkAI Studio — Engineering Showcase & Product Portfolio",
-    description: "ThinkAI Studio: Infrastructure as code, zero-trust container orchestration, and high-craft editorial web platforms.",
-    url: "/",
-    siteName: "ThinkAI Studio",
-    images: [{ url: socialImage, width: 1200, height: 630, alt: "ThinkAI Studio: DevOps & Systems Engineer" }],
+    title: `${SITE_NAME} — Engineering Showcase & Product Portfolio`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    images: [{ url: socialImage, width: 1200, height: 630, alt: `${SITE_NAME}: Engineering Showcase & Product Portfolio` }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ThinkAI Studio — Engineering Showcase & Product Portfolio",
-    description: "ThinkAI Studio: Infrastructure as code, zero-trust container orchestration, and high-craft editorial web platforms.",
+    title: `${SITE_NAME} — Engineering Showcase & Product Portfolio`,
+    description: SITE_DESCRIPTION,
     images: [socialImage],
   },
 };

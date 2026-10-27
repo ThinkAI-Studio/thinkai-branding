@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export type Language = "en" | "vi";
 
 export type Localized<T> = Record<Language, T>;
@@ -85,7 +87,7 @@ export const profile = {
   email: "pata10102004@gmail.com",
   phone: "+84 372 064 929",
   location: "Thu Duc, Ho Chi Minh City, Vietnam",
-  domain: "https://binhminh.thinkai.id.vn",
+  domain: SITE_URL,
   github: "https://github.com/bnhminh1010",
   linkedin: "https://www.linkedin.com/in/b%C3%ACnh-minh-4a953434b/",
 };
@@ -426,7 +428,7 @@ export const copy: Localized<PortfolioCopy> = {
       askAiPrompt: `Please analyze and summarize the background, engineering skills, and portfolio of Binh Minh (Nguyen Binh Minh), a DevOps & Systems Engineer based in Vietnam and the creator of ThinkAI Studio.
 
 Key information & resources:
-- Portfolio & Studio: https://binhminh.thinkai.id.vn
+- Studio: https://thinkai.id.vn
 - GitHub: https://github.com/bnhminh1010
 - Key Production Projects & Systems:
   1. HostDeck Bare-Metal Console (https://hostdeck.thinkai.id.vn) - Homelab multi-node observability, rootless Podman container orchestration, automated backups, and 1-line CLI installer.
@@ -643,7 +645,7 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
       askAiPrompt: `Vui lòng phân tích và tóm tắt năng lực kỹ thuật, tiểu sử và portfolio của Nguyễn Bình Minh (Bình Minh), Kỹ sư DevOps & Hệ thống tại Việt Nam và là nhà sáng lập ThinkAI Studio.
 
 Thông tin và tài nguyên chính:
-- Portfolio & Studio: https://binhminh.thinkai.id.vn
+- Studio: https://thinkai.id.vn
 - GitHub: https://github.com/bnhminh1010
 - Các dự án và hệ thống trọng điểm:
   1. HostDeck Bare-Metal Console (https://hostdeck.thinkai.id.vn) - Giám sát bare-metal homelab đa node, điều phối container Podman rootless, sao lưu SQLite tự động và bộ cài CLI 1 dòng lệnh.
