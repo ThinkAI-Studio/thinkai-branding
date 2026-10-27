@@ -2,12 +2,11 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Copy,
   Check,
-  GraduationCap,
-  Award,
   Sparkles,
   ArrowUpRight,
 } from "lucide-react";
@@ -16,14 +15,14 @@ import { useLanguage } from "@/context/LanguageContext";
 import { ThreeHalftoneCanvas } from "@/components/tai-ui/ThreeHalftoneCanvas";
 import { TaiHeader } from "@/components/tai-ui/TaiHeader";
 import { MaskedTextReveal } from "@/components/tai-ui/MaskedTextReveal";
-import { TextRoll } from "@/components/tai-ui/TextRoll";
+import { HeroSection } from "@/components/tai-ui/HeroSection";
+import { SkillsFan } from "@/components/tai-ui/SkillsFan";
+import { ScrollIndicator } from "@/components/tai-ui/ScrollIndicator";
 import { ButtonTextRoll } from "@/components/tai-ui/ButtonTextRoll";
 import { ParallaxProductCover } from "@/components/tai-ui/ParallaxProductCover";
-import { ArchitectureModal } from "@/components/tai-ui/ArchitectureModal";
 import { AboutDrawer } from "@/components/tai-ui/AboutDrawer";
 import { ContactModal } from "@/components/tai-ui/ContactModal";
 import { ArrowRoll } from "@/components/tai-ui/ArrowRoll";
-import { TechLogo } from "@/components/tai-ui/TechLogos";
 import { SmoothScroll } from "@/components/tai-ui/SmoothScroll";
 import { WipeButton } from "@/components/tai-ui/WipeButton";
 import { LanguageTransition } from "@/components/tai-ui/LanguageTransition";
@@ -50,7 +49,6 @@ export default function PortfolioPage() {
     document.title = "ThinkAI Studio";
   }, []);
 
-  const [selectedArchProject, setSelectedArchProject] = useState<"thinkai-ui" | "homelab" | "thinkai" | null>(null);
 
   // Chapter 01 Carousel State & Progress Bar
   const [activeSlide, setActiveSlide] = useState(0);
@@ -226,35 +224,8 @@ export default function PortfolioPage() {
         onOpenContact={() => setIsContactOpen(true)}
       />
 
-      {/* ─── 02. HERO SECTION (High-Contrast View-Only Window Over Ocean Canvas) ─── */}
-      <section
-        id="top"
-        className="relative z-10 min-h-screen h-screen min-h-[100dvh] flex flex-col justify-center items-center text-center px-6 pt-24 pb-16 bg-transparent pointer-events-none"
-      >
-        {/* Subtle Atmospheric Radial Spotlight for High-Contrast Hero Separation */}
-        <div className="absolute inset-0 max-w-5xl mx-auto -z-10 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(4,6,10,0.68)_0%,rgba(4,6,10,0.32)_50%,transparent_78%)] blur-2xl" />
-
-        <div className="max-w-6xl mx-auto space-y-6 sm:space-y-7 pointer-events-auto relative z-10">
-          {/* ThinkAI Authentic Floating Eyebrow */}
-          <LanguageTransition langKey={language} className="text-xs sm:text-[13.5px] font-mono font-bold tracking-[0.24em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] uppercase select-none">
-            {t.hero.eyebrow}
-          </LanguageTransition>
-
-          {/* ThinkAI Grotesque Masked Headline with High-Contrast Optical Shadow */}
-          <LanguageTransition langKey={language} className="py-1 sm:py-2">
-            <MaskedTextReveal
-              as="h1"
-              text={t.hero.headline}
-              className="tai-heading-hero text-white tracking-[-0.026em] drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] drop-shadow-[0_12px_36px_rgba(0,0,0,0.90)] drop-shadow-[0_24px_64px_rgba(0,0,0,0.80)]"
-            />
-          </LanguageTransition>
-
-          {/* ThinkAI Floating Subline */}
-          <LanguageTransition langKey={language} className="text-xs sm:text-[13.5px] font-mono font-medium tracking-[0.20em] text-neutral-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] uppercase max-w-2xl mx-auto leading-relaxed select-none px-4">
-            {t.hero.subline}
-          </LanguageTransition>
-        </div>
-      </section>
+      {/* ─── 02. HERO SECTION WITH INSET FRAME & TUCK ON SCROLL ─── */}
+      <HeroSection />
 
       {/* ─── 03. TRANSITION SHEET & INTERACTIVE CHAPTER 01 CAROUSEL (Edge-to-Edge Wide) ─── */}
       <section className="relative z-20 bg-[#121215] py-28 sm:py-36 border-t border-white/[0.08] shadow-2xl">
@@ -267,7 +238,7 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-2">
                   <WipeButton
                     onClick={handlePrevSlide}
-                    className="w-8 h-8 rounded-none flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-[10px] flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -277,7 +248,7 @@ export default function PortfolioPage() {
                   </WipeButton>
                   <WipeButton
                     onClick={handleNextSlide}
-                    className="w-8 h-8 rounded-none flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-[10px] flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -286,7 +257,7 @@ export default function PortfolioPage() {
                     →
                   </WipeButton>
                 </div>
-                <div className="px-2.5 py-1 rounded-none bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
+                <div className="px-2.5 py-1 rounded-[10px] bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
                   {t.carousel.slides[activeSlide].tag}
                 </div>
 
@@ -345,12 +316,13 @@ export default function PortfolioPage() {
 
       {/* ─── 04. PRODUCT SHOWCASE (Progressive Disclosure Split Grid) ─── */}
       <section id="products" className="relative z-20 bg-[#08080a] py-24 sm:py-32 border-t border-white/[0.08] shadow-2xl">
+        <span id="work" className="sr-only" />
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Left 2 Cols: Sticky Section Label */}
             <div className="lg:col-span-2 lg:sticky lg:top-24">
               <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-neutral-200">
-                <span className="w-2.5 h-2.5 rounded-none bg-emerald-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                 <LanguageTransition langKey={language} as="span" className="uppercase tracking-wider">
                   {t.work.sectionLabel}
                 </LanguageTransition>
@@ -365,6 +337,115 @@ export default function PortfolioPage() {
               {projects.map((project, index) => {
                 const indexStr = String(index + 1).padStart(2, "0");
                 const totalStr = String(projects.length).padStart(2, "0");
+                const isWind = project.id === "wind";
+
+                if (isWind) {
+                  return (
+                    <div key={project.id} className="tai-paper p-6 sm:p-10 lg:p-12 rounded-[16px] my-10 border border-black/10 shadow-2xl">
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                        {/* Media Cover */}
+                        <div className="lg:col-span-7">
+                          <ParallaxProductCover
+                            image={project.preview.image}
+                            title={project.content[language].title}
+                            liveUrl={project.liveUrl}
+                            mark={project.mark}
+                            status={t.work.statusLive}
+                            priority={false}
+                          />
+                        </div>
+
+                        {/* Right: Editorial in Paper Palette */}
+                        <div className="lg:col-span-5 space-y-6">
+                          <div className="flex items-center gap-3 font-mono text-xs">
+                            <span className="px-2.5 py-1 rounded-[10px] bg-black/10 text-black border border-black/20 font-bold tracking-wider">
+                              {project.mark}
+                            </span>
+                            <div className="flex-1 flex items-center gap-2">
+                              <div className="h-[1px] flex-1 bg-black/20" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#2D5A3D]" />
+                              <div className="h-[1px] flex-1 bg-black/20" />
+                            </div>
+                            <span className="px-2.5 py-1 rounded-[10px] border border-black/20 text-[#4A4A4A] font-mono font-semibold bg-black/[0.04]">
+                              {indexStr} / {totalStr}
+                            </span>
+                          </div>
+
+                          <LanguageTransition langKey={language} className="space-y-2">
+                            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1A1A1A] uppercase">
+                              {project.content[language].title}
+                            </h3>
+                            <p className="text-xs sm:text-sm font-mono text-[#4A4A4A] uppercase tracking-wider font-semibold">
+                              {project.content[language].category}
+                            </p>
+                          </LanguageTransition>
+
+                          <LanguageTransition langKey={language} as="p" className="text-[#333333] text-sm sm:text-base leading-relaxed">
+                            {project.content[language].summary}
+                          </LanguageTransition>
+
+                          <div className="flex flex-wrap gap-1.5 pt-1">
+                            {project.stack.map((item) => (
+                              <span
+                                key={item}
+                                className="px-2.5 py-1 rounded-[10px] font-mono text-xs bg-black/[0.05] text-[#1A1A1A] border border-black/15 hover:border-black/30 transition-colors"
+                              >
+                                {item}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="p-4 rounded-[10px] bg-[#EFEAE2] border border-black/15 space-y-3 shadow-inner">
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="flex items-center gap-2">
+                                <span className="px-2 py-0.5 rounded-[10px] bg-black text-white font-mono text-xs font-bold">
+                                  {project.metric.value}
+                                </span>
+                                <span className="font-mono text-xs sm:text-sm font-bold text-[#2D5A3D]">
+                                  <LanguageTransition langKey={language} as="span">
+                                    {project.metric.label[language].split("•")[0]?.trim()}
+                                  </LanguageTransition>
+                                </span>
+                              </div>
+                            </div>
+                            <p className="font-mono text-xs text-[#4A4A4A] truncate">
+                              <LanguageTransition langKey={language} as="span">
+                                {project.metric.label[language]}
+                              </LanguageTransition>
+                            </p>
+                          </div>
+
+                          <div className="flex flex-wrap items-center gap-3 pt-2">
+                            {project.liveUrl && (
+                              <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-[#1A1A1A] text-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors shadow-lg w-full sm:w-auto"
+                              >
+                                <LanguageTransition langKey={language} as="span">
+                                  {t.work.openSystem}
+                                </LanguageTransition>
+                                <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+                              </a>
+                            )}
+
+                            <Link
+                              href={`/products/${project.id}`}
+                              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-white hover:bg-neutral-100 border border-black/20 hover:border-black/40 text-black font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer w-full sm:w-auto shadow-sm"
+                            >
+                              <LanguageTransition langKey={language} as="span">
+                                {t.work.architecture}
+                              </LanguageTransition>
+                              <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <div key={project.id} className="py-14 sm:py-16 first:pt-0 last:pb-0">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -385,15 +466,15 @@ export default function PortfolioPage() {
                       <div className="lg:col-span-5 space-y-6">
                         {/* Micrographic Header: [MARK] ─── ● ─── 01/03 */}
                         <div className="flex items-center gap-3 font-mono text-xs">
-                          <span className="px-2.5 py-1 rounded-none bg-white/10 text-white border border-white/20 font-bold tracking-wider">
+                          <span className="px-2.5 py-1 rounded-[10px] bg-white/10 text-white border border-white/20 font-bold tracking-wider">
                             {project.mark}
                           </span>
                           <div className="flex-1 flex items-center gap-2">
                             <div className="h-[1px] flex-1 bg-white/25" />
-                            <div className="w-1.5 h-1.5 rounded-none bg-emerald-400" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                             <div className="h-[1px] flex-1 bg-white/25" />
                           </div>
-                          <span className="px-2.5 py-1 rounded-none border border-white/20 text-neutral-300 font-mono font-semibold bg-white/[0.04]">
+                          <span className="px-2.5 py-1 rounded-[10px] border border-white/20 text-neutral-300 font-mono font-semibold bg-white/[0.04]">
                             {indexStr} / {totalStr}
                           </span>
                         </div>
@@ -418,7 +499,7 @@ export default function PortfolioPage() {
                           {project.stack.map((item) => (
                             <span
                               key={item}
-                              className="px-2.5 py-1 rounded-none font-mono text-xs bg-[#141418] text-neutral-200 border border-white/15 hover:border-white/30 transition-colors"
+                              className="px-2.5 py-1 rounded-[10px] font-mono text-xs bg-[#141418] text-neutral-200 border border-white/15 hover:border-white/30 transition-colors"
                             >
                               {item}
                             </span>
@@ -426,10 +507,10 @@ export default function PortfolioPage() {
                         </div>
 
                         {/* Telemetry Result Block */}
-                        <div className="p-4 rounded-none bg-[#0f0f13] border border-white/15 space-y-3 shadow-inner">
+                        <div className="p-4 rounded-[10px] bg-[#0f0f13] border border-white/15 space-y-3 shadow-inner">
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2">
-                              <span className="px-2 py-0.5 rounded-none bg-white text-black font-mono text-xs font-bold">
+                              <span className="px-2 py-0.5 rounded-[10px] bg-white text-black font-mono text-xs font-bold">
                                 {project.metric.value}
                               </span>
                               <span className="font-mono text-xs sm:text-sm font-bold text-emerald-400">
@@ -442,7 +523,7 @@ export default function PortfolioPage() {
                               <button
                                 type="button"
                                 onClick={() => handleCopy(project.cliCommand!)}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-white/10 hover:bg-white/20 text-neutral-100 hover:text-white border border-white/20 hover:border-white/40 font-mono text-xs font-semibold transition-colors cursor-pointer shrink-0"
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-white/10 hover:bg-white/20 text-neutral-100 hover:text-white border border-white/20 hover:border-white/40 font-mono text-xs font-semibold transition-colors cursor-pointer shrink-0"
                               >
                                 {copiedCli === project.cliCommand ? (
                                   <>
@@ -472,7 +553,7 @@ export default function PortfolioPage() {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-none bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-lg w-full sm:w-auto"
+                              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-lg w-full sm:w-auto"
                             >
                               <LanguageTransition langKey={language} as="span">
                                 {t.work.openSystem}
@@ -481,16 +562,15 @@ export default function PortfolioPage() {
                             </a>
                           )}
 
-                          <button
-                            type="button"
-                            onClick={() => setSelectedArchProject(project.id)}
-                            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-none bg-[#16161b] hover:bg-[#222228] border border-white/25 hover:border-white/50 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer w-full sm:w-auto"
+                          <Link
+                            href={`/products/${project.id}`}
+                            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] bg-[#16161b] hover:bg-[#222228] border border-white/25 hover:border-white/50 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer w-full sm:w-auto"
                           >
                             <LanguageTransition langKey={language} as="span">
                               {t.work.architecture}
                             </LanguageTransition>
                             <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
-                          </button>
+                          </Link>
                         </div>
 
                       </div>
@@ -503,234 +583,8 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* ─── 05. EXPERIENCE & SECURITY CREDENTIALS (Edge-to-Edge Wide) ─── */}
-      <section id="work" className="relative z-20 bg-[#16161a] py-28 sm:py-36 border-t border-white/[0.08] shadow-2xl">
-        <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16 space-y-24">
-          {/* Subsection 1: Real Security Experience at Ung Buou Hospital */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-neutral-200">
-                <span className="w-2.5 h-2.5 rounded-none bg-neutral-300" />
-                <LanguageTransition langKey={language} as="span">
-                  {t.experience.sectionLabel}
-                </LanguageTransition>
-              </div>
-            </div>
-
-            <div className="lg:col-span-10 space-y-12">
-              <div className="border-t border-white/[0.08] pt-8 space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                  <LanguageTransition langKey={language}>
-                    <span className="tai-label text-neutral-400 font-mono font-bold text-xs">
-                      {t.experience.eyebrow}
-                    </span>
-                    <h3 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mt-2">
-                      {t.experience.title}
-                    </h3>
-                  </LanguageTransition>
-                  <LanguageTransition langKey={language} as="div" className="text-xs sm:text-sm font-mono text-neutral-400 shrink-0">
-                    {t.experience.period}
-                  </LanguageTransition>
-                </div>
-
-                {/* 3-Pillar Clean Hairline Columns with Scaled Font */}
-                <LanguageTransition langKey={language} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs border-y border-white/[0.08] py-8">
-                  <div>
-                    <span className="text-neutral-400 font-mono text-xs font-bold uppercase tracking-wider block">
-                      {t.experience.columns.problemLabel}
-                    </span>
-                    <p className="text-sm sm:text-base text-neutral-200 mt-2.5 leading-relaxed font-light">
-                      {t.experience.columns.problemDesc}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-neutral-400 font-mono text-xs font-bold uppercase tracking-wider block">
-                      {t.experience.columns.approachLabel}
-                    </span>
-                    <p className="text-sm sm:text-base text-neutral-200 mt-2.5 leading-relaxed font-light">
-                      {t.experience.columns.approachDesc}
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-neutral-400 font-mono text-xs font-bold uppercase tracking-wider block">
-                      {t.experience.columns.outcomeLabel}
-                    </span>
-                    <p className="text-sm sm:text-base text-neutral-200 mt-2.5 leading-relaxed font-light">
-                      {t.experience.columns.outcomeDesc}
-                    </p>
-                  </div>
-                </LanguageTransition>
-
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {t.experience.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="tai-tag-pill px-3 py-1.5 rounded-none text-xs sm:text-[13px] font-mono cursor-default"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Subsection 2: Education & Awards */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start pt-20 border-t border-white/[0.08]">
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-neutral-200">
-                <span className="w-2.5 h-2.5 rounded-none bg-neutral-300" />
-                <LanguageTransition langKey={language} as="span">
-                  {t.education.sectionLabel}
-                </LanguageTransition>
-              </div>
-            </div>
-
-            <div className="lg:col-span-10 grid grid-cols-1 md:grid-cols-2 gap-12">
-              {/* Education Block */}
-              <LanguageTransition langKey={language} className="border-t border-white/[0.08] pt-8 space-y-5">
-                <span className="tai-label text-neutral-400 font-mono font-bold text-xs flex items-center gap-2 tracking-widest">
-                  <GraduationCap className="w-4 h-4 text-neutral-400" /> {t.education.eyebrow}
-                </span>
-                <div>
-                  <h4 className="text-2xl sm:text-4xl lg:text-4xl font-bold text-white tracking-tight">
-                    {t.education.degree}
-                  </h4>
-                  <div className="text-xs sm:text-sm font-mono text-neutral-400 mt-1.5">
-                    {t.education.school}
-                  </div>
-                  <div className="text-sm sm:text-base font-semibold text-white font-mono mt-2.5">
-                    {t.education.gpaText}
-                  </div>
-                </div>
-                <p className="text-sm sm:text-base text-neutral-200 leading-relaxed font-light">
-                  {t.education.coursework}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {t.education.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="tai-tag-pill px-3 py-1 rounded-none text-xs sm:text-[13px] font-mono cursor-default"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </LanguageTransition>
-
-              {/* Awards & Recognition Block */}
-              <LanguageTransition langKey={language} className="border-t border-white/[0.08] pt-8 space-y-5">
-                <span className="tai-label text-neutral-400 font-mono font-bold text-xs flex items-center gap-2 tracking-widest">
-                  <Award className="w-4 h-4 text-neutral-400" /> {t.education.recognitionEyebrow}
-                </span>
-                <div className="space-y-6">
-                  {t.education.recognitions.map((rec) => (
-                    <div key={rec.title}>
-                      <h4 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-white tracking-tight">
-                        {rec.title}
-                      </h4>
-                      <div className="text-xs sm:text-sm font-mono text-neutral-400 mt-1">
-                        {rec.subtitle}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {t.education.recognitions.flatMap((r) => r.tags).map((tag) => (
-                    <span
-                      key={tag}
-                      className="tai-tag-pill px-3 py-1 rounded-none text-xs sm:text-[13px] font-mono cursor-default"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </LanguageTransition>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 06. MODERN TECH STACK (Edge-to-Edge Wide & Enlarged Tiles) ─── */}
-      <section id="stack" className="py-28 sm:py-36 relative z-20 bg-[#111113] border-t border-white/[0.08] shadow-2xl">
-        <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16 space-y-16">
-          {/* Top Banner Link with Forward Wipe */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.08] pb-6 sm:pb-8 text-white gap-4 sm:gap-0">
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-neutral-400">
-              <span className="w-2 h-2 rounded-none bg-neutral-400" />
-              <LanguageTransition langKey={language} as="span">
-                {t.stack.cliLabel}
-              </LanguageTransition>
-            </div>
-            <WipeButton
-              as="a"
-              href="#products"
-              wipeColor="#ffffff"
-              textColor="#ffffff"
-              hoverTextColor="#05070a"
-              className="px-4 sm:px-5 py-2.5 rounded-none flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base font-bold bg-white/[0.05] border border-white/15 cursor-pointer w-full sm:w-auto text-center"
-            >
-              <LanguageTransition langKey={language} as="span">
-                {t.stack.browseBlueprint}
-              </LanguageTransition>
-              <span className="sm:hidden font-mono text-xs">→</span>
-            </WipeButton>
-            <div className="hidden sm:block text-2xl font-mono text-neutral-400">(→)</div>
-          </div>
-
-          {/* Clean Masked Rolling Headline - Rolls 2 times on hover */}
-          <LanguageTransition langKey={language} className="text-center py-6">
-            <div className="tai-heading-xl text-white tracking-tighter block leading-[0.88]">
-              <div className="overflow-hidden">
-                <TextRoll key={`line1-${language}`} text={t.stack.modernTechStack.line1} rolls={2} />
-              </div>
-              <div className="overflow-hidden mt-1">
-                <TextRoll key={`line2-${language}`} text={t.stack.modernTechStack.line2} rolls={2} stagger={0.02} />
-              </div>
-            </div>
-          </LanguageTransition>
-
-          {/* Tech Stack Tiles Grid (Enlarged Height & Icons) */}
-          <div className="pt-8 space-y-4">
-            <LanguageTransition langKey={language} as="div" className="text-xs font-mono text-neutral-400 uppercase tracking-widest font-bold">
-              {t.stack.professionalAt}
-            </LanguageTransition>
-
-            {/* Top 3 Core Foundation Cards */}
-            <div className="tai-tech-grid-top">
-              <div className="tai-stack-tile-lg group">
-                <TechLogo name="Go" className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 transition-colors duration-300" />
-              </div>
-              <div className="tai-stack-tile-lg group">
-                <TechLogo name="Kubernetes" className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 transition-colors duration-300" />
-              </div>
-              <div className="tai-stack-tile-lg group">
-                <TechLogo name="Linux" className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 transition-colors duration-300" />
-              </div>
-            </div>
-
-            {/* Bottom 8 Tooling Cards (4x2 on Mobile/Tablet, 8x1 on Desktop) */}
-            <div className="tai-tech-grid-bottom">
-              {[
-                { name: "Docker" },
-                { name: "Podman" },
-                { name: "Tailscale" },
-                { name: "GitHub Actions" },
-                { name: "Argo CD" },
-                { name: "K3s" },
-                { name: "PostgreSQL" },
-                { name: "SonarQube" },
-              ].map((item) => (
-                <div key={item.name} className="tai-stack-tile-sm group">
-                  <TechLogo name={item.name} className="w-6 h-6 sm:w-8 sm:h-8 lg:w-11 lg:h-11 transition-colors duration-300" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ─── 06. SKILLS CARD FAN (Synchronized 3.5° Mathematical Fan Deck) ─── */}
+      <SkillsFan />
 
       {/* ─── 07. CALL TO ACTION CLOSURE ─── */}
       <section id="contact" className="relative z-10 min-h-[92vh] flex items-center justify-center py-28 px-6 bg-transparent pointer-events-none">
@@ -753,7 +607,7 @@ export default function PortfolioPage() {
               hoverTextColor="#ffffff"
               borderColor="#ffffff"
               hoverBorderColor="rgba(255, 255, 255, 0.4)"
-              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-none text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
+              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-[10px] text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
             >
               <LanguageTransition langKey={language} as="span">
                 <ButtonTextRoll
@@ -775,7 +629,7 @@ export default function PortfolioPage() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 items-start">
               {/* Col 1: Navigation Label */}
               <div className="md:col-span-2 flex items-start gap-2 text-sm font-bold text-neutral-300">
-                <span className="w-2.5 h-2.5 rounded-none bg-neutral-400 mt-1" />
+                <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 mt-1" />
                 <LanguageTransition langKey={language} as="span">
                   {t.footer.navigation}
                 </LanguageTransition>
@@ -784,11 +638,12 @@ export default function PortfolioPage() {
               {/* Col 2: Vertical Navigation Links with Balanced Scale & Forward Wipe */}
               <div className="md:col-span-4 flex flex-col gap-1.5 font-extrabold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.0]">
                 <WipeButton
-                  onClick={() => setIsAboutOpen(true)}
+                  as="a"
+                  href="/about"
                   wipeColor="#ffffff"
                   textColor="#ffffff"
                   hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-none cursor-pointer w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
+                  className="text-left px-3 py-1 -ml-3 rounded-[10px] cursor-pointer w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
                 >
                   <LanguageTransition langKey={language} as="span">
                     {t.nav.about}
@@ -800,7 +655,7 @@ export default function PortfolioPage() {
                   wipeColor="#ffffff"
                   textColor="#ffffff"
                   hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-none w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
+                  className="text-left px-3 py-1 -ml-3 rounded-[10px] w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
                 >
                   <LanguageTransition langKey={language} as="span">
                     {t.nav.work}
@@ -812,7 +667,7 @@ export default function PortfolioPage() {
                   wipeColor="#ffffff"
                   textColor="#ffffff"
                   hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-none w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
+                  className="text-left px-3 py-1 -ml-3 rounded-[10px] w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
                 >
                   <LanguageTransition langKey={language} as="span">
                     {t.nav.experience}
@@ -824,7 +679,7 @@ export default function PortfolioPage() {
                   wipeColor="#ffffff"
                   textColor="#ffffff"
                   hoverTextColor="#05070a"
-                  className="text-left px-3 py-1 -ml-3 rounded-none w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
+                  className="text-left px-3 py-1 -ml-3 rounded-[10px] w-fit text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans normal-case"
                 >
                   <LanguageTransition langKey={language} as="span">
                     {t.nav.contact}
@@ -847,7 +702,7 @@ export default function PortfolioPage() {
                       wipeColor="#ffffff"
                       textColor="#ffffff"
                       hoverTextColor="#05070a"
-                      className="inline-block px-2.5 py-1 -ml-2.5 rounded-none font-mono font-bold text-sm"
+                      className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] font-mono font-bold text-sm"
                     >
                       bnhminh1010 / ops ↗
                     </WipeButton>
@@ -859,7 +714,7 @@ export default function PortfolioPage() {
                       wipeColor="#ffffff"
                       textColor="#ffffff"
                       hoverTextColor="#05070a"
-                      className="inline-block px-2.5 py-1 -ml-2.5 rounded-none font-mono text-sm"
+                      className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] font-mono text-sm"
                     >
                       ↳ {profile.email}
                     </WipeButton>
@@ -893,7 +748,7 @@ export default function PortfolioPage() {
                           textColor="#ffffff"
                           hoverTextColor="#05070a"
                           ariaLabel={t.footer.askAiAria.replace("{name}", platform.name)}
-                          className="w-9 h-9 rounded-none flex items-center justify-center cursor-pointer select-none border border-white/15 bg-white/[0.04] shadow-md"
+                          className="w-9 h-9 rounded-[10px] flex items-center justify-center cursor-pointer select-none border border-white/15 bg-white/[0.04] shadow-md"
                         >
                           <IconComponent className="w-4 h-4" />
                         </WipeButton>
@@ -920,7 +775,7 @@ export default function PortfolioPage() {
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
-                    className="inline-block px-2.5 py-1 -ml-2.5 rounded-none text-sm"
+                    className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] text-sm"
                   >
                     GitHub ↗
                   </WipeButton>
@@ -934,7 +789,7 @@ export default function PortfolioPage() {
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
-                    className="inline-block px-2.5 py-1 -ml-2.5 rounded-none text-sm"
+                    className="inline-block px-2.5 py-1 -ml-2.5 rounded-[10px] text-sm"
                   >
                     LinkedIn ↗
                   </WipeButton>
@@ -955,7 +810,7 @@ export default function PortfolioPage() {
                   wipeColor="#ffffff"
                   textColor="#ffffff"
                   hoverTextColor="#05070a"
-                  className="px-2.5 py-1 rounded-none inline-block text-xs"
+                  className="px-2.5 py-1 rounded-[10px] inline-block text-xs"
                 >
                   <LanguageTransition langKey={language} as="span">
                     {t.footer.backToTop}
@@ -1010,10 +865,10 @@ export default function PortfolioPage() {
                 }
               }
             }}
-            className="relative z-10 inline-flex items-center justify-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-none bg-black/50 border border-white/20 backdrop-blur-md text-white font-bold text-xs sm:text-sm tracking-wider uppercase font-mono shadow-2xl pointer-events-auto cursor-pointer hover:bg-black/70 transition-all leading-none shrink-0"
+            className="relative z-10 inline-flex items-center justify-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-[10px] bg-black/50 border border-white/20 backdrop-blur-md text-white font-bold text-xs sm:text-sm tracking-wider uppercase font-mono shadow-2xl pointer-events-auto cursor-pointer hover:bg-black/70 transition-all leading-none shrink-0"
             aria-label={t.ocean.reloadAria}
           >
-            <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-none overflow-hidden shrink-0 flex items-center justify-center">
+            <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-[4px] overflow-hidden shrink-0 flex items-center justify-center">
               <Image
                 src="/images/thinkai_studio_logo.png"
                 alt="ThinkAI Studio"
@@ -1027,7 +882,7 @@ export default function PortfolioPage() {
             </span>
           </button>
 
-          <div className="relative z-10 hidden md:inline-flex items-center justify-center px-4 py-2.5 rounded-none bg-black/50 border border-white/20 backdrop-blur-md text-white font-mono text-xs sm:text-sm tracking-wide shadow-2xl leading-none pointer-events-none whitespace-nowrap">
+          <div className="relative z-10 hidden md:inline-flex items-center justify-center px-4 py-2.5 rounded-[10px] bg-black/50 border border-white/20 backdrop-blur-md text-white font-mono text-xs sm:text-sm tracking-wide shadow-2xl leading-none pointer-events-none whitespace-nowrap">
             <LanguageTransition langKey={language} as="span" className="leading-none">
               {t.ocean.quote}
             </LanguageTransition>
@@ -1109,13 +964,8 @@ export default function PortfolioPage() {
         onClose={() => setIsContactOpen(false)}
         lang={language}
       />
-
-      {/* ─── 12. ARCHITECTURE & DEEP DIVE MODAL ─── */}
-      <ArchitectureModal
-        projectId={selectedArchProject}
-        onClose={() => setSelectedArchProject(null)}
-        lang={language}
-      />
+      {/* ─── 12. SCROLL INDICATOR RAIL (48px Active / 28px Neighbor / 12px Rest) ─── */}
+      <ScrollIndicator />
     </div>
   );
 }
