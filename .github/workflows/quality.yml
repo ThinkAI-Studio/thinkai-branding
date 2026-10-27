@@ -45,4 +45,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Validate workflow syntax
-        uses: rhysd/actionlint@03d0035246f3e81f36aed592ffb4bebf33a03106
+        uses: rhysd/actionlint@914e7df21a07ef503a81201c76d2b11c789d3fca
