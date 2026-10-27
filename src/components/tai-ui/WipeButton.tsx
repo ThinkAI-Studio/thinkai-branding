@@ -60,10 +60,10 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
       return (
         <Slot
           className={cn(
-            "relative inline-flex items-center justify-center overflow-hidden rounded-none cursor-pointer select-none transition-all active:scale-[0.98]",
+            "relative inline-flex items-center justify-center overflow-hidden rounded-[10px] cursor-pointer select-none transition-all active:scale-[0.98]",
             className
           )}
-          ref={ref as any}
+          ref={ref as React.Ref<HTMLElement>}
           {...props}
         >
           {children}
@@ -94,7 +94,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
                 setWipeState("idle");
               }
             }}
-            className="absolute inset-0 pointer-events-none rounded-none"
+            className="absolute inset-0 pointer-events-none rounded-[10px]"
             style={{ backgroundColor: wipeColor, zIndex: 0 }}
           />
         )}
@@ -111,7 +111,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
     );
 
     const baseClasses = cn(
-      "relative inline-flex items-center justify-center overflow-hidden rounded-none transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
+      "relative inline-flex items-center justify-center overflow-hidden rounded-[10px] transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
       className
     );
 
@@ -122,13 +122,13 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
     if (props.as === "div") {
       return (
         <div
-          onClick={onClick as any}
+          onClick={onClick as unknown as React.MouseEventHandler<HTMLDivElement>}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className={baseClasses}
           style={sharedStyles}
           aria-label={ariaLabel}
-          ref={ref as any}
+          ref={ref as React.Ref<HTMLDivElement>}
         >
           {innerContent}
         </div>
@@ -142,13 +142,13 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
           target={target}
           rel={rel}
           download={download}
-          onClick={onClick as any}
+          onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className={baseClasses}
           style={sharedStyles}
           aria-label={ariaLabel}
-          ref={ref as any}
+          ref={ref as React.Ref<HTMLAnchorElement>}
         >
           {innerContent}
         </a>

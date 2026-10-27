@@ -9,6 +9,12 @@
   --color-tai-green: #4ade80;
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-card: 10px;
+  --radius-btn: 10px;
+  --radius-tag: 10px;
+  --radius-input: 10px;
+  --radius-container: 16px;
+  --radius-tuck: 0 0 16px 16px;
 }
 
 :root {
@@ -18,6 +24,12 @@
   --tai-border: rgba(255, 255, 255, 0.07);
   --tai-border-strong: rgba(255, 255, 255, 0.18);
   --tai-accent-green: #4ade80;
+  --radius-card: 10px;
+  --radius-btn: 10px;
+  --radius-tag: 10px;
+  --radius-input: 10px;
+  --radius-container: 16px;
+  --radius-tuck: 0 0 16px 16px;
 }
 
 * {
@@ -61,19 +73,41 @@ html {
   color: #05070a;
 }
 
-/* Sharp Architectural Geometric Primitives (100% Zero Rounded Corners) - ThinkAI Studio */
+/* 10px Precision Geometric System - ThinkAI Studio */
 .tai-tag-pill,
-.tai-stack-tile-lg,
-.tai-stack-tile-sm,
 .tai-glass-card,
-.tai-label,
 button,
-a,
 input,
 textarea {
-  border-radius: 0px !important;
+  border-radius: 10px;
 }
 
+.tai-card {
+  border-radius: 10px;
+}
+
+.tai-container-box {
+  border-radius: 16px;
+}
+
+.tai-exit-tuck {
+  border-radius: 0 0 16px 16px;
+}
+
+/* Scoped Warm Paper Theme Block (Exclusively for Wind Product Section) */
+.tai-paper {
+  --paper-bg: #FAF8F5;
+  --paper-card: #FFFFFF;
+  --paper-text-primary: #1A1A1A;
+  --paper-text-secondary: #4A4A4A;
+  --paper-border: rgba(0, 0, 0, 0.08);
+  --paper-border-strong: rgba(0, 0, 0, 0.22);
+  --paper-accent-green: #2D5A3D;
+  --paper-accent-gold: #916207;
+  --paper-accent-vermilion: #9E2A2B;
+  background-color: var(--paper-bg);
+  color: var(--paper-text-primary);
+}
 /* Impeccable Visual Signatures */
 .tai-inset-top {
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.07);

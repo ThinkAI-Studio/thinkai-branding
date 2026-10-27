@@ -105,7 +105,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             data-lenis-prevent="true"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg bg-[#141417] text-white border border-white/15 rounded-none p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 space-y-6 overflow-hidden"
+            className="relative w-full max-w-lg bg-[#141417] text-white border border-white/15 rounded-[16px] p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 space-y-6 overflow-hidden"
             style={{
               fontFamily:
                 '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
@@ -114,7 +114,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             {/* Header: Title + Close Button */}
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-none bg-emerald-400 animate-pulse" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                 <h3 className="text-base sm:text-lg font-extrabold text-white tracking-tight">
                   {t.title}
                 </h3>
@@ -122,7 +122,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
 
               <button
                 onClick={onClose}
-                className="group flex items-center justify-center gap-2 px-3 py-1.5 rounded-none bg-white/10 text-white text-xs font-mono font-bold hover:bg-white/20 transition-colors cursor-pointer"
+                className="group flex items-center justify-center gap-2 px-3 py-1.5 rounded-[10px] bg-white/10 text-white text-xs font-mono font-bold hover:bg-white/20 transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <ButtonTextRoll text={t.close} className="font-mono text-xs font-bold leading-none" />
@@ -136,7 +136,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             </div>
 
             {/* Email Card 1: Primary Studio Mail */}
-            <div className="p-4 rounded-none bg-white/[0.04] border border-white/10 space-y-3">
+            <div className="p-4 rounded-[10px] bg-white/[0.04] border border-white/10 space-y-3">
               <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 uppercase tracking-wider">
                 <span>{t.primaryLabel}</span>
                 <span className="text-emerald-400">{t.responseSla}</span>
@@ -150,7 +150,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
                 <button
                   type="button"
                   onClick={() => handleCopy(primaryEmail)}
-                  className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-none text-xs font-mono font-bold transition-all shrink-0 cursor-pointer ${
+                  className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-[10px] text-xs font-mono font-bold transition-all shrink-0 cursor-pointer ${
                     copiedEmail === primaryEmail
                       ? "bg-emerald-500 text-black shadow-lg shadow-emerald-500/30"
                       : "bg-white text-black hover:bg-neutral-200"
@@ -183,7 +183,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
                 hoverTextColor="#05070a"
                 borderColor="rgba(255, 255, 255, 0.2)"
                 hoverBorderColor="#ffffff"
-                className="p-3 rounded-none bg-white/[0.04] flex items-center justify-center gap-2 text-xs font-mono font-bold cursor-pointer"
+                className="p-3 rounded-[10px] bg-white/[0.04] flex items-center justify-center gap-2 text-xs font-mono font-bold cursor-pointer"
               >
                 <Mail className="w-4 h-4 shrink-0" />
                 <span>{t.openGmail}</span>
@@ -198,7 +198,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
                 hoverTextColor="#05070a"
                 borderColor="rgba(255, 255, 255, 0.2)"
                 hoverBorderColor="#ffffff"
-                className="p-3 rounded-none bg-white/[0.04] flex items-center justify-center gap-2 text-xs font-mono font-bold cursor-pointer"
+                className="p-3 rounded-[10px] bg-white/[0.04] flex items-center justify-center gap-2 text-xs font-mono font-bold cursor-pointer"
               >
                 <Mail className="w-4 h-4 shrink-0" />
                 <span>{t.defaultMail}</span>
@@ -207,7 +207,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             </div>
 
             {/* DevOps CV Download Box */}
-            <div className="p-4 rounded-none bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
+            <div className="p-4 rounded-[10px] bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-white uppercase tracking-wider">
                   <FileText className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -229,7 +229,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
                 hoverTextColor="#05070a"
                 borderColor="rgba(255, 255, 255, 0.25)"
                 hoverBorderColor="#ffffff"
-                className="px-3.5 py-2 rounded-none bg-white/10 flex items-center justify-center gap-2 text-xs font-mono font-bold cursor-pointer shrink-0 select-none"
+                className="px-3.5 py-2 rounded-[10px] bg-white/10 flex items-center justify-center gap-2 text-xs font-mono font-bold cursor-pointer shrink-0 select-none"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{t.downloadCv}</span>
