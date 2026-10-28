@@ -43,12 +43,12 @@ export function HeroSection() {
     <section
       id="top"
       ref={sectionRef}
-      className="hero-three relative z-10 min-h-screen h-screen min-h-[100dvh] p-[clamp(8px,calc(2.5vw-8px),16px)] flex items-center justify-center bg-transparent pointer-events-none"
+      className="hero-three relative z-10 h-[100svh] min-h-[100svh] lg:h-[100lvh] lg:min-h-[100lvh] p-[clamp(8px,calc(2.5vw-8px),16px)] flex items-center justify-center bg-transparent pointer-events-none"
     >
       {/* ─── INSET FRAME WITH MEASURED TUCK ON SCROLL ─── */}
       <div
         ref={frameRef}
-        className="hero-three__frame relative w-full h-full rounded-[16px] border border-white/[0.08] overflow-hidden flex flex-col justify-center items-center text-center px-6 pt-24 pb-16 bg-[#08080a]/30 backdrop-blur-[2px] shadow-2xl pointer-events-none"
+        className="hero-three__frame relative w-full h-full rounded-[16px] border border-white/[0.08] overflow-hidden flex flex-col justify-center items-center text-center px-6 pt-24 pb-16 shadow-2xl pointer-events-none"
         style={{ transformOrigin: "center center" }}
       >
         {/* Subtle Atmospheric Radial Spotlight for High-Contrast Hero Separation */}

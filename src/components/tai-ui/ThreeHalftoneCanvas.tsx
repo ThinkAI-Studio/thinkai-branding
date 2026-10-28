@@ -16,24 +16,60 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     const container = containerRef.current;
     if (!container) return;
 
-    // 1. Scene, Camera, Renderer
+    // 1. Device & Sizing Detection
+    const isCoarse = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+    const maxDpr = isCoarse ? 1.25 : 1.5;
+    const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+    const renderScale = isCoarse ? 0.75 : 1.0;
+
+    const getStableHeight = () => {
+      if (typeof window === "undefined") return 800;
+      let h = window.innerHeight;
+      if (typeof document !== "undefined") {
+        const testEl = document.createElement("div");
+        testEl.style.cssText = "position:fixed;height:100lvh;width:0;visibility:hidden;pointer-events:none;top:0;left:0;";
+        document.body.appendChild(testEl);
+        const lvh = testEl.clientHeight;
+        document.body.removeChild(testEl);
+        if (lvh > 0) {
+          h = lvh;
+        }
+      }
+      return h;
+    };
+
+    let currentWidth = window.innerWidth;
+    let currentHeight = getStableHeight();
+
+    // Scene, Camera, Renderer
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false,
       powerPreference: "high-performance",
       alpha: false,
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(dpr);
+
+    const scaledInitW = Math.round(currentWidth * renderScale);
+    const scaledInitH = Math.round(currentHeight * renderScale);
+    renderer.setSize(scaledInitW, scaledInitH, false);
+
+    // GPU containment & styling
+    renderer.domElement.style.width = "100%";
+    renderer.domElement.style.height = "100%";
+    renderer.domElement.style.display = "block";
+    renderer.domElement.style.contain = "strict";
+    renderer.domElement.style.transform = "translateZ(0)";
+    renderer.domElement.style.willChange = "transform";
     container.appendChild(renderer.domElement);
 
     // 2. Uniforms for Venice Ocean Caustics Shader
     const uniforms = {
       u_time: { value: 0 },
       u_resolution: {
-        value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+        value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height),
       },
       u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
       u_target_mouse: { value: new THREE.Vector2(0.5, 0.5) },
@@ -175,6 +211,13 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     scene.add(mesh);
 
     // 4. Global Event Listeners & Bridge
+    const calculateMaxScroll = () => {
+      return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    };
+
+    let cachedMaxScroll = calculateMaxScroll();
+    let latestScrollY = window.scrollY;
+
     const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
@@ -182,18 +225,35 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     };
 
     const handleScroll = () => {
-      const maxScroll = Math.max(
-        1,
-        document.documentElement.scrollHeight - window.innerHeight
-      );
-      uniforms.u_target_scroll.value = window.scrollY / maxScroll;
+      latestScrollY = window.scrollY;
     };
 
+    const updateCanvasSize = (w: number, h: number) => {
+      const scaledW = Math.round(w * renderScale);
+      const scaledH = Math.round(h * renderScale);
+      renderer.setSize(scaledW, scaledH, false);
+      uniforms.u_resolution.value.set(renderer.domElement.width, renderer.domElement.height);
+    };
+
+    let resizeTimeout: NodeJS.Timeout | number | undefined;
     const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      renderer.setSize(width, height);
-      uniforms.u_resolution.value.set(width, height);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const newWidth = window.innerWidth;
+        const newHeight = getStableHeight();
+        const widthChanged = Math.abs(newWidth - currentWidth) > 1;
+        const heightDelta = Math.abs(newHeight - currentHeight);
+
+        // Ignore height-only resize under 120px (mobile address-bar collapse)
+        if (!widthChanged && heightDelta < 120) {
+          return;
+        }
+
+        currentWidth = newWidth;
+        currentHeight = newHeight;
+        updateCanvasSize(currentWidth, currentHeight);
+        cachedMaxScroll = calculateMaxScroll();
+      }, 150);
     };
 
     // Custom Window Bridge for Footer "Hold to create waves" interaction
@@ -208,19 +268,25 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    if (!isCoarse) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    }
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
-    // 5. Render Loop (120 FPS capable with battery & tab-switch GPU pause)
+    // 5. Render Loop (Capped to ~60 FPS with pause on document.hidden)
     let animationId: number;
     let isPaused = false;
     const clock = new THREE.Clock();
+    const TARGET_FRAME_MS = 1000 / 60;
+    let lastFrameTime = performance.now();
 
     const handleVisibilityChange = () => {
       isPaused = document.hidden;
       if (!isPaused) {
         clock.getDelta(); // Reset clock delta to avoid sudden time jump
+        lastFrameTime = performance.now();
+        cancelAnimationFrame(animationId);
         animationId = requestAnimationFrame(animate);
       }
     };
@@ -230,6 +296,14 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     const animate = () => {
       if (isPaused || document.hidden) return;
 
+      const now = performance.now();
+      const elapsed = now - lastFrameTime;
+      if (elapsed < TARGET_FRAME_MS - 2) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTime = now - (elapsed % TARGET_FRAME_MS);
+
       if (prefersReduced) {
         renderer.render(scene, camera);
         return;
@@ -237,6 +311,9 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
 
       const delta = clock.getDelta();
       uniforms.u_time.value += delta;
+
+      // Update scroll from cachedMaxScroll inside rAF loop
+      uniforms.u_target_scroll.value = latestScrollY / (cachedMaxScroll || 1);
 
       // Smooth interpolation for mouse, scroll, and stir pressure
       uniforms.u_mouse.value.lerp(uniforms.u_target_mouse.value, 0.06);
@@ -250,9 +327,12 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     animate();
 
     return () => {
+      clearTimeout(resizeTimeout);
       cancelAnimationFrame(animationId);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-      window.removeEventListener("mousemove", handleMouseMove);
+      if (!isCoarse) {
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       delete (window as unknown as { __setOceanStir?: unknown }).__setOceanStir;
@@ -270,7 +350,11 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     <div
       ref={containerRef}
       className={`fixed inset-0 pointer-events-none ${className}`}
-      style={{ zIndex: 0 }}
+      style={{
+        zIndex: 0,
+        contain: "strict",
+        transform: "translateZ(0)",
+      }}
     />
   );
 }

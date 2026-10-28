@@ -25,6 +25,51 @@
   overflow-x: clip;
   position: relative;
 }
+/* ─── TOUCH-SAFE OVERLAYS (NO BACKDROP-FILTER ON TOUCH OVER WEBGL CANVAS) ─── */
+.hero-three__frame {
+  background-color: rgba(8, 8, 10, 0.78);
+  background-image: radial-gradient(ellipse at center, rgba(6, 8, 12, 0.65) 0%, rgba(8, 8, 10, 0.88) 100%);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-three__frame {
+    background-color: rgba(8, 8, 10, 0.3);
+    background-image: none;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+}
+
+.tai-product-pill {
+  background-color: rgba(0, 0, 0, 0.9);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tai-product-pill {
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
+.tai-product-pill-link {
+  background-color: rgba(0, 0, 0, 0.9);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tai-product-pill-link {
+    background-color: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
 
 /* Grotesque Headings - ThinkAI Studio */
 .tai-heading-xl {

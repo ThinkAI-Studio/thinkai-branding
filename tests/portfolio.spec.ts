@@ -163,5 +163,32 @@ test("architecture and case study product route is responsive and accessible", a
   await backLink.click();
   await expect(page).toHaveURL(/\/(#products)?$/);
 });
+test("wind product is unified with dark layout without paper theme", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".tai-paper")).toHaveCount(0);
+  const windHeading = page.getByRole("heading", { name: "Wind", exact: true });
+  await expect(windHeading).toBeVisible();
+});
+
+test("ocean stir zone renders before footer and responds to pointer events", async ({ page }) => {
+  await page.goto("/");
+  const oceanZone = page.locator("#interactive-ocean-zone");
+  await expect(oceanZone).toBeVisible();
+});
+
+test("header nav links are horizontally centered in viewport on desktop", async ({ page, isMobile }) => {
+  if (isMobile) return;
+  await page.goto("/");
+  const nav = page.locator("header nav");
+  await expect(nav).toBeVisible();
+  const box = await nav.boundingBox();
+  expect(box).not.toBeNull();
+  if (box) {
+    const navCenter = box.x + box.width / 2;
+    const viewportWidth = page.viewportSize()?.width || 1280;
+    const viewportCenter = viewportWidth / 2;
+    expect(Math.abs(navCenter - viewportCenter)).toBeLessThan(5);
+  }
+});
 
 

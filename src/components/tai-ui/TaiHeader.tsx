@@ -33,21 +33,23 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
 
   // Hide header when scrolling into the CTA section (#contact) or Footer
   useEffect(() => {
-    const handleScroll = () => {
-      const contactEl = document.getElementById("contact");
-      if (contactEl) {
-        const rect = contactEl.getBoundingClientRect();
-        if (rect.top <= 120) {
-          setIsHeaderHidden(true);
-          return;
-        }
-      }
-      setIsHeaderHidden(false);
-    };
+    const contactEl = document.getElementById("contact");
+    if (!contactEl) return;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        setIsHeaderHidden(entry.isIntersecting && entry.boundingClientRect.top <= 120);
+      },
+      {
+        rootMargin: "-120px 0px 0px 0px",
+        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      }
+    );
+
+    observer.observe(contactEl);
+    return () => observer.disconnect();
   }, []);
 
   // Lock body scroll when mobile menu is open
@@ -107,13 +109,13 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                 transition: { duration: 0.45, ease: LUXURY_EASE },
               }
         }
-        className="fixed top-0 inset-x-0 z-50 bg-transparent px-3.5 sm:px-10 lg:px-12 py-3.5 sm:py-6 flex items-center justify-between pointer-events-none select-none"
+        className="fixed top-0 inset-x-0 z-50 bg-transparent px-3.5 sm:px-10 lg:px-12 py-3.5 sm:py-6 flex sm:grid sm:grid-cols-[1fr_auto_1fr] items-center justify-between pointer-events-none select-none"
       >
         {/* Left: Pure Floating Logo Icon (Authentic Studio Style) */}
         <button
           type="button"
           onClick={handleLogoClick}
-          className={`group cursor-pointer flex items-center justify-center p-1 select-none transition-transform hover:scale-105 active:scale-95 ${
+          className={`group cursor-pointer flex items-center justify-center sm:justify-self-start p-1 select-none transition-transform hover:scale-105 active:scale-95 ${
             isHeaderHidden && !isMobileMenuOpen ? "pointer-events-none" : "pointer-events-auto"
           }`}
           aria-label="ThinkAI Studio"
@@ -132,7 +134,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
 
         {/* Center: Floating Navigation Links with Signature Directional Wipe Motion */}
         <nav
-          className={`hidden sm:flex items-center gap-1.5 lg:gap-2.5 ${
+          className={`hidden sm:flex items-center justify-self-center gap-1.5 lg:gap-2.5 ${
             isHeaderHidden ? "pointer-events-none" : "pointer-events-auto"
           }`}
         >
@@ -180,7 +182,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
 
         {/* Right: Language Switcher + Start a project Button + Mobile Close / Menu Toggle */}
         <div
-          className={`flex items-center gap-2 sm:gap-3.5 ${
+          className={`flex items-center sm:justify-self-end gap-2 sm:gap-3.5 ${
             isHeaderHidden && !isMobileMenuOpen ? "pointer-events-none" : "pointer-events-auto"
           }`}
         >
