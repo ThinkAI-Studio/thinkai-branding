@@ -128,7 +128,7 @@ textarea {
   background-image: url("/images/textures/grain-tile.png");
   background-repeat: repeat;
   background-size: 160px 160px;
-  animation: continuousGrain 0.65s steps(1) infinite;
+  animation: continuousGrain 0.65s steps(8) infinite;
   pointer-events: none;
 }
 

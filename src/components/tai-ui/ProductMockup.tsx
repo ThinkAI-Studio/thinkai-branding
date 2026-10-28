@@ -50,7 +50,7 @@ export function ProductMockup({
       className="relative w-full rounded-[16px] overflow-hidden border border-white/[0.08] bg-[#0a0a0c] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_24px_60px_-15px_rgba(0,0,0,0.9)] group transition-all duration-500 hover:border-white/[0.22] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_32px_80px_-15px_rgba(0,0,0,0.95)]"
     >
       {/* ─── LUXURY BROWSER WINDOW HEADER ─── */}
-      <div className="px-4 sm:px-5 py-3 border-b border-white/[0.06] bg-[#0c0c0e]/95 backdrop-blur-md flex items-center justify-between gap-3 select-none">
+      <div className="px-4 sm:px-5 py-3 border-b border-white/[0.06] bg-[#0c0c0e] flex items-center justify-between gap-3 select-none">
         {/* Left: Window Traffic Dots + App Category */}
         <div className="flex items-center gap-3 shrink-0">
           <div className="flex items-center gap-1.5">
@@ -117,7 +117,7 @@ export function ProductMockup({
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25 pointer-events-none" />
 
         {/* Floating Quick Action Badge on Hover */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/30 backdrop-blur-[2px]">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/45">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] bg-white text-black font-mono font-bold text-xs tracking-wider shadow-2xl transform scale-95 group-hover:scale-100 transition-transform duration-300">
             <span>VISIT {domain.toUpperCase()}</span>
             <ArrowUpRight className="w-4 h-4 text-black shrink-0" />
@@ -126,7 +126,7 @@ export function ProductMockup({
       </a>
 
       {/* ─── BOTTOM PRODUCTION STATUS & TELEMETRY BAR ─── */}
-      <div className="px-4 sm:px-5 py-2.5 border-t border-white/[0.06] bg-[#0c0c0e]/95 backdrop-blur-md flex items-center justify-between text-[11px] font-mono text-white/50 select-none">
+      <div className="px-4 sm:px-5 py-2.5 border-t border-white/[0.06] bg-[#0c0c0e] flex items-center justify-between text-[11px] font-mono text-white/50 select-none">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
           <span className="text-white/80 font-bold uppercase tracking-wider text-[10.5px]">

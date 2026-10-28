@@ -204,8 +204,8 @@ export function OceanStirZone() {
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerCancel}
-      className="tai-ocean-interactive-zone relative z-20 w-full py-8 border-y border-white/[0.08] bg-[#040920]/80 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between px-6 sm:px-12 lg:px-16 gap-4 overflow-hidden select-none"
-      style={{ touchAction: "none" }}
+      className="tai-ocean-interactive-zone relative z-20 w-full py-8 border-y border-white/[0.08] bg-[#040920]/35 bg-gradient-to-b from-[#040920]/20 via-[#040920]/35 to-[#040920]/55 flex flex-col sm:flex-row items-center justify-between px-6 sm:px-12 lg:px-16 gap-4 overflow-hidden select-none"
+      style={{ touchAction: "pan-y" }}
     >
       {/* Studio Brand Mark & Glyph */}
       <div className="flex items-center gap-3">

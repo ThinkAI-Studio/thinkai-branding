@@ -351,6 +351,14 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
       ref={containerRef}
       className={`fixed inset-0 pointer-events-none ${className}`}
       style={{
+        // Explicit fixed box so the CSS box and the WebGL drawing buffer (sized
+        // from the same 100lvh measurement) always agree — no vertical squash
+        // when the mobile address bar shifts the visual viewport.
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100lvh",
         zIndex: 0,
         contain: "strict",
         transform: "translateZ(0)",

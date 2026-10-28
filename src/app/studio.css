@@ -270,7 +270,7 @@
   position: relative;
   cursor: grab;
   user-select: none;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .tai-ocean-interactive-zone:active {
