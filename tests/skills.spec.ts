@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 const SKILL_NAMES = [
   // Web
@@ -25,19 +25,29 @@ const SKILL_NAMES = [
 
 const CATEGORY_LABELS = ["WEB", "DEVOPS", "DESIGNER"];
 
+/**
+ * The #skills section is re-rendered after hydration / reduced-motion swaps,
+ * so re-query the element right before interacting instead of reusing a
+ * locator captured before the client variant settles.
+ */
+async function openSkillsSection(page: Page) {
+  await page.goto("/#skills");
+  await expect(page.locator("#skills")).toBeVisible();
+  // Let any client-side variant swap settle before grabbing fresh locators.
+  await page.waitForTimeout(250);
+  return page.locator("#skills");
+}
+
 test.describe("Skills Section (Stack & Craft)", () => {
   test("skills section is visible and navigable via deep link", async ({ page }) => {
     await page.goto("/#skills");
-    const section = page.locator("#skills");
-    await expect(section).toBeAttached();
-    await section.scrollIntoViewIfNeeded();
-    await expect(section).toBeInViewport();
+    await expect(page.locator("#skills")).toBeVisible();
+    await page.locator("#skills").scrollIntoViewIfNeeded();
+    await expect(page.locator("#skills")).toBeInViewport();
   });
 
   test("displays all 3 category labels", async ({ page }) => {
-    await page.goto("/#skills");
-    const section = page.locator("#skills");
-    await section.scrollIntoViewIfNeeded();
+    const section = await openSkillsSection(page);
 
     for (const category of CATEGORY_LABELS) {
       const label = section.getByText(category, { exact: false }).first();
@@ -46,8 +56,7 @@ test.describe("Skills Section (Stack & Craft)", () => {
   });
 
   test("renders all 17 skill cards across chapters", async ({ page }) => {
-    await page.goto("/#skills");
-    const section = page.locator("#skills");
+    const section = await openSkillsSection(page);
 
     for (const name of SKILL_NAMES) {
       const card = section.getByRole("heading", { name, exact: true }).first();
@@ -57,8 +66,7 @@ test.describe("Skills Section (Stack & Craft)", () => {
 
   test("does not trigger horizontal overflow at desktop viewport (1440px)", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/#skills");
-    const section = page.locator("#skills");
+    const section = await openSkillsSection(page);
     await section.scrollIntoViewIfNeeded();
 
     const hasOverflow = await page.evaluate(() => {
@@ -70,8 +78,7 @@ test.describe("Skills Section (Stack & Craft)", () => {
 
   test("does not trigger horizontal overflow at mobile viewport (390px)", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/#skills");
-    const section = page.locator("#skills");
+    const section = await openSkillsSection(page);
     await section.scrollIntoViewIfNeeded();
 
     const hasOverflow = await page.evaluate(() => {
@@ -83,9 +90,8 @@ test.describe("Skills Section (Stack & Craft)", () => {
 
   test("renders accessible static grouped grid under prefers-reduced-motion", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/#skills");
-    const section = page.locator("#skills");
-    await section.scrollIntoViewIfNeeded();
+    const section = await openSkillsSection(page);
+    await page.locator("#skills").scrollIntoViewIfNeeded();
 
     // Verify all 17 skill cards are attached and visible in reduced motion
     for (const name of SKILL_NAMES) {
