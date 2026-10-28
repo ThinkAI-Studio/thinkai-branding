@@ -27,8 +27,8 @@
 }
 /* ─── TOUCH-SAFE OVERLAYS (NO BACKDROP-FILTER ON TOUCH OVER WEBGL CANVAS) ─── */
 .hero-three__frame {
-  background-color: rgba(8, 8, 10, 0.78);
-  background-image: radial-gradient(ellipse at center, rgba(6, 8, 12, 0.65) 0%, rgba(8, 8, 10, 0.88) 100%);
+  background-color: rgba(8, 8, 10, 0.30);
+  background-image: radial-gradient(ellipse at center, rgba(6, 8, 12, 0.25) 0%, rgba(8, 8, 10, 0.45) 100%);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
