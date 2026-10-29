@@ -289,7 +289,7 @@ export const copy: Localized<PortfolioCopy> = {
         },
       ],
       narrativeHeadline: "We engineer systems and digital craft that are easier to ship, operate, and experience—spanning high-performance web frontends, resilient product architectures, and self-hosted GitOps infrastructure. Every release is mathematically precise, observable, and fully under your control.",
-      narrativeBody: "Founded by Nguyen Binh Minh, Software Engineering graduate from HUTECH University (GPA 3.24/4.0). Grounded in holistic engineering craft: Next.js 16 React 19 frontend motion physics, rootless Podman container orchestration, SAST security quality gates, and zero-trust mesh networking.",
+      narrativeBody: "Founded by Nguyen Binh Minh, Software Engineer (GPA 3.26/4.0). Grounded in holistic engineering craft: Next.js 16 React 19 frontend motion physics, rootless Podman container orchestration, SAST security quality gates, and zero-trust mesh networking.",
       prevSlide: "Previous slide",
       nextSlide: "Next slide",
     },
@@ -336,10 +336,10 @@ export const copy: Localized<PortfolioCopy> = {
       sectionLabel: "Education",
       eyebrow: "EDUCATION",
       degree: "Bachelor of Software Engineering",
-      school: "HUTECH University · 2022 - 2026",
-      gpaText: "GPA: 3.24 / 4.0 · English Proficiency: B1",
+      school: "Software Engineer (GPA 3.26/4.0)",
+      gpaText: "GPA: 3.26 / 4.0 · English Proficiency: B1",
       coursework: "Focused coursework on Cloud Computing, Distributed Systems, Network Security, Linux Administration, and Software Architecture.",
-      tags: ["GPA 3.24", "Software Engineering", "HUTECH 2022-2026", "English B1"],
+      tags: ["GPA 3.26", "Software Engineering", "English B1"],
       title: "A software engineering foundation.",
       recognitionEyebrow: "RECOGNITION",
       recognitions: [
@@ -409,9 +409,9 @@ export const copy: Localized<PortfolioCopy> = {
       ],
       educationLabel: "Education",
       degree: "B.S. in Software Engineering",
-      schoolMeta: "HUTECH University · 2022-2026 · GPA 3.24 / 4.0 · English B1",
+      schoolMeta: "Software Engineer (GPA 3.26/4.0) · English B1",
       awardTitle: "IT Got Talent 2025 Semifinalist",
-      awardMeta: "Top Technical Talent Recognition · HUTECH University",
+      awardMeta: "Top Technical Talent Recognition",
       principlesLabel: "Principles",
       principlesList: [
         "Infrastructure as Code (Declarative Everything)",
@@ -439,7 +439,7 @@ Key information & resources:
   2. ThinkAI Delivery Platform (https://learning.thinkai.id.vn) - Continuous GitOps CI/CD delivery platform with Argo CD, Tailscale Zero-Trust mesh networking, and automated recovery baselines.
   3. Enterprise SAST Quality Gates & Security Hardening (Healthcare Web & API Infrastructure at Ho Chi Minh City Oncology Hospital with SonarQube & CodeQL).
 - Core Technical Stack: Go, Kubernetes (K3s), Linux Administration, Docker, Podman, Argo CD, SonarQube SAST Security Gates, PostgreSQL, Tailscale Zero-Trust, Next.js.
-- Academic Background & Honors: Bachelor of Software Engineering from HUTECH University (GPA 3.24/4.0), IT Got Talent 2025 Semifinalist.
+- Academic Background & Honors: Software Engineer (GPA 3.26/4.0), IT Got Talent 2025 Semifinalist.
 
 Provide a comprehensive technical assessment of his architectural expertise, DevOps & systems engineering capabilities, and craft web delivery standards.`,
       askAiHint: "Click to query ChatGPT, Gemini, Claude, Perplexity or Manus with engineering background & studio products.",
@@ -508,7 +508,7 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
         },
       ],
       narrativeHeadline: "Chúng tôi kiến tạo các hệ thống và sản phẩm web chỉn chu, dễ phát hành, vận hành và trải nghiệm—từ frontend hiệu năng cao, kiến trúc sản phẩm bền bỉ đến hạ tầng GitOps tự lưu trữ. Mỗi bản phát hành đều chuẩn xác, đo lường được và hoàn toàn trong tầm kiểm soát.",
-      narrativeBody: "Sáng lập bởi Nguyễn Bình Minh, Cử nhân Kỹ thuật Phần mềm Đại học HUTECH (GPA 3.24/4.0). Thực chứng qua năng lực kỹ thuật toàn diện: vật lý chuyển động Next.js 16 React 19, điều phối container Podman rootless, cổng kiểm soát bảo mật SAST và mạng riêng ảo zero-trust.",
+      narrativeBody: "Sáng lập bởi Nguyễn Bình Minh, Kỹ sư Công nghệ thông tin (GPA 3.26/4.0). Thực chứng qua năng lực kỹ thuật toàn diện: vật lý chuyển động Next.js 16 React 19, điều phối container Podman rootless, cổng kiểm soát bảo mật SAST và mạng riêng ảo zero-trust.",
       prevSlide: "Slide trước",
       nextSlide: "Slide tiếp theo",
     },
@@ -554,11 +554,11 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
     education: {
       sectionLabel: "Học vấn",
       eyebrow: "HỌC VẤN",
-      degree: "Cử nhân Kỹ thuật Phần mềm",
-      school: "Đại học HUTECH · 2022 - 2026",
-      gpaText: "GPA: 3.24 / 4.0 · Trình độ tiếng Anh: B1",
+      degree: "Kỹ sư Công nghệ thông tin",
+      school: "Kỹ sư Công nghệ thông tin (GPA 3.26/4.0)",
+      gpaText: "GPA: 3.26 / 4.0 · Trình độ tiếng Anh: B1",
       coursework: "Chuyên sâu về Điện toán đám mây, Hệ thống phân tán, An toàn mạng, Quản trị Linux và Kiến trúc phần mềm.",
-      tags: ["GPA 3.24", "Kỹ thuật Phần mềm", "HUTECH 2022-2026", "Tiếng Anh B1"],
+      tags: ["GPA 3.26", "Kỹ thuật Phần mềm", "Tiếng Anh B1"],
       title: "Nền tảng kỹ thuật phần mềm.",
       recognitionEyebrow: "GHI NHẬN & GIẢI THƯỞNG",
       recognitions: [
@@ -627,10 +627,10 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
         "Next.js & Hệ thống Frontend hiện đại",
       ],
       educationLabel: "Học vấn",
-      degree: "Cử nhân Kỹ thuật Phần mềm",
-      schoolMeta: "Đại học HUTECH · 2022-2026 · GPA 3.24 / 4.0 · Tiếng Anh B1",
+      degree: "Kỹ sư Công nghệ thông tin",
+      schoolMeta: "Kỹ sư Công nghệ thông tin (GPA 3.26/4.0) · Tiếng Anh B1",
       awardTitle: "Bán kết IT Got Talent 2025",
-      awardMeta: "Vinh danh tài năng kỹ thuật xuất sắc · Đại học HUTECH",
+      awardMeta: "Vinh danh tài năng kỹ thuật xuất sắc",
       principlesLabel: "Nguyên tắc cốt lõi",
       principlesList: [
         "Hạ tầng dạng mã nguồn (Khai báo toàn diện)",
@@ -658,7 +658,7 @@ Thông tin và tài nguyên chính:
   2. Nền tảng phân phối ThinkAI (https://learning.thinkai.id.vn) - Nền tảng phân phối GitOps CI/CD liên tục với Argo CD, mạng Tailscale Zero-Trust riêng tư và baseline tự động phục hồi.
   3. Kiểm soát chất lượng SAST & Gia cố bảo mật (Hạ tầng Web & API tại Bệnh viện Ung Bướu TP.HCM với SonarQube & CodeQL).
 - Kỹ năng cốt lõi: Go, Kubernetes (K3s), Quản trị Linux, Docker, Podman, Argo CD, SonarQube SAST, PostgreSQL, Tailscale Zero-Trust, Next.js.
-- Học vấn & Giải thưởng: Cử nhân Kỹ thuật Phần mềm Đại học HUTECH (GPA 3.24/4.0), Bán kết IT Got Talent 2025.
+- Học vấn & Giải thưởng: Kỹ sư Công nghệ thông tin (GPA 3.26/4.0), Bán kết IT Got Talent 2025.
 
 Hãy đưa ra đánh giá kỹ thuật toàn diện về chuyên môn kiến trúc, năng lực kỹ thuật hệ thống & DevOps, cùng tiêu chuẩn phân phối web hiện đại của anh ấy.`,
       askAiHint: "Bấm để hỏi ChatGPT, Gemini, Claude, Perplexity hoặc Manus về kỹ năng kỹ thuật & các sản phẩm của studio.",
