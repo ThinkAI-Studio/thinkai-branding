@@ -89,7 +89,7 @@ export const profile = {
   location: "Thu Duc, Ho Chi Minh City, Vietnam",
   domain: SITE_URL,
   github: "https://github.com/bnhminh1010",
-  linkedin: "https://www.linkedin.com/in/b%C3%ACnh-minh-4a953434b/",
+  linkedin: "https://www.linkedin.com/in/bnhminh1010/",
 };
 
 export type PortfolioCopy = {
@@ -1301,8 +1301,8 @@ export const projects: Project[] = [
       image: "/images/products/thinkai-screen.png",
       ready: true,
       capture: {
-        en: "Maps the pull request security gate, multi-stage image build and local Docker Compose dependencies.",
-        vi: "Mô tả security gate của pull request, multi-stage image build và dependency Docker Compose cục bộ.",
+        en: "Landing gateway and product showcase with the service sunset notice.",
+        vi: "Cổng giao diện chính và giới thiệu sản phẩm đi kèm thông báo dừng hoạt động.",
       },
     },
     content: {

@@ -94,20 +94,6 @@ textarea {
   border-radius: 0 0 16px 16px;
 }
 
-/* Scoped Warm Paper Theme Block (Exclusively for Wind Product Section) */
-.tai-paper {
-  --paper-bg: #FAF8F5;
-  --paper-card: #FFFFFF;
-  --paper-text-primary: #1A1A1A;
-  --paper-text-secondary: #4A4A4A;
-  --paper-border: rgba(0, 0, 0, 0.08);
-  --paper-border-strong: rgba(0, 0, 0, 0.22);
-  --paper-accent-green: #2D5A3D;
-  --paper-accent-gold: #916207;
-  --paper-accent-vermilion: #9E2A2B;
-  background-color: var(--paper-bg);
-  color: var(--paper-text-primary);
-}
 /* Impeccable Visual Signatures */
 .tai-inset-top {
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
@@ -121,7 +107,7 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-/* Authentic Tactile Studio Film Grain Overlay (Continuous 24fps Film Jitter) - ThinkAI Studio */
+/* Authentic Tactile Studio Film Grain Overlay (Continuous 12fps Film Jitter) - ThinkAI Studio */
 .tai-grain-overlay {
   position: fixed;
   inset: 0;
@@ -134,30 +120,28 @@ textarea {
 
 .tai-grain-overlay::before {
   content: "";
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 300%;
-  height: 300%;
+  position: fixed;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
   opacity: 0.22;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: url("/images/textures/grain-tile.png");
   background-repeat: repeat;
-  background-size: 80px 80px;
-  animation: continuousGrain 0.55s steps(8) infinite;
-  will-change: transform;
+  background-size: 160px 160px;
+  animation: continuousGrain 0.65s steps(8) infinite;
   pointer-events: none;
 }
 
 @keyframes continuousGrain {
-  0% { transform: translate(0, 0); }
-  12.5% { transform: translate(-3%, -5%); }
-  25% { transform: translate(-8%, 4%); }
-  37.5% { transform: translate(6%, -7%); }
-  50% { transform: translate(-4%, 8%); }
-  62.5% { transform: translate(9%, -2%); }
-  75% { transform: translate(-6%, 5%); }
-  87.5% { transform: translate(5%, -4%); }
-  100% { transform: translate(0, 0); }
+  0% { background-position: 0 0; }
+  12.5% { background-position: -40px 60px; }
+  25% { background-position: 80px -50px; }
+  37.5% { background-position: -60px -80px; }
+  50% { background-position: 30px 70px; }
+  62.5% { background-position: -90px 20px; }
+  75% { background-position: 50px -40px; }
+  87.5% { background-position: -20px -70px; }
+  100% { background-position: 0 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
-import { Check, Sparkles, ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { WipeButton } from "./WipeButton";
 import { useLanguage } from "@/context/LanguageContext";
 import { profile, copy } from "@/data/portfolio";
@@ -27,15 +26,6 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
   const [liveTime, setLiveTime] = useState<string>("");
   const [liveDate, setLiveDate] = useState<string>("");
-
-  // Interactive Ocean Hold State
-  const [isOceanHovered, setIsOceanHovered] = useState(false);
-  const [isOceanHolding, setIsOceanHolding] = useState(false);
-  const [isEquilibrium, setIsEquilibrium] = useState(false);
-  const [holdProgress, setHoldProgress] = useState(0);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const oceanZoneRef = useRef<HTMLDivElement>(null);
-  const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Vietnam Live Time Clock
   useEffect(() => {
@@ -67,80 +57,6 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
     return () => clearInterval(timer);
   }, [language]);
 
-  const updateStirBridge = (stir: number, clientX?: number, clientY?: number) => {
-    if (typeof window !== "undefined" && "__setOceanStir" in window) {
-      const bridge = (window as Record<string, unknown>).__setOceanStir;
-      if (typeof bridge === "function") {
-        if (typeof clientX === "number" && typeof clientY === "number") {
-          const nx = clientX / window.innerWidth;
-          const ny = clientY / window.innerHeight;
-          bridge(stir, nx, ny);
-        } else {
-          bridge(stir);
-        }
-      }
-    }
-  };
-
-  const handleOceanMouseMove = (e: React.MouseEvent) => {
-    setCursorPos({ x: e.clientX, y: e.clientY });
-    if (isOceanHolding) {
-      updateStirBridge(0.75, e.clientX, e.clientY);
-    }
-  };
-
-  const startHolding = (clientX?: number, clientY?: number) => {
-    if (clientX !== undefined && clientY !== undefined) {
-      setCursorPos({ x: clientX, y: clientY });
-      updateStirBridge(0.25, clientX, clientY);
-    }
-    setIsOceanHolding(true);
-    setHoldProgress(0);
-
-    const startTime = Date.now();
-    const duration = 1200;
-
-    if (holdTimerRef.current) {
-      clearInterval(holdTimerRef.current);
-      holdTimerRef.current = null;
-    }
-
-    holdTimerRef.current = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
-      setHoldProgress(pct);
-      if (clientX !== undefined && clientY !== undefined) {
-        updateStirBridge(0.25 + (pct / 100) * 0.5, clientX, clientY);
-      }
-
-      if (pct >= 100) {
-        clearInterval(holdTimerRef.current!);
-        holdTimerRef.current = null;
-        setIsEquilibrium(true);
-        if (clientX !== undefined && clientY !== undefined) {
-          updateStirBridge(0.85, clientX, clientY);
-        }
-        setTimeout(() => {
-          setIsEquilibrium(false);
-          setHoldProgress(0);
-          setIsOceanHolding(false);
-          updateStirBridge(0.0);
-        }, 3000);
-      }
-    }, 16);
-  };
-
-  const stopHolding = () => {
-    if (holdTimerRef.current) {
-      clearInterval(holdTimerRef.current);
-      holdTimerRef.current = null;
-    }
-    updateStirBridge(0.0);
-    if (!isEquilibrium) {
-      setIsOceanHolding(false);
-      setHoldProgress(0);
-    }
-  };
   const aiPlatforms = [
     { name: "ChatGPT", icon: OpenAiIcon, url: "https://chatgpt.com" },
     { name: "Claude", icon: ClaudeIcon, url: "https://claude.ai" },
@@ -513,89 +429,6 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           <line x1="720" y1="175" x2="1340" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
         </svg>
 
-        {/* Embedded Interactive Tactile Hold Zone (Ocean Equilibrium) */}
-        <div
-          id="interactive-ocean-zone"
-          ref={oceanZoneRef}
-          onMouseEnter={() => setIsOceanHovered(true)}
-          onMouseLeave={() => {
-            setIsOceanHovered(false);
-            stopHolding();
-          }}
-          onMouseMove={handleOceanMouseMove}
-          onMouseDown={(e) => startHolding(e.clientX, e.clientY)}
-          onMouseUp={stopHolding}
-          onTouchStart={(e) => {
-            if (e.touches[0]) startHolding(e.touches[0].clientX, e.touches[0].clientY);
-          }}
-          onTouchEnd={stopHolding}
-          className="relative w-full py-8 border-t border-white/[0.08] bg-[#040920]/90 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between px-6 sm:px-12 lg:px-16 gap-4 overflow-hidden"
-        >
-          {/* Studio Brand Mark & Glyph */}
-          <div className="flex items-center gap-3">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="font-mono text-xs text-blue-200 uppercase tracking-widest font-bold">
-              THINKAI STUDIO · OUTRIDER DUOTONE EDITION
-            </span>
-          </div>
-
-          <div className="hidden md:inline-flex items-center font-mono text-xs text-blue-300/80">
-            {t.ocean.quote}
-          </div>
-
-          {/* Interactive Hold Floating Indicator */}
-          <AnimatePresence>
-            {isOceanHovered && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  position: "fixed",
-                  left: cursorPos.x + 18,
-                  top: cursorPos.y + 18,
-                  zIndex: 9999,
-                  pointerEvents: "none",
-                }}
-                className={`tai-hold-pill ${isOceanHolding ? "is-holding" : ""}`}
-              >
-                <svg className="tai-hold-ring" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="9" fill="none" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="2.5" />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9"
-                    fill="none"
-                    strokeWidth="2.5"
-                    strokeDasharray={56.54}
-                    strokeDashoffset={56.54 - (56.54 * holdProgress) / 100}
-                    strokeLinecap="round"
-                    className="tai-hold-ring-circle"
-                  />
-                </svg>
-
-                <span className="flex items-center gap-2 font-mono text-[11px] sm:text-xs">
-                  {holdProgress >= 100 || isEquilibrium ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="text-emerald-300 font-bold tracking-wide">
-                        {t.ocean.equilibrium}
-                      </span>
-                    </>
-                  ) : isOceanHolding ? (
-                    <>
-                      <Sparkles className="w-3.5 h-3.5 text-white animate-spin shrink-0" />
-                      <span>{t.ocean.stirring} {holdProgress}%</span>
-                    </>
-                  ) : (
-                    <span>{t.ocean.holdPrompt}</span>
-                  )}
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </div>
     </footer>
   );
