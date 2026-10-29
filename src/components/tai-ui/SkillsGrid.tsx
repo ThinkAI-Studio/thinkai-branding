@@ -48,10 +48,20 @@ const ENTRANCE_RISE_DURATION = 1.05;
 const FIRST_ARRIVAL_AT = 1.35;
 const ARRIVAL_STEP = 1.35;
 
-// Recessed cards fan upward behind the active front card.
-const BEHIND_STEP_Y = -22;
-const BEHIND_STEP_SCALE = 0.025;
-const BEHIND_OPACITIES = [0.45, 0.35, 0.28, 0.22, 0.16];
+// Recessed cards fan upward behind the active front card. Y spacing is tuned
+// so each sheet still peeks ~26px over the card below it after the 3% scale
+// shrink (peek ≈ |STEP_Y| − STEP_SCALE × height / 2).
+const BEHIND_STEP_Y = -34;
+const BEHIND_STEP_SCALE = 0.03;
+// Ladders stay high-end because a dimmed near-black surface over the
+// near-black page reads as nothing — sheets must survive dimming.
+const BEHIND_OPACITIES = [0.95, 0.82, 0.7, 0.58, 0.46];
+
+// One fixed desktop card size for every chapter (the deck box adds a fan
+// reserve above the card area so recessed sheets stay inside the clip).
+const CARD_HEIGHT = "clamp(420px,52vh,500px)";
+// Max fan extent = 5 depths × (|STEP_Y| − scale lift ≈ 27px) + margin.
+const DECK_FAN_RESERVE = 160;
 
 const COLLAPSE_AT = 8.55;
 
@@ -59,15 +69,21 @@ interface StackDepthState {
   y: number;
   scale: number;
   opacity: number;
+  /** Opacity of the sheet surface overlay (1 once the card sits behind depth 0). */
+  face: number;
+  /** Opacity of the card's inner content (0 for every recessed card). */
+  contentVeil: number;
 }
 
 function stackStateFor(depth: number): StackDepthState {
-  if (depth <= 0) return { y: 0, scale: 1, opacity: 1 };
+  if (depth <= 0) return { y: 0, scale: 1, opacity: 1, face: 0, contentVeil: 1 };
   const step = Math.min(depth, BEHIND_OPACITIES.length);
   return {
     y: BEHIND_STEP_Y * step,
     scale: 1 - BEHIND_STEP_SCALE * step,
     opacity: BEHIND_OPACITIES[step - 1],
+    face: 1,
+    contentVeil: 0,
   };
 }
 
@@ -131,6 +147,12 @@ export function SkillsGrid() {
               scale: isFront ? 1 : ENTRANCE_FROM_SCALE,
               opacity: isFront ? 1 : 0,
             });
+            const face = cardEl.querySelector(".skills-deck-sheet-face");
+            if (face) gsap.set(face, { opacity: 0 });
+            const contentNodes = cardEl.querySelectorAll(
+              ".skills-card-content, .skills-card-highlight"
+            );
+            if (contentNodes.length) gsap.set(contentNodes, { opacity: 1 });
           });
         });
 
@@ -181,6 +203,16 @@ export function SkillsGrid() {
            * over the stack fully opaque so no text ever bleeds through it.
            */
           const arrive = (card: HTMLDivElement, at: number) => {
+            const face = card.querySelector(".skills-deck-sheet-face");
+            if (face) {
+              tl.set(face, { opacity: 0 }, at);
+            }
+            const contentNodes = card.querySelectorAll(
+              ".skills-card-content, .skills-card-highlight"
+            );
+            if (contentNodes.length) {
+              tl.set(contentNodes, { opacity: 1 }, at);
+            }
             tl.fromTo(
               card,
               { opacity: 0 },
@@ -221,6 +253,7 @@ export function SkillsGrid() {
               if (!behind) continue;
               const from = stackStateFor(depth - 1);
               const to = stackStateFor(depth);
+              const time = at + ENTRANCE_FADE_DURATION;
               tl.fromTo(
                 behind,
                 { y: from.y, scale: from.scale, opacity: from.opacity },
@@ -232,8 +265,24 @@ export function SkillsGrid() {
                   ease: "power2.out",
                   immediateRender: false,
                 },
-                at + ENTRANCE_FADE_DURATION
+                time
               );
+
+              // Discrete face swap: when a card steps behind the front
+              // position (depth === 1), instantly reveal the sheet face
+              // and hide the content nodes via zero-duration discrete set.
+              if (depth === 1) {
+                const face = behind.querySelector(".skills-deck-sheet-face");
+                if (face) {
+                  tl.set(face, { opacity: 1 }, time);
+                }
+                const contentNodes = behind.querySelectorAll(
+                  ".skills-card-content, .skills-card-highlight"
+                );
+                if (contentNodes.length) {
+                  tl.set(contentNodes, { opacity: 0 }, time);
+                }
+              }
             }
           }
 
@@ -494,7 +543,15 @@ export function SkillsGrid() {
 
               {/* RIGHT COLUMN: Pinned Deck Stage with Overlapping Cards */}
               <div className="col-span-12 md:col-span-7 xl:col-span-7 flex items-center justify-center relative">
-                <div className="relative w-full max-w-[420px] xl:max-w-[460px] h-[430px] lg:h-[500px] xl:h-[560px]">
+                {/* Deck clip zone: fixed card height + a 160px reserve above so
+                    recessed sheets fan inside the clip, entrance cards are
+                    hidden until they enter the bounds, and nothing spills. */}
+                <div
+                  className="relative w-full max-w-[420px] xl:max-w-[460px] overflow-hidden -translate-y-20"
+                  style={{
+                    height: `calc(${CARD_HEIGHT} + ${DECK_FAN_RESERVE}px)`,
+                  }}
+                >
                   {SKILL_CHAPTERS.map((chapter, chIdx) => (
                     <div
                       key={chapter.id}
@@ -512,8 +569,8 @@ export function SkillsGrid() {
                             }
                             cardElementsRef.current[chIdx][cardIdx] = el;
                           }}
-                          className="absolute inset-0 w-full h-full skills-gpu-accelerated"
-                          style={{ zIndex: 10 + cardIdx }}
+                          className="absolute inset-x-0 bottom-0 skills-gpu-accelerated"
+                          style={{ zIndex: 10 + cardIdx, height: CARD_HEIGHT }}
                         >
                           {/* Inner Card Container with Desktop Hover Lift */}
                           <article className="w-full h-full rounded-[10px] bg-[#101014] border border-white/[0.08] p-6 xl:p-7 flex flex-col justify-between shadow-[0_18px_44px_rgba(0,0,0,0.75)] hover:border-white/20 transition-all duration-200 select-none relative">
@@ -521,8 +578,8 @@ export function SkillsGrid() {
 
                             <div className="skills-card-highlight" />
 
-                            {/* Card Top: Logo + Chapter Pill + Name + Proof */}
-                            <div className="space-y-4 relative z-10">
+                            {/* Card Body: Logo + Chapter Pill + Name + Proof + Tags */}
+                            <div className="skills-card-content space-y-4 relative z-10">
                               <div className="flex items-center justify-between gap-3">
                                 <div className="w-12 h-12 rounded-[8px] bg-white/[0.04] border border-white/10 flex items-center justify-center p-2.5 text-white">
                                   <TechLogo name={card.logo} className="w-7 h-7 object-contain" />
@@ -537,28 +594,31 @@ export function SkillsGrid() {
                               <h4 className={cardSurfaceH4}>{card.name}</h4>
 
                               <p className={cardSurfaceProof}>{card.proof[language]}</p>
-                            </div>
 
-                            {/* Card Bottom: Tags + Hairline Row */}
-                            <div className="relative z-10">
-                              <div className="flex flex-wrap gap-1.5 pb-4">
+                              <div className="flex flex-wrap gap-1.5 pt-1">
                                 {card.tags.map((tag) => (
                                   <span key={tag} className={cardSurfaceTags}>
                                     {tag}
                                   </span>
                                 ))}
                               </div>
-                              <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400">
-                                <span>
-                                  {card.proofReference ? `PROOF: ${card.proofReference}` : "VERIFIED"}
-                                </span>
-                                <span className={`font-semibold tracking-wider flex items-center gap-1.5 ${chapter.accentClass}`}>
-                                  <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                                  {language === "vi" ? "THỰC CHỨNG" : "VERIFIED IN PROD"}
-                                </span>
-                              </div>
+                            </div>
+                            {/* Card Bottom: Hairline Row */}
+                            <div className="skills-card-content pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400 relative z-10">
+                              <span>
+                                {card.proofReference ? `PROOF: ${card.proofReference}` : "VERIFIED"}
+                              </span>
+                              <span className={`font-semibold tracking-wider flex items-center gap-1.5 ${chapter.accentClass}`}>
+                                <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                                {language === "vi" ? "THỰC CHỨNG" : "VERIFIED IN PROD"}
+                              </span>
                             </div>
                           </article>
+
+                          {/* Recessed sheet surface: fades in once the card
+                              steps behind the front card, keeping the dimmed
+                              slab readable against the page background. */}
+                          <div className="skills-deck-sheet-face" aria-hidden="true" />
                         </div>
                       ))}
                     </div>

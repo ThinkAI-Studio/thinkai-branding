@@ -32,6 +32,23 @@
   border-color: rgba(255, 255, 255, 0.22);
 }
 
+/*
+ * Desktop deck: recessed sheet surface. Sits above the card article and fades
+ * in (opacity only, GSAP-driven) the moment the card steps behind depth 0, so
+ * the dimmed slab keeps a filled near-black body + crisp 1px edge over the
+ * near-black page. At opacity 0 the front card keeps its exact #101014 face.
+ */
+.skills-deck-sheet-face {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border-radius: 10px;
+  background-color: #16161b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Mobile Sticky Stacking */
 @media (max-width: 767px) {
   .skills-mobile-card {
