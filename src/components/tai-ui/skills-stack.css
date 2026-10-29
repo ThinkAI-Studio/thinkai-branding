@@ -1,0 +1,57 @@
+/* Skills Stack & Craft - GPU Acceleration and Micro-interactions */
+
+.skills-gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.skills-card-highlight {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.16) 30%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.16) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.skills-card-surface {
+  background-color: #101014;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.skills-card-surface:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/*
+ * Desktop deck: recessed sheet surface. Sits above the card article and fades
+ * in (opacity only, GSAP-driven) the moment the card steps behind depth 0, so
+ * the dimmed slab keeps a filled near-black body + crisp 1px edge over the
+ * near-black page. At opacity 0 the front card keeps its exact #101014 face.
+ */
+.skills-deck-sheet-face {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border-radius: 10px;
+  background-color: #16161b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mobile Sticky Stacking */
+@media (max-width: 767px) {
+  .skills-mobile-card {
+    box-shadow: 0 -8px 24px -4px rgba(0, 0, 0, 0.7);
+  }
+}
