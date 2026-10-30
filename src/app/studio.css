@@ -335,3 +335,14 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* Footer Artwork Responsive Aspect Ratio */
+.footer-artwork-img {
+  aspect-ratio: 2908 / 1106;
+}
+
+@media (max-width: 639px) {
+  .footer-artwork-img {
+    aspect-ratio: 1769 / 1106;
+  }
+}

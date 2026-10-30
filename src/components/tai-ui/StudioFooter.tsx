@@ -352,7 +352,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           alt=""
           loading="lazy"
           decoding="async"
-          className="w-full h-auto block pointer-events-none aspect-[1769/1106] sm:aspect-[2908/1106]"
+          className="w-full h-auto block pointer-events-none footer-artwork-img"
           style={{
             maskImage: "linear-gradient(180deg, transparent 0px, #000 64px)",
             WebkitMaskImage: "linear-gradient(180deg, transparent 0px, #000 64px)",
