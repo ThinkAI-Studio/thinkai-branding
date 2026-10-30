@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface SmoothScrollProps {
   isLocked?: boolean;
@@ -11,28 +15,28 @@ export function SmoothScroll({ isLocked = false }: SmoothScrollProps) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis 120Hz/ProMotion Smooth Momentum Scroll
+    // Initialize Lenis with lerp for instant responsive trackpad momentum
     const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential easeOut
+      lerp: 0.11,
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.8,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
       infinite: false,
     });
 
     lenisRef.current = lenis;
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
 
-    // High-performance RAF loop matching 120Hz / 144Hz / 240Hz display refresh rates
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
+    // Synchronize Lenis with GSAP ScrollTrigger through a single unified RAF loop
+    lenis.on("scroll", ScrollTrigger.update);
+
+    const tickerCb = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(tickerCb);
+    gsap.ticker.lagSmoothing(0);
 
     // Global anchor link smooth scroll listener
     const handleAnchorClick = (e: MouseEvent) => {
@@ -46,8 +50,7 @@ export function SmoothScroll({ isLocked = false }: SmoothScrollProps) {
           e.preventDefault();
           lenis.scrollTo(0, {
             offset: 0,
-            duration: 1.2,
-            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            duration: 1.0,
           });
           return;
         }
@@ -56,8 +59,7 @@ export function SmoothScroll({ isLocked = false }: SmoothScrollProps) {
           e.preventDefault();
           lenis.scrollTo(targetElement as HTMLElement, {
             offset: 0,
-            duration: 1.2,
-            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            duration: 1.0,
           });
         }
       }
@@ -67,7 +69,7 @@ export function SmoothScroll({ isLocked = false }: SmoothScrollProps) {
 
     return () => {
       document.removeEventListener("click", handleAnchorClick, { capture: true });
-      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(tickerCb);
       lenis.destroy();
       lenisRef.current = null;
       (window as unknown as { __lenis?: Lenis | null }).__lenis = null;

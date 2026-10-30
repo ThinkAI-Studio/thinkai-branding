@@ -48,19 +48,16 @@ function FlipWord({ word, delayOffset = 0 }: { word: string; delayOffset?: numbe
 export function SkillsGrid() {
   const { language } = useLanguage();
   const prefersReduced = useReducedMotion();
-  const [currentStackIdx, setCurrentStackIdx] = useState<number>(0);
-
-  const sectionRef = useRef<HTMLElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const stackContainersRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    if (prefersReduced || !sectionRef.current || !stageRef.current) return;
-
-    const lenis = getLenis();
-    const handleLenisScroll = () => ScrollTrigger.update();
-    if (lenis?.on) lenis.on("scroll", handleLenisScroll);
+   const [currentStackIdx, setCurrentStackIdx] = useState<number>(0);
+   const currentStackIdxRef = useRef<number>(0);
+ 
+   const sectionRef = useRef<HTMLElement>(null);
+   const stageRef = useRef<HTMLDivElement>(null);
+   const titleRef = useRef<HTMLHeadingElement>(null);
+   const stackContainersRef = useRef<(HTMLDivElement | null)[]>([]);
+ 
+   useEffect(() => {
+     if (prefersReduced || !sectionRef.current || !stageRef.current) return;
 
     const ctx = gsap.context(() => {
       // 1. Flip letters effect on "MODERN TECH STACK" when scrolled into view
@@ -120,24 +117,16 @@ export function SkillsGrid() {
             start: "top top",
             end: "bottom bottom",
             pin: stageRef.current,
-            scrub: 0.3,
-            anticipatePin: 1,
-            snap: {
-              snapTo: [0.10, 0.40, 0.70],
-              duration: { min: 0.2, max: 0.35 },
-              ease: "power2.out",
-            },
-            onUpdate: (self) => {
-              const p = self.progress;
-              if (p < 0.25) {
-                setCurrentStackIdx(0);
-              } else if (p < 0.55) {
-                setCurrentStackIdx(1);
-              } else {
-                setCurrentStackIdx(2);
-              }
-            },
-            invalidateOnRefresh: true,
+             scrub: 0.15,
+             onUpdate: (self) => {
+               const p = self.progress;
+               const nextIdx = p < 0.25 ? 0 : p < 0.55 ? 1 : 2;
+               if (currentStackIdxRef.current !== nextIdx) {
+                 currentStackIdxRef.current = nextIdx;
+                 setCurrentStackIdx(nextIdx);
+               }
+             },
+             invalidateOnRefresh: true,
           },
         });
 
@@ -227,10 +216,9 @@ export function SkillsGrid() {
       });
     }, sectionRef);
 
-    return () => {
-      if (lenis?.off) lenis.off("scroll", handleLenisScroll);
-      ctx.revert();
-    };
+     return () => {
+       ctx.revert();
+     };
   }, [prefersReduced]);
 
   const handleNotchClick = (notchIdx: number) => {
