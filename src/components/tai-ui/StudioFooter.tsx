@@ -396,10 +396,11 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
       {/* Artwork: plain block, pulled up into empty sky field so whole composition fits comfortably without text overlap */}
       <picture className="block w-full pointer-events-none -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 relative z-0">
+        <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.avif" type="image/avif" />
+        <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.webp" type="image/webp" />
         <source srcSet="/images/footer-lighthouse-sky.avif" type="image/avif" />
         <source srcSet="/images/footer-lighthouse-sky.webp" type="image/webp" />
         <img
-          src="/images/footer-lighthouse-sky.png"
           alt=""
           loading="lazy"
           decoding="async"
