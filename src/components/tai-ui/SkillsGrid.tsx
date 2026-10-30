@@ -32,8 +32,7 @@ const CHAPTER_UNITS = 10;
 const CARD_HEIGHT = "clamp(420px, 52vh, 500px)";
 const DECK_FAN_RESERVE = 140;
 const BEHIND_STEP_Y = -22;
-const BEHIND_STEP_SCALE = 0.03;
-const BEHIND_OPACITIES = [0.65, 0.48, 0.36, 0.28, 0.22];
+const BEHIND_STEP_SCALE = 0.02;
 
 function SkillCard({
   card,
@@ -48,9 +47,10 @@ function SkillCard({
 }) {
   return (
     <article
-      className={`w-full rounded-[10px] bg-[#101014] border border-white/[0.08] p-5 sm:p-6 xl:p-7 flex flex-col justify-between shadow-[0_16px_36px_rgba(0,0,0,0.7)] hover:border-white/20 transition-colors duration-200 select-none relative ${
+      className={`w-full rounded-[10px] border border-white/10 p-5 sm:p-6 xl:p-7 flex flex-col justify-between shadow-[0_16px_36px_rgba(0,0,0,0.7)] hover:border-white/20 transition-colors duration-200 select-none relative ${
         isDesktopDeck ? "h-full" : ""
       }`}
+      style={{ backgroundColor: "#101014" }}
     >
       <div className="skills-card-highlight" />
       <div className="space-y-4 relative z-10">
@@ -125,10 +125,9 @@ export function SkillsGrid() {
           }
           cards.forEach((cardEl, cardIdx) => {
             gsap.set(cardEl, {
-              yPercent: cardIdx === 0 ? 0 : 100,
-              y: 0,
-              scale: cardIdx === 0 ? 1 : 0.98,
-              opacity: cardIdx === 0 ? 1 : 0,
+              y: cardIdx === 0 ? 0 : 40,
+              scale: 1,
+              clipPath: cardIdx === 0 ? "inset(0 0 0 0)" : "inset(100% 0 0 0)",
             });
           });
         });
@@ -169,11 +168,11 @@ export function SkillsGrid() {
               const card = cards[cardIdx];
               if (!card) continue;
               const at = base + 1.2 + (cardIdx - 1) * arrivalStep;
-
+              tl.set(card, { clipPath: "inset(0 0 0 0)" }, at);
               tl.fromTo(
                 card,
-                { yPercent: 100, y: 0, scale: 0.98, opacity: 0 },
-                { yPercent: 0, y: 0, scale: 1, opacity: 1, duration: 0.85, ease: "power2.out" },
+                { y: 40, scale: 1 },
+                { y: 0, scale: 1, duration: 0.85, ease: "power2.out" },
                 at
               );
 
@@ -182,11 +181,10 @@ export function SkillsGrid() {
                 if (!behindCard) continue;
                 const targetY = BEHIND_STEP_Y * depth;
                 const targetScale = 1 - BEHIND_STEP_SCALE * depth;
-                const targetOpacity = BEHIND_OPACITIES[Math.min(depth, BEHIND_OPACITIES.length) - 1];
 
                 tl.to(
                   behindCard,
-                  { y: targetY, scale: targetScale, opacity: targetOpacity, duration: 0.85, ease: "power2.out" },
+                  { y: targetY, scale: targetScale, duration: 0.85, ease: "power2.out" },
                   at
                 );
               }
@@ -361,7 +359,7 @@ export function SkillsGrid() {
 
               <div className="col-span-12 md:col-span-7 xl:col-span-7 flex items-center justify-center relative">
                 <div
-                  className="relative w-full max-w-[420px] xl:max-w-[460px] overflow-hidden -translate-y-12"
+                  className="relative w-full max-w-[420px] xl:max-w-[460px] overflow-hidden rounded-[10px]"
                   style={{ height: `calc(${CARD_HEIGHT} + ${DECK_FAN_RESERVE}px)` }}
                 >
                   {SKILL_CHAPTERS.map((chapter, chIdx) => (
