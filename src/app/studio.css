@@ -316,7 +316,7 @@
     transparent 16deg,
     transparent 360deg
   );
-  transform-origin: 50% 26%; /* pivot at the lantern glass */
+  transform-origin: 50% 40%; /* pivot directly at the lantern glass in footer background */
   animation: footerSweep 24s linear infinite;
   mix-blend-mode: screen;
   will-change: transform;

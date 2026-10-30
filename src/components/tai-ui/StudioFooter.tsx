@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
@@ -26,7 +26,43 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
   const [liveTime, setLiveTime] = useState<string>("");
   const [liveDate, setLiveDate] = useState<string>("");
+  const footerRef = useRef<HTMLElement>(null);
+  const [isSweepActive, setIsSweepActive] = useState<boolean>(true);
 
+  // Performance: Pause light sweep animation when footer is offscreen or tab is hidden
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+
+    let isVisible = false;
+
+    const updateState = () => {
+      const active = isVisible && !document.hidden;
+      setIsSweepActive(active);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        isVisible = entry.isIntersecting;
+        updateState();
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(el);
+
+    const handleVisibility = () => {
+      updateState();
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
   // Vietnam Live Time Clock
   useEffect(() => {
     const updateTime = () => {
@@ -66,7 +102,47 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
   ];
 
   return (
-    <footer className="relative z-20 bg-gradient-to-b from-[#051138] via-[#071a52] to-[#040c28] text-white border-t border-white/[0.12] overflow-hidden select-none">
+    <footer
+      ref={footerRef}
+      className="relative z-20 bg-[#050e2b] text-white border-t border-white/[0.12] overflow-hidden select-none"
+    >
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <picture>
+          <source srcSet="/images/footer-lighthouse-band.avif" type="image/avif" />
+          <source srcSet="/images/footer-lighthouse-band.webp" type="image/webp" />
+          <img
+            src="/images/footer-lighthouse-band.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={3086}
+            height={998}
+            className="w-full h-full object-cover object-[50%_40%] block opacity-50"
+            style={{
+              filter: "saturate(0.9) brightness(0.92) contrast(1.03)",
+            }}
+          />
+        </picture>
+
+        {/* LIGHT SWEEP (conic gradient light beam pivoting at lantern glass) */}
+        <div
+          className="footer-beam-sweep"
+          style={{
+            animationPlayState: isSweepActive ? "running" : "paused",
+          }}
+        />
+        {/* ATMOSPHERIC DUOTONE BLEND OVERLAY */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(180deg, #111113 0%, rgba(17,17,19,0.85) 5%, rgba(5,17,56,0.75) 25%, rgba(7,26,82,0.60) 55%, rgba(4,12,40,0.85) 100%),
+              linear-gradient(0deg, #0a0a0b 0%, rgba(10,10,11,0.85) 4%, transparent 12%)
+            `,
+          }}
+        />
+      </div>
+
       {/* Upper Main Footer Grid */}
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16 pt-20 sm:pt-28 pb-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -357,79 +433,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
         </div>
       </div>
 
-      {/* ─── BOTTOM LAYOUT: PANORAMIC DUOTONE CYBERNETIC DESERT ARTWORK ─── */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-transparent to-[#040920] pt-4">
-        {/* Full-width Panoramic Duotone SVG Art */}
-        <svg
-          viewBox="0 0 1440 240"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-40 sm:h-52 lg:h-60 object-cover pointer-events-none opacity-85 select-none"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="cobalt-sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#071a52" stopOpacity="0" />
-              <stop offset="60%" stopColor="#0a2575" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#040b26" stopOpacity="0.95" />
-            </linearGradient>
-            <linearGradient id="dune-1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#092268" />
-              <stop offset="100%" stopColor="#05123d" />
-            </linearGradient>
-            <linearGradient id="dune-2" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0b2b85" />
-              <stop offset="100%" stopColor="#040d2b" />
-            </linearGradient>
-          </defs>
-
-          {/* Background Sky Fill */}
-          <rect width="1440" height="240" fill="url(#cobalt-sky)" />
-
-          {/* Starlight & Constellation Grid */}
-          <circle cx="240" cy="40" r="1.5" fill="#38bdf8" opacity="0.8" />
-          <circle cx="380" cy="65" r="1.2" fill="#ffffff" opacity="0.6" />
-          <circle cx="720" cy="30" r="2.0" fill="#38bdf8" opacity="0.9" />
-          <circle cx="980" cy="50" r="1.2" fill="#ffffff" opacity="0.7" />
-          <circle cx="1200" cy="35" r="1.8" fill="#38bdf8" opacity="0.8" />
-          <line x1="240" y1="40" x2="380" y2="65" stroke="rgba(56, 189, 248, 0.2)" strokeDasharray="3 3" />
-          <line x1="980" y1="50" x2="1200" y2="35" stroke="rgba(56, 189, 248, 0.2)" strokeDasharray="3 3" />
-
-          {/* Telemetry Towers on Horizon */}
-          <line x1="420" y1="120" x2="420" y2="70" stroke="#38bdf8" strokeWidth="1.5" opacity="0.7" />
-          <circle cx="420" cy="68" r="2.5" fill="#38bdf8" />
-          <line x1="1050" y1="130" x2="1050" y2="85" stroke="#38bdf8" strokeWidth="1.5" opacity="0.7" />
-          <circle cx="1050" cy="83" r="2.5" fill="#38bdf8" />
-
-          {/* Layer 1: Distant Cybernetic Ridge */}
-          <path
-            d="M0 160 L180 135 L340 150 L520 120 L720 145 L940 115 L1120 140 L1280 125 L1440 155 L1440 240 L0 240 Z"
-            fill="url(#dune-1)"
-            opacity="0.75"
-          />
-
-          {/* Layer 2: Middle Dunes */}
-          <path
-            d="M0 185 Q360 140 720 175 T1440 170 L1440 240 L0 240 Z"
-            fill="url(#dune-2)"
-            opacity="0.9"
-          />
-
-          {/* Layer 3: Perspective Grid Mesh Lines on Forefront Dunes */}
-          <line x1="0" y1="210" x2="1440" y2="210" stroke="rgba(56, 189, 248, 0.2)" strokeWidth="1" />
-          <line x1="0" y1="225" x2="1440" y2="225" stroke="rgba(56, 189, 248, 0.25)" strokeWidth="1" />
-          <line x1="0" y1="237" x2="1440" y2="237" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1.5" />
-
-          {/* Perspective Ray Lines */}
-          <line x1="720" y1="175" x2="100" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="350" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="580" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="860" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="1090" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="1340" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-        </svg>
-
-      </div>
+      {/* ─── BOTTOM SPACING ─── */}
+      <div className="h-6 sm:h-10" />
     </footer>
   );
 }
