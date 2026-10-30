@@ -23,6 +23,7 @@ import { ScrollTextReveal } from "@/components/tai-ui/ScrollTextReveal";
 import { PagePreloader } from "@/components/tai-ui/PagePreloader";
 import { StudioFooter } from "@/components/tai-ui/StudioFooter";
 import { OceanStirZone } from "@/components/tai-ui/OceanStirZone";
+import { FooterLighthouseBand } from "@/components/tai-ui/FooterLighthouseBand";
 import "./studio.css";
 
 export default function PortfolioPage() {
@@ -329,8 +330,16 @@ export default function PortfolioPage() {
             </WipeButton>
           </div>
         </div>
+        {/* Smooth atmospheric fade into #111113 so the lighthouse band top edge meets #111113 with zero hard seam */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-[#111113]/60 to-[#111113] pointer-events-none"
+        />
       </section>
-      {/* ─── 07B. OCEAN STIR INTERACTIVE ZONE ─── */}
+      {/* ─── 07B. FOOTER LIGHTHOUSE BAND (3.09:1 Panoramic Horizon) ─── */}
+      <FooterLighthouseBand />
+
+      {/* ─── 07C. OCEAN STIR INTERACTIVE ZONE ─── */}
       <OceanStirZone />
 
 

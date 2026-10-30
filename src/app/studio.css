@@ -299,6 +299,41 @@
   stroke: #ffffff;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   FOOTER LIGHTHOUSE BAND SWEEP BEAM
+   ───────────────────────────────────────────────────────────── */
+.footer-beam-sweep {
+  position: absolute;
+  inset: -25% -10%;
+  z-index: 2;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(239, 230, 210, 0) 2deg,
+    rgba(239, 230, 210, 0.22) 6deg,
+    rgba(239, 230, 210, 0.05) 11deg,
+    transparent 16deg,
+    transparent 360deg
+  );
+  transform-origin: 50% 26%; /* pivot at the lantern glass */
+  animation: footerSweep 24s linear infinite;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+@keyframes footerSweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-beam-sweep {
+    animation: none !important;
+  }
+}
+
 /* Global Backstop for Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
