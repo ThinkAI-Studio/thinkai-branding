@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { WipeButton } from "./WipeButton";
 import { useLanguage } from "@/context/LanguageContext";
 import { profile, copy } from "@/data/portfolio";
 import {
@@ -108,93 +107,65 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Social & AI Icons in one clean row */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
               <div className="flex items-center gap-1.5">
-                <WipeButton
-                  as="a"
+                <a
                   href={profile.github}
                   target="_blank"
                   rel="noreferrer"
-                  wipeColor="#F7EFDC"
-                  textColor="#F7EFDC"
-                  hoverTextColor="#1455B4"
-                  borderColor="rgba(247, 239, 220, 0.28)"
-                  hoverBorderColor="#F7EFDC"
-                  ariaLabel="GitHub"
-                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
+                  aria-label="GitHub"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
-                </WipeButton>
+                </a>
 
-                <WipeButton
-                  as="a"
+                <a
                   href={profile.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  wipeColor="#F7EFDC"
-                  textColor="#F7EFDC"
-                  hoverTextColor="#1455B4"
-                  borderColor="rgba(247, 239, 220, 0.28)"
-                  hoverBorderColor="#F7EFDC"
-                  ariaLabel="LinkedIn"
-                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
+                  aria-label="LinkedIn"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
-                </WipeButton>
+                </a>
 
-                <WipeButton
-                  as="a"
+                <a
                   href={`mailto:${profile.email}`}
-                  wipeColor="#F7EFDC"
-                  textColor="#F7EFDC"
-                  hoverTextColor="#1455B4"
-                  borderColor="rgba(247, 239, 220, 0.28)"
-                  hoverBorderColor="#F7EFDC"
-                  ariaLabel="Email"
-                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
+                  aria-label="Email"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                </WipeButton>
+                </a>
 
-                <WipeButton
-                  as="a"
+                <a
                   href="https://x.com/bnhminh1010"
                   target="_blank"
                   rel="noreferrer"
-                  wipeColor="#F7EFDC"
-                  textColor="#F7EFDC"
-                  hoverTextColor="#1455B4"
-                  borderColor="rgba(247, 239, 220, 0.28)"
-                  hoverBorderColor="#F7EFDC"
-                  ariaLabel="X"
-                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
+                  aria-label="X"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Twitter className="w-3.5 h-3.5" />
-                </WipeButton>
+                </a>
               </div>
 
-              <span className="w-px h-4 bg-[#F7EFDC]/20 mx-1 hidden sm:block" />
+              <span className="w-px h-4 bg-[#F7EFDC]/30 mx-1 hidden sm:block" />
 
               <div className="flex items-center gap-1.5">
                 {aiPlatforms.map((platform) => {
                   const IconComponent = platform.icon;
                   return (
-                    <WipeButton
+                    <button
                       key={platform.name}
+                      type="button"
                       onClick={() => {
                         if (typeof navigator !== "undefined" && navigator.clipboard) {
                           navigator.clipboard.writeText(t.footer.askAiPrompt);
                         }
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
-                      wipeColor="#F7EFDC"
-                      textColor="#F7EFDC"
-                      hoverTextColor="#1455B4"
-                      borderColor="rgba(247, 239, 220, 0.28)"
-                      hoverBorderColor="#F7EFDC"
-                      ariaLabel={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8 h-8 flex items-center justify-center cursor-pointer select-none bg-white/[0.06]"
+                      aria-label={`Ask ${platform.name} about ThinkAI`}
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
-                    </WipeButton>
+                    </button>
                   );
                 })}
               </div>
@@ -324,19 +295,13 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             <span style={{ color: "rgba(247, 239, 220, 0.66)" }}>
               {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}{liveDate ? ` · ${liveDate}` : ""}
             </span>
-            <WipeButton
-              as="a"
+            <a
               href="#top"
-              wipeColor="#F7EFDC"
-              textColor="#F7EFDC"
-              hoverTextColor="#1455B4"
-              borderColor="rgba(247, 239, 220, 0.28)"
-              hoverBorderColor="#F7EFDC"
-              className="px-2.5 py-1 bg-white/[0.06] inline-flex items-center gap-1 text-xs font-mono font-bold"
+              className="hover:text-white transition-colors"
+              style={{ color: "rgba(247, 239, 220, 0.66)" }}
             >
-              <span>{t.footer.backToTop}</span>
-              <span>↑</span>
-            </WipeButton>
+              {t.footer.backToTop} ↑
+            </a>
           </div>
         </div>
       </div>
