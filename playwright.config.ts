@@ -1,16 +1,18 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const port = process.env.PORT || "3005";
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   use: {
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:3005",
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${port}`,
     trace: "retain-on-failure",
     launchOptions: process.env.CI ? undefined : { executablePath: "/usr/bin/google-chrome" },
   },
   webServer: {
-    command: "npm run start -- -p 3005",
-    url: "http://127.0.0.1:3005",
+    command: `npm run start -- -p ${port}`,
+    url: `http://127.0.0.1:${port}`,
     reuseExistingServer: false,
     timeout: 30_000,
   },

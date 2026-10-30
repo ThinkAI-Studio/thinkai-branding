@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 :root {
-  --tai-bg: #121212;
-  --tai-sheet: #141417;
-  --tai-sheet-alt: #111113;
-  --tai-card-surface: #18181c;
-  --tai-code-block: #161619;
+  --tai-bg: #040406;
+  --tai-sheet: #050508;
+  --tai-sheet-alt: #040406;
+  --tai-card-surface: #0d0d12;
+  --tai-code-block: #0a0a0f;
   --tai-drawer-bg: #f4f4f5;
   --tai-border: rgba(255, 255, 255, 0.08);
   --tai-border-strong: rgba(255, 255, 255, 0.22);
@@ -24,22 +24,6 @@
   letter-spacing: -0.015em;
   overflow-x: clip;
   position: relative;
-}
-/* ─── TOUCH-SAFE OVERLAYS (NO BACKDROP-FILTER ON TOUCH OVER WEBGL CANVAS) ─── */
-.hero-three__frame {
-  background-color: rgba(8, 8, 10, 0.42);
-  background-image: radial-gradient(ellipse at center, rgba(6, 8, 12, 0.28) 0%, rgba(8, 8, 10, 0.56) 100%);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .hero-three__frame {
-    background-color: rgba(8, 8, 10, 0.42);
-    background-image: radial-gradient(ellipse at center, rgba(6, 8, 12, 0.28) 0%, rgba(8, 8, 10, 0.56) 100%);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
 }
 
 .tai-product-pill {

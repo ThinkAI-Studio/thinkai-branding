@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tai-bg: #08080a;
-  --color-tai-sheet: #0b0b0e;
-  --color-tai-surface: #0b0b0e;
-  --color-tai-surface-raised: #0e0e12;
-  --color-tai-card: #131316;
+  --color-tai-bg: #040406;
+  --color-tai-sheet: #050508;
+  --color-tai-surface: #050508;
+  --color-tai-surface-raised: #08080c;
+  --color-tai-card: #0d0d12;
   --color-tai-border: rgba(255, 255, 255, 0.07);
   --color-tai-border-strong: rgba(255, 255, 255, 0.18);
   --color-tai-green: #4ade80;
@@ -20,11 +20,11 @@
 }
 
 :root {
-  --tai-bg: #08080a;
-  --tai-sheet: #0b0b0e;
-  --tai-surface: #0b0b0e;
-  --tai-surface-raised: #0e0e12;
-  --tai-card: #131316;
+  --tai-bg: #040406;
+  --tai-sheet: #050508;
+  --tai-surface: #050508;
+  --tai-surface-raised: #08080c;
+  --tai-card: #0d0d12;
   --tai-border: rgba(255, 255, 255, 0.07);
   --tai-border-strong: rgba(255, 255, 255, 0.18);
   --tai-accent-green: #4ade80;
