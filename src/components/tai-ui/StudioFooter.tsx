@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
@@ -23,38 +23,6 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
   const { language } = useLanguage();
   const t = copy[language];
 
-  const [liveTime, setLiveTime] = useState<string>("");
-  const [liveDate, setLiveDate] = useState<string>("");
-
-  // Vietnam Live Time Clock
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setLiveTime(
-        now.toLocaleTimeString(language === "vi" ? "vi-VN" : "en-US", {
-          timeZone: "Asia/Ho_Chi_Minh",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        })
-      );
-      setLiveDate(
-        now
-          .toLocaleDateString(language === "vi" ? "vi-VN" : "en-US", {
-            timeZone: "Asia/Ho_Chi_Minh",
-            weekday: "short",
-            month: "short",
-            day: "2-digit",
-          })
-          .toUpperCase()
-      );
-    };
-
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
-    return () => clearInterval(timer);
-  }, [language]);
 
   const aiPlatforms = [
     { name: "ChatGPT", icon: OpenAiIcon, url: "https://chatgpt.com" },
@@ -187,7 +155,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   borderColor: "rgba(247, 239, 220, 0.28)",
                 }}
               >
-                {language === "vi" ? "01 / SẢN PHẨM" : "01 / PRODUCTS"}
+                {language === "vi" ? "SẢN PHẨM" : "PRODUCTS"}
               </div>
               <ul className="flex flex-col font-mono text-xs">
                 <li>
@@ -246,7 +214,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   borderColor: "rgba(247, 239, 220, 0.28)",
                 }}
               >
-                {language === "vi" ? "02 / STUDIO" : "02 / STUDIO"}
+                STUDIO
               </div>
               <ul className="flex flex-col font-mono text-xs">
                 <li>
@@ -302,27 +270,22 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           </div>
         </div>
 
-        {/* Meta Row: Copyright, Live Time & Back to Top (Deliberate mobile block stack) */}
+        {/* Meta Row: Copyright on left, Back to Top on right (exactly two items) */}
         <div
-          className="pt-4 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 font-mono text-xs"
+          className="pt-4 border-t flex items-center justify-between gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
           <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
             ThinkAI Studio © 2026. All Rights Reserved.
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-            <span className="whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
-              {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}{liveDate ? ` · ${liveDate}` : ""}
-            </span>
-            <a
-              href="#top"
-              className="hover:text-white transition-colors whitespace-nowrap"
-              style={{ color: "rgba(247, 239, 220, 0.66)" }}
-            >
-              {t.footer.backToTop}
-            </a>
-          </div>
+          <a
+            href="#top"
+            className="hover:text-white transition-colors whitespace-nowrap"
+            style={{ color: "rgba(247, 239, 220, 0.66)" }}
+          >
+            {t.footer.backToTop}
+          </a>
         </div>
       </div>
 

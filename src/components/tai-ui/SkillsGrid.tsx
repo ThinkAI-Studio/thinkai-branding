@@ -270,7 +270,7 @@ export function SkillsGrid() {
           {/* Web Chapter */}
           <div className="space-y-4">
             <div className="text-xs font-mono font-bold text-neutral-400 border-b border-white/[0.08] pb-2">
-              01 / WEB
+              WEB
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-5">
@@ -297,7 +297,7 @@ export function SkillsGrid() {
           {/* DevOps Chapter */}
           <div className="space-y-4">
             <div className="text-xs font-mono font-bold text-neutral-400 border-b border-white/[0.08] pb-2">
-              02 / DEVOPS
+              DEVOPS
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-5">
@@ -324,7 +324,7 @@ export function SkillsGrid() {
           {/* Designer Chapter */}
           <div className="space-y-4">
             <div className="text-xs font-mono font-bold text-neutral-400 border-b border-white/[0.08] pb-2">
-              03 / DESIGNER
+              DESIGNER
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-5">
@@ -385,8 +385,6 @@ export function SkillsGrid() {
                         : "bg-white/[0.04] text-neutral-400 border-white/[0.1] hover:text-white hover:border-white/20"
                     )}
                   >
-                    <span>{st.code}</span>
-                    <span className="mx-1 opacity-50">/</span>
                     <span>{st.category}</span>
                   </button>
                 ))}
@@ -404,7 +402,7 @@ export function SkillsGrid() {
               >
                 <div className="flex items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 uppercase pb-1 px-1">
                   <span>PROFESSIONAL AT</span>
-                  <span className="text-white">01 / WEB ARCHITECTURE</span>
+                  <span className="text-white">WEB ARCHITECTURE</span>
                 </div>
 
                 {/* Top Row: Hero White React Box + Centered Next.js Typography + Centered TS Square */}
@@ -473,7 +471,7 @@ export function SkillsGrid() {
               >
                 <div className="flex items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 uppercase pb-1 px-1">
                   <span>INFRASTRUCTURE AT</span>
-                  <span className="text-white">02 / DEVOPS & SYSTEMS</span>
+                  <span className="text-white">DEVOPS & SYSTEMS</span>
                 </div>
 
                 {/* Top Row: Wide 60% Kubernetes + 40% Docker/Podman */}
@@ -551,7 +549,7 @@ export function SkillsGrid() {
               >
                 <div className="flex items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 uppercase pb-1 px-1">
                   <span>SPATIAL SYSTEMS AT</span>
-                  <span className="text-white">03 / DESIGNER & SYSTEMS</span>
+                  <span className="text-white">DESIGNER & SYSTEMS</span>
                 </div>
 
                 <div className="grid grid-cols-12 gap-3.5">
@@ -638,7 +636,7 @@ export function SkillsGrid() {
             {/* Stack 1 Mobile */}
             <div className="space-y-4">
               <div className="text-xs font-mono font-bold text-neutral-400 border-b border-white/[0.08] pb-2 flex items-center justify-between">
-                <span>01 / WEB</span>
+                <span>WEB</span>
                 <span className="text-white">FRONTEND</span>
               </div>
               <div className="rounded-xl bg-[#f4f4f6] text-black p-6 flex items-center justify-center min-h-[140px]">
@@ -676,7 +674,7 @@ export function SkillsGrid() {
             {/* Stack 2 Mobile */}
             <div className="space-y-4">
               <div className="text-xs font-mono font-bold text-neutral-400 border-b border-white/[0.08] pb-2 flex items-center justify-between">
-                <span>02 / DEVOPS</span>
+                <span>DEVOPS</span>
                 <span className="text-white">INFRASTRUCTURE</span>
               </div>
               {/* Stack 2 Pearl Anchor: Kubernetes & K3s */}
@@ -724,7 +722,7 @@ export function SkillsGrid() {
             {/* Stack 3 Mobile */}
             <div className="space-y-4">
               <div className="text-xs font-mono font-bold text-neutral-400 border-b border-white/[0.08] pb-2 flex items-center justify-between">
-                <span>03 / DESIGNER</span>
+                <span>DESIGNER</span>
                 <span className="text-white">SYSTEMS</span>
               </div>
               {/* Stack 3 Pearl Anchor: Figma */}
