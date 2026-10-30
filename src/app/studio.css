@@ -67,7 +67,7 @@
 .tai-heading-hero {
   font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 700;
-  line-height: 0.96;
+  line-height: 1.08;
   letter-spacing: -0.026em;
   text-transform: uppercase;
 }

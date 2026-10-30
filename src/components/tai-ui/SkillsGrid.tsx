@@ -30,40 +30,40 @@ function getLenis(): LenisEmitter | undefined {
 /* Deck choreography constants (single scrubbed timeline, 30 units) */
 const CHAPTER_UNITS = 10;
 const CARD_HEIGHT = "clamp(200px, 24vh, 230px)";
-const DECK_FAN_RESERVE = 80;
-const BEHIND_STEP_Y = -14;
-const BEHIND_STEP_SCALE = 0.025;
+const DECK_RESERVE = 50;
 
 function SkillCard({
   card,
-  chapter,
   language,
   isDesktopDeck = false,
 }: {
   card: SkillCardItem;
-  chapter: SkillChapterData;
+  chapter?: SkillChapterData;
   language: "en" | "vi";
   isDesktopDeck?: boolean;
 }) {
   return (
     <article
-      className={`w-full rounded-2xl border border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between shadow-[0_12px_28px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-200 select-none relative overflow-hidden bg-[#111116] ${
+      className={`w-full rounded-2xl p-5 sm:p-6 flex flex-col justify-between select-none relative overflow-hidden transition-all duration-300 ${
         isDesktopDeck ? "h-full" : ""
       }`}
+      style={{
+        background: "linear-gradient(180deg, #1d1d26 0%, #131318 60%, #0d0d12 100%)",
+        boxShadow:
+          "0 24px 50px -12px rgba(0,0,0,0.9), inset 0 1px 0 0 rgba(255,255,255,0.20), 0 0 0 1px rgba(255,255,255,0.12)",
+      }}
     >
+      {/* Specular ambient top glow for 3D curvature volume */}
+      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent pointer-events-none rounded-t-2xl" />
+
       <div className="space-y-3 relative z-10">
         <div className="flex items-center gap-3.5">
-          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center p-2 text-white shrink-0">
-            <TechLogo name={card.logo} className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
+          <div className="w-11 h-11 rounded-xl bg-white/[0.07] border border-white/[0.14] flex items-center justify-center p-2 text-white shrink-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),0_4px_12px_rgba(0,0,0,0.5)]">
+            <TechLogo name={card.logo} className="w-6 h-6 object-contain" />
           </div>
-          <div className="min-w-0 flex-1">
-            <h4 className="text-base sm:text-lg font-bold tracking-tight text-white truncate">
-              {card.name}
-            </h4>
-            <span className={`text-[10px] font-mono font-medium uppercase tracking-wider ${chapter.accentClass}`}>
-              {chapter.category}
-            </span>
-          </div>
+          <h4 className="text-base sm:text-lg font-bold tracking-tight text-white truncate">
+            {card.name}
+          </h4>
         </div>
 
         <p className="text-xs sm:text-[13px] text-neutral-300 leading-relaxed font-sans line-clamp-2">
@@ -74,7 +74,7 @@ function SkillCard({
           {card.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-neutral-400"
+              className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/[0.10] text-neutral-200 shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
             >
               {tag}
             </span>
@@ -126,11 +126,15 @@ export function SkillsGrid() {
             gsap.set(heading, { opacity: chIdx === 0 ? 1 : 0, y: chIdx === 0 ? 0 : 20 });
           }
           cards.forEach((cardEl, cardIdx) => {
-            gsap.set(cardEl, {
-              y: cardIdx === 0 ? 0 : 40,
-              scale: 1,
-              clipPath: cardIdx === 0 ? "inset(0 0 0 0)" : "inset(100% 0 0 0)",
-            });
+            if (cardIdx === 0) {
+              gsap.set(cardEl, { y: 0, x: 0, scale: 1.0, rotate: 0, opacity: 1, zIndex: 15 });
+            } else if (cardIdx === 1) {
+              gsap.set(cardEl, { y: -14, x: -6, scale: 0.96, rotate: -2, opacity: 0.75, zIndex: 14 });
+            } else if (cardIdx === 2) {
+              gsap.set(cardEl, { y: -26, x: 8, scale: 0.92, rotate: 2.5, opacity: 0.45, zIndex: 13 });
+            } else {
+              gsap.set(cardEl, { y: -36, x: 0, scale: 0.88, rotate: 0, opacity: 0, zIndex: 10 });
+            }
           });
         });
 
@@ -162,31 +166,79 @@ export function SkillsGrid() {
           if (railFill) {
             tl.to(railFill, { scaleX: 1, ease: "none", duration: 9.6 }, base);
           }
-
           const numSubsequentCards = cards.length - 1;
           if (numSubsequentCards > 0) {
             const arrivalStep = 7.0 / numSubsequentCards;
             for (let cardIdx = 1; cardIdx < cards.length; cardIdx++) {
-              const card = cards[cardIdx];
-              if (!card) continue;
               const at = base + 1.2 + (cardIdx - 1) * arrivalStep;
-              tl.set(card, { clipPath: "inset(0 0 0 0)" }, at);
-              tl.fromTo(
-                card,
-                { y: 30, scale: 1 },
-                { y: 0, scale: 1, duration: 0.85, ease: "power2.out" },
-                at
-              );
 
-              for (let depth = 1; depth <= cardIdx; depth++) {
-                const behindCard = cards[cardIdx - depth];
-                if (!behindCard) continue;
-                const targetY = BEHIND_STEP_Y * depth;
-                const targetScale = 1 - BEHIND_STEP_SCALE * depth;
-
+              const prevCard = cards[cardIdx - 1];
+              if (prevCard) {
                 tl.to(
-                  behindCard,
-                  { y: targetY, scale: targetScale, duration: 0.85, ease: "power2.out" },
+                  prevCard,
+                  {
+                    y: -80,
+                    x: -12,
+                    rotate: -5,
+                    scale: 0.93,
+                    opacity: 0,
+                    duration: 0.85,
+                    ease: "power2.inOut",
+                  },
+                  at
+                );
+              }
+
+              const activeCard = cards[cardIdx];
+              if (activeCard) {
+                tl.to(
+                  activeCard,
+                  {
+                    y: 0,
+                    x: 0,
+                    rotate: 0,
+                    scale: 1.0,
+                    opacity: 1,
+                    zIndex: 15,
+                    duration: 0.85,
+                    ease: "power2.inOut",
+                  },
+                  at
+                );
+              }
+
+              const peek1 = cards[cardIdx + 1];
+              if (peek1) {
+                tl.to(
+                  peek1,
+                  {
+                    y: -14,
+                    x: -6,
+                    rotate: -2,
+                    scale: 0.96,
+                    opacity: 0.75,
+                    zIndex: 14,
+                    duration: 0.85,
+                    ease: "power2.inOut",
+                  },
+                  at
+                );
+              }
+
+              const peek2 = cards[cardIdx + 2];
+              if (peek2) {
+                tl.to(
+                  peek2,
+                  {
+                    y: -26,
+                    x: 8,
+                    rotate: 2.5,
+                    scale: 0.92,
+                    opacity: 0.45,
+                    zIndex: 13,
+                    duration: 0.85,
+                    ease: "power2.inOut",
+                  },
                   at
                 );
               }
@@ -355,8 +407,8 @@ export function SkillsGrid() {
 
               <div className="col-span-12 md:col-span-7 xl:col-span-7 flex items-center justify-center relative">
                 <div
-                  className="relative w-full max-w-[480px] xl:max-w-[540px] overflow-hidden rounded-2xl"
-                  style={{ height: `calc(${CARD_HEIGHT} + ${DECK_FAN_RESERVE}px)` }}
+                  className="relative w-full max-w-[480px] xl:max-w-[540px] p-2"
+                  style={{ height: `calc(${CARD_HEIGHT} + ${DECK_RESERVE}px)` }}
                 >
                   {SKILL_CHAPTERS.map((chapter, chIdx) => (
                     <div
@@ -374,7 +426,7 @@ export function SkillsGrid() {
                             cardElementsRef.current[chIdx][cardIdx] = el;
                           }}
                           className="absolute inset-x-0 bottom-0 skills-gpu-accelerated"
-                          style={{ zIndex: 10 + cardIdx, height: CARD_HEIGHT }}
+                          style={{ height: CARD_HEIGHT }}
                         >
                           <SkillCard card={card} chapter={chapter} language={language} isDesktopDeck />
                         </div>
@@ -422,9 +474,11 @@ export function SkillsGrid() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 pt-1 px-1 scrollbar-none">
                   {chapter.cards.map((card) => (
-                    <SkillCard key={card.id} card={card} chapter={chapter} language={language} />
+                    <div key={card.id} className="w-[84vw] max-w-[340px] shrink-0 snap-center">
+                      <SkillCard card={card} chapter={chapter} language={language} />
+                    </div>
                   ))}
                 </div>
               </div>
