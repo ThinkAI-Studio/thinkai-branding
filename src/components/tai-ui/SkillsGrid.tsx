@@ -90,7 +90,7 @@ export function SkillsGrid() {
   const prefersReduced = useReducedMotion();
 
   const tagText = language === "vi" ? "CÔNG NGHỆ & TAY NGHỀ" : "STACK & CRAFT";
-  const headingText = language === "vi" ? "NĂNG LỰC KỸ THUẬT · 3 TRỤ CỘT CỐT LÕI" : "TECHNICAL MASTERY · 3 CORE DISCIPLINES";
+  const headingText = language === "vi" ? "NĂNG LỰC KỸ THUẬT" : "TECHNICAL MASTERY";
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const deckContainersRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -252,9 +252,9 @@ export function SkillsGrid() {
         /* Reduced Motion: Static Grouped Grid */
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16 space-y-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-8 border-b border-white/[0.08]">
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>{tagText}</span>
               </div>
               <h2 id="skills-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white uppercase font-sans">
@@ -297,18 +297,18 @@ export function SkillsGrid() {
             className="hidden md:flex relative w-full h-screen overflow-hidden flex-col px-6 sm:px-12 lg:px-16 max-w-[1600px] mx-auto pointer-events-auto"
           >
             <div className="grid flex-1 min-h-0 grid-cols-12 gap-8 lg:gap-12 items-center w-full py-10">
-              <div className="col-span-12 md:col-span-5 xl:col-span-5 flex flex-col justify-center gap-9 select-none">
-                <div className="space-y-3">
+              <div className="col-span-12 md:col-span-5 xl:col-span-5 flex flex-col justify-center gap-7 select-none">
+                <div className="space-y-2">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     <span>{tagText}</span>
                   </div>
-                  <h2 id="skills-heading" className="text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight text-white uppercase font-sans leading-tight">
+                  <h2 id="skills-heading" className="text-3xl lg:text-4xl font-extrabold tracking-tight text-white uppercase font-sans">
                     {headingText}
                   </h2>
                 </div>
 
-                <nav aria-label="Skill chapters navigation" className="flex items-center gap-3">
+                <nav aria-label="Skill chapters navigation" className="flex items-center gap-2 border-b border-white/[0.08] pb-3">
                   {SKILL_CHAPTERS.map((ch, idx) => (
                     <button
                       key={ch.id}
@@ -317,14 +317,14 @@ export function SkillsGrid() {
                       }}
                       type="button"
                       onClick={() => handleRailClick(idx)}
-                      className="flex-1 flex flex-col gap-1.5 p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-white/20 transition-all text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                      className="flex-1 group py-1.5 px-2 text-left transition-colors cursor-pointer focus-visible:outline-none"
                       aria-label={`Jump to chapter ${ch.index}: ${ch.category}`}
                     >
-                      <div className="flex items-center justify-between text-[11px] font-mono font-bold">
-                        <span className="text-neutral-400">{ch.index}</span>
-                        <span className={ch.accentClass}>{ch.category}</span>
+                      <div className="flex items-center justify-between text-xs font-mono font-medium pb-2">
+                        <span className="text-neutral-500 group-hover:text-neutral-300 transition-colors">{ch.index}</span>
+                        <span className="text-neutral-300 group-hover:text-white transition-colors tracking-wide">{ch.category}</span>
                       </div>
-                      <div className="w-full h-1 rounded-full bg-white/10 overflow-hidden">
+                      <div className="w-full h-[2px] rounded-full bg-white/[0.08] overflow-hidden">
                         <div
                           ref={(el) => {
                             railFillsRef.current[idx] = el;
@@ -337,23 +337,17 @@ export function SkillsGrid() {
                   ))}
                 </nav>
 
-                <div className="relative min-h-[150px] pt-2">
+                <div className="relative min-h-[120px] pt-1">
                   {SKILL_CHAPTERS.map((ch, chIdx) => (
                     <div
                       key={ch.id}
                       ref={(el) => {
                         chapterHeadingsRef.current[chIdx] = el;
                       }}
-                      className="absolute inset-0 flex flex-col justify-start space-y-2.5 pointer-events-none"
+                      className="absolute inset-0 flex flex-col justify-start space-y-2 pointer-events-none"
                     >
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md border ${ch.accentBorder} ${ch.accentBg} ${ch.accentClass}`}>
-                          {ch.index} / {ch.category}
-                        </span>
-                        <span className="text-xs font-mono text-neutral-400">{ch.label[language]}</span>
-                      </div>
                       <h3 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">{ch.title[language]}</h3>
-                      <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed max-w-md">{ch.subtitle[language]}</p>
+                      <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed max-w-md">{ch.subtitle[language]}</p>
                     </div>
                   ))}
                 </div>
@@ -404,26 +398,21 @@ export function SkillsGrid() {
 
           {/* Mobile Vertical List (<768px) */}
           <div className="block md:hidden py-16 px-4 sm:px-6 space-y-12">
-            <div className="space-y-3 pb-6 border-b border-white/[0.08]">
+            <div className="space-y-2 pb-5 border-b border-white/[0.08]">
               <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>{tagText}</span>
               </div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-white uppercase font-sans">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white uppercase font-sans">
                 {headingText}
               </h2>
-              <p className="text-xs font-mono text-neutral-400">
-                {language === "vi"
-                  ? "Kiến trúc tinh gọn, hiệu năng thực tế. Cuộn để khám phá từng thẻ năng lực."
-                  : "Zero unnecessary abstraction, verified in production. Scroll to explore each capability."}
-              </p>
             </div>
 
             {SKILL_CHAPTERS.map((chapter) => (
               <div key={chapter.id} className="space-y-4">
                 <div className="sticky top-16 z-20 py-3 bg-[#08080a]/95 backdrop-blur-md border-b border-white/[0.08] flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-md border ${chapter.accentBorder} ${chapter.accentBg} ${chapter.accentClass}`}>
+                    <span className={`text-[10px] font-mono font-bold ${chapter.accentClass}`}>
                       {chapter.index} / {chapter.category}
                     </span>
                     <span className="text-xs font-bold text-white tracking-tight">{chapter.title[language]}</span>
