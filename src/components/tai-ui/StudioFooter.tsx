@@ -59,9 +59,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   className="object-contain"
                 />
               </div>
-              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">
-                THINKAI STUDIO
-              </span>
+              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">THINKAI STUDIO</span>
             </div>
 
             {/* Manifesto: 1 concise sentence */}
@@ -79,8 +77,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  style={{ borderRadius: 0 }}
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
                 </a>
@@ -90,8 +87,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  style={{ borderRadius: 0 }}
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                 </a>
@@ -99,8 +95,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <a
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
-                  style={{ borderRadius: 0 }}
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
                 </a>
@@ -110,8 +105,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
-                  style={{ borderRadius: 0 }}
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Twitter className="w-3.5 h-3.5" />
                 </a>
@@ -133,8 +127,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
                       aria-label={`Ask ${platform.name} about ThinkAI`}
-                      style={{ borderRadius: 0 }}
-                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
                     </button>
@@ -149,13 +142,9 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 1: Products */}
             <div className="space-y-3">
               <div
-                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
-                style={{
-                  color: "rgba(247, 239, 220, 0.66)",
-                  borderColor: "rgba(247, 239, 220, 0.28)",
-                }}
+                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
               >
-                {language === "vi" ? "SẢN PHẨM" : "PRODUCTS"}
+                {language === "vi" ? "Sản phẩm" : "Products"}
               </div>
               <ul className="flex flex-col font-mono text-xs">
                 <li>
@@ -208,13 +197,9 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 2: Studio */}
             <div className="space-y-3">
               <div
-                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
-                style={{
-                  color: "rgba(247, 239, 220, 0.66)",
-                  borderColor: "rgba(247, 239, 220, 0.28)",
-                }}
+                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
               >
-                STUDIO
+                Studio
               </div>
               <ul className="flex flex-col font-mono text-xs">
                 <li>
@@ -272,7 +257,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
         {/* Meta Row: Copyright on left, Back to Top on right (exactly two items) */}
         <div
-          className="pt-4 border-t flex items-center justify-between gap-4 font-mono text-xs"
+          className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
           <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>

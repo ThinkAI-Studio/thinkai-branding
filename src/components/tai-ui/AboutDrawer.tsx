@@ -96,7 +96,7 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
 
                   <button
                     onClick={onClose}
-                    className="group flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-[10px] bg-[#0a0a0c] text-white text-xs font-mono font-bold hover:bg-neutral-800 transition-colors cursor-pointer shadow-sm select-none"
+                    className="group flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0a0a0c] text-white text-xs font-mono font-bold hover:bg-neutral-800 transition-colors cursor-pointer shadow-sm select-none"
                     style={{ backgroundColor: "#0a0a0c", color: "#ffffff" }}
                   >
                     <ButtonTextRoll
@@ -109,7 +109,7 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
 
                 {/* Founder Identity Header */}
                 <motion.div {...getRevealProps(0.24)} className="flex items-center gap-6">
-                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-[16px] overflow-hidden border-2 border-black/10 shadow-md bg-white shrink-0 group">
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-black/10 shadow-md bg-white shrink-0 group">
                     <Image
                       src="/images/binhminh-sketch.jpg"
                       alt="Nguyen Binh Minh - DevOps & Systems Engineer"
@@ -142,7 +142,7 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                         hoverTextColor="#ffffff"
                         borderColor="rgba(0, 0, 0, 0.2)"
                         hoverBorderColor="#0a0a0c"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[10px] bg-black/[0.05] border border-black/15 text-xs font-mono font-bold cursor-pointer text-[#0a0a0c] shadow-sm select-none"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/[0.05] border border-black/15 text-xs font-mono font-bold cursor-pointer text-[#0a0a0c] shadow-sm select-none"
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>{t.downloadCv}</span>
@@ -247,7 +247,7 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                     hoverTextColor="#ffffff"
                     borderColor="rgba(0, 0, 0, 0.15)"
                     hoverBorderColor="#0a0a0c"
-                    className="px-3 py-1.5 rounded-[10px] bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    className="px-3 py-1.5 rounded-xl bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>CV (PDF)</span>
@@ -262,7 +262,7 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                     hoverTextColor="#ffffff"
                     borderColor="rgba(0, 0, 0, 0.15)"
                     hoverBorderColor="#0a0a0c"
-                    className="px-3.5 py-1.5 rounded-[10px] bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    className="px-3.5 py-1.5 rounded-xl bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
                   >
                     <span>GitHub</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -277,7 +277,7 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                     hoverTextColor="#ffffff"
                     borderColor="rgba(0, 0, 0, 0.15)"
                     hoverBorderColor="#0a0a0c"
-                    className="px-3.5 py-1.5 rounded-[10px] bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    className="px-3.5 py-1.5 rounded-xl bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
                   >
                     <span>LinkedIn</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />

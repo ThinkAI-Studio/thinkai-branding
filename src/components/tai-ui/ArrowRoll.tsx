@@ -16,7 +16,7 @@ export function ArrowRoll({ className = "", size = "md" }: ArrowRollProps) {
 
   return (
     <span
-      className={`relative overflow-hidden rounded-[10px] bg-black text-white group-hover:bg-white group-hover:text-black inline-flex items-center justify-center font-extrabold shrink-0 transition-colors duration-300 select-none leading-none ${sizeClasses} ${className}`}
+      className={`relative overflow-hidden rounded-xl bg-black text-white group-hover:bg-white group-hover:text-black inline-flex items-center justify-center font-extrabold shrink-0 transition-colors duration-300 select-none leading-none ${sizeClasses} ${className}`}
     >
       {/* Primary Arrow: Translates diagonally up-right (↗) */}
       <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[160%] group-hover:-translate-y-[160%]">

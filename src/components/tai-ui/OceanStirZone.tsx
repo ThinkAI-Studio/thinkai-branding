@@ -210,9 +210,7 @@ export function OceanStirZone() {
       {/* Studio Brand Mark & Glyph */}
       <div className="flex items-center gap-3">
         <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-        <span className="font-mono text-xs text-blue-200 uppercase tracking-widest font-bold">
-          THINKAI STUDIO · OCEAN TELEMETRY EDITION
-        </span>
+        <span className="font-mono text-xs text-blue-200 uppercase tracking-widest font-bold">THINKAI STUDIO · OCEAN TELEMETRY EDITION</span>
       </div>
 
       <div className="hidden md:inline-flex items-center font-mono text-xs text-blue-300/80">

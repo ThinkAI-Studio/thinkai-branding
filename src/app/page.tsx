@@ -107,7 +107,7 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-2">
                   <WipeButton
                     onClick={handlePrevSlide}
-                    className="w-8 h-8 rounded-[10px] flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -117,7 +117,7 @@ export default function PortfolioPage() {
                   </WipeButton>
                   <WipeButton
                     onClick={handleNextSlide}
-                    className="w-8 h-8 rounded-[10px] flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
                     →
                   </WipeButton>
                 </div>
-                <div className="px-2.5 py-1 rounded-[10px] bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
+                <div className="px-2.5 py-1 rounded-xl bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
                   {t.carousel.slides[activeSlide].tag}
                 </div>
 
@@ -188,13 +188,12 @@ export default function PortfolioPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Left 2 Cols: Sticky Section Label */}
             <div className="lg:col-span-2 lg:sticky lg:top-24">
-              <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-neutral-200">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                <LanguageTransition langKey={language} as="span" className="uppercase tracking-wider">
+              <div className="text-sm sm:text-base font-bold text-neutral-200">
+                <LanguageTransition langKey={language} as="span">
                   {t.work.sectionLabel}
                 </LanguageTransition>
               </div>
-              <LanguageTransition langKey={language} as="span" className="block text-xs font-mono text-neutral-500 mt-1">
+              <LanguageTransition langKey={language} as="span" className="block text-xs text-neutral-500 mt-1">
                 {t.work.systemsLive}
               </LanguageTransition>
             </div>
@@ -223,17 +222,17 @@ export default function PortfolioPage() {
                       <div className="lg:col-span-5 space-y-6">
                         {/* Micro-tag */}
                         <div>
-                          <span className="inline-flex items-center px-2.5 py-1 rounded-[8px] bg-white/10 text-white border border-white/20 font-mono text-xs font-bold tracking-wider">
+                          <span className="inline-flex items-center px-2.5 py-1 rounded-xl bg-white/10 text-white border border-white/20 text-xs font-medium">
                             {indexStr} / {totalStr} · {project.mark}
                           </span>
                         </div>
 
                         {/* Title & Category Eyebrow */}
                         <LanguageTransition langKey={language} className="space-y-2">
-                          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white uppercase">
+                          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
                             {project.content[language].title}
                           </h3>
-                          <p className="text-xs sm:text-sm font-mono text-neutral-400 uppercase tracking-wider font-semibold">
+                          <p className="text-xs sm:text-sm text-neutral-400 font-medium">
                             {project.content[language].category}
                           </p>
                         </LanguageTransition>
@@ -248,7 +247,7 @@ export default function PortfolioPage() {
                           {project.stack.slice(0, 5).map((item) => (
                             <span
                               key={item}
-                              className="px-2.5 py-1 rounded-[10px] font-mono text-xs bg-[#141418] text-neutral-200 border border-white/15 hover:border-white/30 transition-colors"
+                              className="px-2.5 py-1 rounded-xl text-xs bg-[#141418] text-neutral-200 border border-white/15 hover:border-white/30 transition-colors"
                             >
                               {item}
                             </span>
@@ -265,7 +264,7 @@ export default function PortfolioPage() {
                             hoverTextColor="#05070a"
                             borderColor="rgba(255, 255, 255, 0.25)"
                             hoverBorderColor="#ffffff"
-                            className="px-5 py-2.5 rounded-[10px] bg-white/10 text-xs font-mono font-bold uppercase tracking-wider shadow-md"
+                            className="px-5 py-2.5 rounded-xl bg-white/10 text-xs font-semibold shadow-md"
                           >
                             <span>{t.work.exploreCaseStudy}</span>
                             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -276,7 +275,7 @@ export default function PortfolioPage() {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neutral-400 hover:text-white uppercase tracking-wider transition-colors px-2 py-1"
+                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors px-2 py-1"
                             >
                               <span>{t.work.visitLive}</span>
                               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -317,7 +316,7 @@ export default function PortfolioPage() {
               hoverTextColor="#ffffff"
               borderColor="#ffffff"
               hoverBorderColor="rgba(255, 255, 255, 0.4)"
-              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-[10px] text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
+              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-xl text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
             >
               <LanguageTransition langKey={language} as="span">
                 <ButtonTextRoll

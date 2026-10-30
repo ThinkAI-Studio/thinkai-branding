@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { TAI_EASE } from "@/lib/motion";
 
 export const taiButtonVariants = cva(
-  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-[10px] font-mono text-xs tracking-wider uppercase transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
+  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl font-mono text-xs tracking-wider  transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
   {
     variants: {
       variant: {

@@ -11,12 +11,13 @@
   --color-tai-green: #4ade80;
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
-  --radius-card: 10px;
-  --radius-btn: 10px;
-  --radius-tag: 10px;
-  --radius-input: 10px;
-  --radius-container: 16px;
-  --radius-tuck: 0 0 16px 16px;
+  --radius-card: 12px;
+  --radius-btn: 12px;
+  --radius-tag: 12px;
+  --radius-input: 12px;
+  --radius-container: 12px;
+  --radius-tuck: 0 0 12px 12px;
+  --radius: 12px;
 }
 
 :root {
@@ -28,12 +29,13 @@
   --tai-border: rgba(255, 255, 255, 0.07);
   --tai-border-strong: rgba(255, 255, 255, 0.18);
   --tai-accent-green: #4ade80;
-  --radius-card: 10px;
-  --radius-btn: 10px;
-  --radius-tag: 10px;
-  --radius-input: 10px;
-  --radius-container: 16px;
-  --radius-tuck: 0 0 16px 16px;
+  --radius-card: 12px;
+  --radius-btn: 12px;
+  --radius-tag: 12px;
+  --radius-input: 12px;
+  --radius-container: 12px;
+  --radius-tuck: 0 0 12px 12px;
+  --radius: 12px;
 }
 
 * {
