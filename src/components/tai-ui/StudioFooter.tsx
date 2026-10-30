@@ -104,7 +104,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 : "A Systems & Craft Web Studio engineering high-performance modern web."}
             </p>
 
-            {/* Social & AI Icons in one clean row */}
+            {/* Social & AI Icons in one clean row - All 9 identical 32px square boxes */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
               <div className="flex items-center gap-1.5">
                 <a
@@ -112,6 +112,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
+                  style={{ borderRadius: 0 }}
                   className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
@@ -122,6 +123,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
+                  style={{ borderRadius: 0 }}
                   className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
@@ -130,6 +132,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <a
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
+                  style={{ borderRadius: 0 }}
                   className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
@@ -140,6 +143,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
+                  style={{ borderRadius: 0 }}
                   className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Twitter className="w-3.5 h-3.5" />
@@ -162,6 +166,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
                       aria-label={`Ask ${platform.name} about ThinkAI`}
+                      style={{ borderRadius: 0 }}
                       className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
@@ -189,37 +194,45 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/thinkai-ui"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
                   >
-                    <span>ThinkAI UI</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      ThinkAI UI
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/wind"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
                   >
-                    <span>Wind Digital Folio</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      Wind Digital Folio
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/homelab"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
                   >
-                    <span>HostDeck Console</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      HostDeck Console
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/thinkai"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
                   >
-                    <span>ThinkAI Learning</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      ThinkAI Learning
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
               </ul>
@@ -241,29 +254,35 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   <button
                     type="button"
                     onClick={onOpenAbout}
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors cursor-pointer inline"
                   >
-                    <span>{language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}</span>
-                    <span className="text-[10px] opacity-70">↳</span>
+                    <span>
+                      {language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}
+                      <span className="text-[10px] opacity-70 inline-block ml-1">↳</span>
+                    </span>
                   </button>
                 </li>
                 <li>
                   <Link
                     href="/about"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
                   >
-                    <span>{language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      {language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <button
                     type="button"
                     onClick={onOpenContact}
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors cursor-pointer inline"
                   >
-                    <span>{language === "vi" ? "Bắt đầu dự án" : "Start a Project"}</span>
-                    <span className="text-[10px] opacity-70">↳</span>
+                    <span>
+                      {language === "vi" ? "Bắt đầu dự án" : "Start a Project"}
+                      <span className="text-[10px] opacity-70 inline-block ml-1">↳</span>
+                    </span>
                   </button>
                 </li>
                 <li>
@@ -271,10 +290,12 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     href="/NguyenBinhMinh-DevOpsEngineer-2026.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
                   >
-                    <span>DevOps CV (PDF)</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      DevOps CV (PDF)
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </a>
                 </li>
               </ul>
@@ -282,25 +303,25 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           </div>
         </div>
 
-        {/* Meta Row: Copyright, Live Time & Back to Top */}
+        {/* Meta Row: Copyright, Live Time & Back to Top (Deliberate mobile block stack) */}
         <div
-          className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs"
+          className="pt-4 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
-          <div className="font-medium" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+          <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
             ThinkAI Studio © 2026. All Rights Reserved.
           </div>
 
-          <div className="flex items-center gap-4">
-            <span style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <span className="whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
               {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}{liveDate ? ` · ${liveDate}` : ""}
             </span>
             <a
               href="#top"
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors whitespace-nowrap"
               style={{ color: "rgba(247, 239, 220, 0.66)" }}
             >
-              {t.footer.backToTop} ↑
+              {t.footer.backToTop}
             </a>
           </div>
         </div>
