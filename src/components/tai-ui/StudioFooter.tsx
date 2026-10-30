@@ -117,10 +117,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             decoding="async"
             width={3086}
             height={998}
-            className="w-full h-full object-cover object-[50%_40%] block opacity-50"
-            style={{
-              filter: "saturate(0.9) brightness(0.92) contrast(1.03)",
-            }}
+            className="w-full h-full object-cover object-[50%_40%] block"
           />
         </picture>
 
@@ -141,13 +138,13 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             }}
           />
         </div>
-        {/* ATMOSPHERIC DUOTONE BLEND OVERLAY */}
+        {/* TOP & BOTTOM SEAMLESS EDGE FADE */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background: `
-              linear-gradient(180deg, #111113 0%, rgba(17,17,19,0.85) 5%, rgba(5,17,56,0.75) 25%, rgba(7,26,82,0.60) 55%, rgba(4,12,40,0.85) 100%),
-              linear-gradient(0deg, #0a0a0b 0%, rgba(10,10,11,0.85) 4%, transparent 12%)
+              linear-gradient(180deg, rgba(4, 9, 32, 0.95) 0%, rgba(4, 9, 32, 0.3) 3%, transparent 7%),
+              linear-gradient(0deg, rgba(4, 9, 32, 0.95) 0%, rgba(4, 9, 32, 0.3) 3%, transparent 7%)
             `,
           }}
         />
@@ -158,7 +155,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* ─── LEFT COLUMN (SPAN 5): BRAND, MANIFESTO, SOCIAL STRIP ─── */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-7 p-6 sm:p-8 rounded-2xl bg-[#040c26]/65 backdrop-blur-md border border-white/[0.12] shadow-2xl">
             {/* ThinkAI Studio Wordmark */}
             <div className="flex items-center gap-3">
               <div className="relative w-8 h-8 rounded-[8px] overflow-hidden bg-white/10 p-1 flex items-center justify-center border border-white/20 shadow-lg">
@@ -292,8 +289,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             </div>
           </div>
 
-          {/* ─── RIGHT COLUMN (SPAN 7): 3-COLUMN OUTRIDER NAVIGATION ─── */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 pt-4 lg:pt-0">
+          {/* ─── RIGHT COLUMN (SPAN 7): 3-COLUMN NAVIGATION ─── */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 p-6 sm:p-8 rounded-2xl bg-[#040c26]/65 backdrop-blur-md border border-white/[0.12] shadow-2xl">
             {/* Nav Column 1: Products */}
             <div className="space-y-4">
               <div className="text-xs font-mono font-bold tracking-[0.2em] text-cyan-300 uppercase border-b border-white/[0.12] pb-2">
@@ -416,8 +413,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           </div>
         </div>
 
-        {/* Hairline Divider & Bottom Metadata */}
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-white/[0.12] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-blue-200/70">
+        {/* Bottom Bar: Vietnam Time, Back to top, Copyright */}
+        <div className="mt-8 pt-4 pb-3 px-6 rounded-xl bg-[#040c26]/65 backdrop-blur-md border border-white/[0.10] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-blue-100">
           <div>
             {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"} · {liveDate || "MON, AUG 31"}
           </div>
