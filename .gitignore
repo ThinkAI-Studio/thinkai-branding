@@ -33,7 +33,8 @@ skills-lock.json
 .claude/
 .hallmark/
 .omc/
-
+.omp/
+.ao/
 # debug
 npm-debug.log*
 yarn-debug.log*
