@@ -2,7 +2,9 @@
 
 @theme {
   --color-tai-bg: #08080a;
-  --color-tai-sheet: #0d0d10;
+  --color-tai-sheet: #0b0b0e;
+  --color-tai-surface: #0b0b0e;
+  --color-tai-surface-raised: #0e0e12;
   --color-tai-card: #131316;
   --color-tai-border: rgba(255, 255, 255, 0.07);
   --color-tai-border-strong: rgba(255, 255, 255, 0.18);
@@ -19,7 +21,9 @@
 
 :root {
   --tai-bg: #08080a;
-  --tai-sheet: #0d0d10;
+  --tai-sheet: #0b0b0e;
+  --tai-surface: #0b0b0e;
+  --tai-surface-raised: #0e0e12;
   --tai-card: #131316;
   --tai-border: rgba(255, 255, 255, 0.07);
   --tai-border-strong: rgba(255, 255, 255, 0.18);

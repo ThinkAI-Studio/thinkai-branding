@@ -19,6 +19,7 @@ import { ArrowRoll } from "@/components/tai-ui/ArrowRoll";
 import { SmoothScroll } from "@/components/tai-ui/SmoothScroll";
 import { WipeButton } from "@/components/tai-ui/WipeButton";
 import { LanguageTransition } from "@/components/tai-ui/LanguageTransition";
+import { ScrollTextReveal } from "@/components/tai-ui/ScrollTextReveal";
 import { PagePreloader } from "@/components/tai-ui/PagePreloader";
 import { StudioFooter } from "@/components/tai-ui/StudioFooter";
 import { OceanStirZone } from "@/components/tai-ui/OceanStirZone";
@@ -96,7 +97,7 @@ export default function PortfolioPage() {
       <HeroSection />
 
       {/* ─── 03. TRANSITION SHEET & INTERACTIVE CHAPTER 01 CAROUSEL (Edge-to-Edge Wide) ─── */}
-      <section className="relative z-20 bg-[#121215] py-28 sm:py-36 border-t border-white/[0.08] shadow-2xl">
+      <section className="relative z-20 bg-[#0b0b0e] py-28 sm:py-36 border-t border-white/[0.08] shadow-2xl">
         <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Col (1-4): Carousel Controls with Directional Forward Wipe */}
@@ -162,13 +163,11 @@ export default function PortfolioPage() {
 
             {/* Right Col (5-12): Massive Editorial Headline & Narrative */}
             <div className="lg:col-span-8 space-y-8">
-              <LanguageTransition
-                langKey={language}
+              <ScrollTextReveal
+                text={t.carousel.narrativeHeadline}
                 as="h3"
                 className="text-2xl sm:text-4xl lg:text-6xl font-medium tracking-tight text-white leading-[1.16]"
-              >
-                {t.carousel.narrativeHeadline}
-              </LanguageTransition>
+              />
 
               <LanguageTransition
                 langKey={language}

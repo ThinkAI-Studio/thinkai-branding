@@ -26,7 +26,19 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
   const t = copy[language];
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  // Track scroll position for header scrim (> 24px)
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 24;
+      setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const sliderTransition = prefersReduced
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 500, damping: 35 };
@@ -92,6 +104,19 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
 
   return (
     <>
+      {/* ─── SCROLL-STATE TOP GRADIENT SCRIM ─── */}
+      <div
+        aria-hidden="true"
+        className={`fixed top-0 inset-x-0 h-20 sm:h-24 z-40 pointer-events-none select-none transition-opacity ${
+          prefersReduced ? "duration-0" : "duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        } ${isScrolled && !isHeaderHidden ? "opacity-100" : "opacity-0"}`}
+        style={{
+          background: "linear-gradient(to bottom, rgba(11, 11, 14, 0.96) 0%, rgba(11, 11, 14, 0.88) 55%, rgba(11, 11, 14, 0) 100%)",
+        }}
+      >
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.08]" />
+      </div>
+
       <motion.header
         initial={{ opacity: 1, filter: "blur(0px)", y: 0 }}
         animate={
