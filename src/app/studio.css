@@ -299,46 +299,6 @@
   stroke: #ffffff;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   FOOTER LIGHTHOUSE BAND SWEEP BEAM
-   ───────────────────────────────────────────────────────────── */
-.footer-beam-sweep {
-  position: absolute;
-  top: -1200px;
-  left: -1200px;
-  width: 2400px;
-  height: 2400px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: conic-gradient(
-    from 0deg at 50% 50%,
-    transparent 0deg,
-    rgba(239, 230, 210, 0) 2deg,
-    rgba(239, 230, 210, 0.28) 6deg,
-    rgba(239, 230, 210, 0.05) 12deg,
-    transparent 18deg,
-    transparent 360deg
-  );
-  transform-origin: 50% 50%;
-  animation: footerSweep 24s linear infinite;
-  mix-blend-mode: screen;
-  will-change: transform;
-}
-
-@keyframes footerSweep {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .footer-beam-sweep {
-    animation: none !important;
-  }
-}
 
 /* Global Backstop for Reduced Motion */
 @media (prefers-reduced-motion: reduce) {

@@ -334,7 +334,7 @@ export default function PortfolioPage() {
       {/* ─── 07B. OCEAN STIR INTERACTIVE ZONE ─── */}
       <OceanStirZone />
 
-      {/* ─── 08. STUDIO FOOTER (Two Separated Stacked Zones) ─── */}
+      {/* ─── 08. STUDIO FOOTER ─── */}
       <StudioFooter
         onOpenAbout={() => setIsAboutOpen(true)}
         onOpenContact={() => setIsContactOpen(true)}
