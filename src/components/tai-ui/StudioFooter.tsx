@@ -71,14 +71,15 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
       style={{ backgroundColor: "#1455B4", color: "#F7EFDC" }}
     >
       {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
-      <div className="w-full max-w-[1280px] mx-auto px-[22px] pt-[28px] pb-[16px] sm:px-[56px] sm:pt-[44px] sm:pb-[24px] space-y-8 sm:space-y-10 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column (Span 5): Brand, Manifesto, Social Strip, Ask-AI */}
-          <div className="lg:col-span-5 space-y-7">
+      {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
+      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 pt-8 pb-6 space-y-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column (Span 6): Brand, 1-line Manifesto, Unified Icons Row */}
+          <div className="lg:col-span-6 space-y-4">
             {/* Wordmark */}
             <div className="flex items-center gap-3">
               <div
-                className="relative w-8 h-8 p-1 flex items-center justify-center border shadow-sm"
+                className="relative w-7 h-7 p-1 flex items-center justify-center border shadow-sm"
                 style={{
                   backgroundColor: "rgba(247, 239, 220, 0.12)",
                   borderColor: "rgba(247, 239, 220, 0.28)",
@@ -88,31 +89,25 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   src="/images/thinkai_studio_logo.png"
                   alt="ThinkAI Studio"
                   fill
-                  sizes="32px"
+                  sizes="28px"
                   className="object-contain"
                 />
               </div>
-              <span className="font-mono font-extrabold text-xl sm:text-2xl tracking-tight text-[#F7EFDC] uppercase">
+              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">
                 THINKAI STUDIO
               </span>
             </div>
 
-            {/* Manifesto */}
-            <p className="text-sm sm:text-base text-[#F7EFDC] leading-relaxed max-w-md font-sans">
+            {/* Manifesto: 1 concise sentence */}
+            <p className="text-xs sm:text-sm text-[#F7EFDC] leading-relaxed max-w-md font-sans opacity-90">
               {language === "vi"
-                ? "Studio hệ thống & giao diện chuyên nghiệp. Chúng tôi xây dựng các ứng dụng web hiệu năng cao, hệ thống thiết kế giao diện chuẩn xác và hạ tầng phân phối đám mây bền bỉ."
-                : "A Systems & Craft Web Studio engineering high-performance modern frontend, precision UI design systems, and resilient cloud delivery platforms."}
+                ? "Studio hệ thống & giao diện kỹ thuật số chuyên nghiệp."
+                : "A Systems & Craft Web Studio engineering high-performance modern web."}
             </p>
 
-            {/* Social Links */}
-            <div className="space-y-2.5 pt-1">
-              <div
-                className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase"
-                style={{ color: "rgba(247, 239, 220, 0.66)" }}
-              >
-                {language === "vi" ? "KẾT NỐI VỚI CHÚNG TÔI" : "CONNECT WITH STUDIO"}
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
+            {/* Social & AI Icons in one clean row */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <div className="flex items-center gap-1.5">
                 <WipeButton
                   as="a"
                   href={profile.github}
@@ -123,11 +118,10 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   hoverTextColor="#1455B4"
                   borderColor="rgba(247, 239, 220, 0.28)"
                   hoverBorderColor="#F7EFDC"
-                  className="px-3 py-1.5 bg-white/[0.06] text-xs font-mono font-bold flex items-center gap-2"
+                  ariaLabel="GitHub"
+                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
                 >
                   <Github className="w-3.5 h-3.5" />
-                  <span>GitHub</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-80" />
                 </WipeButton>
 
                 <WipeButton
@@ -140,11 +134,10 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   hoverTextColor="#1455B4"
                   borderColor="rgba(247, 239, 220, 0.28)"
                   hoverBorderColor="#F7EFDC"
-                  className="px-3 py-1.5 bg-white/[0.06] text-xs font-mono font-bold flex items-center gap-2"
+                  ariaLabel="LinkedIn"
+                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
-                  <span>LinkedIn</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-80" />
                 </WipeButton>
 
                 <WipeButton
@@ -155,11 +148,10 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   hoverTextColor="#1455B4"
                   borderColor="rgba(247, 239, 220, 0.28)"
                   hoverBorderColor="#F7EFDC"
-                  className="px-3 py-1.5 bg-white/[0.06] text-xs font-mono font-bold flex items-center gap-2"
+                  ariaLabel="Email"
+                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>Email</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-80" />
                 </WipeButton>
 
                 <WipeButton
@@ -172,24 +164,16 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   hoverTextColor="#1455B4"
                   borderColor="rgba(247, 239, 220, 0.28)"
                   hoverBorderColor="#F7EFDC"
-                  className="px-3 py-1.5 bg-white/[0.06] text-xs font-mono font-bold flex items-center gap-2"
+                  ariaLabel="X"
+                  className="w-8 h-8 flex items-center justify-center bg-white/[0.06]"
                 >
                   <Twitter className="w-3.5 h-3.5" />
-                  <span>X</span>
-                  <ArrowUpRight className="w-3 h-3 opacity-80" />
                 </WipeButton>
               </div>
-            </div>
 
-            {/* Ask-AI */}
-            <div className="space-y-2.5 pt-1">
-              <div
-                className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase"
-                style={{ color: "rgba(247, 239, 220, 0.66)" }}
-              >
-                {language === "vi" ? "HỎI AI VỀ THINKAI STUDIO" : "ASK AI ABOUT THINKAI STUDIO"}
-              </div>
-              <div className="flex items-center gap-2">
+              <span className="w-px h-4 bg-[#F7EFDC]/20 mx-1 hidden sm:block" />
+
+              <div className="flex items-center gap-1.5">
                 {aiPlatforms.map((platform) => {
                   const IconComponent = platform.icon;
                   return (
@@ -207,28 +191,22 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                       borderColor="rgba(247, 239, 220, 0.28)"
                       hoverBorderColor="#F7EFDC"
                       ariaLabel={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8.5 h-8.5 flex items-center justify-center cursor-pointer select-none bg-white/[0.06]"
+                      className="w-8 h-8 flex items-center justify-center cursor-pointer select-none bg-white/[0.06]"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
                     </WipeButton>
                   );
                 })}
               </div>
-              <p
-                className="text-[11px] font-mono"
-                style={{ color: "rgba(247, 239, 220, 0.66)" }}
-              >
-                {t.footer.askAiHint}
-              </p>
             </div>
           </div>
 
-          {/* Right Column (Span 7): 3 Link Columns */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 pt-4 lg:pt-0">
+          {/* Right Column (Span 6): Two Nav Columns (01 / Products, 02 / Studio) */}
+          <div className="lg:col-span-6 grid grid-cols-2 gap-6 sm:gap-8 pt-2 lg:pt-0">
             {/* Nav Column 1: Products */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div
-                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-2 border-b"
+                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
                 style={{
                   color: "rgba(247, 239, 220, 0.66)",
                   borderColor: "rgba(247, 239, 220, 0.28)",
@@ -236,7 +214,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
               >
                 {language === "vi" ? "01 / SẢN PHẨM" : "01 / PRODUCTS"}
               </div>
-              <ul className="space-y-2.5 font-mono text-xs">
+              <ul className="space-y-2 font-mono text-xs">
                 <li>
                   <Link
                     href="/products/thinkai-ui"
@@ -277,9 +255,9 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             </div>
 
             {/* Nav Column 2: Studio */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div
-                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-2 border-b"
+                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
                 style={{
                   color: "rgba(247, 239, 220, 0.66)",
                   borderColor: "rgba(247, 239, 220, 0.28)",
@@ -287,7 +265,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
               >
                 {language === "vi" ? "02 / STUDIO" : "02 / STUDIO"}
               </div>
-              <ul className="space-y-2.5 font-mono text-xs">
+              <ul className="space-y-2 font-mono text-xs">
                 <li>
                   <button
                     type="button"
@@ -303,7 +281,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     href="/about"
                     className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
                   >
-                    <span>{language === "vi" ? "Hồ sơ đầy đủ (/about)" : "Full Dossier (/about)"}</span>
+                    <span>{language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}</span>
                     <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
                   </Link>
                 </li>
@@ -330,50 +308,22 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 </li>
               </ul>
             </div>
-
-            {/* Nav Column 3: Engineering */}
-            <div className="space-y-4">
-              <div
-                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-2 border-b"
-                style={{
-                  color: "rgba(247, 239, 220, 0.66)",
-                  borderColor: "rgba(247, 239, 220, 0.28)",
-                }}
-              >
-                {language === "vi" ? "03 / KỸ THUẬT" : "03 / ENGINEERING"}
-              </div>
-              <ul className="space-y-2.5 font-mono text-xs text-[#F7EFDC]">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F7EFDC]" />
-                  <span>Next.js 16 & React 19</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F7EFDC]" />
-                  <span>GSAP & Framer Motion</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F7EFDC]" />
-                  <span>Rootless Podman & K3s</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F7EFDC]" />
-                  <span>Zero-Trust Mesh & SAST</span>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
-        {/* Meta Row: Live Time, Back to top, Copyright */}
+        {/* Meta Row: Copyright, Live Time & Back to Top */}
         <div
-          className="pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs"
+          className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
-          <div style={{ color: "rgba(247, 239, 220, 0.66)" }}>
-            {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"} · {liveDate || "MON, AUG 31"}
+          <div className="font-medium" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+            ThinkAI Studio © 2026. All Rights Reserved.
           </div>
 
-          <div className="text-center">
+          <div className="flex items-center gap-4">
+            <span style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+              {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}
+            </span>
             <WipeButton
               as="a"
               href="#top"
@@ -382,14 +332,11 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
               hoverTextColor="#1455B4"
               borderColor="rgba(247, 239, 220, 0.28)"
               hoverBorderColor="#F7EFDC"
-              className="px-3 py-1 bg-white/[0.06] inline-block text-xs font-mono font-bold"
+              className="px-2.5 py-1 bg-white/[0.06] inline-flex items-center gap-1 text-xs font-mono font-bold"
             >
               <span>{t.footer.backToTop}</span>
+              <span>↑</span>
             </WipeButton>
-          </div>
-
-          <div className="text-right font-medium" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
-            ThinkAI Studio © 2026. All Rights Reserved.
           </div>
         </div>
       </div>
