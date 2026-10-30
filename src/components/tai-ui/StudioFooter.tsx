@@ -70,8 +70,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
       className="relative z-20 w-full select-none"
       style={{ backgroundColor: "#1455B4", color: "#F7EFDC" }}
     >
-      {/* Content Block: max-width 1280, padding 56px (mobile 22px) */}
-      <div className="w-full max-w-[1280px] mx-auto p-[22px] sm:p-[56px] space-y-12 sm:space-y-16">
+      {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
+      <div className="w-full max-w-[1280px] mx-auto px-[22px] pt-[28px] pb-[16px] sm:px-[56px] sm:pt-[44px] sm:pb-[24px] space-y-8 sm:space-y-10 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column (Span 5): Brand, Manifesto, Social Strip, Ask-AI */}
           <div className="lg:col-span-5 space-y-7">
@@ -366,7 +366,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
         {/* Meta Row: Live Time, Back to top, Copyright */}
         <div
-          className="pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs"
+          className="pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
           <div style={{ color: "rgba(247, 239, 220, 0.66)" }}>
@@ -394,8 +394,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
         </div>
       </div>
 
-      {/* Artwork: plain block, width 100%, height auto, no wrapper position absolute, no overlay */}
-      <picture className="block w-full pointer-events-none">
+      {/* Artwork: plain block, pulled up into empty sky field so whole composition fits comfortably without text overlap */}
+      <picture className="block w-full pointer-events-none -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 relative z-0">
         <source srcSet="/images/footer-lighthouse-sky.avif" type="image/avif" />
         <source srcSet="/images/footer-lighthouse-sky.webp" type="image/webp" />
         <img
