@@ -403,7 +403,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           alt=""
           loading="lazy"
           decoding="async"
-          width={2936}
+          width={2908}
           height={1106}
           className="w-full h-auto block pointer-events-none"
           style={{
