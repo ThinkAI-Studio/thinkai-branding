@@ -18,10 +18,9 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
 
     // 1. Device & Sizing Detection
     const isCoarse = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
-    const maxDpr = isCoarse ? 1.25 : 1.5;
+    const maxDpr = 1.5;
     const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
-    const renderScale = isCoarse ? 0.75 : 1.0;
-
+    const renderScale = 1.0;
     const getStableHeight = () => {
       if (typeof window === "undefined") return 800;
       let h = window.innerHeight;
@@ -71,6 +70,9 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
       u_resolution: {
         value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height),
       },
+      u_pixel_scale: {
+        value: renderer.domElement.width / (window.innerWidth || 1),
+      },
       u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
       u_target_mouse: { value: new THREE.Vector2(0.5, 0.5) },
       u_scroll: { value: 0 },
@@ -92,6 +94,7 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     const fragmentShader = `
       uniform float u_time;
       uniform vec2 u_resolution;
+      uniform float u_pixel_scale;
       uniform vec2 u_mouse;
       uniform float u_scroll;
       uniform float u_stir;
@@ -136,12 +139,12 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         return mat2(c, -s, s, c) * v;
       }
 
-      // Rotated 45-degree halftone print screen
+      // Rotated 45-degree halftone print screen with widened cell-unit AA (0.11 cell units)
       vec3 applyRotatedHalftone(vec3 color, vec2 fragCoord, float spacing, float dotSize, float darkness) {
         vec2 rotCoord = rotate2D(fragCoord, 0.785398);
         vec2 cell = fract(rotCoord / spacing) - 0.5;
         float dist = length(cell);
-        float mask = 1.0 - smoothstep(dotSize - 0.05, dotSize + 0.05, dist);
+        float mask = 1.0 - smoothstep(dotSize - 0.11, dotSize + 0.11, dist);
         return mix(color, vec3(0.012, 0.022, 0.032), mask * darkness);
       }
 
@@ -191,9 +194,9 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         col = mix(col, cCrystalAqua, caustics * 0.78);
         col = mix(col, cSunlightFoam, pow(smoothstep(0.45, 0.90, wave + caustics * 0.45), 2.8) * 0.65);
 
-        // Apply Rotated Halftone Print Screen
-        col = applyRotatedHalftone(col, gl_FragCoord.xy, 6.5, 0.23, 0.70);
-
+        // Apply Rotated Halftone Print Screen with constant CSS-space pitch (4.4 CSS px)
+        float pitch = 4.4 * u_pixel_scale;
+        col = applyRotatedHalftone(col, gl_FragCoord.xy, pitch, 0.23, 0.70);
         gl_FragColor = vec4(col, 1.0);
       }
     `;
@@ -233,8 +236,8 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
       const scaledH = Math.round(h * renderScale);
       renderer.setSize(scaledW, scaledH, false);
       uniforms.u_resolution.value.set(renderer.domElement.width, renderer.domElement.height);
+      uniforms.u_pixel_scale.value = renderer.domElement.width / (window.innerWidth || 1);
     };
-
     let resizeTimeout: NodeJS.Timeout | number | undefined;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
