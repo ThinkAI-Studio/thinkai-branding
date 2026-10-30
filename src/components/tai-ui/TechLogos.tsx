@@ -68,7 +68,6 @@ export function TechLogo({ name, className = "w-6 h-6" }: { name: string; classN
 
     case "GSAP":
     case "GSAP 3.15":
-    case "GSAP + Motion":
       return (
         <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...ariaProps}>
           <rect width="100" height="100" rx="16" fill="#0ae448" />
@@ -78,7 +77,13 @@ export function TechLogo({ name, className = "w-6 h-6" }: { name: string; classN
         </svg>
       );
 
-    case "Framer Motion":
+    case "GSAP + Motion":
+      return (
+        <div className={`inline-flex items-center gap-1.5 ${className}`} {...ariaProps}>
+          <TechLogo name="GSAP" className="w-1/2 h-full object-contain" />
+          <TechLogo name="Motion" className="w-1/2 h-full object-contain" />
+        </div>
+      );
     case "Motion":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...ariaProps}>
@@ -108,11 +113,25 @@ export function TechLogo({ name, className = "w-6 h-6" }: { name: string; classN
       );
 
     case "Docker":
-    case "Docker & Podman":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="#0db7ed" xmlns="http://www.w3.org/2000/svg" {...ariaProps}>
           <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185zm-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185zm0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .103.082.186.185.186zm-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .103.083.186.185.186zm-2.954 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.145a.185.185 0 00-.185.185v1.887c0 .103.083.186.185.186zm5.884 2.714h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.186v1.887c0 .102.082.185.185.185zm-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.186v1.887c0 .102.083.185.185.185zm-2.954 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186H5.145a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.185zm-2.953 0h2.118a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186H2.192a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185zM23.713 11.64c-.368-.242-.998-.372-1.706-.296-.153-.356-.37-.678-.646-.957l-.36-.31-.476.108c-.783.177-1.32.483-1.685.945-.46-.226-.995-.357-1.571-.357H.186A.186.186 0 000 10.957v3.238c0 1.956.495 3.753 1.47 5.174 1.253 1.826 3.167 2.83 5.534 2.83 6.953 0 12.39-4.832 14.195-10.334.33-.03.74-.047 1.157-.047.887 0 1.604.148 2.072.43.125.074.28.026.34-.108l.582-1.127a.267.267 0 00-.167-.373z" />
         </svg>
+      );
+
+    case "Podman":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...ariaProps}>
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.08 3.429c3.085 0 5.688 2.016 6.643 4.821a7.714 7.714 0 01-.848 7.375 7.683 7.683 0 01-5.795 2.946c-4.254 0-7.714-3.46-7.714-7.714 0-4.255 3.46-7.428 7.714-7.428zm-.08 2.571c-2.833 0-5.143 2.31-5.143 5.143s2.31 5.143 5.143 5.143 5.143-2.31 5.143-5.143-2.31-5.143-5.143-5.143zm0 1.714a3.429 3.429 0 110 6.858 3.429 3.429 0 010-6.858z" fill="#892CA0" />
+        </svg>
+      );
+
+    case "Docker & Podman":
+      return (
+        <div className={`inline-flex items-center gap-1.5 ${className}`} {...ariaProps}>
+          <TechLogo name="Docker" className="w-1/2 h-full object-contain" />
+          <TechLogo name="Podman" className="w-1/2 h-full object-contain" />
+        </div>
       );
 
     case "Kubernetes":
@@ -162,7 +181,6 @@ export function TechLogo({ name, className = "w-6 h-6" }: { name: string; classN
       );
 
     case "GitHub Actions":
-    case "GitHub Actions + Argo CD":
     case "Actions":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...ariaProps}>
@@ -171,8 +189,15 @@ export function TechLogo({ name, className = "w-6 h-6" }: { name: string; classN
         </svg>
       );
 
+    case "GitHub Actions + Argo CD":
+      return (
+        <div className={`inline-flex items-center gap-1.5 ${className}`} {...ariaProps}>
+          <TechLogo name="GitHub Actions" className="w-1/2 h-full object-contain" />
+          <TechLogo name="Argo CD" className="w-1/2 h-full object-contain" />
+        </div>
+      );
+
     case "Tailscale":
-    case "Tailscale + SAST":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...ariaProps}>
           {/* Row 1 */}
@@ -188,6 +213,14 @@ export function TechLogo({ name, className = "w-6 h-6" }: { name: string; classN
           <circle cx="12" cy="19" r="2.5" fill="white" fillOpacity="0.2" />
           <circle cx="19" cy="19" r="2.5" fill="#4F46E5" />
         </svg>
+      );
+
+    case "Tailscale + SAST":
+      return (
+        <div className={`inline-flex items-center gap-1.5 ${className}`} {...ariaProps}>
+          <TechLogo name="Tailscale" className="w-1/2 h-full object-contain" />
+          <TechLogo name="DevSecOps" className="w-1/2 h-full object-contain" />
+        </div>
       );
 
     case "SonarQube":

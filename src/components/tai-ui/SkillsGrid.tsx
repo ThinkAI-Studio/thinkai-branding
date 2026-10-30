@@ -410,26 +410,26 @@ export function SkillsGrid() {
                 {/* Top Row: Hero White React Box + Centered Next.js Typography + Centered TS Square */}
                 <div className="grid grid-cols-12 gap-3.5">
                   {/* Hero White React Box (Pure Logo Centered, SoraLabs style) */}
-                  <div className="bento-block col-span-5 rounded-2xl bg-[#f4f4f6] p-8 flex items-center justify-center shadow-[0_24px_48px_rgba(0,0,0,0.6)] group hover:scale-[1.01] transition-transform duration-300 min-h-[230px]">
+                  <div className="bento-block col-span-5 rounded-2xl bg-[#f4f4f6] p-8 flex items-center justify-center shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
                     <h3 className="sr-only">React 19</h3>
-                    <div className="w-24 h-24 flex items-center justify-center text-black [filter:brightness(0)] group-hover:rotate-180 transition-transform duration-700">
+                    <div className="w-24 h-24 flex items-center justify-center text-black [filter:brightness(0)] bento-inner-mark">
                       <TechLogo name="React" className="w-24 h-24 object-contain" />
                     </div>
                   </div>
 
                   {/* Center Dark Box: Bold Centered NEXT.js Typography */}
-                  <div className="bento-block col-span-4 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                  <div className="bento-block col-span-4 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">Next.js 16</h3>
-                    <div className="text-5xl sm:text-6xl font-black tracking-tighter text-white flex items-center gap-1.5 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform duration-300">
+                    <div className="text-5xl sm:text-6xl font-black tracking-tighter text-white flex items-center gap-1.5 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <span>NEXT</span>
                       <span className="text-neutral-500 text-4xl">.js</span>
                     </div>
                   </div>
 
                   {/* Right Dark Box: Centered TS Square Tile */}
-                  <div className="bento-block col-span-3 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                  <div className="bento-block col-span-3 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">TypeScript</h3>
-                    <div className="w-20 h-20 rounded-2xl border border-white/20 bg-white/10 flex items-center justify-center text-white font-mono text-4xl font-black shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-20 h-20 rounded-2xl border border-white/20 bg-white/10 flex items-center justify-center text-white font-mono text-4xl font-black shadow-lg bento-inner-mark">
                       TS
                     </div>
                   </div>
@@ -437,25 +437,26 @@ export function SkillsGrid() {
 
                 {/* Bottom Row Ribbon: Pure Minimalist Logo Strip (SoraLabs Style) */}
                 <div className="grid grid-cols-3 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
                     <h4 className="sr-only">Tailwind CSS v4</h4>
-                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Tailwind CSS v4" className="w-7 h-7 object-contain" />
                       <span className="font-mono text-sm font-bold tracking-wider text-white">TAILWIND</span>
                     </div>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
                     <h4 className="sr-only">GSAP + Motion</h4>
-                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
-                      <TechLogo name="GSAP" className="w-7 h-7 object-contain" />
-                      <span className="font-mono text-sm font-bold tracking-wider text-white">GSAP</span>
+                    <div className="flex items-center gap-2.5 [filter:brightness(0)_invert(1)] bento-inner-mark">
+                      <TechLogo name="GSAP" className="w-6 h-6 object-contain" />
+                      <TechLogo name="Motion" className="w-5 h-5 object-contain" />
+                      <span className="font-mono text-xs sm:text-sm font-bold tracking-wider text-white">GSAP + MOTION</span>
                     </div>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
                     <h4 className="sr-only">Three.js / GLSL</h4>
-                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Three.js WebGL" className="w-7 h-7 object-contain" />
                       <span className="font-mono text-sm font-bold tracking-wider text-white">THREE.JS</span>
                     </div>
@@ -477,61 +478,66 @@ export function SkillsGrid() {
 
                 {/* Top Row: Wide 60% Kubernetes + 40% Docker/Podman */}
                 <div className="grid grid-cols-12 gap-3.5">
-                  <div className="bento-block col-span-7 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                  {/* Pearl Anchor Card for DevOps: Kubernetes & K3s (Col-span 7) */}
+                  <div className="bento-block col-span-7 rounded-2xl bg-[#f4f4f6] p-8 flex items-center justify-center gap-6 shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
                     <h3 className="sr-only">Kubernetes & K3s</h3>
-                    <div className="w-20 h-20 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-20 h-20 rounded-2xl bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
                       <TechLogo name="Kubernetes & K3s" className="w-14 h-14 object-contain" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-3xl font-black tracking-tight text-white">KUBERNETES</span>
-                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">K3S LIGHTWEIGHT</span>
+                      <span className="text-3xl font-black tracking-tight text-black">KUBERNETES</span>
+                      <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">K3S LIGHTWEIGHT</span>
                     </div>
                   </div>
 
-                  <div className="bento-block col-span-5 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-5 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                  {/* Dark Card for Docker & Podman (Col-span 5) */}
+                  <div className="bento-block col-span-5 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-5 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">Docker & Podman</h3>
-                    <div className="w-16 h-16 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-3 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
-                      <TechLogo name="Docker & Podman" className="w-11 h-11 object-contain" />
+                    <div className="h-16 px-4 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center gap-2.5 text-white [filter:brightness(0)_invert(1)] bento-inner-mark">
+                      <TechLogo name="Docker" className="w-8 h-8 object-contain" />
+                      <TechLogo name="Podman" className="w-7 h-7 object-contain" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-2xl font-bold tracking-tight text-white">PODMAN</span>
-                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">ROOTLESS CONTAINER</span>
+                      <span className="text-2xl font-bold tracking-tight text-white">DOCKER &amp; PODMAN</span>
+                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">ROOTLESS OCI CONTAINERS</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom Row: 4 Clean Logo Cells */}
                 <div className="grid grid-cols-4 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h4 className="sr-only">Linux</h4>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Linux" className="w-6 h-6 object-contain" />
                     </div>
                     <span className="font-mono text-sm font-bold text-white tracking-wide">LINUX</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h4 className="sr-only">Go</h4>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Go" className="w-6 h-6 object-contain" />
                     </div>
                     <span className="font-mono text-sm font-bold text-white tracking-wide">GOLANG</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-2.5 min-h-[90px]">
                     <h4 className="sr-only">Tailscale + SAST</h4>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
-                      <TechLogo name="Tailscale" className="w-6 h-6 object-contain" />
+                    <div className="flex items-center gap-2 [filter:brightness(0)_invert(1)] bento-inner-mark">
+                      <TechLogo name="Tailscale" className="w-5 h-5 object-contain" />
+                      <TechLogo name="DevSecOps" className="w-5 h-5 object-contain" />
                     </div>
-                    <span className="font-mono text-sm font-bold text-white tracking-wide">TAILSCALE</span>
+                    <span className="font-mono text-xs font-bold text-white tracking-wide">TAILSCALE + SAST</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-2.5 min-h-[90px]">
                     <h4 className="sr-only">GitHub Actions + Argo CD</h4>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
-                      <TechLogo name="Argo CD" className="w-6 h-6 object-contain" />
+                    <div className="flex items-center gap-2 [filter:brightness(0)_invert(1)] bento-inner-mark">
+                      <TechLogo name="GitHub Actions" className="w-5 h-5 object-contain" />
+                      <TechLogo name="Argo CD" className="w-5 h-5 object-contain" />
                     </div>
-                    <span className="font-mono text-sm font-bold text-white tracking-wide">ARGO CD</span>
+                    <span className="font-mono text-xs font-bold text-white tracking-wide">ACTIONS + ARGO</span>
                   </div>
                 </div>
               </div>
@@ -549,10 +555,10 @@ export function SkillsGrid() {
                 </div>
 
                 <div className="grid grid-cols-12 gap-3.5">
-                  {/* Left 50% Box: Design Systems Mark */}
-                  <div className="bento-block col-span-6 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                  {/* Left 50% Box: Design Systems Mark (Dark) */}
+                  <div className="bento-block col-span-6 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">Design Systems & Tokens</h3>
-                    <div className="w-18 h-18 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-18 h-18 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Design Systems" className="w-12 h-12 object-contain" />
                     </div>
                     <div className="flex flex-col">
@@ -561,40 +567,40 @@ export function SkillsGrid() {
                     </div>
                   </div>
 
-                  {/* Right 50% Box: Figma Centered */}
-                  <div className="bento-block col-span-6 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                  {/* Right 50% Box: Pearl Anchor Card for Designer: Figma */}
+                  <div className="bento-block col-span-6 rounded-2xl bg-[#f4f4f6] p-8 flex items-center justify-center gap-6 shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
                     <h4 className="sr-only">Figma</h4>
-                    <div className="w-18 h-18 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-18 h-18 rounded-2xl bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
                       <TechLogo name="Figma" className="w-10 h-10 object-contain" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-3xl font-black tracking-tight text-white">FIGMA</span>
-                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">COMPONENT VARIANTS</span>
+                      <span className="text-3xl font-black tracking-tight text-black">FIGMA</span>
+                      <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">COMPONENT VARIANTS</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom Row: 3 Clean Cells */}
                 <div className="grid grid-cols-3 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h5 className="sr-only">Typography & Art Direction</h5>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Typography" className="w-6 h-6 object-contain" />
                     </div>
                     <span className="font-mono text-sm font-bold text-white tracking-wide">TYPOGRAPHY</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h5 className="sr-only">Motion Design</h5>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Motion Design" className="w-6 h-6 object-contain" />
                     </div>
                     <span className="font-mono text-sm font-bold text-white tracking-wide">MOTION</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h5 className="sr-only">Prototyping</h5>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Prototyping" className="w-6 h-6 object-contain" />
                     </div>
                     <span className="font-mono text-sm font-bold text-white tracking-wide">PROTOTYPING</span>
@@ -654,31 +660,43 @@ export function SkillsGrid() {
                   <h4 className="sr-only">Tailwind CSS v4</h4>
                   <span className="font-mono text-xs font-bold text-white">TAILWIND</span>
                 </div>
-                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center gap-2">
                   <h4 className="sr-only">GSAP + Motion</h4>
-                  <span className="font-mono text-xs font-bold text-white">GSAP</span>
+                  <TechLogo name="GSAP" className="w-4 h-4 object-contain" />
+                  <TechLogo name="Motion" className="w-3.5 h-3.5 object-contain" />
+                  <span className="font-mono text-xs font-bold text-white">GSAP + MOTION</span>
                 </div>
               </div>
+
               <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
                 <h4 className="sr-only">Three.js / GLSL</h4>
                 <span className="font-mono text-sm font-bold text-white">THREE.JS / GLSL</span>
               </div>
             </div>
-
             {/* Stack 2 Mobile */}
             <div className="space-y-4">
               <div className="text-xs font-mono font-bold text-neutral-400 border-b border-white/[0.08] pb-2 flex items-center justify-between">
                 <span>02 / DEVOPS</span>
                 <span className="text-white">INFRASTRUCTURE</span>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
-                  <h3 className="sr-only">Kubernetes & K3s</h3>
-                  <span className="font-mono text-sm font-bold text-white">KUBERNETES</span>
+              {/* Stack 2 Pearl Anchor: Kubernetes & K3s */}
+              <div className="rounded-xl bg-[#f4f4f6] text-black p-6 flex items-center justify-center gap-4 min-h-[140px]">
+                <h3 className="sr-only">Kubernetes & K3s</h3>
+                <div className="w-14 h-14 [filter:brightness(0)]">
+                  <TechLogo name="Kubernetes & K3s" className="w-14 h-14 object-contain" />
                 </div>
-                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                <div className="flex flex-col">
+                  <span className="text-2xl font-black tracking-tight text-black">KUBERNETES</span>
+                  <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">K3S LIGHTWEIGHT</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center gap-2">
                   <h3 className="sr-only">Docker & Podman</h3>
-                  <span className="font-mono text-sm font-bold text-white">PODMAN</span>
+                  <TechLogo name="Docker" className="w-4 h-4 object-contain" />
+                  <TechLogo name="Podman" className="w-4 h-4 object-contain" />
+                  <span className="font-mono text-xs font-bold text-white">DOCKER &amp; PODMAN</span>
                 </div>
                 <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
                   <h4 className="sr-only">Linux</h4>
@@ -688,16 +706,18 @@ export function SkillsGrid() {
                   <h4 className="sr-only">Go</h4>
                   <span className="font-mono text-sm font-bold text-white">GOLANG</span>
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center gap-1.5">
                   <h4 className="sr-only">Tailscale + SAST</h4>
-                  <span className="font-mono text-xs font-bold text-white">TAILSCALE</span>
+                  <TechLogo name="Tailscale" className="w-3.5 h-3.5 object-contain" />
+                  <TechLogo name="DevSecOps" className="w-3.5 h-3.5 object-contain" />
+                  <span className="font-mono text-[11px] font-bold text-white">TAILSCALE+SAST</span>
                 </div>
-                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
-                  <h4 className="sr-only">GitHub Actions + Argo CD</h4>
-                  <span className="font-mono text-xs font-bold text-white">ARGO CD</span>
-                </div>
+              </div>
+              <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center gap-2">
+                <h4 className="sr-only">GitHub Actions + Argo CD</h4>
+                <TechLogo name="GitHub Actions" className="w-4 h-4 object-contain" />
+                <TechLogo name="Argo CD" className="w-4 h-4 object-contain" />
+                <span className="font-mono text-xs font-bold text-white">ACTIONS + ARGO</span>
               </div>
             </div>
 
@@ -707,13 +727,21 @@ export function SkillsGrid() {
                 <span>03 / DESIGNER</span>
                 <span className="text-white">SYSTEMS</span>
               </div>
+              {/* Stack 3 Pearl Anchor: Figma */}
+              <div className="rounded-xl bg-[#f4f4f6] text-black p-6 flex items-center justify-center gap-4 min-h-[140px]">
+                <h4 className="sr-only">Figma</h4>
+                <div className="w-12 h-12 [filter:brightness(0)]">
+                  <TechLogo name="Figma" className="w-12 h-12 object-contain" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-2xl font-black tracking-tight text-black">FIGMA</span>
+                  <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">COMPONENT VARIANTS</span>
+                </div>
+              </div>
+
               <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
                 <h3 className="sr-only">Design Systems & Tokens</h3>
                 <span className="font-mono text-sm font-bold text-white">DESIGN SYSTEMS</span>
-              </div>
-              <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
-                <h4 className="sr-only">Figma</h4>
-                <span className="font-mono text-sm font-bold text-white">FIGMA</span>
               </div>
               <div className="grid grid-cols-3 gap-2">
                 <div className="rounded-lg bg-[#0c0c10] border border-white/10 p-3 text-center">

@@ -8,3 +8,59 @@
 .skills-card-surface:hover {
   border-color: rgba(255, 255, 255, 0.18);
 }
+
+/* Bento Block Unified Hover Motion & Surfaces */
+.bento-block {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, border-color, box-shadow;
+}
+
+.bento-inner-mark {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .bento-block:hover {
+    transform: translateY(-4px) scale(1.015) !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+    box-shadow: 0 32px 64px -20px rgba(0, 0, 0, 0.85) !important;
+  }
+
+  /* Small tiles (the min-h-[90px] ones): translateY(-2px) scale(1.02) */
+  .bento-block.min-h-\[90px\]:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+    box-shadow: 0 32px 64px -20px rgba(0, 0, 0, 0.85) !important;
+  }
+
+  .bento-block:hover .bento-inner-mark {
+    transform: scale(1.06) !important;
+  }
+}
+
+/* Touch devices: no persistent hover state, tactile feedback on :active */
+@media (hover: none) {
+  .bento-block:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .bento-block:active {
+    transform: scale(0.99) !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+    transition: transform 100ms ease, border-color 100ms ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-block,
+  .bento-block:hover,
+  .bento-block:active,
+  .bento-inner-mark,
+  .bento-block:hover .bento-inner-mark {
+    transform: none !important;
+    transition: none !important;
+  }
+}
