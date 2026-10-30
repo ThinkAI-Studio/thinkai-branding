@@ -64,7 +64,7 @@ export function MaskedTextReveal({
         <span
           key={idx}
           className={cn(
-            "block overflow-hidden pb-1",
+            "block overflow-hidden pb-3 pt-1 -mb-2",
             splitBy === "words" && "inline-block mr-[0.25em]"
           )}
         >
