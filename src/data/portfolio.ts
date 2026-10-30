@@ -260,9 +260,9 @@ export const copy: Localized<PortfolioCopy> = {
       switchLangAria: "Switch language to Vietnamese",
     },
     hero: {
-      eyebrow: "A SYSTEMS & CRAFT WEB STUDIO",
+      eyebrow: "AN ENGINEERING STUDIO",
       headline: "SYSTEMS & CRAFT\nWEB STUDIO",
-      subline: "FRONTEND MOTION · PRODUCT ARCHITECTURE · INFRASTRUCTURE RELIABILITY",
+      subline: "PRODUCTS AND INFRASTRUCTURE",
       status: "Available for Systems & Web Engineering",
       roleHeadline: "Systems & Craft Studio",
       statement: "We build high-performance web applications, precision UI design systems, and resilient cloud delivery platforms.",
@@ -295,7 +295,7 @@ export const copy: Localized<PortfolioCopy> = {
     },
     work: {
       sectionLabel: "Products",
-      systemsLive: "04 Systems Live",
+      systemsLive: "Systems Live",
       copyCli: "COPY CLI",
       copied: "COPIED",
       openSystem: "Open System",
@@ -479,9 +479,9 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
       switchLangAria: "Chuyển sang Tiếng Anh",
     },
     hero: {
-      eyebrow: "STUDIO HỆ THỐNG & GIAO DIỆN HIỆN ĐẠI",
+      eyebrow: "MỘT STUDIO KỸ THUẬT",
       headline: "STUDIO HỆ THỐNG &\nGIAO DIỆN HIỆN ĐẠI",
-      subline: "FRONTEND MOTION · KIẾN TRÚC SẢN PHẨM · HẠ TẦNG TIN CẬY",
+      subline: "SẢN PHẨM VÀ HẠ TẦNG",
       status: "Sẵn sàng cho dự án Hệ thống & Web Engineering",
       roleHeadline: "Studio Hệ thống & Giao diện",
       statement: "Chúng tôi xây dựng các ứng dụng web hiệu năng cao, hệ thống thiết kế giao diện chuẩn xác và nền tảng phân phối đám mây bền bỉ.",
@@ -514,7 +514,7 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
     },
     work: {
       sectionLabel: "Sản phẩm",
-      systemsLive: "04 Hệ thống trực tiếp",
+      systemsLive: "Hệ thống trực tiếp",
       copyCli: "SAO CHÉP CLI",
       copied: "ĐÃ CHÉP",
       openSystem: "Mở Hệ Thống",

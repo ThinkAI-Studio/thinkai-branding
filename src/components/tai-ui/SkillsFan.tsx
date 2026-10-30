@@ -189,11 +189,11 @@ export function SkillsFan() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-white/[0.08] pb-6">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-emerald-400 ">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>{language === "vi" ? "NĂNG LỰC KỸ THUẬT" : "CORE TECHNICAL STACK"}</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white uppercase font-sans">
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white  font-sans">
               {language === "vi" ? "Kiến Trúc & Công Nghệ" : "Engineering Matrix"}
             </h2>
           </div>
@@ -212,7 +212,7 @@ export function SkillsFan() {
             {SKILL_CARDS.map((card) => (
               <div
                 key={card.id}
-                className="p-5 rounded-[10px] bg-[#131316] border border-white/[0.1] space-y-3"
+                className="p-5 rounded-xl bg-[#131316] border border-white/[0.1] space-y-3"
               >
                 <div className="flex items-center justify-between text-xs font-mono text-neutral-400">
                   <span>{card.mark}</span>
@@ -226,7 +226,7 @@ export function SkillsFan() {
                   {card.tags.map((t) => (
                     <span
                       key={t}
-                      className="px-2 py-0.5 rounded-[10px] bg-white/[0.05] border border-white/10 text-[11px] font-mono text-neutral-300"
+                      className="px-2 py-0.5 rounded-xl bg-white/[0.05] border border-white/10 text-[11px] font-mono text-neutral-300"
                     >
                       {t}
                     </span>
@@ -265,18 +265,18 @@ export function SkillsFan() {
                     }}
                   >
                     {/* Motion target for click ripple wave */}
-                    <div className="toolkit-card__motion w-full h-full p-6 sm:p-7 rounded-[10px] bg-[#131316] border border-white/[0.12] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_20px_50px_rgba(0,0,0,0.85)] flex flex-col justify-between transition-colors duration-300 group-hover:border-white/[0.3] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_25px_60px_rgba(0,0,0,0.95)]">
+                    <div className="toolkit-card__motion w-full h-full p-6 sm:p-7 rounded-xl bg-[#131316] border border-white/[0.12] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_20px_50px_rgba(0,0,0,0.85)] flex flex-col justify-between transition-colors duration-300 group-hover:border-white/[0.3] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_25px_60px_rgba(0,0,0,0.95)]">
                       {/* Top Bar: Mark + Group */}
                       <div className="flex items-center justify-between font-mono text-xs text-neutral-400 border-b border-white/[0.08] pb-3">
                         <span className="font-bold text-white/80">{card.mark}</span>
-                        <span className="px-2 py-0.5 rounded-[10px] bg-white/[0.06] border border-white/10 text-emerald-400 text-[10px] font-bold">
+                        <span className="px-2 py-0.5 rounded-xl bg-white/[0.06] border border-white/10 text-emerald-400 text-[10px] font-bold">
                           {card.group[language]}
                         </span>
                       </div>
 
                       {/* Middle: Logo & Title */}
                       <div className="space-y-3 py-4">
-                        <div className="w-12 h-12 rounded-[10px] bg-white/[0.05] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-300">
+                        <div className="w-12 h-12 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-300">
                           <TechLogo name={card.tech} className="w-7 h-7" />
                         </div>
                         <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
@@ -292,7 +292,7 @@ export function SkillsFan() {
                         {card.tags.slice(0, 3).map((t) => (
                           <span
                             key={t}
-                            className="px-2 py-0.5 rounded-[10px] bg-white/[0.04] text-[10.5px] font-mono text-neutral-300"
+                            className="px-2 py-0.5 rounded-xl bg-white/[0.04] text-[10.5px] font-mono text-neutral-300"
                           >
                             {t}
                           </span>

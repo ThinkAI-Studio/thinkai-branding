@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
@@ -23,38 +23,6 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
   const { language } = useLanguage();
   const t = copy[language];
 
-  const [liveTime, setLiveTime] = useState<string>("");
-  const [liveDate, setLiveDate] = useState<string>("");
-
-  // Vietnam Live Time Clock
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setLiveTime(
-        now.toLocaleTimeString(language === "vi" ? "vi-VN" : "en-US", {
-          timeZone: "Asia/Ho_Chi_Minh",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        })
-      );
-      setLiveDate(
-        now
-          .toLocaleDateString(language === "vi" ? "vi-VN" : "en-US", {
-            timeZone: "Asia/Ho_Chi_Minh",
-            weekday: "short",
-            month: "short",
-            day: "2-digit",
-          })
-          .toUpperCase()
-      );
-    };
-
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
-    return () => clearInterval(timer);
-  }, [language]);
 
   const aiPlatforms = [
     { name: "ChatGPT", icon: OpenAiIcon, url: "https://chatgpt.com" },
@@ -66,12 +34,11 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
   return (
     <footer
-      className="relative z-20 w-full select-none"
+      className="relative z-20 w-full select-none lg:min-h-[100svh] lg:h-[100svh] lg:flex lg:flex-col lg:justify-between"
       style={{ backgroundColor: "#1455B4", color: "#F7EFDC" }}
     >
       {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
-      {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
-      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 pt-8 pb-6 space-y-6 relative z-10">
+      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 pt-8 pb-6 space-y-6 relative z-10 lg:flex-shrink-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column (Span 6): Brand, 1-line Manifesto, Unified Icons Row */}
           <div className="lg:col-span-6 space-y-4">
@@ -92,9 +59,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   className="object-contain"
                 />
               </div>
-              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">
-                THINKAI STUDIO
-              </span>
+              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">THINKAI STUDIO</span>
             </div>
 
             {/* Manifesto: 1 concise sentence */}
@@ -104,7 +69,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 : "A Systems & Craft Web Studio engineering high-performance modern web."}
             </p>
 
-            {/* Social & AI Icons in one clean row */}
+            {/* Social & AI Icons in one clean row - All 9 identical 32px square boxes */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
               <div className="flex items-center gap-1.5">
                 <a
@@ -112,7 +77,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
                 </a>
@@ -122,7 +87,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                 </a>
@@ -130,7 +95,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <a
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
                 </a>
@@ -140,7 +105,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Twitter className="w-3.5 h-3.5" />
                 </a>
@@ -162,7 +127,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
                       aria-label={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
                     </button>
@@ -177,49 +142,53 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 1: Products */}
             <div className="space-y-3">
               <div
-                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
-                style={{
-                  color: "rgba(247, 239, 220, 0.66)",
-                  borderColor: "rgba(247, 239, 220, 0.28)",
-                }}
+                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
               >
-                {language === "vi" ? "01 / SẢN PHẨM" : "01 / PRODUCTS"}
+                {language === "vi" ? "Sản phẩm" : "Products"}
               </div>
-              <ul className="space-y-2 font-mono text-xs">
+              <ul className="flex flex-col font-mono text-xs">
                 <li>
                   <Link
                     href="/products/thinkai-ui"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>ThinkAI UI</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      ThinkAI UI
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/wind"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>Wind Digital Folio</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      Wind Digital Folio
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/homelab"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>HostDeck Console</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      HostDeck Console
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/thinkai"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>ThinkAI Learning</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      ThinkAI Learning
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
               </ul>
@@ -228,42 +197,44 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 2: Studio */}
             <div className="space-y-3">
               <div
-                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
-                style={{
-                  color: "rgba(247, 239, 220, 0.66)",
-                  borderColor: "rgba(247, 239, 220, 0.28)",
-                }}
+                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
               >
-                {language === "vi" ? "02 / STUDIO" : "02 / STUDIO"}
+                Studio
               </div>
-              <ul className="space-y-2 font-mono text-xs">
+              <ul className="flex flex-col font-mono text-xs">
                 <li>
                   <button
                     type="button"
                     onClick={onOpenAbout}
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>{language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}</span>
-                    <span className="text-[10px] opacity-70">↳</span>
+                    <span>
+                      {language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↳</span>
+                    </span>
                   </button>
                 </li>
                 <li>
                   <Link
                     href="/about"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>{language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      {language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </Link>
                 </li>
                 <li>
                   <button
                     type="button"
                     onClick={onOpenContact}
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>{language === "vi" ? "Bắt đầu dự án" : "Start a Project"}</span>
-                    <span className="text-[10px] opacity-70">↳</span>
+                    <span>
+                      {language === "vi" ? "Bắt đầu dự án" : "Start a Project"}
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↳</span>
+                    </span>
                   </button>
                 </li>
                 <li>
@@ -271,10 +242,12 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     href="/NguyenBinhMinh-DevOpsEngineer-2026.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
-                    <span>DevOps CV (PDF)</span>
-                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>
+                      DevOps CV (PDF)
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </span>
                   </a>
                 </li>
               </ul>
@@ -282,32 +255,27 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           </div>
         </div>
 
-        {/* Meta Row: Copyright, Live Time & Back to Top */}
+        {/* Meta Row: Copyright on left, Back to Top on right (exactly two items) */}
         <div
-          className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs"
+          className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
-          <div className="font-medium" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+          <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
             ThinkAI Studio © 2026. All Rights Reserved.
           </div>
 
-          <div className="flex items-center gap-4">
-            <span style={{ color: "rgba(247, 239, 220, 0.66)" }}>
-              {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}{liveDate ? ` · ${liveDate}` : ""}
-            </span>
-            <a
-              href="#top"
-              className="hover:text-white transition-colors"
-              style={{ color: "rgba(247, 239, 220, 0.66)" }}
-            >
-              {t.footer.backToTop} ↑
-            </a>
-          </div>
+          <a
+            href="#top"
+            className="hover:text-white transition-colors whitespace-nowrap"
+            style={{ color: "rgba(247, 239, 220, 0.66)" }}
+          >
+            {t.footer.backToTop}
+          </a>
         </div>
       </div>
 
-      {/* Artwork: plain block, pulled up into empty sky field so whole composition fits comfortably without text overlap */}
-      <picture className="block w-full pointer-events-none -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 relative z-0">
+      {/* Artwork: flex remainder on desktop (>=1024px) */}
+      <picture className="block w-full pointer-events-none -mt-16 sm:-mt-24 md:-mt-32 lg:mt-0 lg:flex-1 lg:min-h-0 relative z-0 overflow-hidden">
         <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.avif" type="image/avif" />
         <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.webp" type="image/webp" />
         <source srcSet="/images/footer-lighthouse-sky.avif" type="image/avif" />

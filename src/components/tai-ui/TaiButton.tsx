@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { TAI_EASE } from "@/lib/motion";
 
 export const taiButtonVariants = cva(
-  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-[10px] font-mono text-xs tracking-wider uppercase transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
+  "relative inline-flex items-center justify-center gap-2 overflow-hidden font-mono text-xs tracking-wider transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
   {
     variants: {
       variant: {
@@ -22,10 +22,10 @@ export const taiButtonVariants = cva(
           "bg-transparent text-white/60 hover:text-white hover:bg-white/[0.04] font-medium",
       },
       size: {
-        default: "px-5 py-2.5",
-        sm: "px-3 py-1.5 text-[11px]",
-        lg: "px-7 py-3.5 text-sm",
-        icon: "h-9 w-9 p-0",
+        default: "px-5 py-2.5 rounded-xl",
+        sm: "px-3 py-1.5 text-[11px] rounded-lg",
+        lg: "px-7 py-3.5 text-sm rounded-2xl",
+        icon: "h-9 w-9 p-0 rounded-lg",
       },
     },
     defaultVariants: {

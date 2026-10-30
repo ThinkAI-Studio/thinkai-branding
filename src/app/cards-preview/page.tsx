@@ -112,7 +112,7 @@ export default function CardsPreviewPage() {
       <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#0c0c0e]/95 backdrop-blur-md px-6 sm:px-10 py-3.5 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono text-xs tracking-widest uppercase font-bold text-white">
+          <span className="font-mono text-xs tracking-widest  font-bold text-white">
             THINKAI STUDIO · PRODUCT CARDS PROTOTYPE LAB
           </span>
           <span className="hidden md:inline-block px-2 py-0.5 font-mono text-[10px] bg-white/[0.06] text-neutral-400 border border-white/[0.08]">
@@ -154,12 +154,12 @@ export default function CardsPreviewPage() {
             {/* Header Badge */}
             <div className="border-b border-white/[0.08] pb-6 flex flex-wrap items-baseline justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-[11px] uppercase tracking-wider font-bold">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-[11px]  tracking-wider font-bold">
                   <span>TYPE 01</span>
                   <span className="text-emerald-500/40">/</span>
                   <span>EDITORIAL SPLIT GRID (7:5 ASYMMETRIC)</span>
                 </div>
-                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white uppercase">
+                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white ">
                   Editorial Split Cards
                 </h2>
                 <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-3xl">
@@ -177,7 +177,7 @@ export default function CardsPreviewPage() {
               <div className="lg:col-span-2 lg:sticky lg:top-24">
                 <div className="flex items-center gap-2 text-sm font-bold text-neutral-200">
                   <span className="w-2.5 h-2.5 bg-emerald-400" />
-                  <span className="uppercase tracking-wider">Products</span>
+                  <span className=" tracking-wider">Products</span>
                 </div>
                 <span className="block text-xs font-mono text-neutral-500 mt-2">
                   03 Live Systems
@@ -198,7 +198,7 @@ export default function CardsPreviewPage() {
                               <span className="w-2 h-2 bg-white/20" />
                               <span className="w-2 h-2 bg-white/20" />
                               <span className="w-2 h-2 bg-white/20" />
-                              <span className="font-mono text-[10px] text-neutral-400 pl-2 uppercase">
+                              <span className="font-mono text-[10px] text-neutral-400 pl-2 ">
                                 {prod.mark} {"//"} {prod.id}
                               </span>
                             </div>
@@ -255,10 +255,10 @@ export default function CardsPreviewPage() {
 
                         {/* Title & Headline */}
                         <div className="space-y-2">
-                          <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase">
+                          <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white ">
                             {prod.title}
                           </h3>
-                          <p className="text-xs sm:text-sm font-mono text-neutral-400 uppercase tracking-wide">
+                          <p className="text-xs sm:text-sm font-mono text-neutral-400  tracking-wide">
                             {prod.category}
                           </p>
                         </div>
@@ -319,7 +319,7 @@ export default function CardsPreviewPage() {
                             href={`https://${prod.domain}`}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-mono text-xs font-bold  tracking-wider hover:bg-neutral-200 transition-colors"
                           >
                             <span>Open System</span>
                             <ArrowUpRight className="w-4 h-4" />
@@ -342,12 +342,12 @@ export default function CardsPreviewPage() {
             {/* Header Badge */}
             <div className="border-b border-white/[0.08] pb-6 flex flex-wrap items-baseline justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono text-[11px] uppercase tracking-wider font-bold">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono text-[11px]  tracking-wider font-bold">
                   <span>TYPE 02</span>
                   <span className="text-cyan-500/40">/</span>
                   <span>MASTER-DETAIL SYSTEMS CONSOLE</span>
                 </div>
-                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white uppercase">
+                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white ">
                   Unified Master Stage Console
                 </h2>
                 <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-3xl">
@@ -369,7 +369,7 @@ export default function CardsPreviewPage() {
                     <span className="w-2.5 h-2.5 bg-yellow-500/80" />
                     <span className="w-2.5 h-2.5 bg-emerald-500/80" />
                   </div>
-                  <span className="font-mono text-xs font-bold tracking-wider text-white uppercase">
+                  <span className="font-mono text-xs font-bold tracking-wider text-white ">
                     THINKAI STUDIO // ARCHITECTURAL CONTROL DESK
                   </span>
                 </div>
@@ -552,12 +552,12 @@ export default function CardsPreviewPage() {
             {/* Header Badge */}
             <div className="border-b border-white/[0.08] pb-6 flex flex-wrap items-baseline justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono text-[11px] uppercase tracking-wider font-bold">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono text-[11px]  tracking-wider font-bold">
                   <span>TYPE 03</span>
                   <span className="text-purple-500/40">/</span>
                   <span>KINETIC HORIZONTAL RAIL</span>
                 </div>
-                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white uppercase">
+                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white ">
                   Filmstrip Horizontal Snap Track
                 </h2>
                 <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-3xl">
@@ -618,7 +618,7 @@ export default function CardsPreviewPage() {
                   {/* Card Content */}
                   <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                     <div className="space-y-2">
-                      <span className="font-mono text-[11px] text-neutral-400 uppercase">
+                      <span className="font-mono text-[11px] text-neutral-400 ">
                         {prod.category}
                       </span>
                       <h3 className="text-2xl font-bold text-white tracking-tight">
@@ -685,12 +685,12 @@ export default function CardsPreviewPage() {
             {/* Header Badge */}
             <div className="border-b border-white/[0.08] pb-6 flex flex-wrap items-baseline justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono text-[11px] uppercase tracking-wider font-bold">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 mb-3 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono text-[11px]  tracking-wider font-bold">
                   <span>TYPE 04</span>
                   <span className="text-amber-500/40">/</span>
                   <span>ASYMMETRIC BENTO GRID</span>
                 </div>
-                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white uppercase">
+                <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white ">
                   Dynamic Hierarchical Bento
                 </h2>
                 <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-3xl">
@@ -718,7 +718,7 @@ export default function CardsPreviewPage() {
                       <span className="text-neutral-300">47 COMPONENTS READY</span>
                     </div>
 
-                    <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase">
+                    <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight ">
                       ThinkAI UI
                     </h3>
 
@@ -728,7 +728,7 @@ export default function CardsPreviewPage() {
 
                     {/* Quick Command */}
                     <div className="p-4 bg-black/60 border border-white/10 space-y-2">
-                      <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-wider block">
+                      <span className="font-mono text-[10px] text-neutral-400  tracking-wider block">
                         Quick Install Command:
                       </span>
                       <div className="flex items-center justify-between font-mono text-xs">
@@ -751,7 +751,7 @@ export default function CardsPreviewPage() {
                         href="https://ui.thinkai.id.vn"
                         target="_blank"
                         rel="noreferrer"
-                        className="px-5 py-2.5 bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors inline-flex items-center gap-2"
+                        className="px-5 py-2.5 bg-white text-black font-mono text-xs font-bold  tracking-wider hover:bg-neutral-200 transition-colors inline-flex items-center gap-2"
                       >
                         <span>Explore Registry</span>
                         <ArrowUpRight className="w-4 h-4" />

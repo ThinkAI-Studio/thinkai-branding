@@ -47,7 +47,7 @@ export function ExperienceEducationLegacy() {
               {/* 3-Pillar Clean Hairline Columns with Scaled Font */}
               <LanguageTransition langKey={language} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs border-y border-white/[0.08] py-8">
                 <div>
-                  <span className="text-neutral-400 font-mono text-xs font-bold uppercase tracking-wider block">
+                  <span className="text-neutral-400 font-mono text-xs font-bold  tracking-wider block">
                     {t.experience.columns.problemLabel}
                   </span>
                   <p className="text-sm sm:text-base text-neutral-200 mt-2.5 leading-relaxed font-light">
@@ -55,7 +55,7 @@ export function ExperienceEducationLegacy() {
                   </p>
                 </div>
                 <div>
-                  <span className="text-neutral-400 font-mono text-xs font-bold uppercase tracking-wider block">
+                  <span className="text-neutral-400 font-mono text-xs font-bold  tracking-wider block">
                     {t.experience.columns.approachLabel}
                   </span>
                   <p className="text-sm sm:text-base text-neutral-200 mt-2.5 leading-relaxed font-light">
@@ -63,7 +63,7 @@ export function ExperienceEducationLegacy() {
                   </p>
                 </div>
                 <div>
-                  <span className="text-neutral-400 font-mono text-xs font-bold uppercase tracking-wider block">
+                  <span className="text-neutral-400 font-mono text-xs font-bold  tracking-wider block">
                     {t.experience.columns.outcomeLabel}
                   </span>
                   <p className="text-sm sm:text-base text-neutral-200 mt-2.5 leading-relaxed font-light">
@@ -77,7 +77,7 @@ export function ExperienceEducationLegacy() {
                 {t.experience.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="tai-tag-pill px-3 py-1.5 rounded-[10px] text-xs sm:text-[13px] font-mono cursor-default"
+                    className="tai-tag-pill px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-mono cursor-default"
                   >
                     {tag}
                   </span>
@@ -122,7 +122,7 @@ export function ExperienceEducationLegacy() {
                 {t.education.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="tai-tag-pill px-3 py-1 rounded-[10px] text-xs sm:text-[13px] font-mono cursor-default"
+                    className="tai-tag-pill px-3 py-1 rounded-xl text-xs sm:text-[13px] font-mono cursor-default"
                   >
                     {tag}
                   </span>
@@ -152,7 +152,7 @@ export function ExperienceEducationLegacy() {
                 {t.education.recognitions.flatMap((r) => r.tags).map((tag) => (
                   <span
                     key={tag}
-                    className="tai-tag-pill px-3 py-1 rounded-[10px] text-xs sm:text-[13px] font-mono cursor-default"
+                    className="tai-tag-pill px-3 py-1 rounded-xl text-xs sm:text-[13px] font-mono cursor-default"
                   >
                     {tag}
                   </span>

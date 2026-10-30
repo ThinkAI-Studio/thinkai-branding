@@ -75,7 +75,7 @@ export function ScrollIndicator() {
   return (
     <nav
       aria-label="Page scroll progress"
-      className="scroll-indicator fixed bottom-6 sm:bottom-8 right-6 sm:right-10 z-40 flex items-center gap-1.5 p-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl transition-opacity duration-300 select-none"
+      className="scroll-indicator fixed bottom-6 sm:bottom-8 right-6 sm:right-10 z-40 flex items-center gap-1.5 p-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl transition-opacity duration-300 select-none"
     >
       {SECTIONS.map((section, idx) => {
         // Geometric states from specification:
