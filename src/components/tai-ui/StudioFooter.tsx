@@ -124,13 +124,23 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           />
         </picture>
 
-        {/* LIGHT SWEEP (conic gradient light beam pivoting at lantern glass) */}
+        {/* LIGHT SOURCE PIVOT (Locked directly to the static lantern glass at x: 50%, y: 26.8%) */}
         <div
-          className="footer-beam-sweep"
+          className="absolute pointer-events-none z-[2]"
           style={{
-            animationPlayState: isSweepActive ? "running" : "paused",
+            left: "50%",
+            top: "26.8%",
+            width: 0,
+            height: 0,
           }}
-        />
+        >
+          <div
+            className="footer-beam-sweep"
+            style={{
+              animationPlayState: isSweepActive ? "running" : "paused",
+            }}
+          />
+        </div>
         {/* ATMOSPHERIC DUOTONE BLEND OVERLAY */}
         <div
           className="absolute inset-0 pointer-events-none"
