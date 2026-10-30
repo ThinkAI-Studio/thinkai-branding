@@ -7,27 +7,11 @@
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-.skills-card-highlight {
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.16) 30%,
-    rgba(255, 255, 255, 0.28) 50%,
-    rgba(255, 255, 255, 0.16) 70%,
-    transparent 100%
-  );
-  pointer-events: none;
-}
-
 .skills-card-surface {
-  background-color: #101014;
+  background-color: #111116;
   border-color: rgba(255, 255, 255, 0.08);
 }
 
 .skills-card-surface:hover {
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.18);
 }
