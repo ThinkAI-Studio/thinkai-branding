@@ -218,7 +218,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             aria-label={t.nav.switchLangAria}
             onClick={toggleLanguage}
             title={t.nav.switchLangAria}
-            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-[10px] bg-[#09090b]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
+            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-[10px] bg-[#050508]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
           >
             <button
               type="button"
@@ -318,7 +318,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.35, ease: LUXURY_EASE }}
             data-testid="mobile-nav-drawer"
-            className="fixed top-0 inset-x-0 z-40 bg-[#09090b]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
+            className="fixed top-0 inset-x-0 z-40 bg-[#050508]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
           >
             {/* Big Bold Vertical Links - Stable direct rendering without stuck variant trap */}
             <div className="flex flex-col gap-4 text-4xl font-bold tracking-tight text-white pt-2">
@@ -366,7 +366,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                   <span>{language === "vi" ? "NGÔN NGỮ" : "LANGUAGE"}</span>
                 </LanguageTransition>
               </div>
-              <div className="relative inline-flex items-center p-[3px] bg-[#09090b] border border-white/15 rounded-[10px] shadow-inner">
+              <div className="relative inline-flex items-center p-[3px] bg-[#050508] border border-white/15 rounded-[10px] shadow-inner">
                 <button
                   type="button"
                   onClick={() => {

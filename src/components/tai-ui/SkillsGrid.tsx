@@ -244,8 +244,8 @@ export function SkillsGrid() {
       aria-labelledby="skills-heading"
       className={
         prefersReduced
-          ? "relative z-20 bg-[#08080a] py-24 sm:py-32 border-t border-white/[0.08] overflow-x-clip"
-          : "relative z-20 bg-[#08080a] text-white border-t border-white/[0.08] overflow-x-clip md:h-[280vh]"
+          ? "relative z-20 bg-[#040406] py-24 sm:py-32 border-t border-white/[0.08] overflow-x-clip"
+          : "relative z-20 bg-[#040406] text-white border-t border-white/[0.08] overflow-x-clip md:h-[280vh]"
       }
     >
       {prefersReduced ? (
@@ -410,7 +410,7 @@ export function SkillsGrid() {
 
             {SKILL_CHAPTERS.map((chapter) => (
               <div key={chapter.id} className="space-y-4">
-                <div className="sticky top-16 z-20 py-3 bg-[#08080a]/95 backdrop-blur-md border-b border-white/[0.08] flex items-center justify-between">
+                <div className="sticky top-16 z-20 py-3 bg-[#040406]/95 backdrop-blur-md border-b border-white/[0.08] flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className={`text-[10px] font-mono font-bold ${chapter.accentClass}`}>
                       {chapter.index} / {chapter.category}

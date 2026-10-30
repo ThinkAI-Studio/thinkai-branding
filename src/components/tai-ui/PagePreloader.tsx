@@ -67,7 +67,7 @@ export function PagePreloader() {
             y: "-100%",
             transition: { duration: 0.65, ease: LUXURY_EASE },
           }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#08080a] text-white select-none pointer-events-auto"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#040406] text-white select-none pointer-events-auto"
         >
           {/* Subtle Atmospheric Glow */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
