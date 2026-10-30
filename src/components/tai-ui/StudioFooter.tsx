@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { WipeButton } from "./WipeButton";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { profile, copy } from "@/data/portfolio";
 import {
@@ -66,226 +65,205 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
   ];
 
   return (
-    <footer className="relative z-20 bg-gradient-to-b from-[#051138] via-[#071a52] to-[#040c28] text-white border-t border-white/[0.12] overflow-hidden select-none">
-      {/* Upper Main Footer Grid */}
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16 pt-20 sm:pt-28 pb-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* ─── LEFT COLUMN (SPAN 5): BRAND, MANIFESTO, SOCIAL STRIP ─── */}
-          <div className="lg:col-span-5 space-y-8">
-            {/* ThinkAI Studio Wordmark */}
+    <footer
+      className="relative z-20 w-full select-none"
+      style={{ backgroundColor: "#1455B4", color: "#F7EFDC" }}
+    >
+      {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
+      {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
+      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 pt-8 pb-6 space-y-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column (Span 6): Brand, 1-line Manifesto, Unified Icons Row */}
+          <div className="lg:col-span-6 space-y-4">
+            {/* Wordmark */}
             <div className="flex items-center gap-3">
-              <div className="relative w-8 h-8 rounded-[8px] overflow-hidden bg-white/10 p-1 flex items-center justify-center border border-white/20 shadow-lg">
+              <div
+                className="relative w-7 h-7 p-1 flex items-center justify-center border shadow-sm"
+                style={{
+                  backgroundColor: "rgba(247, 239, 220, 0.12)",
+                  borderColor: "rgba(247, 239, 220, 0.28)",
+                }}
+              >
                 <Image
                   src="/images/thinkai_studio_logo.png"
                   alt="ThinkAI Studio"
                   fill
-                  sizes="32px"
+                  sizes="28px"
                   className="object-contain"
                 />
               </div>
-              <span className="font-mono font-extrabold text-xl sm:text-2xl tracking-tight text-white uppercase">
+              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">
                 THINKAI STUDIO
               </span>
             </div>
 
-            {/* Studio Manifesto */}
-            <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed max-w-md font-sans">
+            {/* Manifesto: 1 concise sentence */}
+            <p className="text-xs sm:text-sm text-[#F7EFDC] leading-relaxed max-w-md font-sans opacity-90">
               {language === "vi"
-                ? "Studio hệ thống & giao diện chuyên nghiệp. Chúng tôi xây dựng các ứng dụng web hiệu năng cao, hệ thống thiết kế giao diện chuẩn xác và hạ tầng phân phối đám mây bền bỉ."
-                : "A Systems & Craft Web Studio engineering high-performance modern frontend, precision UI design systems, and resilient cloud delivery platforms."}
+                ? "Studio hệ thống & giao diện kỹ thuật số chuyên nghiệp."
+                : "A Systems & Craft Web Studio engineering high-performance modern web."}
             </p>
 
-            {/* Social Links Strip */}
-            <div className="space-y-3 pt-2">
-              <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-cyan-300 uppercase">
-                {language === "vi" ? "KẾT NỐI VỚI CHÚNG TÔI" : "CONNECT WITH STUDIO"}
-              </div>
-              <div className="flex flex-wrap items-center gap-2.5">
-                <WipeButton
-                  as="a"
+            {/* Social & AI Icons in one clean row */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <div className="flex items-center gap-1.5">
+                <a
                   href={profile.github}
                   target="_blank"
                   rel="noreferrer"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05103a"
-                  borderColor="rgba(255, 255, 255, 0.2)"
-                  hoverBorderColor="#ffffff"
-                  className="px-3 py-1.5 rounded-[10px] bg-white/[0.08] text-xs font-mono font-bold flex items-center gap-2 shadow-sm"
+                  aria-label="GitHub"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
-                  <span>GitHub</span>
-                  <ArrowUpRight className="w-3 h-3 text-cyan-300" />
-                </WipeButton>
+                </a>
 
-                <WipeButton
-                  as="a"
+                <a
                   href={profile.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05103a"
-                  borderColor="rgba(255, 255, 255, 0.2)"
-                  hoverBorderColor="#ffffff"
-                  className="px-3 py-1.5 rounded-[10px] bg-white/[0.08] text-xs font-mono font-bold flex items-center gap-2 shadow-sm"
+                  aria-label="LinkedIn"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
-                  <span>LinkedIn</span>
-                  <ArrowUpRight className="w-3 h-3 text-cyan-300" />
-                </WipeButton>
+                </a>
 
-                <WipeButton
-                  as="a"
+                <a
                   href={`mailto:${profile.email}`}
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05103a"
-                  borderColor="rgba(255, 255, 255, 0.2)"
-                  hoverBorderColor="#ffffff"
-                  className="px-3 py-1.5 rounded-[10px] bg-white/[0.08] text-xs font-mono font-bold flex items-center gap-2 shadow-sm"
+                  aria-label="Email"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>Email</span>
-                  <ArrowUpRight className="w-3 h-3 text-cyan-300" />
-                </WipeButton>
+                </a>
 
-                <WipeButton
-                  as="a"
+                <a
                   href="https://x.com/bnhminh1010"
                   target="_blank"
                   rel="noreferrer"
-                  wipeColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#05103a"
-                  borderColor="rgba(255, 255, 255, 0.2)"
-                  hoverBorderColor="#ffffff"
-                  className="px-3 py-1.5 rounded-[10px] bg-white/[0.08] text-xs font-mono font-bold flex items-center gap-2 shadow-sm"
+                  aria-label="X"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Twitter className="w-3.5 h-3.5" />
-                  <span>X</span>
-                  <ArrowUpRight className="w-3 h-3 text-cyan-300" />
-                </WipeButton>
+                </a>
               </div>
-            </div>
 
-            {/* AI Prompts Strip */}
-            <div className="space-y-3 pt-3">
-              <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-cyan-300 uppercase">
-                {language === "vi" ? "HỎI AI VỀ THINKAI STUDIO" : "ASK AI ABOUT THINKAI STUDIO"}
-              </div>
-              <div className="flex items-center gap-2">
+              <span className="w-px h-4 bg-[#F7EFDC]/30 mx-1 hidden sm:block" />
+
+              <div className="flex items-center gap-1.5">
                 {aiPlatforms.map((platform) => {
                   const IconComponent = platform.icon;
                   return (
-                    <WipeButton
+                    <button
                       key={platform.name}
+                      type="button"
                       onClick={() => {
                         if (typeof navigator !== "undefined" && navigator.clipboard) {
                           navigator.clipboard.writeText(t.footer.askAiPrompt);
                         }
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
-                      wipeColor="#ffffff"
-                      textColor="#ffffff"
-                      hoverTextColor="#05103a"
-                      borderColor="rgba(255, 255, 255, 0.2)"
-                      hoverBorderColor="#ffffff"
-                      ariaLabel={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8.5 h-8.5 rounded-[8px] flex items-center justify-center cursor-pointer select-none bg-white/[0.08] shadow-sm"
+                      aria-label={`Ask ${platform.name} about ThinkAI`}
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-none text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
-                    </WipeButton>
+                    </button>
                   );
                 })}
               </div>
-              <p className="text-[11px] font-mono text-blue-200/70">
-                {t.footer.askAiHint}
-              </p>
             </div>
           </div>
 
-          {/* ─── RIGHT COLUMN (SPAN 7): 3-COLUMN OUTRIDER NAVIGATION ─── */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 pt-4 lg:pt-0">
+          {/* Right Column (Span 6): Two Nav Columns (01 / Products, 02 / Studio) */}
+          <div className="lg:col-span-6 grid grid-cols-2 gap-6 sm:gap-8 pt-2 lg:pt-0">
             {/* Nav Column 1: Products */}
-            <div className="space-y-4">
-              <div className="text-xs font-mono font-bold tracking-[0.2em] text-cyan-300 uppercase border-b border-white/[0.12] pb-2">
+            <div className="space-y-3">
+              <div
+                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
+                style={{
+                  color: "rgba(247, 239, 220, 0.66)",
+                  borderColor: "rgba(247, 239, 220, 0.28)",
+                }}
+              >
                 {language === "vi" ? "01 / SẢN PHẨM" : "01 / PRODUCTS"}
               </div>
-              <ul className="space-y-2.5 font-mono text-xs">
+              <ul className="space-y-2 font-mono text-xs">
                 <li>
                   <Link
                     href="/products/thinkai-ui"
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
                   >
                     <span>ThinkAI UI</span>
-                    <span className="text-[10px] text-cyan-400 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/wind"
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
                   >
                     <span>Wind Digital Folio</span>
-                    <span className="text-[10px] text-cyan-400 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/homelab"
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
                   >
                     <span>HostDeck Console</span>
-                    <span className="text-[10px] text-cyan-400 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/products/thinkai"
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
                   >
                     <span>ThinkAI Learning</span>
-                    <span className="text-[10px] text-cyan-400 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
                   </Link>
                 </li>
               </ul>
             </div>
 
             {/* Nav Column 2: Studio */}
-            <div className="space-y-4">
-              <div className="text-xs font-mono font-bold tracking-[0.2em] text-cyan-300 uppercase border-b border-white/[0.12] pb-2">
+            <div className="space-y-3">
+              <div
+                className="text-xs font-mono font-bold tracking-[0.2em] uppercase pb-1.5 border-b"
+                style={{
+                  color: "rgba(247, 239, 220, 0.66)",
+                  borderColor: "rgba(247, 239, 220, 0.28)",
+                }}
+              >
                 {language === "vi" ? "02 / STUDIO" : "02 / STUDIO"}
               </div>
-              <ul className="space-y-2.5 font-mono text-xs">
+              <ul className="space-y-2 font-mono text-xs">
                 <li>
                   <button
                     type="button"
                     onClick={onOpenAbout}
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                   >
-                    <span>{language === "vi" ? "Về Studio (Sidebar)" : "About Studio (Drawer)"}</span>
-                    <span className="text-[10px] text-cyan-400">↳</span>
+                    <span>{language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}</span>
+                    <span className="text-[10px] opacity-70">↳</span>
                   </button>
                 </li>
                 <li>
                   <Link
                     href="/about"
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
                   >
-                    <span>{language === "vi" ? "Giới thiệu đầy đủ" : "Full Dossier (/about)"}</span>
-                    <span className="text-[10px] text-cyan-400 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span>{language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}</span>
+                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
                   </Link>
                 </li>
                 <li>
                   <button
                     type="button"
                     onClick={onOpenContact}
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                   >
                     <span>{language === "vi" ? "Bắt đầu dự án" : "Start a Project"}</span>
-                    <span className="text-[10px] text-cyan-400">↳</span>
+                    <span className="text-[10px] opacity-70">↳</span>
                   </button>
                 </li>
                 <li>
@@ -293,143 +271,59 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     href="/NguyenBinhMinh-DevOpsEngineer-2026.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-blue-100 hover:text-white flex items-center gap-1.5 transition-colors group"
+                    className="text-[#F7EFDC] hover:text-white flex items-center gap-1.5 transition-colors group"
                   >
                     <span>DevOps CV (PDF)</span>
-                    <span className="text-[10px] text-cyan-400 group-hover:translate-x-0.5 transition-transform">↗</span>
+                    <span className="text-[10px] opacity-70 group-hover:translate-x-0.5 transition-transform">↗</span>
                   </a>
                 </li>
               </ul>
             </div>
-
-            {/* Nav Column 3: Engineering */}
-            <div className="space-y-4">
-              <div className="text-xs font-mono font-bold tracking-[0.2em] text-cyan-300 uppercase border-b border-white/[0.12] pb-2">
-                {language === "vi" ? "03 / KỸ THUẬT" : "03 / ENGINEERING"}
-              </div>
-              <ul className="space-y-2.5 font-mono text-xs text-blue-200/80">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                  <span>Next.js 16 & React 19</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>GSAP & Framer Motion</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                  <span>Rootless Podman & K3s</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                  <span>Zero-Trust Mesh & SAST</span>
-                </li>
-              </ul>
-            </div>
-
           </div>
         </div>
 
-        {/* Hairline Divider & Bottom Metadata */}
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-white/[0.12] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-blue-200/70">
-          <div>
-            {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"} · {liveDate || "MON, AUG 31"}
-          </div>
-
-          <div className="text-center">
-            <WipeButton
-              as="a"
-              href="#top"
-              wipeColor="#ffffff"
-              textColor="#ffffff"
-              hoverTextColor="#05103a"
-              borderColor="rgba(255, 255, 255, 0.2)"
-              hoverBorderColor="#ffffff"
-              className="px-3 py-1 rounded-[8px] bg-white/[0.08] inline-block text-xs font-mono font-bold"
-            >
-              <span>{t.footer.backToTop}</span>
-            </WipeButton>
-          </div>
-
-          <div className="text-right font-medium">
+        {/* Meta Row: Copyright, Live Time & Back to Top */}
+        <div
+          className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs"
+          style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
+        >
+          <div className="font-medium" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
             ThinkAI Studio © 2026. All Rights Reserved.
           </div>
+
+          <div className="flex items-center gap-4">
+            <span style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+              {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}{liveDate ? ` · ${liveDate}` : ""}
+            </span>
+            <a
+              href="#top"
+              className="hover:text-white transition-colors"
+              style={{ color: "rgba(247, 239, 220, 0.66)" }}
+            >
+              {t.footer.backToTop} ↑
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* ─── BOTTOM LAYOUT: PANORAMIC DUOTONE CYBERNETIC DESERT ARTWORK ─── */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-transparent to-[#040920] pt-4">
-        {/* Full-width Panoramic Duotone SVG Art */}
-        <svg
-          viewBox="0 0 1440 240"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-40 sm:h-52 lg:h-60 object-cover pointer-events-none opacity-85 select-none"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="cobalt-sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#071a52" stopOpacity="0" />
-              <stop offset="60%" stopColor="#0a2575" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#040b26" stopOpacity="0.95" />
-            </linearGradient>
-            <linearGradient id="dune-1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#092268" />
-              <stop offset="100%" stopColor="#05123d" />
-            </linearGradient>
-            <linearGradient id="dune-2" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0b2b85" />
-              <stop offset="100%" stopColor="#040d2b" />
-            </linearGradient>
-          </defs>
-
-          {/* Background Sky Fill */}
-          <rect width="1440" height="240" fill="url(#cobalt-sky)" />
-
-          {/* Starlight & Constellation Grid */}
-          <circle cx="240" cy="40" r="1.5" fill="#38bdf8" opacity="0.8" />
-          <circle cx="380" cy="65" r="1.2" fill="#ffffff" opacity="0.6" />
-          <circle cx="720" cy="30" r="2.0" fill="#38bdf8" opacity="0.9" />
-          <circle cx="980" cy="50" r="1.2" fill="#ffffff" opacity="0.7" />
-          <circle cx="1200" cy="35" r="1.8" fill="#38bdf8" opacity="0.8" />
-          <line x1="240" y1="40" x2="380" y2="65" stroke="rgba(56, 189, 248, 0.2)" strokeDasharray="3 3" />
-          <line x1="980" y1="50" x2="1200" y2="35" stroke="rgba(56, 189, 248, 0.2)" strokeDasharray="3 3" />
-
-          {/* Telemetry Towers on Horizon */}
-          <line x1="420" y1="120" x2="420" y2="70" stroke="#38bdf8" strokeWidth="1.5" opacity="0.7" />
-          <circle cx="420" cy="68" r="2.5" fill="#38bdf8" />
-          <line x1="1050" y1="130" x2="1050" y2="85" stroke="#38bdf8" strokeWidth="1.5" opacity="0.7" />
-          <circle cx="1050" cy="83" r="2.5" fill="#38bdf8" />
-
-          {/* Layer 1: Distant Cybernetic Ridge */}
-          <path
-            d="M0 160 L180 135 L340 150 L520 120 L720 145 L940 115 L1120 140 L1280 125 L1440 155 L1440 240 L0 240 Z"
-            fill="url(#dune-1)"
-            opacity="0.75"
-          />
-
-          {/* Layer 2: Middle Dunes */}
-          <path
-            d="M0 185 Q360 140 720 175 T1440 170 L1440 240 L0 240 Z"
-            fill="url(#dune-2)"
-            opacity="0.9"
-          />
-
-          {/* Layer 3: Perspective Grid Mesh Lines on Forefront Dunes */}
-          <line x1="0" y1="210" x2="1440" y2="210" stroke="rgba(56, 189, 248, 0.2)" strokeWidth="1" />
-          <line x1="0" y1="225" x2="1440" y2="225" stroke="rgba(56, 189, 248, 0.25)" strokeWidth="1" />
-          <line x1="0" y1="237" x2="1440" y2="237" stroke="rgba(56, 189, 248, 0.35)" strokeWidth="1.5" />
-
-          {/* Perspective Ray Lines */}
-          <line x1="720" y1="175" x2="100" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="350" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="580" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="860" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="1090" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-          <line x1="720" y1="175" x2="1340" y2="240" stroke="rgba(56, 189, 248, 0.15)" strokeWidth="1" />
-        </svg>
-
-      </div>
+      {/* Artwork: plain block, pulled up into empty sky field so whole composition fits comfortably without text overlap */}
+      <picture className="block w-full pointer-events-none -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 relative z-0">
+        <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.avif" type="image/avif" />
+        <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.webp" type="image/webp" />
+        <source srcSet="/images/footer-lighthouse-sky.avif" type="image/avif" />
+        <source srcSet="/images/footer-lighthouse-sky.webp" type="image/webp" />
+        <img
+          src="/images/footer-lighthouse-sky.png"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="w-full h-auto block pointer-events-none footer-artwork-img"
+          style={{
+            maskImage: "linear-gradient(180deg, transparent 0px, #000 64px)",
+            WebkitMaskImage: "linear-gradient(180deg, transparent 0px, #000 64px)",
+          }}
+        />
+      </picture>
     </footer>
   );
 }

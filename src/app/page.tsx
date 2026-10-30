@@ -297,7 +297,7 @@ export default function PortfolioPage() {
       <SkillsGrid />
 
       {/* ─── 07. CALL TO ACTION CLOSURE ─── */}
-      <section id="contact" className="relative z-10 min-h-[92vh] flex items-center justify-center py-28 px-6 bg-transparent pointer-events-none">
+      <section id="contact" className="relative z-10 min-h-[92vh] flex items-center justify-center pt-36 sm:pt-48 pb-28 px-6 bg-transparent pointer-events-none">
         <div className="space-y-10 max-w-5xl text-center flex flex-col items-center justify-center pointer-events-auto">
           {/* Massive Heading */}
           <LanguageTransition langKey={language}>
@@ -330,11 +330,11 @@ export default function PortfolioPage() {
           </div>
         </div>
       </section>
+
       {/* ─── 07B. OCEAN STIR INTERACTIVE ZONE ─── */}
       <OceanStirZone />
 
-
-      {/* ─── 08. OUTRIDER-STYLE COBALT BLUE STUDIO FOOTER ─── */}
+      {/* ─── 08. STUDIO FOOTER ─── */}
       <StudioFooter
         onOpenAbout={() => setIsAboutOpen(true)}
         onOpenContact={() => setIsContactOpen(true)}

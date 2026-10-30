@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  async rewrites() {
+    return [
+      {
+        source: "/opengraph-image.png",
+        destination: "/og-image.png",
+      },
+    ];
+  },
   async headers() {
     return [
       {

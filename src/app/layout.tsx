@@ -15,7 +15,7 @@ const barlowCondensed = localFont({
   variable: "--font-display-local",
 });
 
-const socialImage = "/og-image.png?v=20260901";
+const socialImage = "/og-image.png?v=20261030";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
