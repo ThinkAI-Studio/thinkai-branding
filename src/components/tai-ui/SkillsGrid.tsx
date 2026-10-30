@@ -104,16 +104,14 @@ export function SkillsGrid() {
         const s3Blocks = stacks[2].querySelectorAll(".bento-block");
 
         // Initial setup:
-        // Stack 1 blocks are at x: 80, opacity: 0 ready to stagger in
         gsap.set(stacks[0], { opacity: 1, pointerEvents: "auto" });
-        gsap.set(s1Blocks, { x: 80, opacity: 0 });
+        gsap.set(s1Blocks, { x: 90, opacity: 0 });
 
-        // Stacks 2 & 3 initially hidden
         gsap.set(stacks[1], { opacity: 0, pointerEvents: "none" });
-        gsap.set(s2Blocks, { x: 80, opacity: 0 });
+        gsap.set(s2Blocks, { x: 90, opacity: 0 });
 
         gsap.set(stacks[2], { opacity: 0, pointerEvents: "none" });
-        gsap.set(s3Blocks, { x: 80, opacity: 0 });
+        gsap.set(s3Blocks, { x: 90, opacity: 0 });
 
         // Discrete Timeline with generous HOLD zones so cards are always 100% steady & clear
         const tl = gsap.timeline({
@@ -143,8 +141,7 @@ export function SkillsGrid() {
           },
         });
 
-        // ─── NOTCH 1 (Stack 1: Web Architecture) ───
-        // Entry: Blocks run in sequentially from right
+        // ─── NOTCH 1 (Stack 1: Frontend - SoraLabs Layout) ───
         tl.to(
           s1Blocks,
           {
@@ -156,9 +153,9 @@ export function SkillsGrid() {
           },
           0.05
         );
-        // Generous HOLD ZONE (0.55 to 1.8) -> All blocks remain 100% visible and crystal clear!
+        // HOLD ZONE (0.55 to 1.8) -> All blocks 100% steady & crisp
 
-        // ─── TRANSITION 1 -> 2 (Quick transition, no floating halfway) ───
+        // ─── TRANSITION 1 -> 2 (Quick clean transition) ───
         tl.to(
           s1Blocks,
           {
@@ -173,8 +170,7 @@ export function SkillsGrid() {
         tl.set(stacks[0], { pointerEvents: "none", opacity: 0 }, 2.2);
         tl.set(stacks[1], { pointerEvents: "auto", opacity: 1 }, 2.2);
 
-        // ─── NOTCH 2 (Stack 2: DevOps & Infrastructure) ───
-        // Entry: Blocks run in sequentially from right
+        // ─── NOTCH 2 (Stack 2: Infrastructure & DevOps) ───
         tl.to(
           s2Blocks,
           {
@@ -186,9 +182,9 @@ export function SkillsGrid() {
           },
           2.2
         );
-        // Generous HOLD ZONE (2.7 to 4.0) -> All blocks remain 100% visible and crystal clear!
+        // HOLD ZONE (2.7 to 4.0)
 
-        // ─── TRANSITION 2 -> 3 (Quick transition) ───
+        // ─── TRANSITION 2 -> 3 ───
         tl.to(
           s2Blocks,
           {
@@ -203,8 +199,7 @@ export function SkillsGrid() {
         tl.set(stacks[1], { pointerEvents: "none", opacity: 0 }, 4.4);
         tl.set(stacks[2], { pointerEvents: "auto", opacity: 1 }, 4.4);
 
-        // ─── NOTCH 3 (Stack 3: Designer & Systems) ───
-        // Entry: Blocks run in sequentially from right
+        // ─── NOTCH 3 (Stack 3: Designer & Spatial Craft) ───
         tl.to(
           s3Blocks,
           {
@@ -216,7 +211,7 @@ export function SkillsGrid() {
           },
           4.4
         );
-        // Generous HOLD ZONE (4.9 to 6.2) -> All blocks remain 100% visible and crystal clear!
+        // HOLD ZONE (4.9 to 6.2)
       });
     }, sectionRef);
 
@@ -353,7 +348,7 @@ export function SkillsGrid() {
       ) : (
         <>
           {/* ========================================================
-              DESKTOP PINNED STAGE (>=768px): Pinned Discrete Notch Stacks
+              DESKTOP PINNED STAGE (>=768px): SoraLabs Minimalist Bento
              ======================================================== */}
           <div
             ref={stageRef}
@@ -384,7 +379,7 @@ export function SkillsGrid() {
                     type="button"
                     onClick={() => handleNotchClick(st.id)}
                     className={cn(
-                      "px-3 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer border",
+                      "px-3.5 py-1 rounded-full text-xs font-mono font-medium transition-all cursor-pointer border",
                       currentStackIdx === st.id
                         ? "bg-white text-black border-white shadow-[0_0_12px_rgba(255,255,255,0.4)] font-bold scale-105"
                         : "bg-white/[0.04] text-neutral-400 border-white/[0.1] hover:text-white hover:border-white/20"
@@ -398,9 +393,9 @@ export function SkillsGrid() {
               </div>
             </div>
 
-            {/* Sliding Bento Stacks Area */}
-            <div className="relative w-full flex-1 my-3 flex items-center justify-center min-h-[430px]">
-              {/* STACK 1: WEB (Frontend & Architecture) */}
+            {/* Sliding Bento Stacks Area (SoraLabs Pure Minimalist Grid) */}
+            <div className="relative w-full flex-1 my-3 flex items-center justify-center min-h-[440px]">
+              {/* STACK 1: WEB (Frontend Architecture - SoraLabs Reference) */}
               <div
                 ref={(el) => {
                   stackContainersRef.current[0] = el;
@@ -408,120 +403,67 @@ export function SkillsGrid() {
                 className="w-full max-w-[1380px] flex flex-col gap-3.5 absolute inset-x-0 my-auto"
               >
                 <div className="flex items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 uppercase pb-1 px-1">
-                  <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-white" />
-                    <span>01 / WEB ARCHITECTURE</span>
-                  </span>
-                  <span className="text-white">REACT · NEXT.JS · TS</span>
+                  <span>PROFESSIONAL AT</span>
+                  <span className="text-white">01 / WEB ARCHITECTURE</span>
                 </div>
 
+                {/* Top Row: Hero White React Box + Centered Next.js Typography + Centered TS Square */}
                 <div className="grid grid-cols-12 gap-3.5">
-                  {/* Hero React 19 Box: Crisp Solid Dark Surface */}
-                  <div className="bento-block col-span-5 rounded-2xl bg-[#0e0e14] border border-white/[0.14] p-7 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[220px]">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-white/[0.06] border border-white/[0.10] uppercase tracking-wider text-white">
-                        CORE UI
-                      </span>
-                      <span className="text-xs font-mono font-bold text-neutral-400">v19.2</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center py-4">
-                      <div className="w-16 h-16 flex items-center justify-center text-white [filter:brightness(0)_invert(1)] group-hover:rotate-180 transition-transform duration-700">
-                        <TechLogo name="React" className="w-16 h-16" />
-                      </div>
-                    </div>
-                    <div className="flex items-end justify-between pt-2 border-t border-white/[0.08]">
-                      <div>
-                        <h3 className="text-2xl font-bold tracking-tight text-white">React 19</h3>
-                        <p className="text-xs text-neutral-300 font-sans mt-0.5">Server Components & Actions</p>
-                      </div>
-                      <span className="text-xs font-mono font-bold text-white uppercase">Production</span>
+                  {/* Hero White React Box (Pure Logo Centered, SoraLabs style) */}
+                  <div className="bento-block col-span-5 rounded-2xl bg-[#f4f4f6] p-8 flex items-center justify-center shadow-[0_24px_48px_rgba(0,0,0,0.6)] group hover:scale-[1.01] transition-transform duration-300 min-h-[230px]">
+                    <h3 className="sr-only">React 19</h3>
+                    <div className="w-24 h-24 flex items-center justify-center text-black [filter:brightness(0)] group-hover:rotate-180 transition-transform duration-700">
+                      <TechLogo name="React" className="w-24 h-24 object-contain" />
                     </div>
                   </div>
 
-                  {/* Center Dark Box: Next.js 16 */}
-                  <div className="bento-block col-span-4 rounded-2xl bg-[#0e0e14] border border-white/[0.14] p-7 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[220px]">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-white/[0.06] border border-white/[0.10] uppercase tracking-wider text-neutral-300">
-                        FRAMEWORK
-                      </span>
-                      <span className="text-xs font-mono font-bold text-neutral-400">App Router</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center py-4">
-                      <div className="text-4xl font-black tracking-tighter text-white flex items-center gap-1 [filter:brightness(0)_invert(1)]">
-                        <span>NEXT</span>
-                        <span className="text-neutral-400 text-3xl">.js</span>
-                      </div>
-                    </div>
-                    <div className="flex items-end justify-between pt-2 border-t border-white/[0.08]">
-                      <div>
-                        <h3 className="text-xl font-bold tracking-tight text-white">Next.js 16</h3>
-                        <p className="text-xs text-neutral-300 font-sans mt-0.5">Turbopack & Static Generation</p>
-                      </div>
-                      <span className="text-xs font-mono font-bold text-neutral-400">SSR / SSG</span>
+                  {/* Center Dark Box: Bold Centered NEXT.js Typography */}
+                  <div className="bento-block col-span-4 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                    <h3 className="sr-only">Next.js 16</h3>
+                    <div className="text-5xl sm:text-6xl font-black tracking-tighter text-white flex items-center gap-1.5 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform duration-300">
+                      <span>NEXT</span>
+                      <span className="text-neutral-500 text-4xl">.js</span>
                     </div>
                   </div>
 
-                  {/* Right Dark Box: TypeScript */}
-                  <div className="bento-block col-span-3 rounded-2xl bg-[#0e0e14] border border-white/[0.14] p-7 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[220px]">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-white/[0.06] border border-white/[0.10] uppercase tracking-wider text-neutral-300">
-                        TYPING
-                      </span>
-                      <span className="text-xs font-mono font-bold text-neutral-400">v5.9</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center py-4">
-                      <div className="w-14 h-14 rounded-xl border border-white/20 bg-white/10 flex items-center justify-center text-white font-mono text-2xl font-black shadow-md">
-                        TS
-                      </div>
-                    </div>
-                    <div className="flex items-end justify-between pt-2 border-t border-white/[0.08]">
-                      <div>
-                        <h3 className="text-xl font-bold tracking-tight text-white">TypeScript</h3>
-                        <p className="text-xs text-neutral-300 font-sans mt-0.5">Strict Type Inference</p>
-                      </div>
-                      <span className="text-xs font-mono font-bold text-neutral-400">Strict</span>
+                  {/* Right Dark Box: Centered TS Square Tile */}
+                  <div className="bento-block col-span-3 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                    <h3 className="sr-only">TypeScript</h3>
+                    <div className="w-20 h-20 rounded-2xl border border-white/20 bg-white/10 flex items-center justify-center text-white font-mono text-4xl font-black shadow-lg group-hover:scale-105 transition-transform duration-300">
+                      TS
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom Row: 3 Wide Heading Cells for Web Skills */}
+                {/* Bottom Row Ribbon: Pure Minimalist Logo Strip (SoraLabs Style) */}
                 <div className="grid grid-cols-3 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex items-center justify-between hover:border-white/20 transition-all">
-                    <div>
-                      <span className="text-[9.5px] font-mono font-bold text-neutral-400 uppercase">CSS ENGINE</span>
-                      <h4 className="text-base font-bold text-white tracking-tight">Tailwind CSS v4</h4>
-                      <p className="text-[11.5px] text-neutral-300 font-sans">@theme Tokens</p>
-                    </div>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)]">
-                      <TechLogo name="Tailwind CSS v4" className="w-5 h-5 object-contain" />
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center hover:border-white/25 transition-all group min-h-[90px]">
+                    <h4 className="sr-only">Tailwind CSS v4</h4>
+                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Tailwind CSS v4" className="w-7 h-7 object-contain" />
+                      <span className="font-mono text-sm font-bold tracking-wider text-white">TAILWIND</span>
                     </div>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex items-center justify-between hover:border-white/20 transition-all">
-                    <div>
-                      <span className="text-[9.5px] font-mono font-bold text-neutral-400 uppercase">MOTION PHYSICS</span>
-                      <h4 className="text-base font-bold text-white tracking-tight">GSAP + Motion</h4>
-                      <p className="text-[11.5px] text-neutral-300 font-sans">ScrollTrigger & Springs</p>
-                    </div>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)]">
-                      <TechLogo name="GSAP" className="w-5 h-5 object-contain" />
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center hover:border-white/25 transition-all group min-h-[90px]">
+                    <h4 className="sr-only">GSAP + Motion</h4>
+                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="GSAP" className="w-7 h-7 object-contain" />
+                      <span className="font-mono text-sm font-bold tracking-wider text-white">GSAP</span>
                     </div>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex items-center justify-between hover:border-white/20 transition-all">
-                    <div>
-                      <span className="text-[9.5px] font-mono font-bold text-neutral-400 uppercase">3D RENDERING</span>
-                      <h4 className="text-base font-bold text-white tracking-tight">Three.js / GLSL</h4>
-                      <p className="text-[11.5px] text-neutral-300 font-sans">Procedural Shaders</p>
-                    </div>
-                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)]">
-                      <TechLogo name="Three.js WebGL" className="w-5 h-5 object-contain" />
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center hover:border-white/25 transition-all group min-h-[90px]">
+                    <h4 className="sr-only">Three.js / GLSL</h4>
+                    <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Three.js WebGL" className="w-7 h-7 object-contain" />
+                      <span className="font-mono text-sm font-bold tracking-wider text-white">THREE.JS</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* STACK 2: DEVOPS & INFRASTRUCTURE */}
+              {/* STACK 2: DEVOPS & INFRASTRUCTURE (Different To-Nhỏ Structure) */}
               <div
                 ref={(el) => {
                   stackContainersRef.current[1] = el;
@@ -529,124 +471,72 @@ export function SkillsGrid() {
                 className="w-full max-w-[1380px] flex flex-col gap-3.5 absolute inset-x-0 my-auto"
               >
                 <div className="flex items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 uppercase pb-1 px-1">
-                  <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-white" />
-                    <span>02 / DEVOPS & INFRASTRUCTURE</span>
-                  </span>
-                  <span className="text-white">K3S · PODMAN · GOLANG</span>
+                  <span>INFRASTRUCTURE AT</span>
+                  <span className="text-white">02 / DEVOPS & SYSTEMS</span>
                 </div>
 
+                {/* Top Row: Wide 60% Kubernetes + 40% Docker/Podman */}
                 <div className="grid grid-cols-12 gap-3.5">
-                  <div className="bento-block col-span-7 rounded-2xl bg-[#0e0e14] border border-white/[0.14] p-7 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[220px]">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-white/[0.06] border border-white/[0.10] uppercase tracking-wider text-neutral-300">
-                        ORCHESTRATION
-                      </span>
-                      <span className="text-xs font-mono font-bold text-neutral-400">Two-Pod K3s</span>
+                  <div className="bento-block col-span-7 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                    <h3 className="sr-only">Kubernetes & K3s</h3>
+                    <div className="w-20 h-20 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Kubernetes & K3s" className="w-14 h-14 object-contain" />
                     </div>
-                    <div className="flex items-center gap-5 py-3">
-                      <div className="w-14 h-14 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-2.5 text-white [filter:brightness(0)_invert(1)]">
-                        <TechLogo name="Kubernetes & K3s" className="w-10 h-10 object-contain" />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold tracking-tight text-white">Kubernetes & K3s</h3>
-                        <p className="text-xs sm:text-sm text-neutral-300 font-sans mt-0.5">
-                          Production topology, Traefik ingress & declarative self-healing.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 pt-2 border-t border-white/[0.08]">
-                      {["Traefik Ingress", "Declarative YAML", "Self-Healing"].map((tag) => (
-                        <span key={tag} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-neutral-300">
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-black tracking-tight text-white">KUBERNETES</span>
+                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">K3S LIGHTWEIGHT</span>
                     </div>
                   </div>
 
-                  <div className="bento-block col-span-5 rounded-2xl bg-[#0e0e14] border border-white/[0.14] p-7 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[220px]">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-white/[0.06] border border-white/[0.10] uppercase tracking-wider text-neutral-300">
-                        CONTAINER
-                      </span>
-                      <span className="text-xs font-mono font-bold text-neutral-400">Daemonless</span>
+                  <div className="bento-block col-span-5 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-5 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                    <h3 className="sr-only">Docker & Podman</h3>
+                    <div className="w-16 h-16 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-3 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Docker & Podman" className="w-11 h-11 object-contain" />
                     </div>
-                    <div className="flex items-center gap-4 py-3">
-                      <div className="w-14 h-14 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-2.5 text-white [filter:brightness(0)_invert(1)]">
-                        <TechLogo name="Docker & Podman" className="w-9 h-9 object-contain" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold tracking-tight text-white">Docker & Podman</h3>
-                        <p className="text-xs text-neutral-300 font-sans mt-0.5">Rootless namespaces & multi-stage OCI builds</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 pt-2 border-t border-white/[0.08]">
-                      {["Rootless", "Quadlets", "OCI Standard"].map((tag) => (
-                        <span key={tag} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-neutral-300">
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-bold tracking-tight text-white">PODMAN</span>
+                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">ROOTLESS CONTAINER</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Row 2: 4 Cells */}
+                {/* Bottom Row: 4 Clean Logo Cells */}
                 <div className="grid grid-cols-4 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex flex-col justify-between hover:border-white/20 transition-all">
-                    <div className="flex items-center justify-between pb-2">
-                      <span className="text-[9.5px] font-mono font-bold text-neutral-400 uppercase">SYS BASELINE</span>
-                      <div className="w-5 h-5 [filter:brightness(0)_invert(1)]">
-                        <TechLogo name="Linux" className="w-5 h-5 object-contain" />
-                      </div>
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                    <h4 className="sr-only">Linux</h4>
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Linux" className="w-6 h-6 object-contain" />
                     </div>
-                    <div>
-                      <h4 className="text-base font-bold text-white tracking-tight">Linux</h4>
-                      <p className="text-xs text-neutral-300 font-sans mt-0.5">systemd unit isolation</p>
-                    </div>
+                    <span className="font-mono text-sm font-bold text-white tracking-wide">LINUX</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex flex-col justify-between hover:border-white/20 transition-all">
-                    <div className="flex items-center justify-between pb-2">
-                      <span className="text-[9.5px] font-mono font-bold text-neutral-400 uppercase">HIGH CONCURRENCY</span>
-                      <div className="w-5 h-5 [filter:brightness(0)_invert(1)]">
-                        <TechLogo name="Go" className="w-5 h-5 object-contain" />
-                      </div>
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                    <h4 className="sr-only">Go</h4>
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Go" className="w-6 h-6 object-contain" />
                     </div>
-                    <div>
-                      <h4 className="text-base font-bold text-white tracking-tight">Go</h4>
-                      <p className="text-xs text-neutral-300 font-sans mt-0.5">High-throughput goroutines</p>
-                    </div>
+                    <span className="font-mono text-sm font-bold text-white tracking-wide">GOLANG</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex flex-col justify-between hover:border-white/20 transition-all">
-                    <div className="flex items-center justify-between pb-2">
-                      <span className="text-[9.5px] font-mono font-bold text-neutral-400 uppercase">SECURITY & MESH</span>
-                      <div className="w-5 h-5 [filter:brightness(0)_invert(1)]">
-                        <TechLogo name="Tailscale" className="w-5 h-5 object-contain" />
-                      </div>
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                    <h4 className="sr-only">Tailscale + SAST</h4>
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Tailscale" className="w-6 h-6 object-contain" />
                     </div>
-                    <div>
-                      <h4 className="text-base font-bold text-white tracking-tight">Tailscale + SAST</h4>
-                      <p className="text-xs text-neutral-300 font-sans mt-0.5">Zero-Trust WireGuard</p>
-                    </div>
+                    <span className="font-mono text-sm font-bold text-white tracking-wide">TAILSCALE</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex flex-col justify-between hover:border-white/20 transition-all">
-                    <div className="flex items-center justify-between pb-2">
-                      <span className="text-[9.5px] font-mono font-bold text-neutral-400 uppercase">GITOPS CI/CD</span>
-                      <div className="w-5 h-5 [filter:brightness(0)_invert(1)]">
-                        <TechLogo name="Argo CD" className="w-5 h-5 object-contain" />
-                      </div>
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                    <h4 className="sr-only">GitHub Actions + Argo CD</h4>
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Argo CD" className="w-6 h-6 object-contain" />
                     </div>
-                    <div>
-                      <h4 className="text-base font-bold text-white tracking-tight">GitHub Actions + Argo CD</h4>
-                      <p className="text-xs text-neutral-300 font-sans mt-0.5">Automated rollback</p>
-                    </div>
+                    <span className="font-mono text-sm font-bold text-white tracking-wide">ARGO CD</span>
                   </div>
                 </div>
               </div>
 
-              {/* STACK 3: DESIGNER */}
+              {/* STACK 3: DESIGNER (Different To-Nhỏ Structure) */}
               <div
                 ref={(el) => {
                   stackContainersRef.current[2] = el;
@@ -654,97 +544,60 @@ export function SkillsGrid() {
                 className="w-full max-w-[1380px] flex flex-col gap-3.5 absolute inset-x-0 my-auto"
               >
                 <div className="flex items-center justify-between text-xs font-mono font-bold tracking-widest text-neutral-400 uppercase pb-1 px-1">
-                  <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-white" />
-                    <span>03 / DESIGNER & PRODUCT CRAFT</span>
-                  </span>
-                  <span className="text-white">TOKENS · FIGMA · EDITORIAL</span>
+                  <span>SPATIAL SYSTEMS AT</span>
+                  <span className="text-white">03 / DESIGNER & SYSTEMS</span>
                 </div>
 
                 <div className="grid grid-cols-12 gap-3.5">
-                  <div className="bento-block col-span-6 rounded-2xl bg-[#0e0e14] border border-white/[0.14] p-7 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[280px]">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-white/[0.06] border border-white/[0.10] uppercase tracking-wider text-neutral-300">
-                        DESIGN SYSTEM
-                      </span>
-                      <span className="text-xs font-mono font-bold text-neutral-400">tai-ui Specification</span>
+                  {/* Left 50% Box: Design Systems Mark */}
+                  <div className="bento-block col-span-6 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                    <h3 className="sr-only">Design Systems & Tokens</h3>
+                    <div className="w-18 h-18 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Design Systems" className="w-12 h-12 object-contain" />
                     </div>
-                    <div className="space-y-3 py-4">
-                      <div className="w-14 h-14 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-3 text-white [filter:brightness(0)_invert(1)]">
-                        <TechLogo name="Design Systems" className="w-9 h-9 object-contain" />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold tracking-tight text-white">Design Systems & Tokens</h3>
-                        <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed mt-1">
-                          10px precision token architecture, Obsidian dark palette, semantic variables, and CLI component distribution.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2 pt-2 border-t border-white/[0.08]">
-                      {["10px Tokens", "Obsidian Depth", "Atomic Primitives", "Registry Standards"].map((tag) => (
-                        <span key={tag} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-neutral-300">
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-black tracking-tight text-white">DESIGN SYSTEMS</span>
+                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">10PX PRECISION TOKENS</span>
                     </div>
                   </div>
 
-                  <div className="col-span-6 flex flex-col gap-3.5">
-                    <div className="bento-block rounded-2xl bg-[#0e0e14] border border-white/[0.14] p-6 flex items-center justify-between shadow-lg hover:border-white/30 transition-all">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-2 text-white [filter:brightness(0)_invert(1)]">
-                          <TechLogo name="Figma" className="w-7 h-7 object-contain" />
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-bold text-white tracking-tight">Figma</h4>
-                          <p className="text-xs text-neutral-300 font-sans">Component variants & auto-layout tokens</p>
-                        </div>
-                      </div>
-                      <span className="text-xs font-mono font-bold text-white px-2.5 py-1 rounded-md bg-white/10">
-                        Mastery
-                      </span>
+                  {/* Right 50% Box: Figma Centered */}
+                  <div className="bento-block col-span-6 rounded-2xl bg-[#0c0c10] border border-white/[0.12] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] group hover:border-white/30 transition-all duration-300 min-h-[230px]">
+                    <h4 className="sr-only">Figma</h4>
+                    <div className="w-18 h-18 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Figma" className="w-10 h-10 object-contain" />
                     </div>
-
-                    <div className="grid grid-cols-3 gap-3.5 flex-1">
-                      <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex flex-col justify-between hover:border-white/20 transition-colors">
-                        <div className="flex items-center justify-between pb-2">
-                          <span className="text-[9.5px] font-mono text-neutral-400 uppercase">EDITORIAL</span>
-                          <div className="w-4 h-4 [filter:brightness(0)_invert(1)]">
-                            <TechLogo name="Typography" className="w-4 h-4 object-contain" />
-                          </div>
-                        </div>
-                        <div>
-                          <h5 className="text-sm font-bold text-white">Typography & Art Direction</h5>
-                          <p className="text-[11.5px] text-neutral-300 font-sans mt-0.5">Optical rhythm</p>
-                        </div>
-                      </div>
-
-                      <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex flex-col justify-between hover:border-white/20 transition-colors">
-                        <div className="flex items-center justify-between pb-2">
-                          <span className="text-[9.5px] font-mono text-neutral-400 uppercase">PHYSICS</span>
-                          <div className="w-4 h-4 [filter:brightness(0)_invert(1)]">
-                            <TechLogo name="Motion Design" className="w-4 h-4 object-contain" />
-                          </div>
-                        </div>
-                        <div>
-                          <h5 className="text-sm font-bold text-white">Motion Design</h5>
-                          <p className="text-[11.5px] text-neutral-300 font-sans mt-0.5">Spring curves</p>
-                        </div>
-                      </div>
-
-                      <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-4 flex flex-col justify-between hover:border-white/20 transition-colors">
-                        <div className="flex items-center justify-between pb-2">
-                          <span className="text-[9.5px] font-mono text-neutral-400 uppercase">HAPTIC</span>
-                          <div className="w-4 h-4 [filter:brightness(0)_invert(1)]">
-                            <TechLogo name="Prototyping" className="w-4 h-4 object-contain" />
-                          </div>
-                        </div>
-                        <div>
-                          <h5 className="text-sm font-bold text-white">Prototyping</h5>
-                          <p className="text-[11.5px] text-neutral-300 font-sans mt-0.5">Tactile latency</p>
-                        </div>
-                      </div>
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-black tracking-tight text-white">FIGMA</span>
+                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">COMPONENT VARIANTS</span>
                     </div>
+                  </div>
+                </div>
+
+                {/* Bottom Row: 3 Clean Cells */}
+                <div className="grid grid-cols-3 gap-3.5">
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                    <h5 className="sr-only">Typography & Art Direction</h5>
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Typography" className="w-6 h-6 object-contain" />
+                    </div>
+                    <span className="font-mono text-sm font-bold text-white tracking-wide">TYPOGRAPHY</span>
+                  </div>
+
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                    <h5 className="sr-only">Motion Design</h5>
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Motion Design" className="w-6 h-6 object-contain" />
+                    </div>
+                    <span className="font-mono text-sm font-bold text-white tracking-wide">MOTION</span>
+                  </div>
+
+                  <div className="bento-block rounded-xl bg-[#0b0b10] border border-white/[0.10] p-6 flex items-center justify-center gap-3 hover:border-white/25 transition-all group min-h-[90px]">
+                    <h5 className="sr-only">Prototyping</h5>
+                    <div className="w-6 h-6 [filter:brightness(0)_invert(1)] group-hover:scale-105 transition-transform">
+                      <TechLogo name="Prototyping" className="w-6 h-6 object-contain" />
+                    </div>
+                    <span className="font-mono text-sm font-bold text-white tracking-wide">PROTOTYPING</span>
                   </div>
                 </div>
               </div>
@@ -759,7 +612,7 @@ export function SkillsGrid() {
                   <span aria-hidden="true" className="animate-bounce">↓</span>
                 </span>
               </span>
-              <span className="text-neutral-500">THINKAI STUDIO · BENTO MATRIX</span>
+              <span className="text-neutral-500">THINKAI STUDIO · SORA BENTO</span>
             </div>
           </div>
 
@@ -782,36 +635,33 @@ export function SkillsGrid() {
                 <span>01 / WEB</span>
                 <span className="text-white">FRONTEND</span>
               </div>
-              <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-5 flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-white">React 19</h3>
-                  <p className="text-xs text-neutral-300">Server Components</p>
-                </div>
-                <div className="w-10 h-10 [filter:brightness(0)_invert(1)]">
-                  <TechLogo name="React" className="w-10 h-10" />
+              <div className="rounded-xl bg-[#f4f4f6] text-black p-6 flex items-center justify-center min-h-[140px]">
+                <h3 className="sr-only">React 19</h3>
+                <div className="w-16 h-16 [filter:brightness(0)]">
+                  <TechLogo name="React" className="w-16 h-16 object-contain" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h3 className="text-base font-bold text-white">Next.js 16</h3>
-                  <p className="text-xs text-neutral-300">App Router</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h3 className="sr-only">Next.js 16</h3>
+                  <span className="font-mono text-lg font-black text-white">NEXT.JS</span>
                 </div>
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h3 className="text-base font-bold text-white">TypeScript</h3>
-                  <p className="text-xs text-neutral-300">Strict Typing</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h3 className="sr-only">TypeScript</h3>
+                  <span className="font-mono text-lg font-black text-white">TS</span>
                 </div>
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h4 className="text-base font-bold text-white">Tailwind CSS v4</h4>
-                  <p className="text-xs text-neutral-300">@theme Tokens</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h4 className="sr-only">Tailwind CSS v4</h4>
+                  <span className="font-mono text-xs font-bold text-white">TAILWIND</span>
                 </div>
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h4 className="text-base font-bold text-white">GSAP + Motion</h4>
-                  <p className="text-xs text-neutral-300">Scroll & Springs</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h4 className="sr-only">GSAP + Motion</h4>
+                  <span className="font-mono text-xs font-bold text-white">GSAP</span>
                 </div>
               </div>
-              <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                <h4 className="text-base font-bold text-white">Three.js / GLSL</h4>
-                <p className="text-xs text-neutral-300">Procedural Shaders</p>
+              <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                <h4 className="sr-only">Three.js / GLSL</h4>
+                <span className="font-mono text-sm font-bold text-white">THREE.JS / GLSL</span>
               </div>
             </div>
 
@@ -822,31 +672,31 @@ export function SkillsGrid() {
                 <span className="text-white">INFRASTRUCTURE</span>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h3 className="text-base font-bold text-white">Kubernetes & K3s</h3>
-                  <p className="text-xs text-neutral-300">Two-pod self-healing</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h3 className="sr-only">Kubernetes & K3s</h3>
+                  <span className="font-mono text-sm font-bold text-white">KUBERNETES</span>
                 </div>
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h3 className="text-base font-bold text-white">Docker & Podman</h3>
-                  <p className="text-xs text-neutral-300">Rootless container</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h3 className="sr-only">Docker & Podman</h3>
+                  <span className="font-mono text-sm font-bold text-white">PODMAN</span>
                 </div>
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h4 className="text-base font-bold text-white">Linux</h4>
-                  <p className="text-xs text-neutral-300">systemd isolation</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h4 className="sr-only">Linux</h4>
+                  <span className="font-mono text-sm font-bold text-white">LINUX</span>
                 </div>
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h4 className="text-base font-bold text-white">Go</h4>
-                  <p className="text-xs text-neutral-300">High throughput</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h4 className="sr-only">Go</h4>
+                  <span className="font-mono text-sm font-bold text-white">GOLANG</span>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h4 className="text-base font-bold text-white">Tailscale + SAST</h4>
-                  <p className="text-xs text-neutral-300">Zero-Trust mesh</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h4 className="sr-only">Tailscale + SAST</h4>
+                  <span className="font-mono text-xs font-bold text-white">TAILSCALE</span>
                 </div>
-                <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                  <h4 className="text-base font-bold text-white">GitHub Actions + Argo CD</h4>
-                  <p className="text-xs text-neutral-300">GitOps sync</p>
+                <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                  <h4 className="sr-only">GitHub Actions + Argo CD</h4>
+                  <span className="font-mono text-xs font-bold text-white">ARGO CD</span>
                 </div>
               </div>
             </div>
@@ -857,22 +707,22 @@ export function SkillsGrid() {
                 <span>03 / DESIGNER</span>
                 <span className="text-white">SYSTEMS</span>
               </div>
-              <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                <h3 className="text-base font-bold text-white">Design Systems & Tokens</h3>
-                <p className="text-xs text-neutral-300">10px precision architecture</p>
+              <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                <h3 className="sr-only">Design Systems & Tokens</h3>
+                <span className="font-mono text-sm font-bold text-white">DESIGN SYSTEMS</span>
               </div>
-              <div className="rounded-xl bg-[#0e0e14] border border-white/10 p-4">
-                <h4 className="text-base font-bold text-white">Figma</h4>
-                <p className="text-xs text-neutral-300">Component variants</p>
+              <div className="rounded-xl bg-[#0c0c10] border border-white/10 p-5 flex items-center justify-center">
+                <h4 className="sr-only">Figma</h4>
+                <span className="font-mono text-sm font-bold text-white">FIGMA</span>
               </div>
               <div className="grid grid-cols-3 gap-2">
-                <div className="rounded-lg bg-[#0e0e14] border border-white/10 p-3 text-center">
+                <div className="rounded-lg bg-[#0c0c10] border border-white/10 p-3 text-center">
                   <h5 className="text-xs font-bold text-white">Typography & Art Direction</h5>
                 </div>
-                <div className="rounded-lg bg-[#0e0e14] border border-white/10 p-3 text-center">
+                <div className="rounded-lg bg-[#0c0c10] border border-white/10 p-3 text-center">
                   <h5 className="text-xs font-bold text-white">Motion Design</h5>
                 </div>
-                <div className="rounded-lg bg-[#0e0e14] border border-white/10 p-3 text-center">
+                <div className="rounded-lg bg-[#0c0c10] border border-white/10 p-3 text-center">
                   <h5 className="text-xs font-bold text-white">Prototyping</h5>
                 </div>
               </div>
