@@ -66,12 +66,11 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
   return (
     <footer
-      className="relative z-20 w-full select-none"
+      className="relative z-20 w-full select-none lg:min-h-[100svh] lg:h-[100svh] lg:flex lg:flex-col lg:justify-between"
       style={{ backgroundColor: "#1455B4", color: "#F7EFDC" }}
     >
       {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
-      {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
-      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 pt-8 pb-6 space-y-6 relative z-10">
+      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 pt-8 pb-6 space-y-6 relative z-10 lg:flex-shrink-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column (Span 6): Brand, 1-line Manifesto, Unified Icons Row */}
           <div className="lg:col-span-6 space-y-4">
@@ -190,11 +189,11 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
               >
                 {language === "vi" ? "01 / SẢN PHẨM" : "01 / PRODUCTS"}
               </div>
-              <ul className="space-y-2 font-mono text-xs">
+              <ul className="flex flex-col font-mono text-xs">
                 <li>
                   <Link
                     href="/products/thinkai-ui"
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       ThinkAI UI
@@ -205,7 +204,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/wind"
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       Wind Digital Folio
@@ -216,7 +215,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/homelab"
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       HostDeck Console
@@ -227,7 +226,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/thinkai"
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       ThinkAI Learning
@@ -249,23 +248,23 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
               >
                 {language === "vi" ? "02 / STUDIO" : "02 / STUDIO"}
               </div>
-              <ul className="space-y-2 font-mono text-xs">
+              <ul className="flex flex-col font-mono text-xs">
                 <li>
                   <button
                     type="button"
                     onClick={onOpenAbout}
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors cursor-pointer inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       {language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}
-                      <span className="text-[10px] opacity-70 inline-block ml-1">↳</span>
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↳</span>
                     </span>
                   </button>
                 </li>
                 <li>
                   <Link
                     href="/about"
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       {language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}
@@ -277,11 +276,11 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   <button
                     type="button"
                     onClick={onOpenContact}
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors cursor-pointer inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       {language === "vi" ? "Bắt đầu dự án" : "Start a Project"}
-                      <span className="text-[10px] opacity-70 inline-block ml-1">↳</span>
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↳</span>
                     </span>
                   </button>
                 </li>
@@ -290,7 +289,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     href="/NguyenBinhMinh-DevOpsEngineer-2026.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[#F7EFDC] hover:text-white text-left transition-colors group inline"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
                   >
                     <span>
                       DevOps CV (PDF)
@@ -327,8 +326,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
         </div>
       </div>
 
-      {/* Artwork: plain block, pulled up into empty sky field so whole composition fits comfortably without text overlap */}
-      <picture className="block w-full pointer-events-none -mt-16 sm:-mt-24 md:-mt-32 lg:-mt-40 relative z-0">
+      {/* Artwork: flex remainder on desktop (>=1024px) */}
+      <picture className="block w-full pointer-events-none -mt-16 sm:-mt-24 md:-mt-32 lg:mt-0 lg:flex-1 lg:min-h-0 relative z-0 overflow-hidden">
         <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.avif" type="image/avif" />
         <source media="(max-width: 639px)" srcSet="/images/footer-lighthouse-sky-mobile.webp" type="image/webp" />
         <source srcSet="/images/footer-lighthouse-sky.avif" type="image/avif" />
