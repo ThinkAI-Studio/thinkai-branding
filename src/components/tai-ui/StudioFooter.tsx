@@ -348,12 +348,11 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
         <source srcSet="/images/footer-lighthouse-sky.avif" type="image/avif" />
         <source srcSet="/images/footer-lighthouse-sky.webp" type="image/webp" />
         <img
+          src="/images/footer-lighthouse-sky.png"
           alt=""
           loading="lazy"
           decoding="async"
-          width={2908}
-          height={1106}
-          className="w-full h-auto block pointer-events-none"
+          className="w-full h-auto block pointer-events-none aspect-[1769/1106] sm:aspect-[2908/1106]"
           style={{
             maskImage: "linear-gradient(180deg, transparent 0px, #000 64px)",
             WebkitMaskImage: "linear-gradient(180deg, transparent 0px, #000 64px)",
