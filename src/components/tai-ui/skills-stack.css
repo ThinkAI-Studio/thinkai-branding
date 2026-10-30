@@ -1,11 +1,4 @@
-/* Skills Stack & Craft - GPU Acceleration and Micro-interactions */
-
-.skills-gpu-accelerated {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
+/* Skills Stack & Craft - Card Surfaces & Micro-interactions */
 
 .skills-card-surface {
   background-color: #111116;
