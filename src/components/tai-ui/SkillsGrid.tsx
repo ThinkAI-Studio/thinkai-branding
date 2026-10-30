@@ -123,15 +123,15 @@ export function SkillsGrid() {
             scrub: 0.3,
             anticipatePin: 1,
             snap: {
-              snapTo: [0.15, 0.55, 0.95],
+              snapTo: [0.10, 0.40, 0.70],
               duration: { min: 0.2, max: 0.35 },
               ease: "power2.out",
             },
             onUpdate: (self) => {
               const p = self.progress;
-              if (p < 0.35) {
+              if (p < 0.25) {
                 setCurrentStackIdx(0);
-              } else if (p < 0.75) {
+              } else if (p < 0.55) {
                 setCurrentStackIdx(1);
               } else {
                 setCurrentStackIdx(2);
@@ -211,7 +211,19 @@ export function SkillsGrid() {
           },
           4.4
         );
-        // HOLD ZONE (4.9 to 6.2)
+        // Generous HOLD ZONE for Stack 3 (4.9 to 6.8)
+
+        // ─── BUFFER ZONE (Khoảng đệm thoải mái trước khi xuống phần SHIP) ───
+        tl.to(
+          stacks[2],
+          {
+            opacity: 0.2,
+            y: -24,
+            duration: 0.6,
+            ease: "power1.in",
+          },
+          6.8
+        );
       });
     }, sectionRef);
 
@@ -227,7 +239,7 @@ export function SkillsGrid() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const sectionStart = rect.top + scrollTop;
     const scrollableDistance = sectionRef.current.offsetHeight - window.innerHeight;
-    const snapRatios = [0.15, 0.55, 0.95];
+    const snapRatios = [0.10, 0.40, 0.70];
     const targetY = sectionStart + snapRatios[notchIdx] * scrollableDistance;
 
     const lenis = getLenis();
@@ -252,7 +264,7 @@ export function SkillsGrid() {
       className={
         prefersReduced
           ? "relative z-20 bg-[#040406] py-24 sm:py-32 border-t border-white/[0.08] overflow-x-clip"
-          : "relative z-20 bg-[#040406] text-white border-t border-white/[0.08] overflow-x-clip md:h-[260vh]"
+          : "relative z-20 bg-[#040406] text-white border-t border-white/[0.08] overflow-x-clip md:h-[300vh]"
       }
     >
       {prefersReduced ? (
