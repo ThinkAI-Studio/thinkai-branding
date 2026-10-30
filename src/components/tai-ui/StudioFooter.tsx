@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { WipeButton } from "./WipeButton";
 import { useLanguage } from "@/context/LanguageContext";
 import { profile, copy } from "@/data/portfolio";
@@ -322,7 +322,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
           <div className="flex items-center gap-4">
             <span style={{ color: "rgba(247, 239, 220, 0.66)" }}>
-              {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}
+              {language === "vi" ? "VIỆT NAM" : "VIETNAM"} {liveTime || "02:35:57 PM"}{liveDate ? ` · ${liveDate}` : ""}
             </span>
             <WipeButton
               as="a"
