@@ -28,12 +28,12 @@ function getLenis(): LenisEmitter | undefined {
 }
 
 /* Deck choreography constants (single scrubbed timeline, 30 units) */
-const CHAPTER_UNITS = 10;
-const CARD_HEIGHT = "clamp(200px, 24vh, 230px)";
-const DECK_RESERVE = 50;
+const CHAPTER_UNITS = 12;
+const CARD_HEIGHT = "clamp(380px, 48vh, 440px)";
 
 function SkillCard({
   card,
+  chapter,
   language,
   isDesktopDeck = false,
 }: {
@@ -44,42 +44,50 @@ function SkillCard({
 }) {
   return (
     <article
-      className={`w-full rounded-2xl p-5 sm:p-6 flex flex-col justify-between select-none relative overflow-hidden transition-all duration-300 ${
+      className={`w-full rounded-3xl p-6 sm:p-7 flex flex-col justify-between select-none relative overflow-hidden transition-all duration-300 ${
         isDesktopDeck ? "h-full" : ""
       }`}
       style={{
-        background: "linear-gradient(180deg, #1d1d26 0%, #131318 60%, #0d0d12 100%)",
+        background: "linear-gradient(180deg, #1e1e28 0%, #13131a 55%, #0c0c10 100%)",
         boxShadow:
-          "0 24px 50px -12px rgba(0,0,0,0.9), inset 0 1px 0 0 rgba(255,255,255,0.20), 0 0 0 1px rgba(255,255,255,0.12)",
+          "0 30px 60px -15px rgba(0,0,0,0.95), inset 0 1px 0 0 rgba(255,255,255,0.22), 0 0 0 1px rgba(255,255,255,0.14)",
       }}
     >
       {/* Specular ambient top glow for 3D curvature volume */}
-      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent pointer-events-none rounded-t-2xl" />
+      <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/[0.07] via-white/[0.02] to-transparent pointer-events-none rounded-t-3xl" />
 
-      <div className="space-y-3 relative z-10">
-        <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-xl bg-white/[0.07] border border-white/[0.14] flex items-center justify-center p-2 text-white shrink-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),0_4px_12px_rgba(0,0,0,0.5)]">
-            <TechLogo name={card.logo} className="w-6 h-6 object-contain" />
+      <div className="space-y-4 relative z-10">
+        <div className="flex items-center justify-between">
+          <div className="w-12 h-12 rounded-2xl bg-white/[0.07] border border-white/[0.14] flex items-center justify-center p-2.5 text-white shrink-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_6px_16px_rgba(0,0,0,0.5)]">
+            <TechLogo name={card.logo} className="w-7 h-7 object-contain" />
           </div>
-          <h4 className="text-base sm:text-lg font-bold tracking-tight text-white truncate">
+          {chapter && (
+            <span className={`text-xs font-mono font-bold tracking-wider ${chapter.accentClass}`}>
+              {chapter.category}
+            </span>
+          )}
+        </div>
+
+        <div className="space-y-1.5 pt-2">
+          <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
             {card.name}
           </h4>
         </div>
 
-        <p className="text-xs sm:text-[13px] text-neutral-300 leading-relaxed font-sans line-clamp-2">
+        <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans">
           {card.proof[language]}
         </p>
+      </div>
 
-        <div className="flex flex-wrap gap-1.5 pt-0.5">
-          {card.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/[0.10] text-neutral-200 shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+      <div className="pt-4 border-t border-white/[0.08] flex flex-wrap gap-1.5 relative z-10">
+        {card.tags.slice(0, 3).map((tag) => (
+          <span
+            key={tag}
+            className="text-[10.5px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.06] border border-white/[0.10] text-neutral-200 shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+          >
+            {tag}
+          </span>
+        ))}
       </div>
     </article>
   );
@@ -126,15 +134,14 @@ export function SkillsGrid() {
             gsap.set(heading, { opacity: chIdx === 0 ? 1 : 0, y: chIdx === 0 ? 0 : 20 });
           }
           cards.forEach((cardEl, cardIdx) => {
-            if (cardIdx === 0) {
-              gsap.set(cardEl, { y: 0, x: 0, scale: 1.0, rotate: 0, opacity: 1, zIndex: 15 });
-            } else if (cardIdx === 1) {
-              gsap.set(cardEl, { y: -14, x: -6, scale: 0.96, rotate: -2, opacity: 0.75, zIndex: 14 });
-            } else if (cardIdx === 2) {
-              gsap.set(cardEl, { y: -26, x: 8, scale: 0.92, rotate: 2.5, opacity: 0.45, zIndex: 13 });
-            } else {
-              gsap.set(cardEl, { y: -36, x: 0, scale: 0.88, rotate: 0, opacity: 0, zIndex: 10 });
-            }
+            gsap.set(cardEl, {
+              y: cardIdx === 0 ? 0 : 50,
+              x: 0,
+              scale: cardIdx === 0 ? 1 : 0.94,
+              rotate: 0,
+              opacity: cardIdx === 0 ? 1 : 0,
+              zIndex: 10 + cardIdx,
+            });
           });
         });
 
@@ -164,105 +171,91 @@ export function SkillsGrid() {
 
           const railFill = railFillsRef.current[chIdx];
           if (railFill) {
-            tl.to(railFill, { scaleX: 1, ease: "none", duration: 9.6 }, base);
+            tl.to(railFill, { scaleX: 1, ease: "none", duration: 11.5 }, base);
           }
-          const numSubsequentCards = cards.length - 1;
-          if (numSubsequentCards > 0) {
-            const arrivalStep = 7.0 / numSubsequentCards;
-            for (let cardIdx = 1; cardIdx < cards.length; cardIdx++) {
-              const at = base + 1.2 + (cardIdx - 1) * arrivalStep;
 
+          const numCards = cards.length;
+          const numSubsequentCards = numCards - 1;
+
+          // 1. REVEAL PHASE: hiện từng skill trong stack
+          if (numSubsequentCards > 0) {
+            const stepDuration = 5.8 / numSubsequentCards;
+            for (let cardIdx = 1; cardIdx < numCards; cardIdx++) {
+              const at = base + 0.8 + (cardIdx - 1) * stepDuration;
+              const card = cards[cardIdx];
               const prevCard = cards[cardIdx - 1];
+              const rot = cardIdx % 2 === 1 ? -2.5 : 2.5;
+
               if (prevCard) {
                 tl.to(
                   prevCard,
                   {
-                    y: -80,
-                    x: -12,
-                    rotate: -5,
-                    scale: 0.93,
-                    opacity: 0,
-                    duration: 0.85,
-                    ease: "power2.inOut",
-                  },
-                  at
-                );
-              }
-
-              const activeCard = cards[cardIdx];
-              if (activeCard) {
-                tl.to(
-                  activeCard,
-                  {
-                    y: 0,
-                    x: 0,
-                    rotate: 0,
-                    scale: 1.0,
-                    opacity: 1,
-                    zIndex: 15,
-                    duration: 0.85,
-                    ease: "power2.inOut",
-                  },
-                  at
-                );
-              }
-
-              const peek1 = cards[cardIdx + 1];
-              if (peek1) {
-                tl.to(
-                  peek1,
-                  {
-                    y: -14,
-                    x: -6,
-                    rotate: -2,
                     scale: 0.96,
-                    opacity: 0.75,
-                    zIndex: 14,
-                    duration: 0.85,
-                    ease: "power2.inOut",
+                    y: -14,
+                    duration: 0.75,
+                    ease: "power2.out",
                   },
                   at
                 );
               }
 
-              const peek2 = cards[cardIdx + 2];
-              if (peek2) {
-                tl.to(
-                  peek2,
-                  {
-                    y: -26,
-                    x: 8,
-                    rotate: 2.5,
-                    scale: 0.92,
-                    opacity: 0.45,
-                    zIndex: 13,
-                    duration: 0.85,
-                    ease: "power2.inOut",
-                  },
+              if (card) {
+                tl.set(card, { opacity: 1 }, at);
+                tl.fromTo(
+                  card,
+                  { y: 50, scale: 0.94, rotate: rot * 2 },
+                  { y: 0, scale: 1.0, rotate: rot, duration: 0.75, ease: "power2.out" },
                   at
                 );
               }
             }
           }
 
+          // 2. MERGE PHASE: hiện hết các skills rồi mới gộp stack đó thành 1
+          const mergeAt = base + 7.6;
+          cards.forEach((cardEl) => {
+            tl.to(
+              cardEl,
+              {
+                y: 0,
+                x: 0,
+                rotate: 0,
+                scale: 1.0,
+                duration: 0.8,
+                ease: "power3.inOut",
+              },
+              mergeAt
+            );
+          });
+
+          // 3. TRANSITION PHASE: rồi mới chuyển sang stack tiếp theo
           if (chIdx < lastChapterIdx) {
             const nextDeck = deckContainersRef.current[chIdx + 1];
             const nextHeading = chapterHeadingsRef.current[chIdx + 1];
 
-            if (deck) {
-              tl.to(deck, { opacity: 0, y: -24, duration: 0.7, ease: "power2.in" }, base + 9.2);
-              tl.set(deck, { pointerEvents: "none" }, base + 10);
-            }
+            tl.to(deck, { opacity: 0, y: -40, scale: 0.9, duration: 0.8, ease: "power2.in" }, base + 9.5);
+            tl.set(deck, { pointerEvents: "none" }, base + 10.5);
             if (heading) {
-              tl.to(heading, { opacity: 0, y: -16, duration: 0.7, ease: "power2.in" }, base + 9.2);
+              tl.to(heading, { opacity: 0, y: -16, duration: 0.7, ease: "power2.in" }, base + 9.5);
             }
             if (nextDeck) {
-              tl.fromTo(nextDeck, { opacity: 0, y: 24 }, { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.7, ease: "power2.out" }, base + 9.9);
+              tl.fromTo(
+                nextDeck,
+                { opacity: 0, y: 50, scale: 0.92 },
+                { opacity: 1, y: 0, scale: 1.0, pointerEvents: "auto", duration: 0.8, ease: "power2.out" },
+                base + 10.5
+              );
             }
             if (nextHeading) {
-              tl.fromTo(nextHeading, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, base + 9.9);
+              tl.fromTo(
+                nextHeading,
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" },
+                base + 10.5
+              );
             }
           }
+
         });
       });
     }, sectionRef);
@@ -349,7 +342,7 @@ export function SkillsGrid() {
             className="hidden md:flex relative w-full h-screen overflow-hidden flex-col px-6 sm:px-12 lg:px-16 max-w-[1600px] mx-auto pointer-events-auto"
           >
             <div className="grid flex-1 min-h-0 grid-cols-12 gap-8 lg:gap-12 items-center w-full py-10">
-              <div className="col-span-12 md:col-span-5 xl:col-span-5 flex flex-col justify-center gap-7 select-none">
+              <div className="col-span-12 md:col-span-6 xl:col-span-6 flex flex-col justify-center gap-7 select-none">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -405,10 +398,10 @@ export function SkillsGrid() {
                 </div>
               </div>
 
-              <div className="col-span-12 md:col-span-7 xl:col-span-7 flex items-center justify-center relative">
+              <div className="col-span-12 md:col-span-6 xl:col-span-6 flex items-center justify-center relative">
                 <div
-                  className="relative w-full max-w-[480px] xl:max-w-[540px] p-2"
-                  style={{ height: `calc(${CARD_HEIGHT} + ${DECK_RESERVE}px)` }}
+                  className="relative w-full max-w-[340px] xl:max-w-[370px]"
+                  style={{ height: CARD_HEIGHT }}
                 >
                   {SKILL_CHAPTERS.map((chapter, chIdx) => (
                     <div
@@ -425,8 +418,8 @@ export function SkillsGrid() {
                             if (!cardElementsRef.current[chIdx]) cardElementsRef.current[chIdx] = [];
                             cardElementsRef.current[chIdx][cardIdx] = el;
                           }}
-                          className="absolute inset-x-0 bottom-0 skills-gpu-accelerated"
-                          style={{ height: CARD_HEIGHT }}
+                          className="absolute inset-0 skills-gpu-accelerated"
+                          style={{ height: "100%" }}
                         >
                           <SkillCard card={card} chapter={chapter} language={language} isDesktopDeck />
                         </div>
@@ -476,8 +469,8 @@ export function SkillsGrid() {
 
                 <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 pt-1 px-1 scrollbar-none">
                   {chapter.cards.map((card) => (
-                    <div key={card.id} className="w-[84vw] max-w-[340px] shrink-0 snap-center">
-                      <SkillCard card={card} chapter={chapter} language={language} />
+                    <div key={card.id} className="w-[78vw] max-w-[290px] h-[400px] shrink-0 snap-center">
+                      <SkillCard card={card} chapter={chapter} language={language} isDesktopDeck />
                     </div>
                   ))}
                 </div>
