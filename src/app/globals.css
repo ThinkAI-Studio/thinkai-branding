@@ -13,7 +13,11 @@
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   --radius-card: 12px;
   --radius-btn: 12px;
-  --radius-tag: 12px;
+  --radius-btn-sm: 8px;
+  --radius-btn-md: 12px;
+  --radius-btn-lg: 16px;
+  --radius-btn-cta: 20px;
+  --radius-tag: 8px;
   --radius-input: 12px;
   --radius-container: 12px;
   --radius-tuck: 0 0 12px 12px;
@@ -31,7 +35,11 @@
   --tai-accent-green: #4ade80;
   --radius-card: 12px;
   --radius-btn: 12px;
-  --radius-tag: 12px;
+  --radius-btn-sm: 8px;
+  --radius-btn-md: 12px;
+  --radius-btn-lg: 16px;
+  --radius-btn-cta: 20px;
+  --radius-tag: 8px;
   --radius-input: 12px;
   --radius-container: 12px;
   --radius-tuck: 0 0 12px 12px;
@@ -79,27 +87,27 @@ html {
   color: #05070a;
 }
 
-/* 10px Precision Geometric System - ThinkAI Studio */
-.tai-tag-pill,
-.tai-glass-card,
-button,
-input,
-textarea {
-  border-radius: 10px;
-}
+@layer base {
+  .tai-tag-pill,
+  .tai-glass-card,
+  button,
+  input,
+  textarea {
+    border-radius: var(--radius-btn, 12px);
+  }
 
-.tai-card {
-  border-radius: 10px;
-}
+  .tai-card {
+    border-radius: var(--radius-card, 12px);
+  }
 
-.tai-container-box {
-  border-radius: 16px;
-}
+  .tai-container-box {
+    border-radius: var(--radius-container, 12px);
+  }
 
-.tai-exit-tuck {
-  border-radius: 0 0 16px 16px;
+  .tai-exit-tuck {
+    border-radius: var(--radius-tuck, 0 0 12px 12px);
+  }
 }
-
 /* Impeccable Visual Signatures */
 .tai-inset-top {
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.07);

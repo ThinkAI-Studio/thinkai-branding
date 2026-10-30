@@ -94,7 +94,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
                 setWipeState("idle");
               }
             }}
-            className="absolute inset-0 pointer-events-none rounded-xl"
+            className="absolute inset-0 pointer-events-none rounded-[inherit]"
             style={{ backgroundColor: wipeColor, zIndex: 0 }}
           />
         )}

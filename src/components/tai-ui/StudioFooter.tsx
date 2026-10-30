@@ -77,7 +77,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
                 </a>
@@ -87,7 +87,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                 </a>
@@ -95,7 +95,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <a
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
                 </a>
@@ -105,7 +105,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Twitter className="w-3.5 h-3.5" />
                 </a>
@@ -127,7 +127,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
                       aria-label={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
                     </button>

@@ -107,7 +107,7 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-2">
                   <WipeButton
                     onClick={handlePrevSlide}
-                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -117,7 +117,7 @@ export default function PortfolioPage() {
                   </WipeButton>
                   <WipeButton
                     onClick={handleNextSlide}
-                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
                     →
                   </WipeButton>
                 </div>
-                <div className="px-2.5 py-1 rounded-xl bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
+                <div className="px-2.5 py-1 rounded-md bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
                   {t.carousel.slides[activeSlide].tag}
                 </div>
 
@@ -316,7 +316,7 @@ export default function PortfolioPage() {
               hoverTextColor="#ffffff"
               borderColor="#ffffff"
               hoverBorderColor="rgba(255, 255, 255, 0.4)"
-              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-xl text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
+              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-[20px] text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
             >
               <LanguageTransition langKey={language} as="span">
                 <ButtonTextRoll
