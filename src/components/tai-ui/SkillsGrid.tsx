@@ -29,10 +29,10 @@ function getLenis(): LenisEmitter | undefined {
 
 /* Deck choreography constants (single scrubbed timeline, 30 units) */
 const CHAPTER_UNITS = 10;
-const CARD_HEIGHT = "clamp(420px, 52vh, 500px)";
-const DECK_FAN_RESERVE = 140;
-const BEHIND_STEP_Y = -22;
-const BEHIND_STEP_SCALE = 0.02;
+const CARD_HEIGHT = "clamp(200px, 24vh, 230px)";
+const DECK_FAN_RESERVE = 80;
+const BEHIND_STEP_Y = -14;
+const BEHIND_STEP_SCALE = 0.025;
 
 function SkillCard({
   card,
@@ -47,37 +47,39 @@ function SkillCard({
 }) {
   return (
     <article
-      className={`w-full rounded-[10px] border border-white/10 p-5 sm:p-6 xl:p-7 flex flex-col justify-between shadow-[0_16px_36px_rgba(0,0,0,0.7)] hover:border-white/20 transition-colors duration-200 select-none relative ${
+      className={`w-full rounded-2xl border border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between shadow-[0_12px_28px_rgba(0,0,0,0.5)] hover:border-white/20 transition-all duration-200 select-none relative overflow-hidden bg-[#111116] ${
         isDesktopDeck ? "h-full" : ""
       }`}
-      style={{ backgroundColor: "#101014" }}
     >
-      <div className="skills-card-highlight" />
-      <div className="space-y-4 relative z-10">
-        <div className="flex items-center justify-between gap-3">
-          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-[8px] bg-white/[0.04] border border-white/10 flex items-center justify-center p-2.5 text-white">
-            <TechLogo name={card.logo} className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+      <div className="space-y-3 relative z-10">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center p-2 text-white shrink-0">
+            <TechLogo name={card.logo} className="w-5 h-5 sm:w-6 sm:h-6 object-contain" />
           </div>
-          <span className={`font-mono text-[10px] font-bold px-2.5 py-1 rounded-[6px] uppercase tracking-wider border ${chapter.accentBorder} ${chapter.accentBg} ${chapter.accentClass}`}>
-            {chapter.category}
-          </span>
+          <div className="min-w-0 flex-1">
+            <h4 className="text-base sm:text-lg font-bold tracking-tight text-white truncate">
+              {card.name}
+            </h4>
+            <span className={`text-[10px] font-mono font-medium uppercase tracking-wider ${chapter.accentClass}`}>
+              {chapter.category}
+            </span>
+          </div>
         </div>
-        <h4 className="text-xl xl:text-2xl font-bold tracking-tight text-white">{card.name}</h4>
-        <p className="text-[13px] xl:text-sm text-neutral-300 leading-relaxed font-sans">{card.proof[language]}</p>
-        <div className="flex flex-wrap gap-1.5 pt-1">
-          {card.tags.map((tag) => (
-            <span key={tag} className="text-[10px] font-mono px-2 py-0.5 rounded-[6px] bg-white/[0.04] border border-white/[0.08] text-neutral-400">
+
+        <p className="text-xs sm:text-[13px] text-neutral-300 leading-relaxed font-sans line-clamp-2">
+          {card.proof[language]}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 pt-0.5">
+          {card.tags.slice(0, 3).map((tag) => (
+            <span
+              key={tag}
+              className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-neutral-400"
+            >
               {tag}
             </span>
           ))}
         </div>
-      </div>
-      <div className="pt-3 mt-4 border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-neutral-400 relative z-10">
-        <span>{card.proofReference ? `PROOF: ${card.proofReference}` : "VERIFIED"}</span>
-        <span className={`font-semibold tracking-wider flex items-center gap-1.5 ${chapter.accentClass}`}>
-          <span className="w-1.5 h-1.5 rounded-full bg-current" />
-          {language === "vi" ? "THỰC CHỨNG" : "VERIFIED IN PROD"}
-        </span>
       </div>
     </article>
   );
@@ -88,7 +90,7 @@ export function SkillsGrid() {
   const prefersReduced = useReducedMotion();
 
   const tagText = language === "vi" ? "CÔNG NGHỆ & TAY NGHỀ" : "STACK & CRAFT";
-  const headingText = language === "vi" ? "NĂNG LỰC KỸ THUẬT · 3 TRỤ CỘT CỐT LÕI" : "TECHNICAL MASTERY · 3 CORE DISCIPLINES";
+  const headingText = language === "vi" ? "NĂNG LỰC KỸ THUẬT" : "TECHNICAL MASTERY";
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const deckContainersRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -171,7 +173,7 @@ export function SkillsGrid() {
               tl.set(card, { clipPath: "inset(0 0 0 0)" }, at);
               tl.fromTo(
                 card,
-                { y: 40, scale: 1 },
+                { y: 30, scale: 1 },
                 { y: 0, scale: 1, duration: 0.85, ease: "power2.out" },
                 at
               );
@@ -250,9 +252,9 @@ export function SkillsGrid() {
         /* Reduced Motion: Static Grouped Grid */
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16 space-y-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-8 border-b border-white/[0.08]">
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>{tagText}</span>
               </div>
               <h2 id="skills-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white uppercase font-sans">
@@ -276,7 +278,7 @@ export function SkillsGrid() {
                   <h3 className="text-xl font-bold text-white tracking-tight">{chapter.title[language]}</h3>
                 </div>
                 <span className="text-xs font-mono text-neutral-400">
-                  {chapter.cards.length} {language === "vi" ? "thẻ" : "cards"}
+                  {chapter.cards.length} {language === "vi" ? "kỹ năng" : "skills"}
                 </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
@@ -295,18 +297,18 @@ export function SkillsGrid() {
             className="hidden md:flex relative w-full h-screen overflow-hidden flex-col px-6 sm:px-12 lg:px-16 max-w-[1600px] mx-auto pointer-events-auto"
           >
             <div className="grid flex-1 min-h-0 grid-cols-12 gap-8 lg:gap-12 items-center w-full py-10">
-              <div className="col-span-12 md:col-span-5 xl:col-span-5 flex flex-col justify-center gap-9 select-none">
-                <div className="space-y-3">
+              <div className="col-span-12 md:col-span-5 xl:col-span-5 flex flex-col justify-center gap-7 select-none">
+                <div className="space-y-2">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     <span>{tagText}</span>
                   </div>
-                  <h2 id="skills-heading" className="text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight text-white uppercase font-sans leading-tight">
+                  <h2 id="skills-heading" className="text-3xl lg:text-4xl font-extrabold tracking-tight text-white uppercase font-sans">
                     {headingText}
                   </h2>
                 </div>
 
-                <nav aria-label="Skill chapters navigation" className="flex items-center gap-3">
+                <nav aria-label="Skill chapters navigation" className="flex items-center gap-2 border-b border-white/[0.08] pb-3">
                   {SKILL_CHAPTERS.map((ch, idx) => (
                     <button
                       key={ch.id}
@@ -315,14 +317,14 @@ export function SkillsGrid() {
                       }}
                       type="button"
                       onClick={() => handleRailClick(idx)}
-                      className="flex-1 flex flex-col gap-1.5 p-2.5 rounded-[8px] bg-white/[0.03] border border-white/[0.08] hover:border-white/20 transition-all text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                      className="flex-1 group py-1.5 px-2 text-left transition-colors cursor-pointer focus-visible:outline-none"
                       aria-label={`Jump to chapter ${ch.index}: ${ch.category}`}
                     >
-                      <div className="flex items-center justify-between text-[11px] font-mono font-bold">
-                        <span className="text-neutral-400">{ch.index}</span>
-                        <span className={ch.accentClass}>{ch.category}</span>
+                      <div className="flex items-center justify-between text-xs font-mono font-medium pb-2">
+                        <span className="text-neutral-500 group-hover:text-neutral-300 transition-colors">{ch.index}</span>
+                        <span className="text-neutral-300 group-hover:text-white transition-colors tracking-wide">{ch.category}</span>
                       </div>
-                      <div className="w-full h-1 rounded-full bg-white/10 overflow-hidden">
+                      <div className="w-full h-[2px] rounded-full bg-white/[0.08] overflow-hidden">
                         <div
                           ref={(el) => {
                             railFillsRef.current[idx] = el;
@@ -335,23 +337,17 @@ export function SkillsGrid() {
                   ))}
                 </nav>
 
-                <div className="relative min-h-[150px] pt-2">
+                <div className="relative min-h-[120px] pt-1">
                   {SKILL_CHAPTERS.map((ch, chIdx) => (
                     <div
                       key={ch.id}
                       ref={(el) => {
                         chapterHeadingsRef.current[chIdx] = el;
                       }}
-                      className="absolute inset-0 flex flex-col justify-start space-y-2.5 pointer-events-none"
+                      className="absolute inset-0 flex flex-col justify-start space-y-2 pointer-events-none"
                     >
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-[6px] border ${ch.accentBorder} ${ch.accentBg} ${ch.accentClass}`}>
-                          {ch.index} / {ch.category}
-                        </span>
-                        <span className="text-xs font-mono text-neutral-400">{ch.label[language]}</span>
-                      </div>
                       <h3 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">{ch.title[language]}</h3>
-                      <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed max-w-md">{ch.subtitle[language]}</p>
+                      <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed max-w-md">{ch.subtitle[language]}</p>
                     </div>
                   ))}
                 </div>
@@ -359,7 +355,7 @@ export function SkillsGrid() {
 
               <div className="col-span-12 md:col-span-7 xl:col-span-7 flex items-center justify-center relative">
                 <div
-                  className="relative w-full max-w-[420px] xl:max-w-[460px] overflow-hidden rounded-[10px]"
+                  className="relative w-full max-w-[480px] xl:max-w-[540px] overflow-hidden rounded-2xl"
                   style={{ height: `calc(${CARD_HEIGHT} + ${DECK_FAN_RESERVE}px)` }}
                 >
                   {SKILL_CHAPTERS.map((chapter, chIdx) => (
@@ -401,37 +397,32 @@ export function SkillsGrid() {
           </div>
 
           {/* Mobile Vertical List (<768px) */}
-          <div className="block md:hidden py-16 px-4 sm:px-6 space-y-16">
-            <div className="space-y-3 pb-6 border-b border-white/[0.08]">
+          <div className="block md:hidden py-16 px-4 sm:px-6 space-y-12">
+            <div className="space-y-2 pb-5 border-b border-white/[0.08]">
               <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>{tagText}</span>
               </div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-white uppercase font-sans">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white uppercase font-sans">
                 {headingText}
               </h2>
-              <p className="text-xs font-mono text-neutral-400">
-                {language === "vi"
-                  ? "Kiến trúc tinh gọn, hiệu năng thực tế. Cuộn để khám phá từng thẻ năng lực."
-                  : "Zero unnecessary abstraction, verified in production. Scroll to explore each capability."}
-              </p>
             </div>
 
             {SKILL_CHAPTERS.map((chapter) => (
               <div key={chapter.id} className="space-y-4">
                 <div className="sticky top-16 z-20 py-3 bg-[#08080a]/95 backdrop-blur-md border-b border-white/[0.08] flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-[6px] border ${chapter.accentBorder} ${chapter.accentBg} ${chapter.accentClass}`}>
+                    <span className={`text-[10px] font-mono font-bold ${chapter.accentClass}`}>
                       {chapter.index} / {chapter.category}
                     </span>
                     <span className="text-xs font-bold text-white tracking-tight">{chapter.title[language]}</span>
                   </div>
                   <span className="text-[10px] font-mono text-neutral-400">
-                    {chapter.cards.length} {language === "vi" ? "thẻ" : "cards"}
+                    {chapter.cards.length} {language === "vi" ? "kỹ năng" : "skills"}
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {chapter.cards.map((card) => (
                     <SkillCard key={card.id} card={card} chapter={chapter} language={language} />
                   ))}
