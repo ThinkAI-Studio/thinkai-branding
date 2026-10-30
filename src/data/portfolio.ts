@@ -260,9 +260,9 @@ export const copy: Localized<PortfolioCopy> = {
       switchLangAria: "Switch language to Vietnamese",
     },
     hero: {
-      eyebrow: "A SYSTEMS & CRAFT WEB STUDIO",
+      eyebrow: "AN ENGINEERING STUDIO",
       headline: "SYSTEMS & CRAFT\nWEB STUDIO",
-      subline: "Frontend motion, product architecture, infrastructure reliability.",
+      subline: "PRODUCTS AND INFRASTRUCTURE",
       status: "Available for Systems & Web Engineering",
       roleHeadline: "Systems & Craft Studio",
       statement: "We build high-performance web applications, precision UI design systems, and resilient cloud delivery platforms.",
@@ -479,9 +479,9 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
       switchLangAria: "Chuyển sang Tiếng Anh",
     },
     hero: {
-      eyebrow: "STUDIO HỆ THỐNG & GIAO DIỆN HIỆN ĐẠI",
+      eyebrow: "MỘT STUDIO KỸ THUẬT",
       headline: "STUDIO HỆ THỐNG &\nGIAO DIỆN HIỆN ĐẠI",
-      subline: "Kỹ thuật frontend, kiến trúc sản phẩm, hạ tầng tin cậy.",
+      subline: "SẢN PHẨM VÀ HẠ TẦNG",
       status: "Sẵn sàng cho dự án Hệ thống & Web Engineering",
       roleHeadline: "Studio Hệ thống & Giao diện",
       statement: "Chúng tôi xây dựng các ứng dụng web hiệu năng cao, hệ thống thiết kế giao diện chuẩn xác và nền tảng phân phối đám mây bền bỉ.",
