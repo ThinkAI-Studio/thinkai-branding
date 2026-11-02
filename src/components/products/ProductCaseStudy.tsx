@@ -561,7 +561,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 {arch?.provenance.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-[12px] bg-[#101014] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.18] transition-colors"
+                    className="p-4 rounded-xl bg-[#101014] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.18] transition-colors"
                   >
                     <div className="space-y-1.5 min-w-0 flex-1">
                       <div className="flex items-center gap-2 flex-wrap font-mono text-xs">
@@ -610,7 +610,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
         <section className="pt-12 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6">
           <Link
             href={`/products/${prevProject.id}`}
-            className="w-full sm:w-auto flex items-center gap-3 p-4 rounded-[12px] bg-[#121216] border border-white/10 hover:border-white/25 transition-all text-left"
+            className="w-full sm:w-auto flex items-center gap-3 p-4 rounded-xl bg-[#121216] border border-white/10 hover:border-white/25 transition-all text-left"
           >
             <ArrowLeft className="w-4 h-4 text-neutral-400" />
             <div>
@@ -625,7 +625,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
           <Link
             href={`/products/${nextProject.id}`}
-            className="w-full sm:w-auto flex items-center justify-end gap-3 p-4 rounded-[12px] bg-[#121216] border border-white/10 hover:border-white/25 transition-all text-right ml-auto"
+            className="w-full sm:w-auto flex items-center justify-end gap-3 p-4 rounded-xl bg-[#121216] border border-white/10 hover:border-white/25 transition-all text-right ml-auto"
           >
             <div>
               <div className="text-[10px] font-mono text-neutral-500 ">

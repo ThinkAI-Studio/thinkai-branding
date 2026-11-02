@@ -482,7 +482,6 @@ export function SkillsGrid() {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-3xl font-black tracking-tight text-black">KUBERNETES</span>
-                      <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">K3S LIGHTWEIGHT</span>
                     </div>
                   </div>
 
@@ -495,7 +494,6 @@ export function SkillsGrid() {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-2xl font-bold tracking-tight text-white">DOCKER &amp; PODMAN</span>
-                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">ROOTLESS OCI CONTAINERS</span>
                     </div>
                   </div>
                 </div>
@@ -557,7 +555,6 @@ export function SkillsGrid() {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-3xl font-black tracking-tight text-white">DESIGN SYSTEMS</span>
-                      <span className="text-xs font-mono font-bold text-neutral-400 tracking-wider">10PX PRECISION TOKENS</span>
                     </div>
                   </div>
 
@@ -569,7 +566,6 @@ export function SkillsGrid() {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-3xl font-black tracking-tight text-black">FIGMA</span>
-                      <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">COMPONENT VARIANTS</span>
                     </div>
                   </div>
                 </div>
@@ -612,7 +608,6 @@ export function SkillsGrid() {
                   <span aria-hidden="true" className="animate-bounce">↓</span>
                 </span>
               </span>
-              <span className="text-neutral-500">THINKAI STUDIO · SORA BENTO</span>
             </div>
           </div>
 
@@ -681,7 +676,6 @@ export function SkillsGrid() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-2xl font-black tracking-tight text-black">KUBERNETES</span>
-                  <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">K3S LIGHTWEIGHT</span>
                 </div>
               </div>
 
@@ -729,7 +723,6 @@ export function SkillsGrid() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-2xl font-black tracking-tight text-black">FIGMA</span>
-                  <span className="text-xs font-mono font-bold text-neutral-600 tracking-wider">COMPONENT VARIANTS</span>
                 </div>
               </div>
 
