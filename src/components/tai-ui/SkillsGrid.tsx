@@ -75,13 +75,14 @@ export function SkillsGrid() {
   }, []);
 
   const startTimer = useCallback(() => {
-    clearTimeout(timerRef.current!);
-    timerRef.current = setTimeout(() => {
+    if (timerRef.current !== null) {
+      clearInterval(timerRef.current);
+    }
+    timerRef.current = setInterval(() => {
       if (!isPausedRef.current) {
         const nextIdx = (currentStackIdxRef.current + 1) % 3;
         showStack(nextIdx);
       }
-      startTimer();
     }, HOLD_DURATION + 350);
   }, [showStack]);
 
@@ -93,7 +94,6 @@ export function SkillsGrid() {
   useEffect(() => {
     if (prefersReduced) return;
 
-    showStack(0);
     startTimer();
 
     const handleVisibility = () => {
@@ -122,7 +122,9 @@ export function SkillsGrid() {
     }
 
     return () => {
-      clearTimeout(timerRef.current!);
+      if (timerRef.current !== null) {
+        clearInterval(timerRef.current);
+      }
       document.removeEventListener("visibilitychange", handleVisibility);
       observer.disconnect();
     };
