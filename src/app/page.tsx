@@ -23,6 +23,7 @@ import { ScrollTextReveal } from "@/components/tai-ui/ScrollTextReveal";
 import { PagePreloader } from "@/components/tai-ui/PagePreloader";
 import { StudioFooter } from "@/components/tai-ui/StudioFooter";
 import { ReviewMarquee } from "@/components/tai-ui/ReviewMarquee";
+import { StickyMobileCTA } from "@/components/tai-ui/StickyMobileCTA";
 import { OceanStirZone } from "@/components/tai-ui/OceanStirZone";
 import "./studio.css";
 
@@ -374,6 +375,12 @@ export default function PortfolioPage() {
       />
       {/* ─── 12. SCROLL INDICATOR RAIL (48px Active / 28px Neighbor / 12px Rest) ─── */}
       <ScrollIndicator />
+
+      {/* ─── 13. STICKY MOBILE CTA (below md, after hero, hidden at footer & modal) ─── */}
+      <StickyMobileCTA
+        isContactOpen={isContactOpen}
+        onOpenContact={() => setIsContactOpen(true)}
+      />
     </div>
   );
 }
