@@ -31,7 +31,7 @@ export function ReviewMarquee() {
   return (
     <section
       aria-label={language === "vi" ? "Đánh giá" : "Reviews"}
-      className="relative z-20 bg-[#0A0A0B]/95 py-14 sm:py-20 border-t border-white/[0.10] overflow-hidden"
+      className="relative z-20 bg-[#0A0A0B] py-14 sm:py-20 border-t border-white/[0.10] overflow-hidden"
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16">
         <div className="flex items-center justify-between mb-6 sm:mb-8">

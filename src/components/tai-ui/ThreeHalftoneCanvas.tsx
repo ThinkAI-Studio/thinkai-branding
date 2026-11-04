@@ -184,12 +184,10 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         // Compute normalized caustic intensity [0.0 .. 1.0]
         float intensity = smoothstep(-0.35, 0.35, wave) * 0.4 + caustics * 0.6;
 
-        // Venice Blue Caustics (#2985b8 studio palette accent).
-        // Deep blue-black base: #05080C (vec3(0.020, 0.031, 0.047)).
-        // Subdued peak in #1B5C82-#2A7FAE range (e.g. #236D99, vec3(0.137, 0.427, 0.600)).
-        // Blue is dominant (B > G > R) at peaks, and mean reads as a dark blue (~#0C1A24).
-        vec3 baseCol = vec3(0.020, 0.031, 0.047);
-        vec3 peakCol = vec3(0.137, 0.427, 0.600);
+        // Paler muted blue haze. Base #06090D (vec3(0.024, 0.035, 0.051)).
+        // Peak: desaturated slate vec3(0.060, 0.125, 0.260). Mean B-R ≈ 10-18, B > R.
+        vec3 baseCol = vec3(0.024, 0.035, 0.051);
+        vec3 peakCol = vec3(0.060, 0.125, 0.260);
 
         // Power-curved caustic intensity lifts highlights cleanly while retaining deep ocean base
         float lift = pow(clamp(intensity, 0.0, 1.0), 2.6);

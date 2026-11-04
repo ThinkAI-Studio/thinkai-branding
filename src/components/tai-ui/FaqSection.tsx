@@ -101,7 +101,7 @@ export function FaqSection() {
       <section
         id="faq"
         aria-labelledby="faq-heading"
-        className="relative z-20 bg-[#0A0A0B]/95 py-20 sm:py-28 border-t border-white/[0.10] shadow-2xl"
+        className="relative z-20 bg-[#0A0A0B] py-20 sm:py-28 border-t border-white/[0.10] shadow-2xl"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-8 space-y-10">
         <div className="text-center space-y-3">
