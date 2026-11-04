@@ -20,8 +20,8 @@ export default function ErrorPage({
   }, [error]);
 
   return (
-    <main className="min-h-screen bg-[#1A1A1A] text-white flex flex-col items-center justify-center p-6 selection:bg-white selection:text-black">
-      <div className="w-full max-w-md p-8 sm:p-10 rounded-xl bg-[#232326] border border-white/[0.10] shadow-2xl flex flex-col items-center text-center space-y-6">
+    <main className="min-h-screen bg-[#141414] text-white flex flex-col items-center justify-center p-6 selection:bg-white selection:text-black">
+      <div className="w-full max-w-md p-8 sm:p-10 rounded-xl bg-[#1E1E1E] border border-white/[0.10] shadow-2xl flex flex-col items-center text-center space-y-6">
         {/* Wordmark */}
         <div className="flex items-center gap-3">
           <div className="relative w-7 h-7 p-1 flex items-center justify-center rounded-xl bg-white/[0.08] border border-white/20 shadow-sm shrink-0">

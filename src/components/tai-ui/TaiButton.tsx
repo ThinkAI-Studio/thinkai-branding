@@ -8,14 +8,14 @@ import { cn } from "@/lib/utils";
 import { TAI_EASE } from "@/lib/motion";
 
 export const taiButtonVariants = cva(
-  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl font-mono text-xs tracking-wider transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] active:scale-[0.98]",
+  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl font-mono text-xs tracking-wider transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414] active:scale-[0.98]",
   {
     variants: {
       variant: {
         primary:
           "bg-white text-neutral-950 hover:bg-neutral-100 font-bold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4),0_1px_2px_0_rgba(0,0,0,0.4)]",
         secondary:
-          "bg-[#232326] text-white hover:bg-[#2c2c30] border border-white/[0.10] hover:border-white/[0.28] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
+          "bg-[#1E1E1E] text-white hover:bg-[#2c2c30] border border-white/[0.10] hover:border-white/[0.28] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
         outline:
           "bg-transparent text-white border border-white/[0.12] hover:border-white/[0.30] hover:bg-white/[0.03] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]",
         ghost:

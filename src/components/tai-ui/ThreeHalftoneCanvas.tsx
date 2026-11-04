@@ -181,23 +181,21 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         // Subtle localized caustic shimmer around cursor
         caustics += u_stir * exp(-distToStir * 12.0) * 0.22;
 
-        // Venetian Adriatic Emerald Color Palette
-        vec3 cAdriaticDeep  = vec3(0.04, 0.14, 0.22);
-        vec3 cEmeraldLagoon = vec3(0.12, 0.46, 0.48);
-        vec3 cSapphireBlue  = vec3(0.16, 0.52, 0.72);
-        vec3 cCrystalAqua   = vec3(0.32, 0.68, 0.76);
-        vec3 cSunlightFoam  = vec3(0.55, 0.85, 0.90);
+        // Compute normalized caustic intensity [0.0 .. 1.0]
+        float intensity = smoothstep(-0.35, 0.35, wave) * 0.4 + caustics * 0.6;
 
-        vec3 col = cAdriaticDeep;
-        col = mix(col, cEmeraldLagoon, smoothstep(-0.35, 0.35, wave) * 0.92);
-        col = mix(col, cSapphireBlue, smoothstep(0.0, 0.65, caustics) * 0.88);
-        col = mix(col, cCrystalAqua, caustics * 0.78);
-        col = mix(col, cSunlightFoam, pow(smoothstep(0.45, 0.90, wave + caustics * 0.45), 2.8) * 0.65);
+        // Deep Neutral Monochrome Caustics (|R-G| <= 2, |G-B| <= 2, mean #101010 - #181818)
+        vec3 neutralCol = vec3(0.040 + intensity * 0.020);
 
         // Apply Rotated Halftone Print Screen with constant CSS-space pitch (4.4 CSS px)
         float pitch = 4.4 * u_pixel_scale;
-        col = applyRotatedHalftone(col, gl_FragCoord.xy, pitch, 0.23, 0.70);
-        gl_FragColor = vec4(col, 1.0);
+        vec2 rotCoord = rotate2D(gl_FragCoord.xy, 0.785398);
+        vec2 cell = fract(rotCoord / pitch) - 0.5;
+        float dist = length(cell);
+        float mask = 1.0 - smoothstep(0.23 - 0.11, 0.23 + 0.11, dist);
+        neutralCol = mix(neutralCol, vec3(0.015), mask * 0.50);
+
+        gl_FragColor = vec4(neutralCol, 1.0);
       }
     `;
 
@@ -353,7 +351,6 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         zIndex: 0,
         contain: "strict",
         transform: "translateZ(0)",
-        opacity: 0.30,
       }}
     />
   );

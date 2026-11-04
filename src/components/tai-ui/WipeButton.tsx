@@ -112,7 +112,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
     );
 
     const baseClasses = cn(
-      "relative inline-flex items-center justify-center overflow-hidden rounded-xl transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] active:scale-[0.98]",
+      "relative inline-flex items-center justify-center overflow-hidden rounded-xl transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414] active:scale-[0.98]",
       className
     );
 

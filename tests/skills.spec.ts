@@ -14,7 +14,7 @@ const SKILL_NAMES = [
   "Docker & Podman",
   "Kubernetes & K3s",
   "GitHub Actions + Argo CD",
-  "Tailscale + SAST",
+  "Tailscale + Trivy",
   // Designer
   "Design Systems & Tokens",
   "Figma",

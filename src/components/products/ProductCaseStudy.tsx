@@ -106,9 +106,9 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#08080a] text-white selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-[#141414] text-white selection:bg-white selection:text-black">
       {/* ─── STICKY HEADER ─── */}
-      <header className="sticky top-0 z-50 bg-[#08080a]/90 backdrop-blur-xl border-b border-white/[0.10] px-4 sm:px-8 py-3.5">
+      <header className="sticky top-0 z-50 bg-[#141414]/90 backdrop-blur-xl border-b border-white/[0.10] px-4 sm:px-8 py-3.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
@@ -186,7 +186,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
               {project.stack.map((item) => (
                 <span
                   key={item}
-                  className="px-3 py-1 rounded-xl bg-[#232326] border border-white/[0.1] text-xs font-mono text-neutral-200"
+                  className="px-3 py-1 rounded-xl bg-[#1E1E1E] border border-white/[0.1] text-xs font-mono text-neutral-200"
                 >
                   {item}
                 </span>
@@ -195,7 +195,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
             {/* CLI Command or Live Button */}
             {project.cliCommand && (
-              <div className="flex items-center gap-2 bg-[#232326] border border-white/[0.12] p-1.5 pl-3 rounded-xl max-w-md w-full sm:w-auto">
+              <div className="flex items-center gap-2 bg-[#1E1E1E] border border-white/[0.12] p-1.5 pl-3 rounded-xl max-w-md w-full sm:w-auto">
                 <Terminal className="w-4 h-4 text-emerald-400 shrink-0" />
                 <code className="text-xs font-mono text-neutral-200 truncate flex-1">
                   {project.cliCommand}
@@ -290,7 +290,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
         {/* ─── TECHNICAL TELEMETRY HUD ─── */}
         {arch && (
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 sm:p-5 rounded-xl bg-[#232326] border border-white/[0.10] text-xs font-mono">
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 sm:p-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] text-xs font-mono">
             <div className="space-y-1 border-b md:border-b-0 md:border-r border-white/[0.10] pb-3 md:pb-0 md:pr-4">
               <span className="text-neutral-400 block font-bold  tracking-wider text-[11px]">
                 {language === "vi" ? "Ràng buộc hệ thống" : "System Constraint"}
@@ -315,7 +315,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
         {/* ─── INLINE CASE STUDY & ARCHITECTURE TABS ─── */}
         <section className="space-y-8">
           {/* Navigation Tab Bar */}
-          <div className="flex items-center gap-2 p-1.5 bg-[#232326] rounded-xl border border-white/[0.1] overflow-x-auto scrollbar-none text-xs font-mono">
+          <div className="flex items-center gap-2 p-1.5 bg-[#1E1E1E] rounded-xl border border-white/[0.1] overflow-x-auto scrollbar-none text-xs font-mono">
             <button
               type="button"
               onClick={() => setActiveTab("narrative")}
@@ -367,7 +367,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* 01. Challenge */}
-                <div className="p-6 rounded-xl bg-[#232326] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
+                <div className="p-6 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
                   <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-red-400" />
@@ -385,7 +385,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 </div>
 
                 {/* 02. Approach */}
-                <div className="p-6 rounded-xl bg-[#232326] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
+                <div className="p-6 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
                   <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-amber-400" />
@@ -403,7 +403,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 </div>
 
                 {/* 03. Outcome */}
-                <div className="p-6 rounded-xl bg-[#232326] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
+                <div className="p-6 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
                   <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -422,7 +422,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
               </div>
 
               {/* Telemetry Strip */}
-              <div className="p-4 rounded-xl bg-[#232326] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div className="p-4 rounded-xl bg-[#1E1E1E] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
                 <div className="flex items-center gap-2.5">
                   <Activity className="w-4 h-4 text-emerald-400" />
                   <span className="text-white font-bold">{project.metric.value}</span>
@@ -450,7 +450,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   {arch.flowSteps.map((step) => (
                     <div
                       key={step.step}
-                      className="p-5 rounded-xl bg-[#232326] border border-white/[0.10] space-y-3 flex flex-col justify-between hover:border-white/[0.2] transition-colors"
+                      className="p-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 flex flex-col justify-between hover:border-white/[0.2] transition-colors"
                     >
                       <div className="space-y-2">
                         <div className="flex items-center justify-between border-b border-white/[0.06] pb-2">
@@ -520,7 +520,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   return (
                     <div
                       key={idx}
-                      className="p-5 rounded-xl bg-[#232326] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]"
+                      className="p-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2">
                         <div className="flex items-center gap-2 text-white font-bold font-mono">
@@ -561,7 +561,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 {arch?.provenance.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl bg-[#232326] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.28] transition-colors"
+                    className="p-4 rounded-xl bg-[#1E1E1E] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.28] transition-colors"
                   >
                     <div className="space-y-1.5 min-w-0 flex-1">
                       <div className="flex items-center gap-2 flex-wrap font-mono text-xs">
@@ -610,7 +610,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
         <section className="pt-12 border-t border-white/[0.10] flex flex-col sm:flex-row items-center justify-between gap-6">
           <Link
             href={`/products/${prevProject.id}`}
-            className="w-full sm:w-auto flex items-center gap-3 p-4 rounded-xl bg-[#232326] border border-white/10 hover:border-white/[0.28] transition-all text-left"
+            className="w-full sm:w-auto flex items-center gap-3 p-4 rounded-xl bg-[#1E1E1E] border border-white/10 hover:border-white/[0.28] transition-all text-left"
           >
             <ArrowLeft className="w-4 h-4 text-neutral-400" />
             <div>
@@ -625,7 +625,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
           <Link
             href={`/products/${nextProject.id}`}
-            className="w-full sm:w-auto flex items-center justify-end gap-3 p-4 rounded-xl bg-[#232326] border border-white/10 hover:border-white/[0.28] transition-all text-right ml-auto"
+            className="w-full sm:w-auto flex items-center justify-end gap-3 p-4 rounded-xl bg-[#1E1E1E] border border-white/10 hover:border-white/[0.28] transition-all text-right ml-auto"
           >
             <div>
               <div className="text-[10px] font-mono text-[#A3A3A3] ">

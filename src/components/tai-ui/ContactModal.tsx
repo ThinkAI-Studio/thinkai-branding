@@ -153,7 +153,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             data-lenis-prevent="true"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg bg-[#232326] text-white border border-white/[0.10] rounded-xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 space-y-6 overflow-hidden"
+            className="relative w-full max-w-lg bg-[#1E1E1E] text-white border border-white/[0.10] rounded-xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 space-y-6 overflow-hidden"
             style={{
               fontFamily:
                 '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',

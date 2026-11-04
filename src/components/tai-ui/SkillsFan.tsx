@@ -212,7 +212,7 @@ export function SkillsFan() {
             {SKILL_CARDS.map((card) => (
               <div
                 key={card.id}
-                className="p-5 rounded-xl bg-[#232326] border border-white/[0.10] space-y-3"
+                className="p-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3"
               >
                 <div className="flex items-center justify-between text-xs font-mono text-neutral-400">
                   <span>{card.mark}</span>
@@ -265,7 +265,7 @@ export function SkillsFan() {
                     }}
                   >
                     {/* Motion target for click ripple wave */}
-                    <div className="toolkit-card__motion w-full h-full p-6 sm:p-7 rounded-xl bg-[#232326] border border-white/[0.10] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_20px_50px_rgba(0,0,0,0.85)] flex flex-col justify-between transition-colors duration-300 group-hover:border-white/[0.28] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_25px_60px_rgba(0,0,0,0.95)]">
+                    <div className="toolkit-card__motion w-full h-full p-6 sm:p-7 rounded-xl bg-[#1E1E1E] border border-white/[0.10] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_20px_50px_rgba(0,0,0,0.85)] flex flex-col justify-between transition-colors duration-300 group-hover:border-white/[0.28] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_25px_60px_rgba(0,0,0,0.95)]">
                       {/* Top Bar: Mark + Group */}
                       <div className="flex items-center justify-between font-mono text-xs text-neutral-400 border-b border-white/[0.08] pb-3">
                         <span className="font-bold text-white/80">{card.mark}</span>

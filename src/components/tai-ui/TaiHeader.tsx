@@ -225,7 +225,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
         transition={headerTransition}
         className="fixed top-0 inset-x-0 h-20 sm:h-24 z-40 pointer-events-none select-none"
         style={{
-          background: "linear-gradient(to bottom, rgba(26, 26, 26, 0.96) 0%, rgba(26, 26, 26, 0.88) 55%, rgba(26, 26, 26, 0) 100%)",
+          background: "linear-gradient(to bottom, rgba(20, 20, 20, 0.96) 0%, rgba(20, 20, 20, 0.88) 55%, rgba(20, 20, 20, 0) 100%)",
         }}
       >
         <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.10]" />
@@ -334,7 +334,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             aria-label={t.nav.switchLangAria}
             onClick={toggleLanguage}
             title={t.nav.switchLangAria}
-            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-xl bg-[#1A1A1A]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
+            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-xl bg-[#141414]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
           >
             <button
               type="button"
@@ -438,7 +438,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             aria-modal="true"
             aria-label="Mobile Navigation"
             data-testid="mobile-nav-drawer"
-            className="fixed top-0 inset-x-0 z-40 bg-[#1A1A1A]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
+            className="fixed top-0 inset-x-0 z-40 bg-[#141414]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
           >
             {/* Big Bold Vertical Links - Stable direct rendering without stuck variant trap */}
             <div className="flex flex-col gap-4 text-4xl font-bold tracking-tight text-white pt-2">
@@ -486,7 +486,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                   <span>{language === "vi" ? "NGÔN NGỮ" : "LANGUAGE"}</span>
                 </LanguageTransition>
               </div>
-              <div className="relative inline-flex items-center p-[3px] bg-[#1A1A1A] border border-white/15 rounded-xl shadow-inner">
+              <div className="relative inline-flex items-center p-[3px] bg-[#141414] border border-white/15 rounded-xl shadow-inner">
                 <button
                   type="button"
                   onClick={() => {

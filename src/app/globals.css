@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tai-bg: #1A1A1A;
-  --color-tai-sheet: #1A1A1A;
-  --color-tai-surface: #1A1A1A;
-  --color-tai-surface-raised: #232326;
-  --color-tai-card: #232326;
-  --color-tai-card-raised: #232326;
-  --color-tai-card-inset: #141414;
+  --color-tai-bg: #141414;
+  --color-tai-sheet: #141414;
+  --color-tai-surface: #141414;
+  --color-tai-surface-raised: #1E1E1E;
+  --color-tai-card: #1E1E1E;
+  --color-tai-card-raised: #1E1E1E;
+  --color-tai-card-inset: #0B0B0B;
   --color-tai-border: rgba(255, 255, 255, 0.10);
   --color-tai-border-strong: rgba(255, 255, 255, 0.28);
   --color-tai-green: #4ade80;
@@ -23,13 +23,13 @@
 }
 
 :root {
-  --tai-bg: #1A1A1A;
-  --tai-sheet: #1A1A1A;
-  --tai-surface: #1A1A1A;
-  --tai-surface-raised: #232326;
-  --tai-card: #232326;
-  --tai-card-raised: #232326;
-  --tai-card-inset: #141414;
+  --tai-bg: #141414;
+  --tai-sheet: #141414;
+  --tai-surface: #141414;
+  --tai-surface-raised: #1E1E1E;
+  --tai-card: #1E1E1E;
+  --tai-card-raised: #1E1E1E;
+  --tai-card-inset: #0B0B0B;
   --tai-border: rgba(255, 255, 255, 0.10);
   --tai-border-strong: rgba(255, 255, 255, 0.28);
   --tai-accent-green: #4ade80;
@@ -149,7 +149,7 @@ html {
   inset: -5%;
   width: 110%;
   height: 110%;
-  opacity: 0.22;
+  opacity: 0.10;
   background-image: url("/images/textures/grain-tile.png");
   background-repeat: repeat;
   background-size: 160px 160px;

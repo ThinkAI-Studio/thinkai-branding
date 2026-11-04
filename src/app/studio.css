@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 :root {
-  --tai-bg: #1A1A1A;
-  --tai-sheet: #1A1A1A;
-  --tai-sheet-alt: #1A1A1A;
-  --tai-card-surface: #232326;
-  --tai-code-block: #141414;
+  --tai-bg: #141414;
+  --tai-sheet: #141414;
+  --tai-sheet-alt: #141414;
+  --tai-card-surface: #1E1E1E;
+  --tai-code-block: #0B0B0B;
   --tai-drawer-bg: #f4f4f5;
   --tai-border: rgba(255, 255, 255, 0.10);
   --tai-border-strong: rgba(255, 255, 255, 0.28);
