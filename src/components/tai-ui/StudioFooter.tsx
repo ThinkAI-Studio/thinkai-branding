@@ -250,6 +250,17 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     </span>
                   </a>
                 </li>
+                <li>
+                  <Link
+                    href="/privacy"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                  >
+                    <span>
+                      {language === "vi" ? "Chính sách bảo mật" : "Privacy Policy"}
+                      <span className="text-[10px] opacity-70 inline-block ml-1 group-hover:translate-x-0.5 transition-transform">↳</span>
+                    </span>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

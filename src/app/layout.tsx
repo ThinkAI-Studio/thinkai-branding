@@ -3,7 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { profile } from "@/data/portfolio";
 
 const barlowHero = localFont({
   src: "./fonts/BarlowCondensed-Bold.woff2",
@@ -24,11 +25,16 @@ const barlowSecondary = localFont({
 });
 
 const socialImage = "/og-image.png?v=20261030";
+const HOME_DESCRIPTION =
+  "ThinkAI Studio crafts high-performance web applications, precision UI design systems, and resilient cloud delivery pipelines led by engineer Bình Minh.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${SITE_NAME} — Engineering Showcase & Product Portfolio`,
-  description: SITE_DESCRIPTION,
+  title: {
+    default: "Home - ThinkAI Studio",
+    template: "%s",
+  },
+  description: HOME_DESCRIPTION,
   icons: {
     icon: [
       { url: "/icon.png?v=20260902", sizes: "512x512", type: "image/png" },
@@ -44,8 +50,8 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: `${SITE_NAME} — Engineering Showcase & Product Portfolio`,
-    description: SITE_DESCRIPTION,
+    title: "Home - ThinkAI Studio",
+    description: HOME_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
     images: [{ url: socialImage, width: 1200, height: 630, alt: `${SITE_NAME}: Engineering Showcase & Product Portfolio` }],
@@ -54,16 +60,41 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Engineering Showcase & Product Portfolio`,
-    description: SITE_DESCRIPTION,
+    title: "Home - ThinkAI Studio",
+    description: HOME_DESCRIPTION,
     images: [socialImage],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.png`,
+    sameAs: [profile.github, profile.linkedin],
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: ["en", "vi"],
+  };
+
   return (
     <html lang="en" className={`${barlowHero.variable} ${barlowSecondary.className}`} data-theme="dark" suppressHydrationWarning>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <div className="tai-grain-overlay" aria-hidden="true" />
         <ThemeProvider>
           <LanguageProvider>{children}</LanguageProvider>

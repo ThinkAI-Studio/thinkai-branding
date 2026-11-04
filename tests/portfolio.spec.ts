@@ -3,6 +3,9 @@ import { expect, test } from "@playwright/test";
 const htmlRoutes = [
   "/",
   "/about",
+  "/cv",
+  "/privacy",
+  "/products",
   "/products/thinkai-ui",
   "/products/wind",
   "/products/homelab",
@@ -17,17 +20,11 @@ for (const route of htmlRoutes) {
   });
 }
 
-test("CV route redirects to the published PDF", async ({ page }) => {
-  const [download] = await Promise.all([
-    page.waitForEvent("download").catch(() => null),
-    page.goto("/cv").catch((err) => {
-      if (!err.message.includes("Download is starting")) throw err;
-      return null;
-    }),
-  ]);
-  expect(download ? download.suggestedFilename() : "NguyenBinhMinh-DevOpsEngineer-2026.pdf").toContain(
-    "NguyenBinhMinh"
-  );
+test("CV route renders dossier with download link", async ({ page }) => {
+  await page.goto("/cv");
+  await expect(page.locator("h1")).toBeVisible();
+  const downloadLink = page.getByRole("link", { name: /tải cv|download cv/i }).first();
+  await expect(downloadLink).toHaveAttribute("href", /NguyenBinhMinh.*\.pdf/);
 });
 
 test("deep links navigate to valid sections", async ({ page }) => {
