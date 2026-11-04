@@ -23,6 +23,7 @@ import { ScrollTextReveal } from "@/components/tai-ui/ScrollTextReveal";
 import { PagePreloader } from "@/components/tai-ui/PagePreloader";
 import { StudioFooter } from "@/components/tai-ui/StudioFooter";
 import { OceanStirZone } from "@/components/tai-ui/OceanStirZone";
+import { FaqSection } from "@/components/tai-ui/FaqSection";
 import "./studio.css";
 
 export default function PortfolioPage() {
@@ -309,6 +310,9 @@ export default function PortfolioPage() {
 
       {/* ─── 06. SKILLS SECTION (12 Individual Skill Cards with Scroll Stagger) ─── */}
       <SkillsGrid />
+
+      {/* ─── 06.5. FREQUENTLY ASKED QUESTIONS ─── */}
+      <FaqSection />
 
       {/* ─── 07. CALL TO ACTION CLOSURE ─── */}
       <section id="contact" className="relative z-10 min-h-[92vh] flex items-center justify-center pt-36 sm:pt-48 pb-28 px-6 bg-transparent pointer-events-none">

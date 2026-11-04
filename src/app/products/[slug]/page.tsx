@@ -9,6 +9,17 @@ export async function generateStaticParams() {
   }));
 }
 
+const PRODUCT_DESCRIPTIONS: Record<string, string> = {
+  "thinkai-ui":
+    "An infrastructure-grade component registry crafted with 0px sharp geometry, obsidian depth, spring physics, and an automated zero-overhead CLI installer.",
+  wind:
+    "Commissioned literary platform and teaching archive with a 3D dual-spread folio reader, four-season shaders, bookshelf, and procedural Web Audio synthesis.",
+  homelab:
+    "HostDeck: a private bare-metal operations workbench for a nine-service Podman homelab with WireGuard mesh ingress and real-time telemetry streaming.",
+  thinkai:
+    "ThinkAI Learning: a DevSecOps delivery path for an education backend featuring automated SAST CodeQL scans, Trivy container gates, and Argo CD GitOps.",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,16 +30,19 @@ export async function generateMetadata({
 
   if (!project) {
     return {
-      title: "Product Not Found — ThinkAI Studio",
+      title: "Product Not Found - ThinkAI Studio",
     };
   }
 
+  const description =
+    PRODUCT_DESCRIPTIONS[slug] || project.content.en.summary;
+
   return {
-    title: `${project.content.en.title} — Case Study | ThinkAI Studio`,
-    description: project.content.en.summary,
+    title: `${project.content.en.title} - ThinkAI Studio`,
+    description,
     openGraph: {
-      title: `${project.content.en.title} — Case Study | ThinkAI Studio`,
-      description: project.content.en.summary,
+      title: `${project.content.en.title} - ThinkAI Studio`,
+      description,
       images: [project.preview.image],
     },
   };

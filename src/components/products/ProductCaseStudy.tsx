@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { projects, type Project } from "@/data/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
+import { Breadcrumbs } from "@/components/tai-ui/Breadcrumbs";
 
 const ICON_MAP = {
   shield: ShieldCheck,
@@ -110,18 +111,21 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
       {/* ─── STICKY HEADER ─── */}
       <header className="sticky top-0 z-50 bg-[#141414]/90 backdrop-blur-xl border-b border-white/[0.10] px-4 sm:px-8 py-3.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             <Link
               href="/#products"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors shrink-0"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>{language === "vi" ? "Tất cả sản phẩm" : "All Products"}</span>
             </Link>
-            <span className="text-white/20 hidden sm:inline">/</span>
-            <span className="font-mono text-xs font-bold text-white  hidden sm:inline">
-              {content.title}
-            </span>
+            <Breadcrumbs
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Products", href: "/products" },
+                { label: content.title, href: `/products/${project.id}` },
+              ]}
+            />
           </div>
 
           <div className="flex items-center gap-2.5">
