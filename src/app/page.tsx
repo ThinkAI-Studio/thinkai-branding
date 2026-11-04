@@ -108,7 +108,7 @@ export default function PortfolioPage() {
       <HeroSection />
 
       {/* ─── 03. TRANSITION SHEET & INTERACTIVE CHAPTER 01 CAROUSEL (Edge-to-Edge Wide) ─── */}
-      <section className="relative z-20 bg-[#141414] py-28 sm:py-36 border-t border-white/[0.10] shadow-2xl">
+      <section className="relative z-20 bg-[#141414]/55 py-28 sm:py-36 border-t border-white/[0.10] shadow-2xl">
         <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Col (1-4): Carousel Controls with Directional Forward Wipe */}
@@ -193,7 +193,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ─── 04. PRODUCT SHOWCASE (Progressive Disclosure Split Grid) ─── */}
-      <section id="products" className="relative z-20 bg-[#141414] py-24 sm:py-32 border-t border-white/[0.10] shadow-2xl">
+      <section id="products" className="relative z-20 bg-[#141414]/55 py-24 sm:py-32 border-t border-white/[0.10] shadow-2xl">
         <span id="work" className="sr-only" />
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">

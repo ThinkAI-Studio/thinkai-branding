@@ -141,7 +141,7 @@ export function SkillsGrid() {
       id="skills"
       ref={sectionRef}
       aria-labelledby="skills-heading"
-      className="relative z-20 bg-[#141414] py-16 sm:py-20 text-white border-t border-white/[0.10] overflow-x-clip"
+      className="relative z-20 bg-[#141414]/55 py-16 sm:py-20 text-white border-t border-white/[0.10] overflow-x-clip"
     >
       {prefersReduced ? (
         /* Reduced Motion: Static Accessible View containing all 17 skills across WEB, DEVOPS, DESIGNER */
