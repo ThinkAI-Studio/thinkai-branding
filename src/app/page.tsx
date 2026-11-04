@@ -22,6 +22,7 @@ import { LanguageTransition } from "@/components/tai-ui/LanguageTransition";
 import { ScrollTextReveal } from "@/components/tai-ui/ScrollTextReveal";
 import { PagePreloader } from "@/components/tai-ui/PagePreloader";
 import { StudioFooter } from "@/components/tai-ui/StudioFooter";
+import { ReviewMarquee } from "@/components/tai-ui/ReviewMarquee";
 import { OceanStirZone } from "@/components/tai-ui/OceanStirZone";
 import "./studio.css";
 
@@ -306,6 +307,9 @@ export default function PortfolioPage() {
           </div>
         </div>
       </section>
+
+      {/* ─── 05. REVIEWS MARQUEE (below Products, above Tech Skills) ─── */}
+      <ReviewMarquee />
 
       {/* ─── 06. SKILLS SECTION (12 Individual Skill Cards with Scroll Stagger) ─── */}
       <SkillsGrid />
