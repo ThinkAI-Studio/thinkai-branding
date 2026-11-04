@@ -22,6 +22,7 @@ export interface WipeButtonProps
   borderColor?: string;
   hoverBorderColor?: string;
   ariaLabel?: string;
+  "aria-current"?: React.AriaAttributes["aria-current"];
 }
 
 export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
@@ -111,7 +112,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
     );
 
     const baseClasses = cn(
-      "relative inline-flex items-center justify-center overflow-hidden rounded-xl transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
+      "relative inline-flex items-center justify-center overflow-hidden rounded-xl transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] active:scale-[0.98]",
       className
     );
 
@@ -128,6 +129,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
           className={baseClasses}
           style={sharedStyles}
           aria-label={ariaLabel}
+          aria-current={props["aria-current"]}
           ref={ref as React.Ref<HTMLDivElement>}
         >
           {innerContent}
@@ -148,6 +150,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
           className={baseClasses}
           style={sharedStyles}
           aria-label={ariaLabel}
+          aria-current={props["aria-current"]}
           ref={ref as React.Ref<HTMLAnchorElement>}
         >
           {innerContent}
@@ -164,6 +167,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
         className={baseClasses}
         style={sharedStyles}
         aria-label={ariaLabel}
+        aria-current={props["aria-current"]}
         ref={ref}
         {...props}
       >

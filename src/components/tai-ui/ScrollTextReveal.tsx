@@ -33,7 +33,7 @@ export function ScrollTextReveal({
 
       gsap.fromTo(
         wordElements,
-        { opacity: 0.18 },
+        { opacity: 0.55 },
         {
           opacity: 1,
           ease: "none",
@@ -68,7 +68,7 @@ export function ScrollTextReveal({
         <React.Fragment key={`${index}-${word}`}>
           <span
             className="scroll-reveal-word inline-block will-change-[opacity]"
-            style={{ opacity: prefersReduced ? 1 : 0.18 }}
+            style={{ opacity: prefersReduced ? 1 : 0.55 }}
             aria-hidden="true"
           >
             {word}

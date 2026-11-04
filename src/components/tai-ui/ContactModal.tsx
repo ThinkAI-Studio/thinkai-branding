@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { Copy, Check, ExternalLink, Mail, Download, FileText } from "lucide-react";
 import { ButtonTextRoll } from "./ButtonTextRoll";
@@ -19,25 +19,69 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
   const prefersReduced = useReducedMotion();
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const t = copy[lang].contact;
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   const primaryEmail = profile.email; // pata10102004@gmail.com
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-
     if (isOpen) {
+      triggerRef.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = "hidden";
+
+      const timer = setTimeout(() => {
+        if (!modalRef.current) return;
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        }
+      }, 50);
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          onClose();
+          return;
+        }
+
+        if (e.key === "Tab") {
+          if (!modalRef.current) return;
+          const focusable = (
+            Array.from(
+              modalRef.current.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+              )
+            ) as HTMLElement[]
+          ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
+
+          if (focusable.length === 0) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      };
+
       window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+        clearTimeout(timer);
+        if (triggerRef.current) {
+          triggerRef.current.focus();
+        }
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-
-    return () => {
-      document.body.style.overflow = "unset";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
   }, [isOpen, onClose]);
 
   const handleCopy = (email: string) => {
@@ -72,6 +116,10 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
 
           {/* Modal Container */}
           <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-modal-title"
             initial={
               prefersReduced
                 ? { opacity: 0 }
@@ -115,7 +163,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-2.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                <h3 className="text-base sm:text-lg font-extrabold text-white tracking-tight">
+                <h3 id="contact-modal-title" className="text-base sm:text-lg font-extrabold text-white tracking-tight">
                   {t.title}
                 </h3>
               </div>

@@ -80,6 +80,13 @@ export default function PortfolioPage() {
     <div className="tai-studio-root selection:bg-white selection:text-black relative min-h-screen">
       {/* ─── INITIAL STUDIO PRELOADER SCREEN ─── */}
       <PagePreloader />
+      {/* ─── ACCESSIBILITY SKIP LINK ─── */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-xl focus:bg-white focus:text-black focus:font-mono focus:text-xs focus:font-bold focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-black"
+      >
+        {language === "vi" ? "Chuyển đến nội dung chính" : "Skip to main content"}
+      </a>
 
       {/* ─── 120HZ ULTRA-SMOOTH MOMENTUM SCROLLING ENGINE (LENIS) ─── */}
       <SmoothScroll isLocked={isAboutOpen || isContactOpen} />
@@ -93,6 +100,8 @@ export default function PortfolioPage() {
         onOpenContact={() => setIsContactOpen(true)}
       />
 
+      {/* ─── MAIN LANDMARK ─── */}
+      <main id="main-content" tabIndex={-1} className="outline-none">
       {/* ─── 02. HERO SECTION DIRECT OVER THREE.JS CANVAS ─── */}
       <HeroSection />
 
@@ -338,6 +347,7 @@ export default function PortfolioPage() {
         onOpenAbout={() => setIsAboutOpen(true)}
         onOpenContact={() => setIsContactOpen(true)}
       />
+      </main>
 
       {/* ─── 10. ABOUT THE STUDIO DRAWER ─── */}
       <AboutDrawer

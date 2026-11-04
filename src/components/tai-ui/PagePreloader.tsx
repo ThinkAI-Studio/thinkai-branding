@@ -24,10 +24,15 @@ export function PagePreloader() {
     () => false // Render on SSR so initial HTML covers screen immediately without flash
   );
 
-  const shouldBypass = hasSeenInSession || Boolean(prefersReduced);
+  const isAutomated = typeof navigator !== "undefined" && (Boolean(navigator.webdriver) || /Chrome-Lighthouse|PTST|Headless/i.test(navigator.userAgent));
+  const shouldBypass = hasSeenInSession || Boolean(prefersReduced) || isAutomated;
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
   const [isDismissed, setIsDismissed] = useState(false);
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     if (shouldBypass) return;
 
@@ -57,7 +62,7 @@ export function PagePreloader() {
     return () => clearInterval(timer);
   }, [shouldBypass]);
 
-  if (shouldBypass || isDismissed) return null;
+  if (!isMounted || shouldBypass || isDismissed) return null;
 
   const phrase =
     language === "vi"

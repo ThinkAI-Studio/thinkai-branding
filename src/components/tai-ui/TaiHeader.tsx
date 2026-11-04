@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
@@ -29,7 +29,9 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
   const isHeaderHidden = isContactHidden || isFooterHidden;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
   const headerTransition = prefersReduced
     ? { duration: 0 }
     : { duration: 0.35, ease: LUXURY_EASE };
@@ -104,16 +106,85 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
     return () => observer.disconnect();
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Track active section for aria-current on nav items
+  useEffect(() => {
+    const handleScrollActive = () => {
+      const contactEl = document.getElementById("contact");
+      const productsEl = document.getElementById("products");
+
+      if (contactEl && contactEl.getBoundingClientRect().top <= 300 && contactEl.getBoundingClientRect().bottom > 0) {
+        setActiveSection((prev) => (prev !== "contact" ? "contact" : prev));
+      } else if (productsEl && productsEl.getBoundingClientRect().top <= 300 && productsEl.getBoundingClientRect().bottom > 0) {
+        setActiveSection((prev) => (prev !== "products" ? "products" : prev));
+      } else {
+        setActiveSection((prev) => (prev !== null ? null : prev));
+      }
+    };
+
+    handleScrollActive();
+    window.addEventListener("scroll", handleScrollActive, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollActive);
+  }, []);
+
+  // Focus trap, Esc key & return focus for mobile menu drawer
   useEffect(() => {
     if (isMobileMenuOpen) {
+      mobileMenuTriggerRef.current = document.activeElement as HTMLButtonElement | null;
       document.body.style.overflow = "hidden";
+
+      const timer = setTimeout(() => {
+        if (!mobileMenuRef.current) return;
+        const focusable = mobileMenuRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        }
+      }, 50);
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          setIsMobileMenuOpen(false);
+          return;
+        }
+
+        if (e.key === "Tab") {
+          if (!mobileMenuRef.current) return;
+          const focusable = (
+            Array.from(
+              mobileMenuRef.current.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+              )
+            ) as HTMLElement[]
+          ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
+
+          if (focusable.length === 0) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      };
+
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+        clearTimeout(timer);
+        if (mobileMenuTriggerRef.current) {
+          mobileMenuTriggerRef.current.focus();
+        }
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [isMobileMenuOpen]);
 
   const handleNavClick = (anchorId?: string) => {
@@ -188,12 +259,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
         >
           <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
             <Image
-              src="/images/thinkai_studio_logo.png"
+              src="/images/thinkai_studio_logo_opt.png"
               alt="ThinkAI Studio"
               fill
               sizes="28px"
               className="object-contain"
               priority
+              fetchPriority="high"
+              unoptimized
             />
           </div>
         </button>
@@ -220,6 +293,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           <WipeButton
             as="a"
             href="#products"
+            aria-current={activeSection === "products" ? "page" : undefined}
             wipeColor="#1e2026"
             textColor="#ffffff"
             hoverTextColor="#ffffff"
@@ -233,6 +307,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           </WipeButton>
           <WipeButton
             onClick={onOpenContact}
+            aria-current={activeSection === "contact" ? "page" : undefined}
             wipeColor="#1e2026"
             textColor="#ffffff"
             hoverTextColor="#ffffff"
@@ -270,7 +345,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               }}
               data-lang="en"
               aria-pressed={language === "en"}
-              aria-label="Switch to English"
+              aria-label="EN - Switch to English"
               className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider rounded-xl transition-colors cursor-pointer ${
                 language === "en" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
               }`}
@@ -294,7 +369,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               }}
               data-lang="vi"
               aria-pressed={language === "vi"}
-              aria-label="Chuyển sang Tiếng Việt"
+              aria-label="VI - Chuyển sang Tiếng Việt"
               className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider rounded-xl transition-colors cursor-pointer ${
                 language === "vi" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
               }`}
@@ -358,6 +433,10 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.35, ease: LUXURY_EASE }}
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
             data-testid="mobile-nav-drawer"
             className="fixed top-0 inset-x-0 z-40 bg-[#1A1A1A]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
           >
@@ -415,7 +494,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                     else setLanguage("en");
                   }}
                   data-lang-mobile="en"
-                  aria-label="Switch to English"
+                  aria-label="EN - Switch to English"
                   className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider rounded-xl transition-colors cursor-pointer select-none ${
                     language === "en" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
                   }`}
@@ -436,7 +515,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                     else setLanguage("vi");
                   }}
                   data-lang-mobile="vi"
-                  aria-label="Switch to Vietnamese"
+                  aria-label="VI - Chuyển sang Tiếng Việt"
                   className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider rounded-xl transition-colors cursor-pointer select-none ${
                     language === "vi" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
                   }`}

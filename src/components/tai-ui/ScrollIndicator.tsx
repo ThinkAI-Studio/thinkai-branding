@@ -104,22 +104,26 @@ export function ScrollIndicator() {
             aria-current={isActive ? "location" : undefined}
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className="scroll-indicator__item relative h-2.5 rounded-full bg-white/20 hover:bg-white/40 overflow-hidden cursor-pointer"
-            style={{
-              width: prefersReduced ? 20 : width,
-              transition: prefersReduced ? "none" : "width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s",
-            }}
+            className="scroll-indicator__item group relative flex items-center justify-center py-2 px-1 cursor-pointer"
           >
-            {/* Fill progress inside active section pill */}
-            {isActive && (
-              <span
-                className="absolute inset-y-0 left-0 bg-emerald-400 rounded-full"
-                style={{
-                  width: prefersReduced ? "100%" : `${Math.round(sectionProgress * 100)}%`,
-                  transition: prefersReduced ? "none" : "width 0.1s linear",
-                }}
-              />
-            )}
+            <span
+              className="relative h-2.5 rounded-full bg-white/20 group-hover:bg-white/40 overflow-hidden block"
+              style={{
+                width: prefersReduced ? 20 : width,
+                transition: prefersReduced ? "none" : "width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s",
+              }}
+            >
+              {/* Fill progress inside active section pill */}
+              {isActive && (
+                <span
+                  className="absolute inset-y-0 left-0 bg-emerald-400 rounded-full"
+                  style={{
+                    width: prefersReduced ? "100%" : `${Math.round(sectionProgress * 100)}%`,
+                    transition: prefersReduced ? "none" : "width 0.1s linear",
+                  }}
+                />
+              )}
+            </span>
           </a>
         );
       })}

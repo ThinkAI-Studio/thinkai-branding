@@ -573,7 +573,7 @@ export function SkillsGrid() {
                 {/* Bottom Row: 3 Clean Cells */}
                 <div className="grid grid-cols-3 gap-3.5">
                   <div className="bento-block rounded-xl bg-[#232326] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
-                    <h5 className="sr-only">Typography & Art Direction</h5>
+                    <h4 className="sr-only">Typography & Art Direction</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Typography" className="w-6 h-6 object-contain" />
                     </div>
@@ -581,7 +581,7 @@ export function SkillsGrid() {
                   </div>
 
                   <div className="bento-block rounded-xl bg-[#232326] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
-                    <h5 className="sr-only">Motion Design</h5>
+                    <h4 className="sr-only">Motion Design</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Motion Design" className="w-6 h-6 object-contain" />
                     </div>
@@ -589,7 +589,7 @@ export function SkillsGrid() {
                   </div>
 
                   <div className="bento-block rounded-xl bg-[#232326] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
-                    <h5 className="sr-only">Prototyping</h5>
+                    <h4 className="sr-only">Prototyping</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Prototyping" className="w-6 h-6 object-contain" />
                     </div>
@@ -732,13 +732,13 @@ export function SkillsGrid() {
               </div>
               <div className="grid grid-cols-3 gap-2">
                 <div className="rounded-xl bg-[#232326] border border-white/10 p-3 text-center">
-                  <h5 className="text-xs font-bold text-white">Typography &amp; Art Direction</h5>
+                  <h4 className="text-xs font-bold text-white">Typography &amp; Art Direction</h4>
                 </div>
                 <div className="rounded-xl bg-[#232326] border border-white/10 p-3 text-center">
-                  <h5 className="text-xs font-bold text-white">Motion Design</h5>
+                  <h4 className="text-xs font-bold text-white">Motion Design</h4>
                 </div>
                 <div className="rounded-xl bg-[#232326] border border-white/10 p-3 text-center">
-                  <h5 className="text-xs font-bold text-white">Prototyping</h5>
+                  <h4 className="text-xs font-bold text-white">Prototyping</h4>
                 </div>
               </div>
             </div>

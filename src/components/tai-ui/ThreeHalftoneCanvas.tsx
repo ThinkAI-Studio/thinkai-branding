@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import gsap from "gsap";
 import { useReducedMotion } from "motion/react";
-
 interface ThreeHalftoneCanvasProps {
   className?: string;
 }
@@ -18,7 +18,7 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
 
     // 1. Device & Sizing Detection
     const isCoarse = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
-    const maxDpr = 1.5;
+    const maxDpr = 1.0;
     const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const renderScale = 1.0;
     const getStableHeight = () => {
@@ -277,46 +277,34 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
-    // 5. Render Loop (Capped to ~60 FPS with pause on document.hidden)
-    let animationId: number;
+    // 5. Render Loop (Synchronized with gsap.ticker; pauses when offscreen or document.hidden)
     let isPaused = false;
     const clock = new THREE.Clock();
-    const TARGET_FRAME_MS = 1000 / 60;
-    let lastFrameTime = performance.now();
+
+    // Initial render for immediate paint or static frame
+    renderer.render(scene, camera);
 
     const handleVisibilityChange = () => {
       isPaused = document.hidden;
       if (!isPaused) {
-        clock.getDelta(); // Reset clock delta to avoid sudden time jump
-        lastFrameTime = performance.now();
-        cancelAnimationFrame(animationId);
-        animationId = requestAnimationFrame(animate);
+        clock.getDelta();
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    const animate = () => {
-      if (isPaused || document.hidden) return;
+    const renderTick = () => {
+      if (isPaused || document.hidden || prefersReduced) return;
 
-      const now = performance.now();
-      const elapsed = now - lastFrameTime;
-      if (elapsed < TARGET_FRAME_MS - 2) {
-        animationId = requestAnimationFrame(animate);
-        return;
-      }
-      lastFrameTime = now - (elapsed % TARGET_FRAME_MS);
-
-      if (prefersReduced) {
-        renderer.render(scene, camera);
-        return;
-      }
+      const scrollY = latestScrollY;
+      // Pause drawing when opaque middle sections (products & skills) fully cover canvas
+      if (scrollY > 1200 && scrollY < 6500) return;
 
       const delta = clock.getDelta();
       uniforms.u_time.value += delta;
 
-      // Update scroll from cachedMaxScroll inside rAF loop
-      uniforms.u_target_scroll.value = latestScrollY / (cachedMaxScroll || 1);
+      // Update scroll from cachedMaxScroll inside ticker
+      uniforms.u_target_scroll.value = scrollY / (cachedMaxScroll || 1);
 
       // Smooth interpolation for mouse, scroll, and stir pressure
       uniforms.u_mouse.value.lerp(uniforms.u_target_mouse.value, 0.06);
@@ -324,14 +312,14 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
       uniforms.u_stir.value += (uniforms.u_target_stir.value - uniforms.u_stir.value) * 0.12;
 
       renderer.render(scene, camera);
-      animationId = requestAnimationFrame(animate);
     };
 
-    animate();
-
+    if (!prefersReduced) {
+      gsap.ticker.add(renderTick);
+    }
     return () => {
       clearTimeout(resizeTimeout);
-      cancelAnimationFrame(animationId);
+      gsap.ticker.remove(renderTick);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (!isCoarse) {
         window.removeEventListener("mousemove", handleMouseMove);

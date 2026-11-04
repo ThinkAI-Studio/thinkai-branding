@@ -142,7 +142,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 1: Products */}
             <div className="space-y-3">
               <div
-                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
+                className="text-[13px] font-bold text-[#F7EFDC] pb-1.5 border-b border-[#F7EFDC]/30"
               >
                 {language === "vi" ? "Sản phẩm" : "Products"}
               </div>
@@ -197,7 +197,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 2: Studio */}
             <div className="space-y-3">
               <div
-                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
+                className="text-[13px] font-bold text-[#F7EFDC] pb-1.5 border-b border-[#F7EFDC]/30"
               >
                 Studio
               </div>
@@ -260,14 +260,14 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
-          <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+          <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.90)" }}>
             ThinkAI Studio © 2026. All Rights Reserved.
           </div>
 
           <a
             href="#top"
             className="hover:text-white transition-colors whitespace-nowrap"
-            style={{ color: "rgba(247, 239, 220, 0.66)" }}
+            style={{ color: "rgba(247, 239, 220, 0.90)" }}
           >
             {t.footer.backToTop}
           </a>

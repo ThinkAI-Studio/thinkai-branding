@@ -5,14 +5,22 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
-const barlowCondensed = localFont({
-  src: [
-    { path: "./fonts/BarlowCondensed-Regular.ttf", weight: "400", style: "normal" },
-    { path: "./fonts/BarlowCondensed-Bold.ttf", weight: "700", style: "normal" },
-    { path: "./fonts/BarlowCondensed-ExtraBold.ttf", weight: "800", style: "normal" },
-  ],
+const barlowHero = localFont({
+  src: "./fonts/BarlowCondensed-Bold.woff2",
+  weight: "700",
+  style: "normal",
   display: "swap",
   variable: "--font-display-local",
+  preload: true,
+});
+
+const barlowSecondary = localFont({
+  src: [
+    { path: "./fonts/BarlowCondensed-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/BarlowCondensed-ExtraBold.woff2", weight: "800", style: "normal" },
+  ],
+  display: "swap",
+  preload: false,
 });
 
 const socialImage = "/og-image.png?v=20261030";
@@ -54,7 +62,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={barlowCondensed.variable} data-theme="dark" suppressHydrationWarning>
+    <html lang="en" className={`${barlowHero.variable} ${barlowSecondary.className}`} data-theme="dark" suppressHydrationWarning>
       <body>
         <div className="tai-grain-overlay" aria-hidden="true" />
         <ThemeProvider>

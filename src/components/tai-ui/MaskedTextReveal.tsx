@@ -11,6 +11,7 @@ interface MaskedTextRevealProps {
   as?: "h1" | "h2" | "h3" | "h4" | "p" | "span" | "div";
   splitBy?: "lines" | "words";
   once?: boolean;
+  priority?: boolean;
 }
 
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
@@ -22,6 +23,7 @@ export function MaskedTextReveal({
   as: Component = "h1",
   splitBy = "lines",
   once = true,
+  priority = Component === "h1",
 }: MaskedTextRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once, margin: "0px 0px -5% 0px", amount: 0.05 });
@@ -34,6 +36,7 @@ export function MaskedTextReveal({
         <span className="inline-flex items-center justify-center gap-[0.18em] leading-none">
           {parts[0]}
           <svg
+            aria-hidden="true"
             className="inline-block w-[0.82em] h-[0.82em] text-white shrink-0 self-center"
             viewBox="0 0 24 24"
             fill="none"
@@ -52,7 +55,7 @@ export function MaskedTextReveal({
     return itemText;
   };
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || priority) {
     return <Component className={className}>{renderContentWithBoldArrow(text)}</Component>;
   }
 
@@ -69,7 +72,7 @@ export function MaskedTextReveal({
           )}
         >
           <motion.span
-            initial={{ y: "110%", opacity: 0 }}
+            initial={priority ? false : { y: "110%", opacity: 0 }}
             animate={isInView ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
             transition={{
               duration: 0.9,
