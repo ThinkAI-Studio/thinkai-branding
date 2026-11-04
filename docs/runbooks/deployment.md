@@ -22,7 +22,7 @@ Keep direct pushes to `main` restricted to maintainers. This is an external GitH
 ## Release verification
 
 1. Open the Vercel preview from the pull request.
-2. Check `/`, `/cv` and `/lab` at desktop and mobile widths.
+2. Check `/` and `/cv` at desktop and mobile widths.
 3. Confirm `https://thinkai.id.vn/og-image.png` returns the current 1200×630 PNG.
 4. Merge only after Quality, Security, Dependency Review and Vercel Preview checks succeed.
 

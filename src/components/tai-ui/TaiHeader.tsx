@@ -24,26 +24,43 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
   const { language, toggleLanguage, setLanguage } = useLanguage();
   const prefersReduced = useReducedMotion();
   const t = copy[language];
-  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const [isContactHidden, setIsContactHidden] = useState(false);
+  const [isFooterHidden, setIsFooterHidden] = useState(false);
+  const isHeaderHidden = isContactHidden || isFooterHidden;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Track scroll position for header scrim (> 24px)
+  const headerTransition = prefersReduced
+    ? { duration: 0 }
+    : { duration: 0.35, ease: LUXURY_EASE };
+
+  // Track scroll position for header scrim (> 24px) & same-frame footer threshold check
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 24;
       setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
+
+      // Same-frame scroll gate: hide dock as soon as footer top crosses dock bottom
+      const footerEl = document.querySelector("footer");
+      if (footerEl) {
+        const dockHeight = window.innerWidth >= 640 ? 96 : 80;
+        const rect = footerEl.getBoundingClientRect();
+        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20;
+        const footerCrossed = (Math.round(rect.top) <= dockHeight || isAtBottom) && rect.bottom > 0;
+        setIsFooterHidden((prev) => (prev !== footerCrossed ? footerCrossed : prev));
+      }
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const sliderTransition = prefersReduced
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 500, damping: 35 };
 
-  // Hide header when scrolling into the CTA section (#contact) or Footer
+  // Hide header when scrolling into the CTA section (#contact)
   useEffect(() => {
     const contactEl = document.getElementById("contact");
     if (!contactEl) return;
@@ -52,7 +69,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
       (entries) => {
         const entry = entries[0];
         if (!entry) return;
-        setIsHeaderHidden(entry.isIntersecting && entry.boundingClientRect.top <= 120);
+        setIsContactHidden(entry.isIntersecting && entry.boundingClientRect.top <= 120);
       },
       {
         rootMargin: "-120px 0px 0px 0px",
@@ -61,6 +78,29 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
     );
 
     observer.observe(contactEl);
+    return () => observer.disconnect();
+  }, []);
+
+  // First-class IntersectionObserver on <footer> sentinel / container beside #contact
+  useEffect(() => {
+    const footerEl = document.querySelector("footer");
+    if (!footerEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        const dockHeight = window.innerWidth >= 640 ? 96 : 80;
+        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20;
+        const footerCrossed = entry.isIntersecting && (Math.round(entry.boundingClientRect.top) <= dockHeight || isAtBottom);
+        setIsFooterHidden((prev) => (prev !== footerCrossed ? footerCrossed : prev));
+      },
+      {
+        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      }
+    );
+
+    observer.observe(footerEl);
     return () => observer.disconnect();
   }, []);
 
@@ -105,33 +145,34 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
   return (
     <>
       {/* ─── SCROLL-STATE TOP GRADIENT SCRIM ─── */}
-      <div
+      <motion.div
         aria-hidden="true"
-        className={`fixed top-0 inset-x-0 h-20 sm:h-24 z-40 pointer-events-none select-none transition-opacity ${
-          prefersReduced ? "duration-0" : "duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        } ${isScrolled && !isHeaderHidden ? "opacity-100" : "opacity-0"}`}
+        initial={false}
+        animate={{
+          opacity: isScrolled && !isHeaderHidden ? 1 : 0,
+        }}
+        transition={headerTransition}
+        className="fixed top-0 inset-x-0 h-20 sm:h-24 z-40 pointer-events-none select-none"
         style={{
-          background: "linear-gradient(to bottom, rgba(11, 11, 14, 0.96) 0%, rgba(11, 11, 14, 0.88) 55%, rgba(11, 11, 14, 0) 100%)",
+          background: "linear-gradient(to bottom, rgba(26, 26, 26, 0.96) 0%, rgba(26, 26, 26, 0.88) 55%, rgba(26, 26, 26, 0) 100%)",
         }}
       >
-        <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.08]" />
-      </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.10]" />
+      </motion.div>
 
       <motion.header
-        initial={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={
           isHeaderHidden && !isMobileMenuOpen
             ? {
                 opacity: 0,
-                filter: "blur(12px)",
                 y: -14,
-                transition: { duration: 0.4, ease: LUXURY_EASE },
+                transition: headerTransition,
               }
             : {
                 opacity: 1,
-                filter: "blur(0px)",
                 y: 0,
-                transition: { duration: 0.45, ease: LUXURY_EASE },
+                transition: headerTransition,
               }
         }
         className="fixed top-0 inset-x-0 z-50 bg-transparent px-3.5 sm:px-10 lg:px-12 py-3.5 sm:py-6 flex sm:grid sm:grid-cols-[1fr_auto_1fr] items-center justify-between pointer-events-none select-none"
@@ -218,7 +259,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             aria-label={t.nav.switchLangAria}
             onClick={toggleLanguage}
             title={t.nav.switchLangAria}
-            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-xl bg-[#050508]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
+            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-xl bg-[#1A1A1A]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
           >
             <button
               type="button"
@@ -318,7 +359,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.35, ease: LUXURY_EASE }}
             data-testid="mobile-nav-drawer"
-            className="fixed top-0 inset-x-0 z-40 bg-[#050508]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
+            className="fixed top-0 inset-x-0 z-40 bg-[#1A1A1A]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
           >
             {/* Big Bold Vertical Links - Stable direct rendering without stuck variant trap */}
             <div className="flex flex-col gap-4 text-4xl font-bold tracking-tight text-white pt-2">
@@ -359,14 +400,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             </div>
 
             {/* Mobile Language Switcher Row */}
-            <div className="flex items-center justify-between py-3.5 border-y border-white/[0.08] my-3 text-xs font-mono">
+            <div className="flex items-center justify-between py-3.5 border-y border-white/[0.10] my-3 text-xs font-mono">
               <div className="flex items-center gap-2 text-neutral-400 font-bold  tracking-wider text-[11px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <LanguageTransition langKey={language}>
                   <span>{language === "vi" ? "NGÔN NGỮ" : "LANGUAGE"}</span>
                 </LanguageTransition>
               </div>
-              <div className="relative inline-flex items-center p-[3px] bg-[#050508] border border-white/15 rounded-xl shadow-inner">
+              <div className="relative inline-flex items-center p-[3px] bg-[#1A1A1A] border border-white/15 rounded-xl shadow-inner">
                 <button
                   type="button"
                   onClick={() => {

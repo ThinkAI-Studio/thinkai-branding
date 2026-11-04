@@ -86,10 +86,10 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: 16 }}
             transition={{ duration: 0.25, ease: TAI_EASE.luxury }}
-            className="w-full max-w-5xl bg-[#08080a] border border-white/[0.12] rounded-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_60px_-15px_rgba(0,0,0,0.98)] overflow-hidden flex flex-col h-[92dvh] max-h-[92dvh] sm:h-auto sm:max-h-[90vh] cursor-default"
+            className="w-full max-w-5xl bg-[#1A1A1A] border border-white/[0.12] rounded-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_60px_-15px_rgba(0,0,0,0.98)] overflow-hidden flex flex-col h-[92dvh] max-h-[92dvh] sm:h-auto sm:max-h-[90vh] cursor-default"
           >
             {/* ─── MODAL HEADER (Responsive Top Bar) ─── */}
-            <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#121216] border-b border-white/[0.1] flex items-center justify-between gap-3 shrink-0">
+            <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#232326] border-b border-white/[0.1] flex items-center justify-between gap-3 shrink-0">
               <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
                 <TaiLogoMark className="w-5 h-5 shrink-0" />
                 <div className="min-w-0">
@@ -172,7 +172,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
             </div>
 
             {/* Mobile Dedicated Horizontal Tab Bar (sub-bar below header, scrollable, never clipped!) */}
-            <div className="md:hidden flex items-center bg-[#0a0a0d] px-3 sm:px-4 py-2 border-b border-white/[0.08] overflow-x-auto scrollbar-none gap-1.5 shrink-0">
+            <div className="md:hidden flex items-center bg-[#141414] px-3 sm:px-4 py-2 border-b border-white/[0.10] overflow-x-auto scrollbar-none gap-1.5 shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveTab("narrative")}
@@ -226,7 +226,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                 <div className="space-y-6">
                   {/* Top Metadata Strip */}
                   {arch && (
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 p-3 sm:p-3.5 bg-[#101014] border border-white/[0.08] text-[11px] font-mono">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 p-3 sm:p-3.5 bg-[#232326] border border-white/[0.10] text-[11px] font-mono">
                       <div className="text-neutral-300">
                         <span className="text-neutral-400 block font-semibold mb-0.5">
                           {lang === "vi" ? "Ràng buộc hệ thống" : "System Constraint"}
@@ -251,7 +251,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                   {/* 3 Sections: 01. Challenge, 02. Approach, 03. Outcome */}
                   <div className="space-y-4">
                     {/* Section 01: Challenge */}
-                    <div className="p-4 sm:p-5 bg-[#101014] border border-white/[0.08] rounded-xl space-y-2.5 transition-all hover:border-white/[0.18]">
+                    <div className="p-4 sm:p-5 bg-[#232326] border border-white/[0.10] rounded-xl space-y-2.5 transition-all hover:border-white/[0.28]">
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-red-400" />
@@ -272,7 +272,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                     </div>
 
                     {/* Section 02: Approach */}
-                    <div className="p-4 sm:p-5 bg-[#101014] border border-white/[0.08] rounded-xl space-y-2.5 transition-all hover:border-white/[0.18]">
+                    <div className="p-4 sm:p-5 bg-[#232326] border border-white/[0.10] rounded-xl space-y-2.5 transition-all hover:border-white/[0.28]">
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-amber-400" />
@@ -293,7 +293,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                     </div>
 
                     {/* Section 03: Outcome */}
-                    <div className="p-4 sm:p-5 bg-[#101014] border border-white/[0.08] rounded-xl space-y-2.5 transition-all hover:border-white/[0.18]">
+                    <div className="p-4 sm:p-5 bg-[#232326] border border-white/[0.10] rounded-xl space-y-2.5 transition-all hover:border-white/[0.28]">
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -315,7 +315,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                   </div>
 
                   {/* Telemetry Strip */}
-                  <div className="p-3.5 sm:p-4 bg-[#0d0d10] border border-white/[0.08] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+                  <div className="p-3.5 sm:p-4 bg-[#232326] border border-white/[0.10] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
                     <div className="flex items-center gap-2">
                       <Activity className="w-4 h-4 text-emerald-400" />
                       <span className="text-white font-bold">{project.metric.value}</span>
@@ -346,14 +346,14 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                       {arch.flowSteps.map((step, idx) => (
                         <div
                           key={step.step}
-                          className="relative p-4 bg-[#101014] border border-white/[0.08] rounded-xl space-y-2.5 flex flex-col justify-between group hover:border-white/[0.2] transition-colors"
+                          className="relative p-4 bg-[#232326] border border-white/[0.10] rounded-xl space-y-2.5 flex flex-col justify-between group hover:border-white/[0.2] transition-colors"
                         >
                           <div className="space-y-1.5">
                             <div className="flex items-center justify-between border-b border-white/[0.06] pb-2">
                               <span className="font-mono text-[11px] font-bold text-white">
                                 {lang === "vi" ? `Bước ${step.step}` : `Step ${step.step}`}
                               </span>
-                              <span className="font-mono text-[9px] px-1.5 py-0.5 rounded-xl bg-white/[0.06] border border-white/[0.08] text-neutral-300 ">
+                              <span className="font-mono text-[9px] px-1.5 py-0.5 rounded-xl bg-white/[0.06] border border-white/[0.10] text-neutral-300 ">
                                 {step.status}
                               </span>
                             </div>
@@ -369,7 +369,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                           </div>
 
                           {idx < arch.flowSteps.length - 1 && (
-                            <div className="hidden lg:flex items-center justify-center pt-2 text-neutral-500">
+                            <div className="hidden lg:flex items-center justify-center pt-2 text-[#A3A3A3]">
                               <ArrowRight className="w-3.5 h-3.5" />
                             </div>
                           )}
@@ -380,19 +380,19 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
 
                   {/* Code Spec Viewer */}
                   {arch?.specSnippet && (
-                    <div className="p-3.5 sm:p-4 bg-[#0c0c0f] border border-white/[0.08] rounded-xl space-y-3">
+                    <div className="p-3.5 sm:p-4 bg-[#141414] border border-white/[0.10] rounded-xl space-y-3">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/[0.06] pb-2 font-mono text-xs">
                         <div className="flex items-center gap-2 text-neutral-300 min-w-0">
                           <FileCode className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
                           <span className="font-bold text-white truncate max-w-[200px] sm:max-w-none">{arch.specSnippet.filename}</span>
-                          <span className="text-neutral-500 text-[10px]  shrink-0">
+                          <span className="text-[#A3A3A3] text-[10px]  shrink-0">
                             ({arch.specSnippet.language})
                           </span>
                         </div>
                         <button
                           type="button"
                           onClick={() => handleCopyCode(arch.specSnippet.code)}
-                          className="px-2.5 py-1 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-mono text-neutral-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer border border-white/[0.08] shrink-0 self-start sm:self-auto"
+                          className="px-2.5 py-1 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-mono text-neutral-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer border border-white/[0.10] shrink-0 self-start sm:self-auto"
                         >
                           {copiedCode ? (
                             <>
@@ -447,7 +447,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                       return (
                         <div
                           key={idx}
-                          className="p-4 sm:p-5 bg-[#101014] border border-white/[0.08] rounded-xl space-y-3 transition-all hover:border-white/[0.18]"
+                          className="p-4 sm:p-5 bg-[#232326] border border-white/[0.10] rounded-xl space-y-3 transition-all hover:border-white/[0.28]"
                         >
                           <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2">
                             <div className="flex items-center gap-2 text-white font-bold font-mono">
@@ -490,7 +490,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                     {arch?.provenance.map((item, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 sm:p-4 bg-[#101014] border border-white/[0.08] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.18] transition-colors"
+                        className="p-3.5 sm:p-4 bg-[#232326] border border-white/[0.10] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.28] transition-colors"
                       >
                         <div className="space-y-1.5 min-w-0 flex-1">
                           <div className="flex items-center gap-2 flex-wrap font-mono text-[11px]">
@@ -536,11 +536,11 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
             </div>
 
             {/* ─── MODAL FOOTER ─── */}
-            <div className="px-4 sm:px-5 py-3 bg-[#0d0d10] border-t border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3 text-xs font-mono text-neutral-400">
+            <div className="px-4 sm:px-5 py-3 bg-[#232326] border-t border-white/[0.10] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3 text-xs font-mono text-neutral-400">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0 max-w-full">
                 <span className="truncate max-w-[200px] sm:max-w-md text-[11px] sm:text-xs">{project.repo}</span>
                 <span className="hidden sm:inline text-neutral-600">·</span>
-                <span className="hidden sm:inline text-[11px] text-neutral-500">
+                <span className="hidden sm:inline text-[11px] text-[#A3A3A3]">
                   {lang === "vi" ? "Nhấn 1-4 để đổi tab · Esc để đóng" : "Keys 1-4: Switch tab · Esc: Close"}
                 </span>
               </div>

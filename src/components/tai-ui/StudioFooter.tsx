@@ -34,7 +34,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
   return (
     <footer
-      className="relative z-20 w-full select-none lg:min-h-[100svh] lg:h-[100svh] lg:flex lg:flex-col lg:justify-between"
+      className="relative z-20 w-full select-none min-h-[100svh] flex flex-col justify-between"
       style={{ backgroundColor: "#1455B4", color: "#F7EFDC" }}
     >
       {/* Content Block: max-width 1280, compact padding & vertical rhythm */}

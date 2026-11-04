@@ -365,6 +365,7 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         zIndex: 0,
         contain: "strict",
         transform: "translateZ(0)",
+        opacity: 0.30,
       }}
     />
   );

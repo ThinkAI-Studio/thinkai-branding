@@ -15,7 +15,7 @@ export const taiButtonVariants = cva(
         primary:
           "bg-white text-neutral-950 hover:bg-neutral-100 font-bold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4),0_1px_2px_0_rgba(0,0,0,0.4)]",
         secondary:
-          "bg-[#131316] text-white hover:bg-[#1c1c22] border border-white/[0.08] hover:border-white/[0.22] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
+          "bg-[#232326] text-white hover:bg-[#2c2c30] border border-white/[0.10] hover:border-white/[0.28] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
         outline:
           "bg-transparent text-white border border-white/[0.12] hover:border-white/[0.30] hover:bg-white/[0.03] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]",
         ghost:

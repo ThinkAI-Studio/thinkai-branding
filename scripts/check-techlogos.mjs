@@ -7,9 +7,7 @@
  * an explicit `case` in src/components/tai-ui/TechLogos.tsx (JS switch
  * fallthrough groups count as explicit coverage).
  *
- * Known remaining fallback (awaiting product decision, intentionally not
- * "fixed" here): the "Tailscale + SAST" card passes name="DevSecOps", which has
- * no case and falls through to the text default. Do not touch that card.
+ * Zero fallback policy: every referenced TechLogo name must have an explicit case.
  */
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -18,8 +16,6 @@ import path from "node:path";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillsPath = path.resolve(here, "../src/components/tai-ui/SkillsGrid.tsx");
 const logosPath = path.resolve(here, "../src/components/tai-ui/TechLogos.tsx");
-
-const KNOWN_FALLBACKS = new Set(["DevSecOps"]);
 
 function extractReferencedNames(source) {
   const names = [];
@@ -67,7 +63,7 @@ for (const row of table) {
 }
 console.log("===========================");
 
-const missing = table.filter((r) => r.status === "FALLBACK" && !KNOWN_FALLBACKS.has(r.name));
+const missing = table.filter((r) => r.status === "FALLBACK");
 
 if (missing.length > 0) {
   console.error(`Unresolved TechLogo names (no explicit case): ${missing.map((r) => r.name).join(", ")}`);

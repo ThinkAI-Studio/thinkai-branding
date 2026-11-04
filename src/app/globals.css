@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tai-bg: #040406;
-  --color-tai-sheet: #050508;
-  --color-tai-surface: #050508;
-  --color-tai-surface-raised: #08080c;
-  --color-tai-card: #0d0d12;
-  --color-tai-border: rgba(255, 255, 255, 0.07);
-  --color-tai-border-strong: rgba(255, 255, 255, 0.18);
+  --color-tai-bg: #1A1A1A;
+  --color-tai-sheet: #1A1A1A;
+  --color-tai-surface: #1A1A1A;
+  --color-tai-surface-raised: #232326;
+  --color-tai-card: #232326;
+  --color-tai-card-raised: #232326;
+  --color-tai-card-inset: #141414;
+  --color-tai-border: rgba(255, 255, 255, 0.10);
+  --color-tai-border-strong: rgba(255, 255, 255, 0.28);
   --color-tai-green: #4ade80;
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
@@ -21,13 +23,15 @@
 }
 
 :root {
-  --tai-bg: #040406;
-  --tai-sheet: #050508;
-  --tai-surface: #050508;
-  --tai-surface-raised: #08080c;
-  --tai-card: #0d0d12;
-  --tai-border: rgba(255, 255, 255, 0.07);
-  --tai-border-strong: rgba(255, 255, 255, 0.18);
+  --tai-bg: #1A1A1A;
+  --tai-sheet: #1A1A1A;
+  --tai-surface: #1A1A1A;
+  --tai-surface-raised: #232326;
+  --tai-card: #232326;
+  --tai-card-raised: #232326;
+  --tai-card-inset: #141414;
+  --tai-border: rgba(255, 255, 255, 0.10);
+  --tai-border-strong: rgba(255, 255, 255, 0.28);
   --tai-accent-green: #4ade80;
   --radius-card: 12px;
   --radius-btn: 12px;

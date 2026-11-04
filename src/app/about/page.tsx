@@ -57,7 +57,7 @@ export default function AboutPage() {
       {/* ─── MAIN CONTENT ─── */}
       <main className="max-w-6xl mx-auto px-4 sm:px-8 py-12 sm:py-20 space-y-16 sm:space-y-20">
         {/* Founder Hero Card */}
-        <section className="p-6 sm:p-10 rounded-xl bg-[#121216] border border-white/[0.08] shadow-2xl flex flex-col md:flex-row items-start md:items-center gap-6 sm:gap-10">
+        <section className="p-6 sm:p-10 rounded-xl bg-[#232326] border border-white/[0.10] shadow-2xl flex flex-col md:flex-row items-start md:items-center gap-6 sm:gap-10">
           <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-xl overflow-hidden border-2 border-white/10 shadow-lg bg-[#18181c] shrink-0 group">
             <Image
               src="/images/binhminh-sketch.jpg"
@@ -106,7 +106,7 @@ export default function AboutPage() {
         {/* 4 Core Pillars Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-4">
           {/* 1. Flagship Products */}
-          <div className="p-6 sm:p-8 rounded-xl bg-[#101014] border border-white/[0.08] space-y-4 hover:border-white/[0.18] transition-colors">
+          <div className="p-6 sm:p-8 rounded-xl bg-[#232326] border border-white/[0.10] space-y-4 hover:border-white/[0.28] transition-colors">
             <div className="flex items-center gap-2.5 text-xs font-mono font-bold  tracking-widest text-neutral-400 border-b border-white/[0.06] pb-3">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <span>{t.productsLabel}</span>
@@ -114,19 +114,19 @@ export default function AboutPage() {
             <ul className="space-y-3 font-mono text-sm text-neutral-200">
               {t.productsList.map((prod, idx) => (
                 <li key={idx} className="flex items-start gap-2">
-                  <span className="text-neutral-500 shrink-0">↳</span>
+                  <span className="text-[#A3A3A3] shrink-0">↳</span>
                   <span className="leading-snug">{prod}</span>
                 </li>
               ))}
               <li className="flex items-start gap-2">
-                <span className="text-neutral-500 shrink-0">↳</span>
+                <span className="text-[#A3A3A3] shrink-0">↳</span>
                 <span className="leading-snug">Wind — Thi Quán Đường Đại (huuthinh.thinkai.id.vn)</span>
               </li>
             </ul>
           </div>
 
           {/* 2. Core Stack */}
-          <div className="p-6 sm:p-8 rounded-xl bg-[#101014] border border-white/[0.08] space-y-4 hover:border-white/[0.18] transition-colors">
+          <div className="p-6 sm:p-8 rounded-xl bg-[#232326] border border-white/[0.10] space-y-4 hover:border-white/[0.28] transition-colors">
             <div className="flex items-center gap-2.5 text-xs font-mono font-bold  tracking-widest text-neutral-400 border-b border-white/[0.06] pb-3">
               <span className="w-2 h-2 rounded-full bg-neutral-300" />
               <span>{t.stackLabel}</span>
@@ -144,7 +144,7 @@ export default function AboutPage() {
           </div>
 
           {/* 3. Education & Recognition */}
-          <div className="p-6 sm:p-8 rounded-xl bg-[#101014] border border-white/[0.08] space-y-4 hover:border-white/[0.18] transition-colors">
+          <div className="p-6 sm:p-8 rounded-xl bg-[#232326] border border-white/[0.10] space-y-4 hover:border-white/[0.28] transition-colors">
             <div className="flex items-center gap-2.5 text-xs font-mono font-bold  tracking-widest text-neutral-400 border-b border-white/[0.06] pb-3">
               <span className="w-2 h-2 rounded-full bg-amber-400" />
               <span>{t.educationLabel}</span>
@@ -162,7 +162,7 @@ export default function AboutPage() {
           </div>
 
           {/* 4. Core Principles */}
-          <div className="p-6 sm:p-8 rounded-xl bg-[#101014] border border-white/[0.08] space-y-4 hover:border-white/[0.18] transition-colors">
+          <div className="p-6 sm:p-8 rounded-xl bg-[#232326] border border-white/[0.10] space-y-4 hover:border-white/[0.28] transition-colors">
             <div className="flex items-center gap-2.5 text-xs font-mono font-bold  tracking-widest text-neutral-400 border-b border-white/[0.06] pb-3">
               <span className="w-2 h-2 rounded-full bg-blue-400" />
               <span>{t.principlesLabel}</span>
@@ -179,7 +179,7 @@ export default function AboutPage() {
         </section>
 
         {/* ─── CONTACT & DIRECT LINKS ─── */}
-        <section className="p-6 sm:p-10 rounded-xl bg-[#121216] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <section className="p-6 sm:p-10 rounded-xl bg-[#232326] border border-white/[0.10] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
             <div className="text-xs font-mono  tracking-widest text-neutral-400 font-bold">
               {language === "vi" ? "LIÊN HỆ TRỰC TIẾP" : "DIRECT CONTACT"}
