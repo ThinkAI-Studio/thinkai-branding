@@ -184,27 +184,28 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         // Compute normalized caustic intensity [0.0 .. 1.0]
         float intensity = smoothstep(-0.35, 0.35, wave) * 0.4 + caustics * 0.6;
 
-        // Deep Neutral Monochrome Caustics (|R-G| <= 2, |G-B| <= 2 in the
-        // 8-bit framebuffer). This ShaderMaterial has NO colorspace
-        // conversion (no #include <colorspace_fragment>), so vec3 values are
-        // written straight to the framebuffer as raw sRGB bytes. Author
-        // display-ready sRGB values directly: a dark, readable texture with
-        // base around #1A1A1A (26/255 = 0.102) and caustic lift to #2D2D2D
-        // (45/255 = 0.177). Values stay neutral grey (r = g = b) at every
-        // point — no teal, no blue cast.
-        vec3 neutralCol = vec3(0.102 + intensity * 0.075);
+        // Venice Blue Caustics (#2985b8 studio palette accent).
+        // Deep blue-black base: #05080C (vec3(0.020, 0.031, 0.047)).
+        // Subdued peak in #1B5C82-#2A7FAE range (e.g. #236D99, vec3(0.137, 0.427, 0.600)).
+        // Blue is dominant (B > G > R) at peaks, and mean reads as a dark blue (~#0C1A24).
+        vec3 baseCol = vec3(0.020, 0.031, 0.047);
+        vec3 peakCol = vec3(0.137, 0.427, 0.600);
+
+        // Power-curved caustic intensity lifts highlights cleanly while retaining deep ocean base
+        float lift = pow(clamp(intensity, 0.0, 1.0), 2.6);
+        vec3 col = mix(baseCol, peakCol, lift);
 
         // Apply Rotated Halftone Print Screen with constant CSS-space pitch (4.4 CSS px).
-        // Halftone dots darken toward #0E0E0E (14/255 = 0.055), both bounds
-        // inside the target dark range and fully neutral.
+        // Halftone dots darken toward deep navy-black #030508 (vec3(0.012, 0.020, 0.031)).
         float pitch = 4.4 * u_pixel_scale;
         vec2 rotCoord = rotate2D(gl_FragCoord.xy, 0.785398);
         vec2 cell = fract(rotCoord / pitch) - 0.5;
         float dist = length(cell);
         float mask = 1.0 - smoothstep(0.23 - 0.11, 0.23 + 0.11, dist);
-        neutralCol = mix(neutralCol, vec3(0.055), mask * 0.50);
+        vec3 dotCol = vec3(0.012, 0.020, 0.031);
+        col = mix(col, dotCol, mask * 0.45);
 
-        gl_FragColor = vec4(neutralCol, 1.0);
+        gl_FragColor = vec4(col, 1.0);
       }
     `;
 
