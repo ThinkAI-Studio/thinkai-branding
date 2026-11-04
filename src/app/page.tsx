@@ -22,6 +22,8 @@ import { LanguageTransition } from "@/components/tai-ui/LanguageTransition";
 import { ScrollTextReveal } from "@/components/tai-ui/ScrollTextReveal";
 import { PagePreloader } from "@/components/tai-ui/PagePreloader";
 import { StudioFooter } from "@/components/tai-ui/StudioFooter";
+import { ReviewMarquee } from "@/components/tai-ui/ReviewMarquee";
+import { StickyMobileCTA } from "@/components/tai-ui/StickyMobileCTA";
 import { OceanStirZone } from "@/components/tai-ui/OceanStirZone";
 import "./studio.css";
 
@@ -307,6 +309,9 @@ export default function PortfolioPage() {
         </div>
       </section>
 
+      {/* ─── 05. REVIEWS MARQUEE (below Products, above Tech Skills) ─── */}
+      <ReviewMarquee />
+
       {/* ─── 06. SKILLS SECTION (12 Individual Skill Cards with Scroll Stagger) ─── */}
       <SkillsGrid />
 
@@ -370,6 +375,12 @@ export default function PortfolioPage() {
       />
       {/* ─── 12. SCROLL INDICATOR RAIL (48px Active / 28px Neighbor / 12px Rest) ─── */}
       <ScrollIndicator />
+
+      {/* ─── 13. STICKY MOBILE CTA (below md, after hero, hidden at footer & modal) ─── */}
+      <StickyMobileCTA
+        isContactOpen={isContactOpen}
+        onOpenContact={() => setIsContactOpen(true)}
+      />
     </div>
   );
 }
