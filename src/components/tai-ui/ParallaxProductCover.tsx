@@ -12,6 +12,7 @@ interface ParallaxProductCoverProps {
   mark: string;
   status?: string;
   priority?: boolean;
+  isArchived?: boolean;
 }
 
 export function ParallaxProductCover({
@@ -21,6 +22,7 @@ export function ParallaxProductCover({
   mark,
   status = "LIVE",
   priority = false,
+  isArchived = false,
 }: ParallaxProductCoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -62,8 +64,16 @@ export function ParallaxProductCover({
       <div className="absolute inset-0 pointer-events-none rounded-xl border border-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
 
       {/* Floating Status Pill (Top Right) */}
-      <div className="tai-product-pill absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-white/15 font-mono text-[10px] text-emerald-400 font-bold tracking-wider ">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+      <div
+        className={`tai-product-pill absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-white/15 font-mono text-[10px] font-bold tracking-wider ${
+          isArchived ? "text-amber-400" : "text-emerald-400"
+        }`}
+      >
+        <span
+          className={`w-1.5 h-1.5 rounded-full ${
+            isArchived ? "bg-amber-400" : "bg-emerald-400 animate-pulse"
+          }`}
+        />
         <span>{status}</span>
       </div>
 

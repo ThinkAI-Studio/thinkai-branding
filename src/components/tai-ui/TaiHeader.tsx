@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
@@ -24,26 +24,45 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
   const { language, toggleLanguage, setLanguage } = useLanguage();
   const prefersReduced = useReducedMotion();
   const t = copy[language];
-  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const [isContactHidden, setIsContactHidden] = useState(false);
+  const [isFooterHidden, setIsFooterHidden] = useState(false);
+  const isHeaderHidden = isContactHidden || isFooterHidden;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
+  const headerTransition = prefersReduced
+    ? { duration: 0 }
+    : { duration: 0.35, ease: LUXURY_EASE };
 
-  // Track scroll position for header scrim (> 24px)
+  // Track scroll position for header scrim (> 24px) & same-frame footer threshold check
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 24;
       setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
+
+      // Same-frame scroll gate: hide dock as soon as footer top crosses dock bottom
+      const footerEl = document.querySelector("footer");
+      if (footerEl) {
+        const dockHeight = window.innerWidth >= 640 ? 96 : 80;
+        const rect = footerEl.getBoundingClientRect();
+        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20;
+        const footerCrossed = (Math.round(rect.top) <= dockHeight || isAtBottom) && rect.bottom > 0;
+        setIsFooterHidden((prev) => (prev !== footerCrossed ? footerCrossed : prev));
+      }
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const sliderTransition = prefersReduced
     ? { duration: 0 }
     : { type: "spring" as const, stiffness: 500, damping: 35 };
 
-  // Hide header when scrolling into the CTA section (#contact) or Footer
+  // Hide header when scrolling into the CTA section (#contact)
   useEffect(() => {
     const contactEl = document.getElementById("contact");
     if (!contactEl) return;
@@ -52,7 +71,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
       (entries) => {
         const entry = entries[0];
         if (!entry) return;
-        setIsHeaderHidden(entry.isIntersecting && entry.boundingClientRect.top <= 120);
+        setIsContactHidden(entry.isIntersecting && entry.boundingClientRect.top <= 120);
       },
       {
         rootMargin: "-120px 0px 0px 0px",
@@ -64,16 +83,108 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
     return () => observer.disconnect();
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // First-class IntersectionObserver on <footer> sentinel / container beside #contact
+  useEffect(() => {
+    const footerEl = document.querySelector("footer");
+    if (!footerEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        const dockHeight = window.innerWidth >= 640 ? 96 : 80;
+        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20;
+        const footerCrossed = entry.isIntersecting && (Math.round(entry.boundingClientRect.top) <= dockHeight || isAtBottom);
+        setIsFooterHidden((prev) => (prev !== footerCrossed ? footerCrossed : prev));
+      },
+      {
+        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      }
+    );
+
+    observer.observe(footerEl);
+    return () => observer.disconnect();
+  }, []);
+
+  // Track active section for aria-current on nav items
+  useEffect(() => {
+    const handleScrollActive = () => {
+      const contactEl = document.getElementById("contact");
+      const productsEl = document.getElementById("products");
+
+      if (contactEl && contactEl.getBoundingClientRect().top <= 300 && contactEl.getBoundingClientRect().bottom > 0) {
+        setActiveSection((prev) => (prev !== "contact" ? "contact" : prev));
+      } else if (productsEl && productsEl.getBoundingClientRect().top <= 300 && productsEl.getBoundingClientRect().bottom > 0) {
+        setActiveSection((prev) => (prev !== "products" ? "products" : prev));
+      } else {
+        setActiveSection((prev) => (prev !== null ? null : prev));
+      }
+    };
+
+    handleScrollActive();
+    window.addEventListener("scroll", handleScrollActive, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollActive);
+  }, []);
+
+  // Focus trap, Esc key & return focus for mobile menu drawer
   useEffect(() => {
     if (isMobileMenuOpen) {
+      mobileMenuTriggerRef.current = document.activeElement as HTMLButtonElement | null;
       document.body.style.overflow = "hidden";
+
+      const timer = setTimeout(() => {
+        if (!mobileMenuRef.current) return;
+        const focusable = mobileMenuRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        }
+      }, 50);
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          setIsMobileMenuOpen(false);
+          return;
+        }
+
+        if (e.key === "Tab") {
+          if (!mobileMenuRef.current) return;
+          const focusable = (
+            Array.from(
+              mobileMenuRef.current.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+              )
+            ) as HTMLElement[]
+          ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
+
+          if (focusable.length === 0) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      };
+
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+        clearTimeout(timer);
+        if (mobileMenuTriggerRef.current) {
+          mobileMenuTriggerRef.current.focus();
+        }
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [isMobileMenuOpen]);
 
   const handleNavClick = (anchorId?: string) => {
@@ -105,33 +216,34 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
   return (
     <>
       {/* ─── SCROLL-STATE TOP GRADIENT SCRIM ─── */}
-      <div
+      <motion.div
         aria-hidden="true"
-        className={`fixed top-0 inset-x-0 h-20 sm:h-24 z-40 pointer-events-none select-none transition-opacity ${
-          prefersReduced ? "duration-0" : "duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        } ${isScrolled && !isHeaderHidden ? "opacity-100" : "opacity-0"}`}
+        initial={false}
+        animate={{
+          opacity: isScrolled && !isHeaderHidden ? 1 : 0,
+        }}
+        transition={headerTransition}
+        className="fixed top-0 inset-x-0 h-20 sm:h-24 z-40 pointer-events-none select-none"
         style={{
-          background: "linear-gradient(to bottom, rgba(11, 11, 14, 0.96) 0%, rgba(11, 11, 14, 0.88) 55%, rgba(11, 11, 14, 0) 100%)",
+          background: "linear-gradient(to bottom, rgba(20, 20, 20, 0.96) 0%, rgba(20, 20, 20, 0.88) 55%, rgba(20, 20, 20, 0) 100%)",
         }}
       >
-        <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.08]" />
-      </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.10]" />
+      </motion.div>
 
       <motion.header
-        initial={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={
           isHeaderHidden && !isMobileMenuOpen
             ? {
                 opacity: 0,
-                filter: "blur(12px)",
                 y: -14,
-                transition: { duration: 0.4, ease: LUXURY_EASE },
+                transition: headerTransition,
               }
             : {
                 opacity: 1,
-                filter: "blur(0px)",
                 y: 0,
-                transition: { duration: 0.45, ease: LUXURY_EASE },
+                transition: headerTransition,
               }
         }
         className="fixed top-0 inset-x-0 z-50 bg-transparent px-3.5 sm:px-10 lg:px-12 py-3.5 sm:py-6 flex sm:grid sm:grid-cols-[1fr_auto_1fr] items-center justify-between pointer-events-none select-none"
@@ -147,12 +259,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
         >
           <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
             <Image
-              src="/images/thinkai_studio_logo.png"
+              src="/images/thinkai_studio_logo_opt.png"
               alt="ThinkAI Studio"
               fill
               sizes="28px"
               className="object-contain"
               priority
+              fetchPriority="high"
+              unoptimized
             />
           </div>
         </button>
@@ -179,6 +293,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           <WipeButton
             as="a"
             href="#products"
+            aria-current={activeSection === "products" ? "page" : undefined}
             wipeColor="#1e2026"
             textColor="#ffffff"
             hoverTextColor="#ffffff"
@@ -192,6 +307,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           </WipeButton>
           <WipeButton
             onClick={onOpenContact}
+            aria-current={activeSection === "contact" ? "page" : undefined}
             wipeColor="#1e2026"
             textColor="#ffffff"
             hoverTextColor="#ffffff"
@@ -218,7 +334,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             aria-label={t.nav.switchLangAria}
             onClick={toggleLanguage}
             title={t.nav.switchLangAria}
-            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-xl bg-[#050508]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
+            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-xl bg-[#141414]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
           >
             <button
               type="button"
@@ -229,7 +345,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               }}
               data-lang="en"
               aria-pressed={language === "en"}
-              aria-label="Switch to English"
+              aria-label="EN - Switch to English"
               className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider rounded-xl transition-colors cursor-pointer ${
                 language === "en" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
               }`}
@@ -253,7 +369,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               }}
               data-lang="vi"
               aria-pressed={language === "vi"}
-              aria-label="Chuyển sang Tiếng Việt"
+              aria-label="VI - Chuyển sang Tiếng Việt"
               className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider rounded-xl transition-colors cursor-pointer ${
                 language === "vi" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
               }`}
@@ -276,7 +392,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             hoverTextColor="#ffffff"
             borderColor="#ffffff"
             hoverBorderColor="rgba(255, 255, 255, 0.4)"
-            className="group h-8.5 sm:h-9.5 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 rounded-lg text-xs sm:text-[13.5px] font-bold cursor-pointer shadow-lg select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none shrink-0"
+            className="group h-8.5 sm:h-9.5 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 rounded-xl text-xs sm:text-[13.5px] font-bold cursor-pointer shadow-lg select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none shrink-0"
           >
             <ButtonTextRoll
               text={t.hero.primary}
@@ -317,8 +433,12 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.35, ease: LUXURY_EASE }}
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
             data-testid="mobile-nav-drawer"
-            className="fixed top-0 inset-x-0 z-40 bg-[#050508]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
+            className="fixed top-0 inset-x-0 z-40 bg-[#141414]/98 backdrop-blur-3xl pt-24 pb-4 px-6 border-b border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.95)] sm:hidden flex flex-col justify-between"
           >
             {/* Big Bold Vertical Links - Stable direct rendering without stuck variant trap */}
             <div className="flex flex-col gap-4 text-4xl font-bold tracking-tight text-white pt-2">
@@ -359,14 +479,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             </div>
 
             {/* Mobile Language Switcher Row */}
-            <div className="flex items-center justify-between py-3.5 border-y border-white/[0.08] my-3 text-xs font-mono">
+            <div className="flex items-center justify-between py-3.5 border-y border-white/[0.10] my-3 text-xs font-mono">
               <div className="flex items-center gap-2 text-neutral-400 font-bold  tracking-wider text-[11px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <LanguageTransition langKey={language}>
                   <span>{language === "vi" ? "NGÔN NGỮ" : "LANGUAGE"}</span>
                 </LanguageTransition>
               </div>
-              <div className="relative inline-flex items-center p-[3px] bg-[#050508] border border-white/15 rounded-xl shadow-inner">
+              <div className="relative inline-flex items-center p-[3px] bg-[#141414] border border-white/15 rounded-xl shadow-inner">
                 <button
                   type="button"
                   onClick={() => {
@@ -374,7 +494,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                     else setLanguage("en");
                   }}
                   data-lang-mobile="en"
-                  aria-label="Switch to English"
+                  aria-label="EN - Switch to English"
                   className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider rounded-xl transition-colors cursor-pointer select-none ${
                     language === "en" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
                   }`}
@@ -395,7 +515,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                     else setLanguage("vi");
                   }}
                   data-lang-mobile="vi"
-                  aria-label="Switch to Vietnamese"
+                  aria-label="VI - Chuyển sang Tiếng Việt"
                   className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider rounded-xl transition-colors cursor-pointer select-none ${
                     language === "vi" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
                   }`}

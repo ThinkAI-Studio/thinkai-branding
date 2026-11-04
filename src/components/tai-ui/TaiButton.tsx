@@ -8,24 +8,24 @@ import { cn } from "@/lib/utils";
 import { TAI_EASE } from "@/lib/motion";
 
 export const taiButtonVariants = cva(
-  "relative inline-flex items-center justify-center gap-2 overflow-hidden font-mono text-xs tracking-wider transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-white/50 active:scale-[0.98]",
+  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl font-mono text-xs tracking-wider transition-all duration-200 group cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414] active:scale-[0.98]",
   {
     variants: {
       variant: {
         primary:
           "bg-white text-neutral-950 hover:bg-neutral-100 font-bold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4),0_1px_2px_0_rgba(0,0,0,0.4)]",
         secondary:
-          "bg-[#131316] text-white hover:bg-[#1c1c22] border border-white/[0.08] hover:border-white/[0.22] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
+          "bg-[#1E1E1E] text-white hover:bg-[#2c2c30] border border-white/[0.10] hover:border-white/[0.28] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
         outline:
           "bg-transparent text-white border border-white/[0.12] hover:border-white/[0.30] hover:bg-white/[0.03] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]",
         ghost:
           "bg-transparent text-white/60 hover:text-white hover:bg-white/[0.04] font-medium",
       },
       size: {
-        default: "px-5 py-2.5 rounded-xl",
-        sm: "px-3 py-1.5 text-[11px] rounded-lg",
-        lg: "px-7 py-3.5 text-sm rounded-2xl",
-        icon: "h-9 w-9 p-0 rounded-lg",
+        default: "px-5 py-2.5",
+        sm: "px-3 py-1.5 text-[11px]",
+        lg: "px-7 py-3.5 text-sm",
+        icon: "h-9 w-9 p-0",
       },
     },
     defaultVariants: {

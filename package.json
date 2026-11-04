@@ -9,7 +9,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "registry:build": "node scripts/build-registry.mjs",
-    "test:smoke": "playwright test"
+    "test:smoke": "playwright test",
+    "check:techlogos": "node scripts/check-techlogos.mjs"
   },
   "engines": {
     "node": ">=24 <25"

@@ -1,23 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tai-bg: #040406;
-  --color-tai-sheet: #050508;
-  --color-tai-surface: #050508;
-  --color-tai-surface-raised: #08080c;
-  --color-tai-card: #0d0d12;
-  --color-tai-border: rgba(255, 255, 255, 0.07);
-  --color-tai-border-strong: rgba(255, 255, 255, 0.18);
+  --color-tai-bg: #141414;
+  --color-tai-sheet: #141414;
+  --color-tai-surface: #141414;
+  --color-tai-surface-raised: #1E1E1E;
+  --color-tai-card: #1E1E1E;
+  --color-tai-card-raised: #1E1E1E;
+  --color-tai-card-inset: #0B0B0B;
+  --color-tai-border: rgba(255, 255, 255, 0.10);
+  --color-tai-border-strong: rgba(255, 255, 255, 0.28);
   --color-tai-green: #4ade80;
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   --radius-card: 12px;
   --radius-btn: 12px;
-  --radius-btn-sm: 8px;
-  --radius-btn-md: 12px;
-  --radius-btn-lg: 16px;
-  --radius-btn-cta: 20px;
-  --radius-tag: 8px;
+  --radius-tag: 12px;
   --radius-input: 12px;
   --radius-container: 12px;
   --radius-tuck: 0 0 12px 12px;
@@ -25,21 +23,19 @@
 }
 
 :root {
-  --tai-bg: #040406;
-  --tai-sheet: #050508;
-  --tai-surface: #050508;
-  --tai-surface-raised: #08080c;
-  --tai-card: #0d0d12;
-  --tai-border: rgba(255, 255, 255, 0.07);
-  --tai-border-strong: rgba(255, 255, 255, 0.18);
+  --tai-bg: #141414;
+  --tai-sheet: #141414;
+  --tai-surface: #141414;
+  --tai-surface-raised: #1E1E1E;
+  --tai-card: #1E1E1E;
+  --tai-card-raised: #1E1E1E;
+  --tai-card-inset: #0B0B0B;
+  --tai-border: rgba(255, 255, 255, 0.10);
+  --tai-border-strong: rgba(255, 255, 255, 0.28);
   --tai-accent-green: #4ade80;
   --radius-card: 12px;
   --radius-btn: 12px;
-  --radius-btn-sm: 8px;
-  --radius-btn-md: 12px;
-  --radius-btn-lg: 16px;
-  --radius-btn-cta: 20px;
-  --radius-tag: 8px;
+  --radius-tag: 12px;
   --radius-input: 12px;
   --radius-container: 12px;
   --radius-tuck: 0 0 12px 12px;
@@ -80,7 +76,22 @@ html {
     color: inherit;
     text-decoration: none;
   }
-}
+  }
+
+  :focus-visible {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px !important;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [role="button"]:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px !important;
+  }
 
 ::selection {
   background: #ffffff;
@@ -138,7 +149,7 @@ html {
   inset: -5%;
   width: 110%;
   height: 110%;
-  opacity: 0.22;
+  opacity: 0.10;
   background-image: url("/images/textures/grain-tile.png");
   background-repeat: repeat;
   background-size: 160px 160px;

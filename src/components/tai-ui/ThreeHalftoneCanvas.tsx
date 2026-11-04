@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import gsap from "gsap";
 import { useReducedMotion } from "motion/react";
-
 interface ThreeHalftoneCanvasProps {
   className?: string;
 }
@@ -18,7 +18,7 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
 
     // 1. Device & Sizing Detection
     const isCoarse = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
-    const maxDpr = 1.5;
+    const maxDpr = 1.0;
     const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const renderScale = 1.0;
     const getStableHeight = () => {
@@ -181,23 +181,21 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         // Subtle localized caustic shimmer around cursor
         caustics += u_stir * exp(-distToStir * 12.0) * 0.22;
 
-        // Venetian Adriatic Emerald Color Palette
-        vec3 cAdriaticDeep  = vec3(0.04, 0.14, 0.22);
-        vec3 cEmeraldLagoon = vec3(0.12, 0.46, 0.48);
-        vec3 cSapphireBlue  = vec3(0.16, 0.52, 0.72);
-        vec3 cCrystalAqua   = vec3(0.32, 0.68, 0.76);
-        vec3 cSunlightFoam  = vec3(0.55, 0.85, 0.90);
+        // Compute normalized caustic intensity [0.0 .. 1.0]
+        float intensity = smoothstep(-0.35, 0.35, wave) * 0.4 + caustics * 0.6;
 
-        vec3 col = cAdriaticDeep;
-        col = mix(col, cEmeraldLagoon, smoothstep(-0.35, 0.35, wave) * 0.92);
-        col = mix(col, cSapphireBlue, smoothstep(0.0, 0.65, caustics) * 0.88);
-        col = mix(col, cCrystalAqua, caustics * 0.78);
-        col = mix(col, cSunlightFoam, pow(smoothstep(0.45, 0.90, wave + caustics * 0.45), 2.8) * 0.65);
+        // Deep Neutral Monochrome Caustics (|R-G| <= 2, |G-B| <= 2, mean #101010 - #181818)
+        vec3 neutralCol = vec3(0.040 + intensity * 0.020);
 
         // Apply Rotated Halftone Print Screen with constant CSS-space pitch (4.4 CSS px)
         float pitch = 4.4 * u_pixel_scale;
-        col = applyRotatedHalftone(col, gl_FragCoord.xy, pitch, 0.23, 0.70);
-        gl_FragColor = vec4(col, 1.0);
+        vec2 rotCoord = rotate2D(gl_FragCoord.xy, 0.785398);
+        vec2 cell = fract(rotCoord / pitch) - 0.5;
+        float dist = length(cell);
+        float mask = 1.0 - smoothstep(0.23 - 0.11, 0.23 + 0.11, dist);
+        neutralCol = mix(neutralCol, vec3(0.015), mask * 0.50);
+
+        gl_FragColor = vec4(neutralCol, 1.0);
       }
     `;
 
@@ -277,46 +275,34 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
-    // 5. Render Loop (Capped to ~60 FPS with pause on document.hidden)
-    let animationId: number;
+    // 5. Render Loop (Synchronized with gsap.ticker; pauses when offscreen or document.hidden)
     let isPaused = false;
     const clock = new THREE.Clock();
-    const TARGET_FRAME_MS = 1000 / 60;
-    let lastFrameTime = performance.now();
+
+    // Initial render for immediate paint or static frame
+    renderer.render(scene, camera);
 
     const handleVisibilityChange = () => {
       isPaused = document.hidden;
       if (!isPaused) {
-        clock.getDelta(); // Reset clock delta to avoid sudden time jump
-        lastFrameTime = performance.now();
-        cancelAnimationFrame(animationId);
-        animationId = requestAnimationFrame(animate);
+        clock.getDelta();
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    const animate = () => {
-      if (isPaused || document.hidden) return;
+    const renderTick = () => {
+      if (isPaused || document.hidden || prefersReduced) return;
 
-      const now = performance.now();
-      const elapsed = now - lastFrameTime;
-      if (elapsed < TARGET_FRAME_MS - 2) {
-        animationId = requestAnimationFrame(animate);
-        return;
-      }
-      lastFrameTime = now - (elapsed % TARGET_FRAME_MS);
-
-      if (prefersReduced) {
-        renderer.render(scene, camera);
-        return;
-      }
+      const scrollY = latestScrollY;
+      // Pause drawing when opaque middle sections (products & skills) fully cover canvas
+      if (scrollY > 1200 && scrollY < 6500) return;
 
       const delta = clock.getDelta();
       uniforms.u_time.value += delta;
 
-      // Update scroll from cachedMaxScroll inside rAF loop
-      uniforms.u_target_scroll.value = latestScrollY / (cachedMaxScroll || 1);
+      // Update scroll from cachedMaxScroll inside ticker
+      uniforms.u_target_scroll.value = scrollY / (cachedMaxScroll || 1);
 
       // Smooth interpolation for mouse, scroll, and stir pressure
       uniforms.u_mouse.value.lerp(uniforms.u_target_mouse.value, 0.06);
@@ -324,14 +310,14 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
       uniforms.u_stir.value += (uniforms.u_target_stir.value - uniforms.u_stir.value) * 0.12;
 
       renderer.render(scene, camera);
-      animationId = requestAnimationFrame(animate);
     };
 
-    animate();
-
+    if (!prefersReduced) {
+      gsap.ticker.add(renderTick);
+    }
     return () => {
       clearTimeout(resizeTimeout);
-      cancelAnimationFrame(animationId);
+      gsap.ticker.remove(renderTick);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (!isCoarse) {
         window.removeEventListener("mousemove", handleMouseMove);

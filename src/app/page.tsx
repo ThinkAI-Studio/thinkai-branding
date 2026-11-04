@@ -80,6 +80,13 @@ export default function PortfolioPage() {
     <div className="tai-studio-root selection:bg-white selection:text-black relative min-h-screen">
       {/* ─── INITIAL STUDIO PRELOADER SCREEN ─── */}
       <PagePreloader />
+      {/* ─── ACCESSIBILITY SKIP LINK ─── */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-xl focus:bg-white focus:text-black focus:font-mono focus:text-xs focus:font-bold focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-black"
+      >
+        {language === "vi" ? "Chuyển đến nội dung chính" : "Skip to main content"}
+      </a>
 
       {/* ─── 120HZ ULTRA-SMOOTH MOMENTUM SCROLLING ENGINE (LENIS) ─── */}
       <SmoothScroll isLocked={isAboutOpen || isContactOpen} />
@@ -93,11 +100,13 @@ export default function PortfolioPage() {
         onOpenContact={() => setIsContactOpen(true)}
       />
 
+      {/* ─── MAIN LANDMARK ─── */}
+      <main id="main-content" tabIndex={-1} className="outline-none">
       {/* ─── 02. HERO SECTION DIRECT OVER THREE.JS CANVAS ─── */}
       <HeroSection />
 
       {/* ─── 03. TRANSITION SHEET & INTERACTIVE CHAPTER 01 CAROUSEL (Edge-to-Edge Wide) ─── */}
-      <section className="relative z-20 bg-[#050508] py-28 sm:py-36 border-t border-white/[0.08] shadow-2xl">
+      <section className="relative z-20 bg-[#141414] py-28 sm:py-36 border-t border-white/[0.10] shadow-2xl">
         <div className="max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Col (1-4): Carousel Controls with Directional Forward Wipe */}
@@ -107,7 +116,7 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-2">
                   <WipeButton
                     onClick={handlePrevSlide}
-                    className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -117,7 +126,7 @@ export default function PortfolioPage() {
                   </WipeButton>
                   <WipeButton
                     onClick={handleNextSlide}
-                    className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -126,7 +135,7 @@ export default function PortfolioPage() {
                     →
                   </WipeButton>
                 </div>
-                <div className="px-2.5 py-1 rounded-md bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
+                <div className="px-2.5 py-1 rounded-xl bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
                   {t.carousel.slides[activeSlide].tag}
                 </div>
 
@@ -182,7 +191,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ─── 04. PRODUCT SHOWCASE (Progressive Disclosure Split Grid) ─── */}
-      <section id="products" className="relative z-20 bg-[#040406] py-24 sm:py-32 border-t border-white/[0.08] shadow-2xl">
+      <section id="products" className="relative z-20 bg-[#141414] py-24 sm:py-32 border-t border-white/[0.10] shadow-2xl">
         <span id="work" className="sr-only" />
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
@@ -193,7 +202,7 @@ export default function PortfolioPage() {
                   {t.work.sectionLabel}
                 </LanguageTransition>
               </div>
-              <LanguageTransition langKey={language} as="span" className="block text-xs text-neutral-500 mt-1">
+              <LanguageTransition langKey={language} as="span" className="block text-xs text-[#A3A3A3] mt-1">
                 {t.work.systemsLive}
               </LanguageTransition>
             </div>
@@ -213,7 +222,8 @@ export default function PortfolioPage() {
                           title={project.content[language].title}
                           liveUrl={project.liveUrl}
                           mark={project.mark}
-                          status={t.work.statusLive}
+                          status={project.isArchived ? t.work.statusArchived : t.work.statusLive}
+                          isArchived={project.isArchived}
                           priority={index === 0}
                         />
                       </div>
@@ -221,10 +231,15 @@ export default function PortfolioPage() {
                       {/* Column 2 (Span 5): Editorial SoraLabs Studio Style */}
                       <div className="lg:col-span-5 space-y-6">
                         {/* Micro-tag */}
-                        <div>
+                        <div className="flex items-center gap-2">
                           <span className="inline-flex items-center px-2.5 py-1 rounded-xl bg-white/10 text-white border border-white/20 text-xs font-medium">
                             {indexStr} / {totalStr} · {project.mark}
                           </span>
+                          {project.isArchived && (
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-medium font-mono">
+                              {project.statusLabel ? project.statusLabel[language] : (language === "vi" ? "Đã lưu trữ" : "Archived")}
+                            </span>
+                          )}
                         </div>
 
                         {/* Title & Category Eyebrow */}
@@ -277,7 +292,7 @@ export default function PortfolioPage() {
                               rel="noreferrer"
                               className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors px-2 py-1"
                             >
-                              <span>{t.work.visitLive}</span>
+                              <span>{project.isArchived ? t.work.viewArchive : t.work.visitLive}</span>
                               <ArrowUpRight className="w-3.5 h-3.5" />
                             </a>
                           )}
@@ -316,7 +331,7 @@ export default function PortfolioPage() {
               hoverTextColor="#ffffff"
               borderColor="#ffffff"
               hoverBorderColor="rgba(255, 255, 255, 0.4)"
-              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-[20px] text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
+              className="group h-16 sm:h-20 inline-flex items-center justify-center gap-4 sm:gap-5 px-8 sm:px-12 rounded-xl text-xl sm:text-[26px] font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none"
             >
               <LanguageTransition langKey={language} as="span">
                 <ButtonTextRoll
@@ -338,6 +353,7 @@ export default function PortfolioPage() {
         onOpenAbout={() => setIsAboutOpen(true)}
         onOpenContact={() => setIsContactOpen(true)}
       />
+      </main>
 
       {/* ─── 10. ABOUT THE STUDIO DRAWER ─── */}
       <AboutDrawer

@@ -2,10 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import { useReducedMotion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
+
+interface CustomWindow extends Window {
+  __lenis?: Lenis;
+}
 
 interface SmoothScrollProps {
   isLocked?: boolean;
@@ -13,8 +17,14 @@ interface SmoothScrollProps {
 
 export function SmoothScroll({ isLocked = false }: SmoothScrollProps) {
   const lenisRef = useRef<Lenis | null>(null);
+  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
+    const win = window as CustomWindow;
+    if (prefersReduced) {
+      delete win.__lenis;
+      return;
+    }
     // Initialize Lenis with lerp for instant responsive trackpad momentum
     const lenis = new Lenis({
       lerp: 0.11,
@@ -74,7 +84,7 @@ export function SmoothScroll({ isLocked = false }: SmoothScrollProps) {
       lenisRef.current = null;
       (window as unknown as { __lenis?: Lenis | null }).__lenis = null;
     };
-  }, []);
+  }, [prefersReduced]);
 
   // Pause / Resume smooth scroll when Drawer or Modal is opened
   useEffect(() => {

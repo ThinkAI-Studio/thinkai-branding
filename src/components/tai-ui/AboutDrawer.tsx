@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Download } from "lucide-react";
@@ -18,23 +18,67 @@ interface AboutDrawerProps {
 export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
   const prefersReduced = useReducedMotion();
   const t = copy[lang].aboutDrawer;
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-
     if (isOpen) {
+      triggerRef.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = "hidden";
+
+      const timer = setTimeout(() => {
+        if (!panelRef.current) return;
+        const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        }
+      }, 50);
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          onClose();
+          return;
+        }
+
+        if (e.key === "Tab") {
+          if (!panelRef.current) return;
+          const focusable = (
+            Array.from(
+              panelRef.current.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+              )
+            ) as HTMLElement[]
+          ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
+
+          if (focusable.length === 0) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      };
+
       window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+        clearTimeout(timer);
+        if (triggerRef.current) {
+          triggerRef.current.focus();
+        }
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-
-    return () => {
-      document.body.style.overflow = "unset";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
   }, [isOpen, onClose]);
 
   // Motion variants for each staggered element inside the drawer
@@ -69,6 +113,10 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
 
           {/* Right Sliding Panel with Authentic Studio Paper Feel & Native Scroll */}
           <motion.div
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="About ThinkAI Studio"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}

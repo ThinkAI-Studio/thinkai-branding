@@ -236,7 +236,7 @@ export function OceanStirZone() {
         }}
         className={`tai-hold-pill ${isHolding ? "is-holding" : ""}`}
       >
-        <svg className="tai-hold-ring" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="tai-hold-ring" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="9" fill="none" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="2.5" />
           <circle
             ref={circleRef}

@@ -34,7 +34,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
   return (
     <footer
-      className="relative z-20 w-full select-none lg:min-h-[100svh] lg:h-[100svh] lg:flex lg:flex-col lg:justify-between"
+      className="relative z-20 w-full select-none min-h-[100svh] flex flex-col justify-between"
       style={{ backgroundColor: "#1455B4", color: "#F7EFDC" }}
     >
       {/* Content Block: max-width 1280, compact padding & vertical rhythm */}
@@ -77,7 +77,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Github className="w-3.5 h-3.5" />
                 </a>
@@ -87,7 +87,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                 </a>
@@ -95,7 +95,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <a
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
                 </a>
@@ -105,7 +105,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
                 >
                   <Twitter className="w-3.5 h-3.5" />
                 </a>
@@ -127,7 +127,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
                       aria-label={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-lg text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
                     </button>
@@ -142,7 +142,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 1: Products */}
             <div className="space-y-3">
               <div
-                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
+                className="text-[13px] font-bold text-[#F7EFDC] pb-1.5 border-b border-[#F7EFDC]/30"
               >
                 {language === "vi" ? "Sản phẩm" : "Products"}
               </div>
@@ -197,7 +197,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
             {/* Nav Column 2: Studio */}
             <div className="space-y-3">
               <div
-                className="text-[13px] font-bold text-[#F7EFDC]/70 pb-1.5 border-b border-[#F7EFDC]/20"
+                className="text-[13px] font-bold text-[#F7EFDC] pb-1.5 border-b border-[#F7EFDC]/30"
               >
                 Studio
               </div>
@@ -260,14 +260,14 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
-          <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.66)" }}>
+          <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.90)" }}>
             ThinkAI Studio © 2026. All Rights Reserved.
           </div>
 
           <a
             href="#top"
             className="hover:text-white transition-colors whitespace-nowrap"
-            style={{ color: "rgba(247, 239, 220, 0.66)" }}
+            style={{ color: "rgba(247, 239, 220, 0.90)" }}
           >
             {t.footer.backToTop}
           </a>
