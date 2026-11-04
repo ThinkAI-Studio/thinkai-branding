@@ -153,6 +153,12 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
         <div className="space-y-6">
           {/* Eyebrow & Metadata Tags */}
           <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs">
+            {project.isArchived && (
+              <span className="px-2.5 py-1 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                {project.statusLabel ? project.statusLabel[language] : (language === "vi" ? "Đã lưu trữ" : "Archived")}
+              </span>
+            )}
             <span className="px-2.5 py-1 rounded-xl bg-white/10 text-white border border-white/20 font-bold tracking-wider">
               {project.mark}
             </span>
@@ -279,7 +285,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                     rel="noreferrer"
                     className="inline-flex items-center gap-1 text-white hover:text-emerald-400 font-bold  transition-colors shrink-0 ml-3"
                   >
-                    <span>VISIT</span>
+                    <span>{project.isArchived ? (language === "vi" ? "XEM LƯU TRỮ" : "VIEW ARCHIVE") : "VISIT"}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 )}

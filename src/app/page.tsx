@@ -222,7 +222,8 @@ export default function PortfolioPage() {
                           title={project.content[language].title}
                           liveUrl={project.liveUrl}
                           mark={project.mark}
-                          status={t.work.statusLive}
+                          status={project.isArchived ? t.work.statusArchived : t.work.statusLive}
+                          isArchived={project.isArchived}
                           priority={index === 0}
                         />
                       </div>
@@ -230,10 +231,15 @@ export default function PortfolioPage() {
                       {/* Column 2 (Span 5): Editorial SoraLabs Studio Style */}
                       <div className="lg:col-span-5 space-y-6">
                         {/* Micro-tag */}
-                        <div>
+                        <div className="flex items-center gap-2">
                           <span className="inline-flex items-center px-2.5 py-1 rounded-xl bg-white/10 text-white border border-white/20 text-xs font-medium">
                             {indexStr} / {totalStr} · {project.mark}
                           </span>
+                          {project.isArchived && (
+                            <span className="inline-flex items-center px-2.5 py-1 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-medium font-mono">
+                              {project.statusLabel ? project.statusLabel[language] : (language === "vi" ? "Đã lưu trữ" : "Archived")}
+                            </span>
+                          )}
                         </div>
 
                         {/* Title & Category Eyebrow */}
@@ -286,7 +292,7 @@ export default function PortfolioPage() {
                               rel="noreferrer"
                               className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors px-2 py-1"
                             >
-                              <span>{t.work.visitLive}</span>
+                              <span>{project.isArchived ? t.work.viewArchive : t.work.visitLive}</span>
                               <ArrowUpRight className="w-3.5 h-3.5" />
                             </a>
                           )}

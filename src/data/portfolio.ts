@@ -53,6 +53,8 @@ export type Project = {
   stack: string[];
   accent: "teal" | "pink" | "emerald" | "amber";
   mark: string;
+  isArchived?: boolean;
+  statusLabel?: Localized<string>;
   metric: {
     value: string;
     label: Localized<string>;
@@ -136,6 +138,8 @@ export type PortfolioCopy = {
     source: string;
     live: string;
     statusLive: string;
+    statusArchived: string;
+    viewArchive: string;
     preview: string;
     storyLabels: { problem: string; approach: string; outcome: string };
   };
@@ -307,6 +311,8 @@ export const copy: Localized<PortfolioCopy> = {
       source: "View source",
       live: "Visit live",
       statusLive: "LIVE",
+      statusArchived: "ARCHIVED",
+      viewArchive: "View archive",
       preview: "OpenScreen preview",
       storyLabels: { problem: "Challenge", approach: "Engineering decision", outcome: "Evidence delivered" },
     },
@@ -526,6 +532,8 @@ Provide a comprehensive technical assessment of his architectural expertise, Dev
       source: "Xem mã nguồn",
       live: "Xem live",
       statusLive: "TRỰC TUYẾN",
+      statusArchived: "ĐÃ LƯU TRỮ",
+      viewArchive: "Xem lưu trữ",
       preview: "Xem preview OpenScreen",
       storyLabels: { problem: "Thách thức", approach: "Quyết định kỹ thuật", outcome: "Bằng chứng bàn giao" },
     },
@@ -1281,6 +1289,11 @@ export const projects: Project[] = [
     stack: ["Spring Boot", "GitHub Actions", "Docker", "Kubernetes", "Argo CD", "Trivy"],
     accent: "pink",
     mark: "K3S",
+    isArchived: true,
+    statusLabel: {
+      en: "Archived",
+      vi: "Đã lưu trữ",
+    },
     metric: {
       value: "0-Trust",
       label: {
