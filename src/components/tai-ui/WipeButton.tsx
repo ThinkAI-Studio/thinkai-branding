@@ -61,7 +61,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
       return (
         <Slot
           className={cn(
-            "relative inline-flex items-center justify-center overflow-hidden rounded-xl cursor-pointer select-none transition-all active:scale-[0.98]",
+            "relative inline-flex items-center justify-center overflow-hidden r-btn cursor-pointer select-none transition-all active:scale-[0.98]",
             className
           )}
           ref={ref as React.Ref<HTMLElement>}
@@ -112,12 +112,13 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
     );
 
     const baseClasses = cn(
-      "relative inline-flex items-center justify-center overflow-hidden rounded-xl transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414] active:scale-[0.98]",
+      "relative inline-flex items-center justify-center overflow-hidden r-btn transition-all duration-300 cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414] active:scale-[0.98]",
       className
     );
 
     const sharedStyles: React.CSSProperties = {
       borderColor: wipeState === "in" ? hoverBorderColor : borderColor,
+      ...props.style,
     };
 
     if (props.as === "div") {

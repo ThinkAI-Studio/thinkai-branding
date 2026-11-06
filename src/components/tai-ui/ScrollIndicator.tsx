@@ -75,7 +75,8 @@ export function ScrollIndicator() {
   return (
     <nav
       aria-label="Page scroll progress"
-      className="scroll-indicator fixed bottom-6 sm:bottom-8 right-6 sm:right-10 z-40 flex items-center gap-1.5 p-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl transition-opacity duration-300 select-none"
+      className="scroll-indicator fixed bottom-6 sm:bottom-8 right-6 sm:right-10 z-40 flex items-center gap-1.5 p-1.5 r-btn bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl transition-opacity duration-300 select-none"
+      style={{ "--btn-h": "36px" } as React.CSSProperties}
     >
       {SECTIONS.map((section, idx) => {
         // Geometric states from specification:
@@ -104,7 +105,7 @@ export function ScrollIndicator() {
             aria-current={isActive ? "location" : undefined}
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className="scroll-indicator__item group relative flex items-center justify-center py-2 px-1 cursor-pointer"
+            className="scroll-indicator__item group relative flex items-center justify-center py-2.5 px-2 min-w-[28px] min-h-[28px] cursor-pointer"
           >
             <span
               className="relative h-2.5 rounded-full bg-white/20 group-hover:bg-white/40 overflow-hidden block"

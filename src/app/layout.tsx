@@ -40,9 +40,6 @@ export const metadata: Metadata = {
     ],
     shortcut: ["/favicon.ico?v=20260902"],
   },
-  alternates: {
-    canonical: SITE_URL,
-  },
   openGraph: {
     title: `${SITE_NAME} — Engineering Showcase & Product Portfolio`,
     description: SITE_DESCRIPTION,
@@ -50,6 +47,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [{ url: socialImage, width: 1200, height: 630, alt: `${SITE_NAME}: Engineering Showcase & Product Portfolio` }],
     locale: "en_US",
+    alternateLocale: ["vi_VN"],
     type: "website",
   },
   twitter: {
@@ -61,9 +59,34 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.png`,
+    sameAs: ["https://github.com/bnhminh1010", "https://linkedin.com/in/bnhminh"],
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: ["en", "vi"],
+  };
+
   return (
     <html lang="en" className={`${barlowHero.variable} ${barlowSecondary.className}`} data-theme="dark" suppressHydrationWarning>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <div className="tai-grain-overlay" aria-hidden="true" />
         <ThemeProvider>
           <LanguageProvider>{children}</LanguageProvider>

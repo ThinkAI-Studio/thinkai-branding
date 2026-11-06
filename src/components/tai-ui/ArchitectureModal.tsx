@@ -86,7 +86,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: 16 }}
             transition={{ duration: 0.25, ease: TAI_EASE.luxury }}
-            className="w-full max-w-5xl bg-[#141414] border border-white/[0.12] rounded-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_60px_-15px_rgba(0,0,0,0.98)] overflow-hidden flex flex-col h-[92dvh] max-h-[92dvh] sm:h-auto sm:max-h-[90vh] cursor-default"
+            className="w-full max-w-5xl bg-[#141414] border border-white/[0.12] r-panel shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_60px_-15px_rgba(0,0,0,0.98)] overflow-hidden flex flex-col h-[92dvh] max-h-[92dvh] sm:h-auto sm:max-h-[90vh] cursor-default"
           >
             {/* ─── MODAL HEADER (Responsive Top Bar) ─── */}
             <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#1E1E1E] border-b border-white/[0.1] flex items-center justify-between gap-3 shrink-0">
@@ -98,7 +98,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                       {project.content[lang].title}
                     </h3>
                     {arch?.specId && (
-                      <span className="hidden xs:inline-flex text-[10px] font-mono px-2 py-0.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 items-center gap-1.5 font-semibold shrink-0">
+                      <span className="hidden xs:inline-flex text-[10px] font-mono px-2 py-0.5 r-chip bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 items-center gap-1.5 font-semibold shrink-0" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         <span>{arch.specId}</span>
                       </span>
@@ -112,48 +112,52 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
 
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 {/* Desktop Navigation Tabs */}
-                <div className="hidden md:flex items-center bg-black/70 p-1 rounded-xl border border-white/[0.1] text-xs font-mono">
+                <div className="hidden md:flex items-center bg-black/70 p-1 r-panel border border-white/[0.1] text-xs font-mono">
                   <button
                     type="button"
                     onClick={() => setActiveTab("narrative")}
-                    className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer select-none ${
+                    className={`px-3 py-1.5 r-btn transition-all cursor-pointer select-none ${
                       activeTab === "narrative"
                         ? "bg-white text-black font-bold shadow-sm"
                         : "text-neutral-400 hover:text-white"
                     }`}
+                    style={{ "--btn-h": "30px" } as React.CSSProperties}
                   >
                     {lang === "vi" ? "Báo cáo giải pháp" : "Case Study"}
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveTab("diagram")}
-                    className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer select-none ${
+                    className={`px-3 py-1.5 r-btn transition-all cursor-pointer select-none ${
                       activeTab === "diagram"
                         ? "bg-white text-black font-bold shadow-sm"
                         : "text-neutral-400 hover:text-white"
                     }`}
+                    style={{ "--btn-h": "30px" } as React.CSSProperties}
                   >
                     {lang === "vi" ? "Kiến trúc luồng" : "Architecture"}
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveTab("security")}
-                    className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer select-none ${
+                    className={`px-3 py-1.5 r-btn transition-all cursor-pointer select-none ${
                       activeTab === "security"
                         ? "bg-white text-black font-bold shadow-sm"
                         : "text-neutral-400 hover:text-white"
                     }`}
+                    style={{ "--btn-h": "30px" } as React.CSSProperties}
                   >
                     {lang === "vi" ? "Bảo mật & QA" : "Security"}
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveTab("provenance")}
-                    className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer select-none ${
+                    className={`px-3 py-1.5 r-btn transition-all cursor-pointer select-none ${
                       activeTab === "provenance"
                         ? "bg-white text-black font-bold shadow-sm"
                         : "text-neutral-400 hover:text-white"
                     }`}
+                    style={{ "--btn-h": "30px" } as React.CSSProperties}
                   >
                     {lang === "vi" ? "Bằng chứng Git" : "Claims"}
                   </button>
@@ -164,7 +168,8 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                   data-testid="arch-close-button"
                   onClick={onClose}
                   aria-label="Close Architecture Modal"
-                  className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl bg-white/[0.05] hover:bg-white/[0.15] text-neutral-300 hover:text-white transition-colors cursor-pointer border border-white/[0.1] shrink-0"
+                  className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center r-btn bg-white/[0.05] hover:bg-white/[0.15] text-neutral-300 hover:text-white transition-colors cursor-pointer border border-white/[0.1] shrink-0"
+                  style={{ "--btn-h": "36px" } as React.CSSProperties}
                 >
                   <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -176,44 +181,48 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
               <button
                 type="button"
                 onClick={() => setActiveTab("narrative")}
-                className={`px-3 py-1 text-xs font-mono rounded-xl whitespace-nowrap transition-all cursor-pointer select-none ${
+                className={`px-3 py-1 text-xs font-mono r-btn whitespace-nowrap transition-all cursor-pointer select-none ${
                   activeTab === "narrative"
                     ? "bg-white text-black font-bold shadow-sm"
                     : "text-neutral-400 hover:text-white bg-white/[0.04] border border-white/[0.06]"
                 }`}
+                style={{ "--btn-h": "28px" } as React.CSSProperties}
               >
                 {lang === "vi" ? "Báo cáo" : "Case Study"}
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("diagram")}
-                className={`px-3 py-1 text-xs font-mono rounded-xl whitespace-nowrap transition-all cursor-pointer select-none ${
+                className={`px-3 py-1 text-xs font-mono r-btn whitespace-nowrap transition-all cursor-pointer select-none ${
                   activeTab === "diagram"
                     ? "bg-white text-black font-bold shadow-sm"
                     : "text-neutral-400 hover:text-white bg-white/[0.04] border border-white/[0.06]"
                 }`}
+                style={{ "--btn-h": "28px" } as React.CSSProperties}
               >
                 {lang === "vi" ? "Kiến trúc" : "Architecture"}
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("security")}
-                className={`px-3 py-1 text-xs font-mono rounded-xl whitespace-nowrap transition-all cursor-pointer select-none ${
+                className={`px-3 py-1 text-xs font-mono r-btn whitespace-nowrap transition-all cursor-pointer select-none ${
                   activeTab === "security"
                     ? "bg-white text-black font-bold shadow-sm"
                     : "text-neutral-400 hover:text-white bg-white/[0.04] border border-white/[0.06]"
                 }`}
+                style={{ "--btn-h": "28px" } as React.CSSProperties}
               >
                 {lang === "vi" ? "Bảo mật & QA" : "Security"}
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("provenance")}
-                className={`px-3 py-1 text-xs font-mono rounded-xl whitespace-nowrap transition-all cursor-pointer select-none ${
+                className={`px-3 py-1 text-xs font-mono r-btn whitespace-nowrap transition-all cursor-pointer select-none ${
                   activeTab === "provenance"
                     ? "bg-white text-black font-bold shadow-sm"
                     : "text-neutral-400 hover:text-white bg-white/[0.04] border border-white/[0.06]"
                 }`}
+                style={{ "--btn-h": "28px" } as React.CSSProperties}
               >
                 {lang === "vi" ? "Bằng chứng Git" : "Claims"}
               </button>
@@ -251,7 +260,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                   {/* 3 Sections: 01. Challenge, 02. Approach, 03. Outcome */}
                   <div className="space-y-4">
                     {/* Section 01: Challenge */}
-                    <div className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] rounded-xl space-y-2.5 transition-all hover:border-white/[0.28]">
+                    <div className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] r-panel space-y-2.5 transition-all hover:border-white/[0.28]">
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-red-400" />
@@ -272,7 +281,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                     </div>
 
                     {/* Section 02: Approach */}
-                    <div className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] rounded-xl space-y-2.5 transition-all hover:border-white/[0.28]">
+                    <div className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] r-panel space-y-2.5 transition-all hover:border-white/[0.28]">
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-amber-400" />
@@ -293,7 +302,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                     </div>
 
                     {/* Section 03: Outcome */}
-                    <div className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] rounded-xl space-y-2.5 transition-all hover:border-white/[0.28]">
+                    <div className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] r-panel space-y-2.5 transition-all hover:border-white/[0.28]">
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2.5">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -315,7 +324,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                   </div>
 
                   {/* Telemetry Strip */}
-                  <div className="p-3.5 sm:p-4 bg-[#1E1E1E] border border-white/[0.10] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+                  <div className="p-3.5 sm:p-4 bg-[#1E1E1E] border border-white/[0.10] r-panel flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
                     <div className="flex items-center gap-2">
                       <Activity className="w-4 h-4 text-emerald-400" />
                       <span className="text-white font-bold">{project.metric.value}</span>
@@ -346,14 +355,14 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                       {arch.flowSteps.map((step, idx) => (
                         <div
                           key={step.step}
-                          className="relative p-4 bg-[#1E1E1E] border border-white/[0.10] rounded-xl space-y-2.5 flex flex-col justify-between group hover:border-white/[0.2] transition-colors"
+                          className="relative p-4 bg-[#1E1E1E] border border-white/[0.10] r-panel space-y-2.5 flex flex-col justify-between group hover:border-white/[0.2] transition-colors"
                         >
                           <div className="space-y-1.5">
                             <div className="flex items-center justify-between border-b border-white/[0.06] pb-2">
                               <span className="font-mono text-[11px] font-bold text-white">
                                 {lang === "vi" ? `Bước ${step.step}` : `Step ${step.step}`}
                               </span>
-                              <span className="font-mono text-[9px] px-1.5 py-0.5 rounded-xl bg-white/[0.06] border border-white/[0.10] text-neutral-300 ">
+                              <span className="font-mono text-[9px] px-1.5 py-0.5 r-chip bg-white/[0.06] border border-white/[0.10] text-neutral-300" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                                 {step.status}
                               </span>
                             </div>
@@ -380,7 +389,7 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
 
                   {/* Code Spec Viewer */}
                   {arch?.specSnippet && (
-                    <div className="p-3.5 sm:p-4 bg-[#141414] border border-white/[0.10] rounded-xl space-y-3">
+                    <div className="p-3.5 sm:p-4 bg-[#141414] border border-white/[0.10] r-panel space-y-3">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/[0.06] pb-2 font-mono text-xs">
                         <div className="flex items-center gap-2 text-neutral-300 min-w-0">
                           <FileCode className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
@@ -392,7 +401,8 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                         <button
                           type="button"
                           onClick={() => handleCopyCode(arch.specSnippet.code)}
-                          className="px-2.5 py-1 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-mono text-neutral-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer border border-white/[0.10] shrink-0 self-start sm:self-auto"
+                          className="px-2.5 py-1 r-btn bg-white/[0.06] hover:bg-white/[0.12] text-[11px] font-mono text-neutral-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer border border-white/[0.10] shrink-0 self-start sm:self-auto"
+                          style={{ "--btn-h": "28px" } as React.CSSProperties}
                         >
                           {copiedCode ? (
                             <>
@@ -447,14 +457,14 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                       return (
                         <div
                           key={idx}
-                          className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] rounded-xl space-y-3 transition-all hover:border-white/[0.28]"
+                          className="p-4 sm:p-5 bg-[#1E1E1E] border border-white/[0.10] r-panel space-y-3 transition-all hover:border-white/[0.28]"
                         >
                           <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2">
                             <div className="flex items-center gap-2 text-white font-bold font-mono">
                               <IconComponent className="w-4 h-4 text-emerald-400 shrink-0" />
                               <span className="text-xs">{card.title[lang]}</span>
                             </div>
-                            <span className="font-mono text-[9px] px-1.5 py-0.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 ">
+                            <span className="font-mono text-[9px] px-1.5 py-0.5 r-chip bg-emerald-500/10 border border-emerald-500/20 text-emerald-400" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                               {card.tag}
                             </span>
                           </div>
@@ -490,14 +500,15 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                     {arch?.provenance.map((item, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 sm:p-4 bg-[#1E1E1E] border border-white/[0.10] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.28] transition-colors"
+                        className="p-3.5 sm:p-4 bg-[#1E1E1E] border border-white/[0.10] r-panel flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.28] transition-colors"
                       >
                         <div className="space-y-1.5 min-w-0 flex-1">
                           <div className="flex items-center gap-2 flex-wrap font-mono text-[11px]">
                             <button
                               type="button"
                               onClick={() => handleCopyHash(item.hash)}
-                              className="px-2 py-0.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.16] text-white font-bold flex items-center gap-1 transition-colors cursor-pointer border border-white/[0.1]"
+                              className="px-2 py-0.5 r-chip bg-white/[0.08] hover:bg-white/[0.16] text-white font-bold flex items-center gap-1 transition-colors cursor-pointer border border-white/[0.1]"
+                              style={{ "--chip-h": "20px" } as React.CSSProperties}
                             >
                               <span>{item.hash}</span>
                               {copiedHash === item.hash ? (
@@ -506,11 +517,11 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                                 <Copy className="w-3 h-3 text-neutral-400" />
                               )}
                             </button>
-                            <span className="px-2 py-0.5 rounded-xl bg-white/[0.04] text-neutral-400 border border-white/[0.06]">
+                            <span className="px-2 py-0.5 r-chip bg-white/[0.04] text-neutral-400 border border-white/[0.06]" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                               branch: {item.branch}
                             </span>
                             {item.verified && (
-                              <span className="px-2 py-0.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">
+                              <span className="px-2 py-0.5 r-chip bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                                 {lang === "vi" ? "Đã xác thực" : "Verified"}
                               </span>
                             )}
@@ -523,7 +534,8 @@ export function ArchitectureModal({ projectId, onClose, lang }: ArchitectureModa
                           href={item.url}
                           target="_blank"
                           rel="noreferrer"
-                          className="w-full sm:w-auto justify-center px-3.5 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.14] text-xs font-mono text-white flex items-center gap-1.5 transition-colors whitespace-nowrap border border-white/[0.1] shrink-0"
+                          className="w-full sm:w-auto justify-center px-3.5 py-1.5 r-btn bg-white/[0.06] hover:bg-white/[0.14] text-xs font-mono text-white flex items-center gap-1.5 transition-colors whitespace-nowrap border border-white/[0.1] shrink-0"
+                          style={{ "--btn-h": "32px" } as React.CSSProperties}
                         >
                           <span>{lang === "vi" ? "Kiểm tra commit" : "Inspect Diff"}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
