@@ -258,7 +258,12 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           }`}
           aria-label="ThinkAI Studio"
         >
-          <BrandMark size={28} framed className="drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]" priority />
+          <span className="sm:hidden text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] inline-flex items-center justify-center">
+            <BrandMark size={24} framed={false} priority />
+          </span>
+          <span className="hidden sm:inline-flex text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] items-center justify-center">
+            <BrandMark size={26} framed={false} priority />
+          </span>
         </button>
 
         {/* Center: Floating Navigation Links with Signature Directional Wipe Motion */}

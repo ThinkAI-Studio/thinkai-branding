@@ -98,7 +98,7 @@ export function PagePreloader() {
               transition={{ duration: 0.4, ease: LUXURY_EASE }}
               className="relative flex items-center justify-center drop-shadow-[0_0_24px_rgba(255,255,255,0.4)] mb-2"
             >
-              <BrandMark size={56} framed={false} priority />
+              <BrandMark size={56} framed={false} className="text-white" priority />
             </motion.div>
 
             {/* Staggered Animated Phrase: Nhảy ra từ từ và chạy biến mất theo thanh tiến độ */}

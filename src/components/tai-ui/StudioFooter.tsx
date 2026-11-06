@@ -43,9 +43,9 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           {/* Left Column (Span 6): Brand, 1-line Manifesto, Unified Icons Row */}
           <div className="lg:col-span-6 space-y-4">
             {/* Wordmark */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-[#F7EFDC]">
               <BrandMark size={28} framed />
-              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">THINKAI STUDIO</span>
+              <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight uppercase">THINKAI STUDIO</span>
             </div>
 
             {/* Manifesto: 1 concise sentence */}

@@ -27,10 +27,10 @@ export function BrandMark({
       viewBox="0 0 512 512"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
-      className="text-white select-none pointer-events-none"
+      className="select-none pointer-events-none"
       style={{
-        width: framed ? "68%" : "100%",
-        height: framed ? "68%" : "100%",
+        width: framed ? "84%" : "100%",
+        height: framed ? "84%" : "100%",
       }}
       aria-hidden="true"
     >
@@ -76,10 +76,10 @@ export function BrandMark({
   return (
     <div
       className={cn(
-        "relative inline-flex items-center justify-center shrink-0 select-none rounded-[22%] bg-white/[0.08] border border-white/20 shadow-sm overflow-hidden",
+        "relative inline-flex items-center justify-center shrink-0 select-none r-btn bg-white/[0.08] border border-white/20 shadow-sm overflow-hidden",
         className
       )}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: size, "--btn-h": `${size}px` } as React.CSSProperties}
     >
       {markSvg}
     </div>
