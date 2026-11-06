@@ -157,7 +157,7 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
 
                 {/* Founder Identity Header */}
                 <motion.div {...getRevealProps(0.24)} className="flex items-center gap-6">
-                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border-2 border-black/10 shadow-md bg-white shrink-0 group">
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 r-panel overflow-hidden border-2 border-black/10 shadow-md bg-white shrink-0 group">
                     <Image
                       src="/images/binhminh-sketch.jpg"
                       alt="Nguyen Binh Minh - DevOps & Systems Engineer"

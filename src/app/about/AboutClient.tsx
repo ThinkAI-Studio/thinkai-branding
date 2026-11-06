@@ -216,7 +216,7 @@ export default function AboutClient() {
                 rel="noreferrer"
                 download="NguyenBinhMinh-DevOpsEngineer-2026.pdf"
                 className="px-4 py-2 r-btn bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 font-mono text-xs font-bold text-white inline-flex items-center gap-1.5 transition-colors"
-                style={{ "--btn-h": "36px" } as React.CSSProperties}
+                style={{ "--btn-h": "34px" } as React.CSSProperties}
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>CV (PDF)</span>
@@ -226,7 +226,7 @@ export default function AboutClient() {
                 target="_blank"
                 rel="noreferrer"
                 className="px-4 py-2 r-btn bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 font-mono text-xs font-bold text-white inline-flex items-center gap-1.5 transition-colors"
-                style={{ "--btn-h": "36px" } as React.CSSProperties}
+                style={{ "--btn-h": "34px" } as React.CSSProperties}
               >
                 <span>GitHub</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -236,7 +236,7 @@ export default function AboutClient() {
                 target="_blank"
                 rel="noreferrer"
                 className="px-4 py-2 r-btn bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 font-mono text-xs font-bold text-white inline-flex items-center gap-1.5 transition-colors"
-                style={{ "--btn-h": "36px" } as React.CSSProperties}
+                style={{ "--btn-h": "34px" } as React.CSSProperties}
               >
                 <span>LinkedIn</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />

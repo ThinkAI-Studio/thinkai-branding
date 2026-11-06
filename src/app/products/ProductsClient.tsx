@@ -148,7 +148,7 @@ export default function ProductsClient() {
                         <Link
                           href={`/products/${project.id}`}
                           className="inline-flex items-center gap-2 px-5 py-2.5 r-btn bg-white text-black text-xs font-semibold shadow-md hover:bg-neutral-200 transition-colors min-h-[36px]"
-                          style={{ "--btn-h": "36px" } as React.CSSProperties}
+                          style={{ "--btn-h": "34px" } as React.CSSProperties}
                         >
                           <span>{isVi ? "Xem Case Study" : "Explore Case Study"}</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -160,7 +160,7 @@ export default function ProductsClient() {
                             target="_blank"
                             rel="noreferrer"
                             className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-300 hover:text-white active:opacity-70 transition-colors px-3 py-2 r-btn border border-white/15 hover:border-white/30 bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 min-h-[36px]"
-                            style={{ "--btn-h": "36px" } as React.CSSProperties}
+                            style={{ "--btn-h": "34px" } as React.CSSProperties}
                           >
                             <span>{project.isArchived ? (isVi ? "Xem lưu trữ" : "View Archive") : (isVi ? "Truy cập hệ thống" : "Visit Live")}</span>
                             <ArrowUpRight className="w-3.5 h-3.5" />

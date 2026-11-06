@@ -86,7 +86,8 @@ export default function PortfolioPage() {
       {/* ─── ACCESSIBILITY SKIP LINK ─── */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-xl focus:bg-white focus:text-black focus:font-mono focus:text-xs focus:font-bold focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-black"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:r-btn focus:bg-white focus:text-black focus:font-mono focus:text-xs focus:font-bold focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-black"
+        style={{ "--btn-h": "36px" } as React.CSSProperties}
       >
         {language === "vi" ? "Chuyển đến nội dung chính" : "Skip to main content"}
       </a>
@@ -140,7 +141,7 @@ export default function PortfolioPage() {
                     →
                   </WipeButton>
                 </div>
-                <div className="px-2.5 py-1 rounded-xl bg-white/[0.06] text-xs font-mono font-bold text-neutral-200">
+                <div className="px-2.5 py-1 r-chip bg-white/[0.06] text-xs font-mono font-bold text-neutral-200" style={{ "--chip-h": "24px" } as React.CSSProperties}>
                   {t.carousel.slides[activeSlide].tag}
                 </div>
 
@@ -286,7 +287,7 @@ export default function PortfolioPage() {
                             borderColor="rgba(255, 255, 255, 0.25)"
                             hoverBorderColor="#ffffff"
                             className="px-5 py-2.5 r-btn bg-white/10 text-xs font-semibold shadow-md"
-                            style={{ "--btn-h": "36px" } as React.CSSProperties}
+                            style={{ "--btn-h": "34px" } as React.CSSProperties}
                           >
                             <span>{t.work.exploreCaseStudy}</span>
                             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -298,7 +299,7 @@ export default function PortfolioPage() {
                               target="_blank"
                               rel="noreferrer"
                               className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-300 hover:text-white active:opacity-70 transition-colors px-3 py-2 r-btn border border-white/15 hover:border-white/30 bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 min-h-[36px]"
-                              style={{ "--btn-h": "36px" } as React.CSSProperties}
+                            style={{ "--btn-h": "34px" } as React.CSSProperties}
                             >
                               <span>{project.isArchived ? t.work.viewArchive : t.work.visitLive}</span>
                               <ArrowUpRight className="w-3.5 h-3.5" />

@@ -77,7 +77,7 @@ export function ExperienceEducationLegacy() {
                 {t.experience.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="tai-tag-pill px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-mono cursor-default"
+                    className="tai-tag-pill px-3 py-1.5 r-chip text-xs sm:text-[13px] font-mono cursor-default"
                   >
                     {tag}
                   </span>
@@ -122,7 +122,7 @@ export function ExperienceEducationLegacy() {
                 {t.education.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="tai-tag-pill px-3 py-1 rounded-xl text-xs sm:text-[13px] font-mono cursor-default"
+                    className="tai-tag-pill px-3 py-1 r-chip text-xs sm:text-[13px] font-mono cursor-default"
                   >
                     {tag}
                   </span>
@@ -152,7 +152,7 @@ export function ExperienceEducationLegacy() {
                 {t.education.recognitions.flatMap((r) => r.tags).map((tag) => (
                   <span
                     key={tag}
-                    className="tai-tag-pill px-3 py-1 rounded-xl text-xs sm:text-[13px] font-mono cursor-default"
+                    className="tai-tag-pill px-3 py-1 r-chip text-xs sm:text-[13px] font-mono cursor-default"
                   >
                     {tag}
                   </span>

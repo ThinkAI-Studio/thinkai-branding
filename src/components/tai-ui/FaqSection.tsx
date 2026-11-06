@@ -276,7 +276,8 @@ export function FaqSection() {
               variants={eyebrowVariants}
               initial="hidden"
               animate={hasEntered ? "visible" : "hidden"}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-white/5 border border-white/10 text-neutral-300 font-mono text-xs font-bold tracking-widest uppercase"
+              className="inline-flex items-center gap-2 px-3 py-1 r-chip bg-white/5 border border-white/10 text-neutral-300 font-mono text-xs font-bold tracking-widest uppercase"
+              style={{ "--chip-h": "26px" } as React.CSSProperties}
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <span>{isVi ? "CÂU HỎI THƯỜNG GẶP" : "FREQUENTLY ASKED QUESTIONS"}</span>

@@ -213,22 +213,22 @@ export function SkillsGrid() {
               WEB
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h3 className="text-xl font-bold text-white">React 19</h3>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h3 className="text-xl font-bold text-white">Next.js 16</h3>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h3 className="text-xl font-bold text-white">TypeScript</h3>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Tailwind CSS v4</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">GSAP + Motion</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Three.js / GLSL</h4>
               </div>
             </div>
@@ -240,22 +240,22 @@ export function SkillsGrid() {
               DEVOPS
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h3 className="text-xl font-bold text-white">Kubernetes & K3s</h3>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h3 className="text-xl font-bold text-white">Docker & Podman</h3>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Linux</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Go</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Tailscale + Trivy</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">GitHub Actions + Argo CD</h4>
               </div>
             </div>
@@ -267,19 +267,19 @@ export function SkillsGrid() {
               DESIGNER
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h3 className="text-xl font-bold text-white">Design Systems & Tokens</h3>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Figma</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Typography & Art Direction</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Motion Design</h4>
               </div>
-              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5">
+              <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5">
                 <h4 className="text-base font-bold text-white">Prototyping</h4>
               </div>
             </div>
@@ -320,11 +320,12 @@ export function SkillsGrid() {
                     aria-selected={currentStackIdx === st.id}
                     onClick={() => handleNotchClick(st.id)}
                     className={cn(
-                      "px-3.5 py-1 rounded-xl text-xs font-medium transition-all cursor-pointer border",
+                      "px-3.5 py-1 r-chip text-xs font-medium transition-all cursor-pointer border",
                       currentStackIdx === st.id
                         ? "bg-white text-black border-white shadow-[0_0_12px_rgba(255,255,255,0.4)] font-bold scale-105"
                         : "bg-white/[0.04] text-neutral-400 border-white/[0.1] hover:text-white hover:border-white/20"
                     )}
+                    style={{ "--chip-h": "26px" } as React.CSSProperties}
                   >
                     <span>{st.category}</span>
                   </button>
@@ -346,9 +347,9 @@ export function SkillsGrid() {
                 </div>
 
                 <div className="grid grid-cols-12 gap-3.5">
-                  <div className="bento-block col-span-5 rounded-xl bg-[#f4f4f6] p-8 flex items-center justify-center shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
+                  <div className="bento-block col-span-5 r-panel bg-[#f4f4f6] p-8 flex items-center justify-center shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
                     <h3 className="sr-only">React 19</h3>
-                    <div className="w-20 h-20 rounded-xl bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
+                    <div className="w-20 h-20 r-inner bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
                       <TechLogo name="React" className="w-14 h-14 object-contain" />
                     </div>
                     <div className="flex flex-col ml-4">
@@ -356,7 +357,7 @@ export function SkillsGrid() {
                     </div>
                   </div>
 
-                  <div className="bento-block col-span-4 rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
+                  <div className="bento-block col-span-4 r-panel bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">Next.js 16</h3>
                     <div className="text-5xl sm:text-6xl font-black tracking-tighter text-white flex items-center gap-1.5 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <span>NEXT</span>
@@ -364,16 +365,16 @@ export function SkillsGrid() {
                     </div>
                   </div>
 
-                  <div className="bento-block col-span-3 rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
+                  <div className="bento-block col-span-3 r-panel bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">TypeScript</h3>
-                    <div className="w-20 h-20 rounded-xl border border-white/20 bg-white/10 flex items-center justify-center text-white font-mono text-4xl font-black shadow-lg bento-inner-mark">
+                    <div className="w-20 h-20 r-inner border border-white/20 bg-white/10 flex items-center justify-center text-white font-mono text-4xl font-black shadow-lg bento-inner-mark">
                       TS
                     </div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
                     <h4 className="sr-only">Tailwind CSS v4</h4>
                     <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Tailwind CSS v4" className="w-7 h-7 object-contain" />
@@ -381,7 +382,7 @@ export function SkillsGrid() {
                     </div>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
                     <h4 className="sr-only">GSAP + Motion</h4>
                     <div className="flex items-center gap-2.5 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="GSAP" className="w-6 h-6 object-contain" />
@@ -390,7 +391,7 @@ export function SkillsGrid() {
                     </div>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center min-h-[90px]">
                     <h4 className="sr-only">Three.js / GLSL</h4>
                     <div className="flex items-center gap-3 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Three.js WebGL" className="w-7 h-7 object-contain" />
@@ -412,9 +413,9 @@ export function SkillsGrid() {
                 </div>
 
                 <div className="grid grid-cols-12 gap-3.5">
-                  <div className="bento-block col-span-7 rounded-xl bg-[#f4f4f6] p-8 flex items-center justify-center gap-6 shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
+                  <div className="bento-block col-span-7 r-panel bg-[#f4f4f6] p-8 flex items-center justify-center gap-6 shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
                     <h3 className="sr-only">Kubernetes & K3s</h3>
-                    <div className="w-20 h-20 rounded-xl bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
+                    <div className="w-20 h-20 r-inner bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
                       <TechLogo name="Kubernetes & K3s" className="w-14 h-14 object-contain" />
                     </div>
                     <div className="flex flex-col">
@@ -422,9 +423,9 @@ export function SkillsGrid() {
                     </div>
                   </div>
 
-                  <div className="bento-block col-span-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center gap-5 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
+                  <div className="bento-block col-span-5 r-panel bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center gap-5 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">Docker & Podman</h3>
-                    <div className="h-16 px-4 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center gap-2.5 text-white [filter:brightness(0)_invert(1)] bento-inner-mark">
+                    <div className="h-16 px-4 r-inner bg-white/[0.06] border border-white/10 flex items-center justify-center gap-2.5 text-white [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Docker" className="w-8 h-8 object-contain" />
                       <TechLogo name="Podman" className="w-7 h-7 object-contain" />
                     </div>
@@ -435,7 +436,7 @@ export function SkillsGrid() {
                 </div>
 
                 <div className="grid grid-cols-4 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h4 className="sr-only">Linux</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Linux" className="w-6 h-6 object-contain" />
@@ -443,7 +444,7 @@ export function SkillsGrid() {
                     <span className="font-mono text-sm font-bold text-white tracking-wide">LINUX</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h4 className="sr-only">Go</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Go" className="w-6 h-6 object-contain" />
@@ -451,7 +452,7 @@ export function SkillsGrid() {
                     <span className="font-mono text-sm font-bold text-white tracking-wide">GOLANG</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-2.5 min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-2.5 min-h-[90px]">
                     <h4 className="sr-only">Tailscale + Trivy</h4>
                     <div className="flex items-center gap-2 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Tailscale" className="w-5 h-5 object-contain" />
@@ -460,7 +461,7 @@ export function SkillsGrid() {
                     <span className="font-mono text-xs font-bold text-white tracking-wide">TAILSCALE + TRIVY</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-2.5 min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-2.5 min-h-[90px]">
                     <h4 className="sr-only">GitHub Actions + Argo CD</h4>
                     <div className="flex items-center gap-2 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="GitHub Actions" className="w-5 h-5 object-contain" />
@@ -483,9 +484,9 @@ export function SkillsGrid() {
                 </div>
 
                 <div className="grid grid-cols-12 gap-3.5">
-                  <div className="bento-block col-span-6 rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
+                  <div className="bento-block col-span-6 r-panel bg-[#1E1E1E] border border-white/[0.10] p-8 flex items-center justify-center gap-6 shadow-[0_20px_40px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] min-h-[230px]">
                     <h3 className="sr-only">Design Systems & Tokens</h3>
-                    <div className="w-18 h-18 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] bento-inner-mark">
+                    <div className="w-18 h-18 r-inner bg-white/[0.06] border border-white/10 flex items-center justify-center p-4 text-white [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Design Systems" className="w-12 h-12 object-contain" />
                     </div>
                     <div className="flex flex-col">
@@ -493,9 +494,9 @@ export function SkillsGrid() {
                     </div>
                   </div>
 
-                  <div className="bento-block col-span-6 rounded-xl bg-[#f4f4f6] p-8 flex items-center justify-center gap-6 shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
+                  <div className="bento-block col-span-6 r-panel bg-[#f4f4f6] p-8 flex items-center justify-center gap-6 shadow-[0_24px_48px_rgba(0,0,0,0.6)] min-h-[230px]">
                     <h4 className="sr-only">Figma</h4>
-                    <div className="w-18 h-18 rounded-xl bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
+                    <div className="w-18 h-18 r-inner bg-black/[0.06] border border-black/10 flex items-center justify-center p-4 text-black [filter:brightness(0)] bento-inner-mark">
                       <TechLogo name="Figma" className="w-10 h-10 object-contain" />
                     </div>
                     <div className="flex flex-col">
@@ -505,7 +506,7 @@ export function SkillsGrid() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-3.5">
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h4 className="sr-only">Typography & Art Direction</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Typography" className="w-6 h-6 object-contain" />
@@ -513,7 +514,7 @@ export function SkillsGrid() {
                     <span className="font-mono text-sm font-bold text-white tracking-wide">TYPOGRAPHY</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h4 className="sr-only">Motion Design</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Motion Design" className="w-6 h-6 object-contain" />
@@ -521,7 +522,7 @@ export function SkillsGrid() {
                     <span className="font-mono text-sm font-bold text-white tracking-wide">MOTION</span>
                   </div>
 
-                  <div className="bento-block rounded-xl bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
+                  <div className="bento-block r-panel bg-[#1E1E1E] border border-white/[0.10] p-6 flex items-center justify-center gap-3 min-h-[90px]">
                     <h4 className="sr-only">Prototyping</h4>
                     <div className="w-6 h-6 [filter:brightness(0)_invert(1)] bento-inner-mark">
                       <TechLogo name="Prototyping" className="w-6 h-6 object-contain" />
@@ -554,11 +555,12 @@ export function SkillsGrid() {
                     aria-selected={currentStackIdx === st.id}
                     onClick={() => handleNotchClick(st.id)}
                     className={cn(
-                      "px-3 py-1 rounded-xl text-xs font-medium transition-all cursor-pointer border",
+                      "px-3 py-1 r-chip text-xs font-medium transition-all cursor-pointer border",
                       currentStackIdx === st.id
                         ? "bg-white text-black border-white font-bold"
                         : "bg-white/[0.04] text-neutral-400 border-white/[0.1]"
                     )}
+                    style={{ "--chip-h": "26px" } as React.CSSProperties}
                   >
                     <span>{st.category}</span>
                   </button>
@@ -579,33 +581,33 @@ export function SkillsGrid() {
                   <span>WEB</span>
                   <span className="text-white">FRONTEND</span>
                 </div>
-                <div className="rounded-xl bg-[#f4f4f6] text-black p-6 flex items-center justify-center min-h-[140px]">
+                <div className="r-panel bg-[#f4f4f6] text-black p-6 flex items-center justify-center min-h-[140px]">
                   <h3 className="sr-only">React 19</h3>
                   <div className="w-16 h-16 [filter:brightness(0)]">
                     <TechLogo name="React" className="w-16 h-16 object-contain" />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
                     <h3 className="sr-only">Next.js 16</h3>
                     <span className="font-mono text-lg font-black text-white">NEXT.JS</span>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
                     <h3 className="sr-only">TypeScript</h3>
                     <span className="font-mono text-lg font-black text-white">TS</span>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
                     <h4 className="sr-only">Tailwind CSS v4</h4>
                     <span className="font-mono text-xs font-bold text-white">TAILWIND</span>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-2">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-2">
                     <h4 className="sr-only">GSAP + Motion</h4>
                     <TechLogo name="GSAP" className="w-4 h-4 object-contain" />
                     <TechLogo name="Motion" className="w-3.5 h-3.5 object-contain" />
                     <span className="font-mono text-xs font-bold text-white">GSAP + MOTION</span>
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
+                <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
                   <h4 className="sr-only">Three.js / GLSL</h4>
                   <span className="font-mono text-sm font-bold text-white">THREE.JS / GLSL</span>
                 </div>
@@ -622,7 +624,7 @@ export function SkillsGrid() {
                   <span>DEVOPS</span>
                   <span className="text-white">INFRASTRUCTURE</span>
                 </div>
-                <div className="rounded-xl bg-[#f4f4f6] text-black p-6 flex items-center justify-center gap-4 min-h-[140px]">
+                <div className="r-panel bg-[#f4f4f6] text-black p-6 flex items-center justify-center gap-4 min-h-[140px]">
                   <h3 className="sr-only">Kubernetes & K3s</h3>
                   <div className="w-14 h-14 [filter:brightness(0)]">
                     <TechLogo name="Kubernetes & K3s" className="w-14 h-14 object-contain" />
@@ -632,28 +634,28 @@ export function SkillsGrid() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-2">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-2">
                     <h3 className="sr-only">Docker & Podman</h3>
                     <TechLogo name="Docker" className="w-4 h-4 object-contain" />
                     <TechLogo name="Podman" className="w-4 h-4 object-contain" />
                     <span className="font-mono text-xs font-bold text-white">DOCKER &amp; PODMAN</span>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
                     <h4 className="sr-only">Linux</h4>
                     <span className="font-mono text-sm font-bold text-white">LINUX</span>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
                     <h4 className="sr-only">Go</h4>
                     <span className="font-mono text-sm font-bold text-white">GOLANG</span>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-1.5">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-1.5">
                     <h4 className="sr-only">Tailscale + Trivy</h4>
                     <TechLogo name="Tailscale" className="w-3.5 h-3.5 object-contain" />
                     <TechLogo name="Trivy" className="w-3.5 h-3.5 object-contain" />
                     <span className="font-mono text-[11px] font-bold text-white">TAILSCALE + TRIVY</span>
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-2">
+                <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center gap-2">
                   <h4 className="sr-only">GitHub Actions + Argo CD</h4>
                   <TechLogo name="GitHub Actions" className="w-4 h-4 object-contain" />
                   <TechLogo name="Argo CD" className="w-4 h-4 object-contain" />
@@ -672,7 +674,7 @@ export function SkillsGrid() {
                   <span>DESIGNER</span>
                   <span className="text-white">SYSTEMS</span>
                 </div>
-                <div className="rounded-xl bg-[#f4f4f6] text-black p-6 flex items-center justify-center gap-4 min-h-[140px]">
+                <div className="r-panel bg-[#f4f4f6] text-black p-6 flex items-center justify-center gap-4 min-h-[140px]">
                   <h4 className="sr-only">Figma</h4>
                   <div className="w-12 h-12 [filter:brightness(0)]">
                     <TechLogo name="Figma" className="w-12 h-12 object-contain" />
@@ -681,18 +683,18 @@ export function SkillsGrid() {
                     <span className="text-2xl font-black tracking-tight text-black">FIGMA</span>
                   </div>
                 </div>
-                <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
+                <div className="r-panel bg-[#1E1E1E] border border-white/10 p-5 flex items-center justify-center">
                   <h3 className="sr-only">Design Systems & Tokens</h3>
                   <span className="font-mono text-sm font-bold text-white">DESIGN SYSTEMS</span>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-3 text-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-3 text-center">
                     <h4 className="text-xs font-bold text-white">Typography &amp; Art Direction</h4>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-3 text-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-3 text-center">
                     <h4 className="text-xs font-bold text-white">Motion Design</h4>
                   </div>
-                  <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-3 text-center">
+                  <div className="r-panel bg-[#1E1E1E] border border-white/10 p-3 text-center">
                     <h4 className="text-xs font-bold text-white">Prototyping</h4>
                   </div>
                 </div>

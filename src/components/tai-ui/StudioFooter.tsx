@@ -141,7 +141,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/thinkai-ui"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       ThinkAI UI
@@ -152,7 +153,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/wind"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       Wind Digital Folio
@@ -163,7 +165,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/homelab"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       HostDeck Console
@@ -174,7 +177,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/thinkai"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       ThinkAI Learning
@@ -197,7 +201,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   <button
                     type="button"
                     onClick={onOpenAbout}
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       {language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}
@@ -208,7 +213,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/about"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       {language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}
@@ -220,7 +226,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   <button
                     type="button"
                     onClick={onOpenContact}
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       {language === "vi" ? "Bắt đầu dự án" : "Start a Project"}
@@ -233,7 +240,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     href="/NguyenBinhMinh-DevOpsEngineer-2026.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 px-1.5 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                   >
                     <span>
                       DevOps CV (PDF)
@@ -268,8 +276,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
           <a
             href="#top"
-            className="hover:text-white active:opacity-70 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded py-1.5 px-2 inline-flex items-center min-h-[28px]"
-            style={{ color: "rgba(247, 239, 220, 0.90)" }}
+            className="hover:text-white active:opacity-70 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 r-btn py-1.5 px-2 inline-flex items-center min-h-[28px]"
+            style={{ color: "rgba(247, 239, 220, 0.90)", "--btn-h": "28px" } as React.CSSProperties}
           >
             {t.footer.backToTop}
           </a>

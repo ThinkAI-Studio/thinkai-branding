@@ -118,6 +118,7 @@ export const WipeButton = React.forwardRef<HTMLButtonElement, WipeButtonProps>(
 
     const sharedStyles: React.CSSProperties = {
       borderColor: wipeState === "in" ? hoverBorderColor : borderColor,
+      ...props.style,
     };
 
     if (props.as === "div") {

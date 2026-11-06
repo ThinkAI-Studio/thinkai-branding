@@ -280,7 +280,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             borderColor="transparent"
             hoverBorderColor="transparent"
             className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 r-btn text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
-            style={{ "--btn-h": "36px" } as React.CSSProperties}
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <LanguageTransition langKey={language}>
               {t.nav.about}
@@ -296,7 +296,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             borderColor="transparent"
             hoverBorderColor="transparent"
             className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 r-btn text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
-            style={{ "--btn-h": "36px" } as React.CSSProperties}
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <LanguageTransition langKey={language}>
               {t.nav.work}
@@ -311,7 +311,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             borderColor="transparent"
             hoverBorderColor="transparent"
             className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 r-btn text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
-            style={{ "--btn-h": "36px" } as React.CSSProperties}
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <LanguageTransition langKey={language}>
               {t.nav.contact}
@@ -392,7 +392,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             borderColor="#ffffff"
             hoverBorderColor="rgba(255, 255, 255, 0.4)"
             className="group h-8.5 sm:h-9.5 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 r-btn text-xs sm:text-[13.5px] font-bold cursor-pointer shadow-lg select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none shrink-0"
-            style={{ "--btn-h": "38px" } as React.CSSProperties}
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <ButtonTextRoll
               text={t.hero.primary}
@@ -537,10 +537,10 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               <a
                 href="https://hostdeck.thinkai.id.vn"
                 target="_blank"
-                className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-3 group hover:bg-white/[0.08] transition-all"
+                className="p-3.5 r-panel bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-3 group hover:bg-white/[0.08] transition-all"
               >
                 <div className="flex items-center gap-3 overflow-hidden">
-                  <div className="relative w-12 h-10 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-[#161619]">
+                  <div className="relative w-12 h-10 r-inner overflow-hidden border border-white/10 shrink-0 bg-[#161619]" style={{ "--nest-inset": "4px" } as React.CSSProperties}>
                     <Image
                       src="/images/products/hostdeck-screen.png"
                       alt="HostDeck Console"

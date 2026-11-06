@@ -153,7 +153,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             data-lenis-prevent="true"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg bg-[#1E1E1E] text-white border border-white/[0.10] rounded-xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 space-y-6 overflow-hidden"
+            className="relative w-full max-w-lg bg-[#1E1E1E] text-white border border-white/[0.10] r-panel p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-10 space-y-6 overflow-hidden"
             style={{
               fontFamily:
                 '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
@@ -185,7 +185,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             </div>
 
             {/* Email Card 1: Primary Studio Mail */}
-            <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 space-y-3">
+            <div className="p-4 r-panel bg-white/[0.04] border border-white/10 space-y-3">
               <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400  tracking-wider">
                 <span>{t.primaryLabel}</span>
                 <span className="text-emerald-400">{t.responseSla}</span>
@@ -259,7 +259,7 @@ export function ContactModal({ isOpen, onClose, lang = "en" }: ContactModalProps
             </div>
 
             {/* DevOps CV Download Box */}
-            <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
+            <div className="p-4 r-panel bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-white  tracking-wider">
                   <FileText className="w-4 h-4 text-emerald-400 shrink-0" />

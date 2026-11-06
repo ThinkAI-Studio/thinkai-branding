@@ -9,7 +9,7 @@ const LOOPS = 2; // duplicate list for seamless -50% loop
 
 function ReviewCard({ review, language }: { review: (typeof reviews)[number]; language: "en" | "vi" }) {
   return (
-    <figure className="w-[85vw] max-w-[420px] shrink-0 sm:w-[400px] rounded-xl border border-white/10 bg-[#1E1E1E] p-6 sm:p-7">
+    <figure className="w-[85vw] max-w-[420px] shrink-0 sm:w-[400px] r-panel border border-white/10 bg-[#1E1E1E] p-6 sm:p-7">
       <blockquote className="text-sm sm:text-[15px] leading-[1.7] text-neutral-100 font-light">
         “{review.quote[language]}”
       </blockquote>

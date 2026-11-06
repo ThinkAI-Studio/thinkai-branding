@@ -162,19 +162,19 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
           {/* Eyebrow & Metadata Tags */}
           <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs">
             {project.isArchived && (
-              <span className="px-2.5 py-1 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold flex items-center gap-1.5">
+              <span className="px-2.5 py-1 r-chip bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold flex items-center gap-1.5" style={{ "--chip-h": "26px" } as React.CSSProperties}>
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                 {project.statusLabel ? project.statusLabel[language] : (language === "vi" ? "Đã lưu trữ" : "Archived")}
               </span>
             )}
-            <span className="px-2.5 py-1 rounded-xl bg-white/10 text-white border border-white/20 font-bold tracking-wider">
+            <span className="px-2.5 py-1 r-chip bg-white/10 text-white border border-white/20 font-bold tracking-wider" style={{ "--chip-h": "26px" } as React.CSSProperties}>
               {project.mark}
             </span>
-            <span className="px-2.5 py-1 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold flex items-center gap-1.5">
+            <span className="px-2.5 py-1 r-chip bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold flex items-center gap-1.5" style={{ "--chip-h": "26px" } as React.CSSProperties}>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               {project.metric.value}
             </span>
-            <span className="px-2.5 py-1 rounded-xl bg-white/[0.04] text-neutral-400 border border-white/[0.10]">
+            <span className="px-2.5 py-1 r-chip bg-white/[0.04] text-neutral-400 border border-white/[0.10]" style={{ "--chip-h": "26px" } as React.CSSProperties}>
               {project.period}
             </span>
             <span className="text-[#A3A3A3] hidden sm:inline">•</span>
@@ -200,7 +200,8 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
               {project.stack.map((item) => (
                 <span
                   key={item}
-                  className="px-3 py-1 rounded-xl bg-[#1E1E1E] border border-white/[0.1] text-xs font-mono text-neutral-200"
+                  className="px-3 py-1 r-chip bg-[#1E1E1E] border border-white/[0.1] text-xs font-mono text-neutral-200"
+                  style={{ "--chip-h": "26px" } as React.CSSProperties}
                 >
                   {item}
                 </span>
@@ -209,7 +210,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
             {/* CLI Command or Live Button */}
             {project.cliCommand && (
-              <div className="flex items-center gap-2 bg-[#1E1E1E] border border-white/[0.12] p-1.5 pl-3 rounded-xl max-w-md w-full sm:w-auto">
+              <div className="flex items-center gap-2 bg-[#1E1E1E] border border-white/[0.12] p-1.5 pl-3 r-btn max-w-md w-full sm:w-auto" style={{ "--btn-h": "34px" } as React.CSSProperties}>
                 <Terminal className="w-4 h-4 text-emerald-400 shrink-0" />
                 <code className="text-xs font-mono text-neutral-200 truncate flex-1">
                   {project.cliCommand}
@@ -217,7 +218,8 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 <button
                   type="button"
                   onClick={handleCopyCli}
-                  className="px-2.5 py-1 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-mono font-bold text-white transition-colors cursor-pointer shrink-0"
+                  className="px-2.5 py-1 r-btn bg-white/10 hover:bg-white/20 text-xs font-mono font-bold text-white transition-colors cursor-pointer shrink-0"
+                  style={{ "--btn-h": "28px" } as React.CSSProperties}
                 >
                   {copiedCli ? (language === "vi" ? "Đã chép" : "Copied") : (language === "vi" ? "Chép" : "Copy")}
                 </button>
@@ -231,7 +233,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
           {project.id === "wind" ? (
             <div className="space-y-4">
               {/* Active Image Spotlight */}
-              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] bg-[#0c0c0e] shadow-2xl">
+              <div className="relative w-full aspect-[16/10] r-panel overflow-hidden border border-white/[0.12] bg-[#0c0c0e] shadow-2xl">
                 <Image
                   src={WIND_GALLERY[activeImageIndex].src}
                   alt={WIND_GALLERY[activeImageIndex].alt}
@@ -241,7 +243,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 text-xs sm:text-sm font-mono text-white/90 bg-black/60 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 flex items-center justify-between">
+                <div className="absolute bottom-4 left-4 right-4 text-xs sm:text-sm font-mono text-white/90 bg-black/60 backdrop-blur-md px-4 py-2.5 r-panel border border-white/10 flex items-center justify-between">
                   <span>{WIND_GALLERY[activeImageIndex].caption[language]}</span>
                   <span className="text-neutral-400 font-bold shrink-0 ml-2">
                     0{activeImageIndex + 1} / 0{WIND_GALLERY.length}
@@ -256,7 +258,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                     key={idx}
                     type="button"
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`relative aspect-[16/10] rounded-xl overflow-hidden border transition-all cursor-pointer ${
+                    className={`relative aspect-[16/10] r-panel overflow-hidden border transition-all cursor-pointer ${
                       activeImageIndex === idx
                         ? "border-emerald-400 ring-2 ring-emerald-400/20 scale-[1.02]"
                         : "border-white/10 opacity-60 hover:opacity-100 hover:border-white/30"
@@ -274,7 +276,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
               </div>
             </div>
           ) : (
-            <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-white/[0.12] bg-[#0c0c0e] shadow-2xl group">
+            <div className="relative w-full aspect-[16/10] r-panel overflow-hidden border border-white/[0.12] bg-[#0c0c0e] shadow-2xl group">
               <Image
                 src={project.preview.image}
                 alt={content.title}
@@ -284,14 +286,15 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-neutral-300 bg-black/60 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10">
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-neutral-300 bg-black/60 backdrop-blur-md px-4 py-2.5 r-panel border border-white/10">
                 <span>{project.preview.capture[language]}</span>
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 text-white hover:text-emerald-400 font-bold transition-colors shrink-0 ml-3 min-h-[28px] py-1 px-2 -my-1 -mr-2 rounded"
+                    className="inline-flex items-center gap-1 text-white hover:text-emerald-400 font-bold transition-colors shrink-0 ml-3 min-h-[28px] py-1 px-2 -my-1 -mr-2 r-btn"
+                    style={{ "--btn-h": "28px" } as React.CSSProperties}
                   >
                     <span>{project.isArchived ? (language === "vi" ? "XEM LƯU TRỮ" : "VIEW ARCHIVE") : "VISIT"}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -304,7 +307,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
         {/* ─── TECHNICAL TELEMETRY HUD ─── */}
         {arch && (
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 sm:p-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] text-xs font-mono">
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 sm:p-5 r-panel bg-[#1E1E1E] border border-white/[0.10] text-xs font-mono">
             <div className="space-y-1 border-b md:border-b-0 md:border-r border-white/[0.10] pb-3 md:pb-0 md:pr-4">
               <span className="text-neutral-400 block font-bold  tracking-wider text-[11px]">
                 {language === "vi" ? "Ràng buộc hệ thống" : "System Constraint"}
@@ -329,7 +332,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
         {/* ─── INLINE CASE STUDY & ARCHITECTURE TABS ─── */}
         <section className="space-y-8">
           {/* Navigation Tab Bar */}
-          <div className="flex items-center gap-2 p-1.5 bg-[#1E1E1E] rounded-xl border border-white/[0.1] overflow-x-auto scrollbar-none text-xs font-mono">
+          <div className="flex items-center gap-2 p-1.5 bg-[#1E1E1E] r-panel border border-white/[0.1] overflow-x-auto scrollbar-none text-xs font-mono">
             <button
               type="button"
               onClick={() => setActiveTab("narrative")}
@@ -338,7 +341,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
-              style={{ "--btn-h": "36px" } as React.CSSProperties}
+              style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               {language === "vi" ? "01. Báo cáo kỹ thuật" : "01. Case Study"}
             </button>
@@ -350,7 +353,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
-              style={{ "--btn-h": "36px" } as React.CSSProperties}
+              style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               {language === "vi" ? "02. Luồng kiến trúc" : "02. Delivery Flow"}
             </button>
@@ -362,7 +365,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
-              style={{ "--btn-h": "36px" } as React.CSSProperties}
+              style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               {language === "vi" ? "03. Bảo mật & QA" : "03. Security & QA"}
             </button>
@@ -374,7 +377,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
-              style={{ "--btn-h": "36px" } as React.CSSProperties}
+              style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               {language === "vi" ? "04. Bằng chứng Git" : "04. Git Ledger"}
             </button>
@@ -385,7 +388,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* 01. Challenge */}
-                <div className="p-6 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
+                <div className="p-6 r-panel bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
                   <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-red-400" />
@@ -403,7 +406,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 </div>
 
                 {/* 02. Approach */}
-                <div className="p-6 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
+                <div className="p-6 r-panel bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
                   <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-amber-400" />
@@ -421,7 +424,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 </div>
 
                 {/* 03. Outcome */}
-                <div className="p-6 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
+                <div className="p-6 r-panel bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]">
                   <div className="flex items-center justify-between pb-2 border-b border-white/[0.06]">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -440,7 +443,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
               </div>
 
               {/* Telemetry Strip */}
-              <div className="p-4 rounded-xl bg-[#1E1E1E] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+              <div className="p-4 r-panel bg-[#1E1E1E] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
                 <div className="flex items-center gap-2.5">
                   <Activity className="w-4 h-4 text-emerald-400" />
                   <span className="text-white font-bold">{project.metric.value}</span>
@@ -468,14 +471,14 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   {arch.flowSteps.map((step) => (
                     <div
                       key={step.step}
-                      className="p-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 flex flex-col justify-between hover:border-white/[0.2] transition-colors"
+                      className="p-5 r-panel bg-[#1E1E1E] border border-white/[0.10] space-y-3 flex flex-col justify-between hover:border-white/[0.2] transition-colors"
                     >
                       <div className="space-y-2">
                         <div className="flex items-center justify-between border-b border-white/[0.06] pb-2">
                           <span className="font-mono text-xs font-bold text-white">
                             {language === "vi" ? `Bước ${step.step}` : `Step ${step.step}`}
                           </span>
-                          <span className="font-mono text-[10px] px-2 py-0.5 rounded-xl bg-white/[0.06] border border-white/[0.10] text-neutral-300 ">
+                          <span className="font-mono text-[10px] px-2 py-0.5 r-chip bg-white/[0.06] border border-white/[0.10] text-neutral-300" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                             {step.status}
                           </span>
                         </div>
@@ -496,7 +499,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
               {/* Code Spec Viewer */}
               {arch?.specSnippet && (
-                <div className="p-5 rounded-xl bg-[#141414] border border-white/[0.10] space-y-3">
+                <div className="p-5 r-panel bg-[#141414] border border-white/[0.10] space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/[0.06] pb-3 font-mono text-xs">
                     <div className="flex items-center gap-2 text-neutral-300 min-w-0">
                       <FileCode className="w-4 h-4 text-neutral-400 shrink-0" />
@@ -508,13 +511,14 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                     <button
                       type="button"
                       onClick={() => handleCopyCode(arch.specSnippet.code)}
-                      className="px-3 py-1 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-xs font-mono text-neutral-200 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer border border-white/[0.10] shrink-0 self-start sm:self-auto"
+                      className="px-3 py-1 r-btn bg-white/[0.06] hover:bg-white/[0.12] text-xs font-mono text-neutral-200 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer border border-white/[0.10] shrink-0 self-start sm:self-auto"
+                      style={{ "--btn-h": "32px" } as React.CSSProperties}
                     >
                       {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                       <span>{copiedCode ? (language === "vi" ? "Đã chép" : "Copied") : (language === "vi" ? "Sao chép mã" : "Copy Spec")}</span>
                     </button>
                   </div>
-                  <pre className="p-4 rounded-xl bg-black/60 border border-white/[0.04] text-xs font-mono text-neutral-300 overflow-x-auto leading-relaxed max-h-72">
+                  <pre className="p-4 r-panel bg-black/60 border border-white/[0.04] text-xs font-mono text-neutral-300 overflow-x-auto leading-relaxed max-h-72">
                     <code>{arch.specSnippet.code}</code>
                   </pre>
                 </div>
@@ -538,14 +542,14 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                   return (
                     <div
                       key={idx}
-                      className="p-5 rounded-xl bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]"
+                      className="p-5 r-panel bg-[#1E1E1E] border border-white/[0.10] space-y-3 transition-colors hover:border-white/[0.28]"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-white/[0.06] pb-2">
                         <div className="flex items-center gap-2 text-white font-bold font-mono">
                           <Icon className="w-4 h-4 text-emerald-400 shrink-0" />
                           <span className="text-xs">{card.title[language]}</span>
                         </div>
-                        <span className="font-mono text-[9px] px-2 py-0.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 ">
+                        <span className="font-mono text-[9px] px-2 py-0.5 r-chip bg-emerald-500/10 border border-emerald-500/20 text-emerald-400" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                           {card.tag}
                         </span>
                       </div>
@@ -579,14 +583,15 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 {arch?.provenance.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl bg-[#1E1E1E] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.28] transition-colors"
+                    className="p-4 r-panel bg-[#1E1E1E] border border-white/[0.10] flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-white/[0.28] transition-colors"
                   >
                     <div className="space-y-1.5 min-w-0 flex-1">
                       <div className="flex items-center gap-2 flex-wrap font-mono text-xs">
                         <button
                           type="button"
                           onClick={() => handleCopyHash(item.hash)}
-                          className="px-2 py-0.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.16] text-white font-bold flex items-center gap-1 transition-colors cursor-pointer border border-white/[0.1]"
+                          className="px-2 py-0.5 r-chip bg-white/[0.08] hover:bg-white/[0.16] text-white font-bold flex items-center gap-1 transition-colors cursor-pointer border border-white/[0.1]"
+                          style={{ "--chip-h": "22px" } as React.CSSProperties}
                         >
                           <span>{item.hash}</span>
                           {copiedHash === item.hash ? (
@@ -595,11 +600,11 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                             <Copy className="w-3 h-3 text-neutral-400" />
                           )}
                         </button>
-                        <span className="px-2 py-0.5 rounded-xl bg-white/[0.04] text-neutral-400 border border-white/[0.06]">
+                        <span className="px-2 py-0.5 r-chip bg-white/[0.04] text-neutral-400 border border-white/[0.06]" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                           branch: {item.branch}
                         </span>
                         {item.verified && (
-                          <span className="px-2 py-0.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">
+                        <span className="px-2 py-0.5 r-chip bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]" style={{ "--chip-h": "20px" } as React.CSSProperties}>
                             {language === "vi" ? "Đã xác thực" : "Verified"}
                           </span>
                         )}
@@ -612,7 +617,8 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                       href={item.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full sm:w-auto justify-center px-3.5 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.14] text-xs font-mono text-white flex items-center gap-1.5 transition-colors whitespace-nowrap border border-white/[0.1] shrink-0"
+                      className="w-full sm:w-auto justify-center px-3.5 py-1.5 r-btn bg-white/[0.06] hover:bg-white/[0.14] text-xs font-mono text-white flex items-center gap-1.5 transition-colors whitespace-nowrap border border-white/[0.1] shrink-0"
+                      style={{ "--btn-h": "32px" } as React.CSSProperties}
                     >
                       <span>{language === "vi" ? "Kiểm tra commit" : "Inspect Diff"}</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -628,7 +634,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
         <section className="pt-12 border-t border-white/[0.10] flex flex-col sm:flex-row items-center justify-between gap-6">
           <Link
             href={`/products/${prevProject.id}`}
-            className="w-full sm:w-auto flex items-center gap-3 p-4 rounded-xl bg-[#1E1E1E] border border-white/10 hover:border-white/[0.28] transition-all text-left"
+            className="w-full sm:w-auto flex items-center gap-3 p-4 r-panel bg-[#1E1E1E] border border-white/10 hover:border-white/[0.28] transition-all text-left"
           >
             <ArrowLeft className="w-4 h-4 text-neutral-400" />
             <div>
@@ -643,7 +649,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
 
           <Link
             href={`/products/${nextProject.id}`}
-            className="w-full sm:w-auto flex items-center justify-end gap-3 p-4 rounded-xl bg-[#1E1E1E] border border-white/10 hover:border-white/[0.28] transition-all text-right ml-auto"
+            className="w-full sm:w-auto flex items-center justify-end gap-3 p-4 r-panel bg-[#1E1E1E] border border-white/10 hover:border-white/[0.28] transition-all text-right ml-auto"
           >
             <div>
               <div className="text-[10px] font-mono text-[#A3A3A3] ">
