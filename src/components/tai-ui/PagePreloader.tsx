@@ -4,7 +4,6 @@ import React, { useState, useEffect, useSyncExternalStore } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { useLanguage } from "@/context/LanguageContext";
 import { BrandMark } from "./BrandMark";
-import { cn } from "@/lib/utils";
 
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
 const emptySubscribe = () => () => {};
@@ -24,7 +23,10 @@ export function PagePreloader() {
     () => false // Render on SSR so initial HTML covers screen immediately without flash
   );
 
-  const isAutomated = typeof navigator !== "undefined" && (Boolean(navigator.webdriver) || /Chrome-Lighthouse|PTST|Headless/i.test(navigator.userAgent));
+  const isAutomated =
+    typeof navigator !== "undefined" &&
+    (Boolean(navigator.webdriver) ||
+      /Chrome-Lighthouse|PTST|Headless/i.test(navigator.userAgent));
   const shouldBypass = hasSeenInSession || Boolean(prefersReduced) || isAutomated;
   const isMounted = useSyncExternalStore(
     emptySubscribe,
@@ -33,10 +35,12 @@ export function PagePreloader() {
   );
   const [isDismissed, setIsDismissed] = useState(false);
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     if (shouldBypass) return;
 
-    const totalDuration = 1900;
+    // Fast, precise 750ms reveal timeline + 200ms hold + 380ms wipe <= 1.35s total
+    const totalDuration = 750;
     const intervalTime = 16;
     const steps = totalDuration / intervalTime;
     let currentStep = 0;
@@ -55,7 +59,7 @@ export function PagePreloader() {
         }
         setTimeout(() => {
           setIsDismissed(true);
-        }, 350);
+        }, 200);
       }
     }, intervalTime);
 
@@ -70,7 +74,6 @@ export function PagePreloader() {
       : "What do you want to build with thinkai-studio today?";
 
   const words = phrase.split(" ");
-  const wordCount = words.length;
 
   return (
     <AnimatePresence>
@@ -80,7 +83,7 @@ export function PagePreloader() {
           initial={{ opacity: 1, y: 0 }}
           exit={{
             y: "-100%",
-            transition: { duration: 0.75, ease: LUXURY_EASE },
+            transition: { duration: 0.38, ease: LUXURY_EASE },
           }}
           className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#141414] text-white select-none pointer-events-auto"
         >
@@ -91,54 +94,36 @@ export function PagePreloader() {
 
           {/* Centered Content */}
           <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto space-y-6">
-            {/* Glowing ThinkAI Monogram */}
+            {/* Glowing ThinkAI Monogram (stays visible until preloader exit wipe) */}
             <motion.div
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={count >= 96 ? { scale: 0.9, opacity: 0, y: -20 } : { scale: 1, opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: LUXURY_EASE }}
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.45, ease: LUXURY_EASE }}
               className="relative flex items-center justify-center drop-shadow-[0_0_24px_rgba(255,255,255,0.4)] mb-2"
             >
               <BrandMark size={56} framed={false} className="text-white" priority />
             </motion.div>
 
-            {/* Staggered Animated Phrase: Nhảy ra từ từ và chạy biến mất theo thanh tiến độ */}
-            <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5">
-              {words.map((word, idx) => {
-                // Word entrance: starts at progress based on index (0% to 50%)
-                const enterThreshold = (idx / wordCount) * 45;
-                const hasEntered = count >= enterThreshold;
-
-                // Word exit ("chạy biến mất theo thanh tiến độ"): disappears sequentially from 72% to 98%
-                const exitThreshold = 72 + (idx / wordCount) * 26;
-                const hasExited = count >= exitThreshold;
-
-                return (
-                  <span key={`${word}-${idx}`} className="inline-block overflow-hidden py-1">
-                    <motion.span
-                      animate={
-                        hasExited
-                          ? { y: -32, opacity: 0, filter: "blur(8px)" }
-                          : hasEntered
-                          ? { y: 0, opacity: 1, filter: "blur(0px)" }
-                          : { y: 36, opacity: 0, filter: "blur(8px)" }
-                      }
-                      transition={{
-                        duration: 0.5,
-                        ease: LUXURY_EASE,
-                      }}
-                      className={cn(
-                        "inline-block font-sans font-medium text-xl sm:text-3xl lg:text-4xl tracking-tight transition-colors",
-                        word.toLowerCase().includes("thinkai-studio")
-                          ? "text-emerald-400 font-bold drop-shadow-[0_0_20px_rgba(74,222,128,0.45)]"
-                          : "text-white"
-                      )}
-                    >
-                      {word}
-                    </motion.span>
-                  </span>
-                );
-              })}
-            </div>
+            {/* Coherent Centered Sentence Block: Hero typography, zero blur smudge, zero left-slide */}
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: LUXURY_EASE, delay: 0.12 }}
+              className="text-center font-bold tracking-[-0.026em] leading-[1.08] text-[1.35rem] sm:text-[clamp(1.6rem,3.6vw,2.9rem)] max-w-3xl mx-auto px-4"
+            >
+              {words.map((word, idx) => (
+                <span
+                  key={idx}
+                  className={
+                    word.toLowerCase().includes("thinkai-studio")
+                      ? "text-emerald-400 font-bold"
+                      : "text-white"
+                  }
+                >
+                  {word}{" "}
+                </span>
+              ))}
+            </motion.h2>
           </div>
 
           {/* Bottom Loading Bar (Spans full width at bottom of screen, no percentage) */}
@@ -146,7 +131,7 @@ export function PagePreloader() {
             <motion.div
               className="h-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.9),0_0_24px_rgba(255,255,255,0.5)] origin-left"
               style={{ width: `${count}%` }}
-              transition={{ duration: 0.05, ease: "linear" }}
+              transition={{ duration: 0.03, ease: "linear" }}
             />
           </div>
         </motion.div>

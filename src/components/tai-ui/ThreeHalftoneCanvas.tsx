@@ -155,10 +155,10 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         vec2 p = st;
         p.x *= aspect;
 
-        // 1.5x Dynamic Wave & Caustic Velocity
-        float scrollOffset = u_scroll * 1.5;
+        // Bound scroll influence so SHIP section preserves hero brightness distribution
+        float scrollOffset = u_scroll * 0.5;
         float speed = 0.19 + u_stir * 0.08; // Subtle, elegant flow acceleration
-        float t = u_time * speed + scrollOffset * 0.2;
+        float t = u_time * speed + scrollOffset * 0.15;
 
         // Interactive Subtle Water Ripple (Localized around cursor, no giant blowout)
         vec2 stirOrigin = u_stir_pos;
@@ -176,7 +176,7 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         vec2 cCoord = p * 4.2 + vec2(t * 0.27, t * 0.18) + stirWave * 0.35;
         float c1 = abs(snoise(cCoord));
         float c2 = abs(snoise(cCoord * 1.8 - vec2(t * 0.21)));
-        float caustics = pow(1.0 - (c1 * 0.6 + c2 * 0.4), 2.2);
+        float caustics = max(0.06, pow(1.0 - (c1 * 0.6 + c2 * 0.4), 2.2));
 
         // Subtle localized caustic shimmer around cursor
         caustics += u_stir * exp(-distToStir * 12.0) * 0.22;
@@ -186,14 +186,15 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
 
         // Venice Adriatic Emerald palette (restored from pre-PR33 commit a47de1e).
         // Rich teal/blue caustics — not grey, not neon.
-        vec3 cAdriaticDeep  = vec3(0.04, 0.14, 0.22);
+        vec3 cAdriaticDeep  = vec3(0.055, 0.17, 0.25);
         vec3 cEmeraldLagoon = vec3(0.12, 0.46, 0.48);
         vec3 cSapphireBlue  = vec3(0.16, 0.52, 0.72);
         vec3 cCrystalAqua   = vec3(0.32, 0.68, 0.76);
         vec3 cSunlightFoam  = vec3(0.55, 0.85, 0.90);
 
+        float waveMix = max(0.26, smoothstep(-0.35, 0.35, wave));
         vec3 col = cAdriaticDeep;
-        col = mix(col, cEmeraldLagoon, smoothstep(-0.35, 0.35, wave) * 0.92);
+        col = mix(col, cEmeraldLagoon, waveMix * 0.92);
         col = mix(col, cSapphireBlue,  smoothstep(0.0, 0.65, caustics) * 0.88);
         col = mix(col, cCrystalAqua,   caustics * 0.78);
         col = mix(col, cSunlightFoam,  pow(smoothstep(0.45, 0.90, wave + caustics * 0.45), 2.8) * 0.65);
@@ -297,23 +298,30 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
+    let hiddenTickCount = 0;
     const renderTick = () => {
       if (isPaused || document.hidden || prefersReduced) return;
-
-      const scrollY = latestScrollY;
-      // Pause drawing when opaque middle sections (products & skills) fully cover canvas
-      if (scrollY > 1200 && scrollY < 6500) return;
 
       const delta = clock.getDelta();
       uniforms.u_time.value += delta;
 
+      const scrollY = latestScrollY;
       // Update scroll from cachedMaxScroll inside ticker
       uniforms.u_target_scroll.value = scrollY / (cachedMaxScroll || 1);
 
-      // Smooth interpolation for mouse, scroll, and stir pressure
+      // Smooth interpolation for mouse, scroll, and stir pressure - always continuous
       uniforms.u_mouse.value.lerp(uniforms.u_target_mouse.value, 0.06);
       uniforms.u_scroll.value += (uniforms.u_target_scroll.value - uniforms.u_scroll.value) * 0.08;
       uniforms.u_stir.value += (uniforms.u_target_stir.value - uniforms.u_stir.value) * 0.12;
+
+      // Throttle rendering while opaque middle sections (products & skills) fully cover canvas
+      const isOpaqueCovered = scrollY > 1200 && scrollY < 6500;
+      if (isOpaqueCovered) {
+        hiddenTickCount++;
+        if (hiddenTickCount % 4 !== 0) return;
+      } else {
+        hiddenTickCount = 0;
+      }
 
       renderer.render(scene, camera);
     };
