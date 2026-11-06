@@ -105,7 +105,7 @@ export function ScrollIndicator() {
             aria-current={isActive ? "location" : undefined}
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className="scroll-indicator__item group relative flex items-center justify-center py-2 px-1 cursor-pointer"
+            className="scroll-indicator__item group relative flex items-center justify-center py-2.5 px-2 min-w-[28px] min-h-[28px] cursor-pointer"
           >
             <span
               className="relative h-2.5 rounded-full bg-white/20 group-hover:bg-white/40 overflow-hidden block"

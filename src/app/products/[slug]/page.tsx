@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { projects } from "@/data/portfolio";
+import { SITE_URL } from "@/lib/site";
 import { ProductCaseStudy } from "@/components/products/ProductCaseStudy";
 
 export async function generateStaticParams() {
@@ -23,13 +24,23 @@ export async function generateMetadata({
     };
   }
 
+  const title = `${project.content.en.title} — Case Study | ThinkAI Studio`;
+  const description = project.content.en.summary;
+
   return {
-    title: `${project.content.en.title} — Case Study | ThinkAI Studio`,
-    description: project.content.en.summary,
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/products/${slug}`,
+    },
     openGraph: {
-      title: `${project.content.en.title} — Case Study | ThinkAI Studio`,
-      description: project.content.en.summary,
+      title,
+      description,
+      url: `${SITE_URL}/products/${slug}`,
       images: [project.preview.image],
+      type: "article",
+      locale: "en_US",
+      alternateLocale: ["vi_VN"],
     },
   };
 }
@@ -46,5 +57,32 @@ export default async function ProductPage({
     notFound();
   }
 
-  return <ProductCaseStudy project={project} />;
+  const techArticleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: `${project.content.en.title} — Engineering Case Study`,
+    description: project.content.en.summary,
+    image: project.preview.image,
+    author: {
+      "@type": "Person",
+      name: "Nguyen Binh Minh",
+      url: `${SITE_URL}/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ThinkAI Studio",
+      url: SITE_URL,
+    },
+    mainEntityOfPage: `${SITE_URL}/products/${project.id}`,
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(techArticleJsonLd) }}
+      />
+      <ProductCaseStudy project={project} />
+    </>
+  );
 }

@@ -109,7 +109,7 @@ function FaqItem({
   return (
     <motion.div
       variants={itemVariants}
-      className={`group rounded-xl border transition-all duration-200 cursor-pointer select-none ${
+      className={`group r-panel border transition-all duration-200 cursor-pointer select-none ${
         isOpen
           ? "bg-[#1A1A20] border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
           : "bg-[#141418] border-white/10 hover:border-white/25 hover:bg-[#18181E]"

@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { projects, type Project } from "@/data/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
+import { Breadcrumbs } from "@/components/tai-ui/Breadcrumbs";
 
 const ICON_MAP = {
   shield: ShieldCheck,
@@ -110,19 +111,23 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
       {/* ─── STICKY HEADER ─── */}
       <header className="sticky top-0 z-50 bg-[#141414]/90 backdrop-blur-xl border-b border-white/[0.10] px-4 sm:px-8 py-3.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             <Link
               href="/#products"
-              className="inline-flex items-center gap-2 px-3 py-1.5 r-btn bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors"
+              aria-label={language === "vi" ? "Tất cả sản phẩm" : "All Products"}
+              className="inline-flex items-center gap-2 px-3 py-1.5 r-btn bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors shrink-0"
               style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>{language === "vi" ? "Tất cả sản phẩm" : "All Products"}</span>
+              <span className="hidden sm:inline">{language === "vi" ? "Tất cả sản phẩm" : "All Products"}</span>
             </Link>
-            <span className="text-white/20 hidden sm:inline">/</span>
-            <span className="font-mono text-xs font-bold text-white  hidden sm:inline">
-              {content.title}
-            </span>
+            <Breadcrumbs
+              items={[
+                { label: "Studio", href: "/" },
+                { label: language === "vi" ? "Sản phẩm" : "Products", href: "/products" },
+                { label: content.title },
+              ]}
+            />
           </div>
 
           <div className="flex items-center gap-2.5">
@@ -286,7 +291,7 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 text-white hover:text-emerald-400 font-bold  transition-colors shrink-0 ml-3"
+                    className="inline-flex items-center gap-1 text-white hover:text-emerald-400 font-bold transition-colors shrink-0 ml-3 min-h-[28px] py-1 px-2 -my-1 -mr-2 rounded"
                   >
                     <span>{project.isArchived ? (language === "vi" ? "XEM LƯU TRỮ" : "VIEW ARCHIVE") : "VISIT"}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />

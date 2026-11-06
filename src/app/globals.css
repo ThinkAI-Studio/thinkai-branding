@@ -42,12 +42,29 @@
   --radius: 12px;
 }
 
+.r-chip {
+  --radius-chip: clamp(4px, calc(var(--chip-h, 24px) * 0.30), 10px);
+  --radius-outer: var(--radius-chip);
+  border-radius: var(--radius-chip);
+}
+
 .r-btn {
   --radius-btn: clamp(9px, calc(var(--btn-h, 36px) * 0.28), 16px);
+  --radius-outer: var(--radius-btn);
   border-radius: var(--radius-btn);
 }
 
+.r-panel {
+  --radius-panel: clamp(12px, 1.2vw, 18px);
+  --radius-outer: var(--radius-panel);
+  border-radius: var(--radius-panel);
+}
+
 /* Concentric nested surfaces: inner = outer - (padding + border) */
+.r-inner {
+  border-radius: max(0px, calc(var(--radius-outer, 12px) - var(--nest-inset, 4px)));
+}
+
 .r-btn-inner {
   border-radius: max(0px, calc(clamp(9px, calc(var(--btn-h, 36px) * 0.28), 16px) - var(--nest-inset, 4px)));
 }

@@ -61,16 +61,21 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const storeLanguage = useSyncExternalStore(subscribeToLanguage, readLanguage, getServerLanguage);
   const language = mounted ? storeLanguage : "en";
   useEffect(() => {
-    if (mounted) {
+    if (typeof document !== "undefined") {
       document.documentElement.lang = language;
+      document.documentElement.setAttribute("lang", language);
     }
-  }, [language, mounted]);
+  }, [language]);
 
   const setLanguage = (targetLang: Language) => {
     try {
       window.localStorage.setItem(storageKey, targetLang);
     } catch {
       // LocalStorage might be unavailable in restricted contexts
+    }
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = targetLang;
+      document.documentElement.setAttribute("lang", targetLang);
     }
     window.dispatchEvent(new Event("portfolio-language-change"));
   };

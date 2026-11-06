@@ -247,17 +247,28 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
         </div>
 
         {/* Meta Row: Copyright on left, Back to Top on right (exactly two items) */}
+        {/* Meta Row: Copyright & Privacy on left, Back to Top on right */}
         <div
           className="pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 font-mono text-xs"
           style={{ borderColor: "rgba(247, 239, 220, 0.28)" }}
         >
-          <div className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.90)" }}>
-            ThinkAI Studio © 2026. All Rights Reserved.
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap text-center sm:text-left justify-center sm:justify-start">
+            <span className="font-medium whitespace-nowrap" style={{ color: "rgba(247, 239, 220, 0.90)" }}>
+              ThinkAI Studio © 2026. All Rights Reserved.
+            </span>
+            <span className="opacity-40 select-none">•</span>
+            <Link
+              href="/privacy"
+              className="hover:text-white transition-colors underline-offset-4 hover:underline py-1 inline-flex items-center min-h-[24px]"
+              style={{ color: "rgba(247, 239, 220, 0.75)" }}
+            >
+              {language === "vi" ? "Chính sách bảo mật" : "Privacy Policy"}
+            </Link>
           </div>
 
           <a
             href="#top"
-            className="hover:text-white active:opacity-70 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
+            className="hover:text-white active:opacity-70 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded py-1.5 px-2 inline-flex items-center min-h-[28px]"
             style={{ color: "rgba(247, 239, 220, 0.90)" }}
           >
             {t.footer.backToTop}

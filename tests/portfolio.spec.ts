@@ -3,6 +3,8 @@ import { expect, test } from "@playwright/test";
 const htmlRoutes = [
   "/",
   "/about",
+  "/products",
+  "/privacy",
   "/products/thinkai-ui",
   "/products/wind",
   "/products/homelab",
