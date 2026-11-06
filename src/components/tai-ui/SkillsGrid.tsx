@@ -36,60 +36,114 @@ export function SkillsGrid() {
   const stackContainersRef = useRef<(HTMLDivElement | null)[]>([]);
   const mobileStackContainersRef = useRef<(HTMLDivElement | null)[]>([]);
 
+
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const isPausedRef = useRef<boolean>(false);
 
-  const HOLD_DURATION = 2000; // exactly 2.0s hold
+  // Animation durations (seconds)
+  const OUT_DUR  = 0.45;
+  const IN_DUR   = 0.55;
+  const HOLD_MS  = 2000; // hold starts after IN animation finishes
 
-  const showStack = useCallback((idx: number) => {
+  const showStack = useCallback((idx: number, instant = false) => {
     currentStackIdxRef.current = idx;
     setCurrentStackIdx(idx);
 
-    // Desktop
-    const desktopStacks = stackContainersRef.current.filter(Boolean) as HTMLDivElement[];
-    desktopStacks.forEach((stack, sIdx) => {
-      const isTarget = sIdx === idx;
-      gsap.to(stack, {
-        opacity: isTarget ? 1 : 0,
-        y: isTarget ? 0 : sIdx < idx ? -16 : 16,
-        duration: 0.35,
-        ease: "power2.out",
-        pointerEvents: isTarget ? "auto" : "none",
-        overwrite: "auto",
-      });
-    });
+    const animate = (containers: HTMLDivElement[]) => {
+      containers.forEach((stack, sIdx) => {
+        const isTarget = sIdx === idx;
+        if (instant) {
+          gsap.set(stack, {
+            opacity: isTarget ? 1 : 0,
+            y: 0,
+            scale: 1,
+            pointerEvents: isTarget ? "auto" : "none",
+            willChange: "auto",
+          });
+          return;
+        }
 
-    // Mobile
-    const mobileStacks = mobileStackContainersRef.current.filter(Boolean) as HTMLDivElement[];
-    mobileStacks.forEach((stack, sIdx) => {
-      const isTarget = sIdx === idx;
-      gsap.to(stack, {
-        opacity: isTarget ? 1 : 0,
-        y: isTarget ? 0 : sIdx < idx ? -16 : 16,
-        duration: 0.35,
-        ease: "power2.out",
-        pointerEvents: isTarget ? "auto" : "none",
-        overwrite: "auto",
+        if (!isTarget) {
+          // Outgoing: power2.inOut, 0.45s
+          gsap.to(stack, {
+            opacity: 0,
+            y: -20,
+            scale: 0.96,
+            duration: OUT_DUR,
+            ease: "power2.inOut",
+            pointerEvents: "none",
+            willChange: "transform, opacity",
+            overwrite: "auto",
+            onComplete: () => gsap.set(stack, { willChange: "auto" }),
+          });
+        } else {
+          // Incoming: starts immediately (crossfade), power3.out, 0.55s
+          // Stagger inner bento cards by 0.04s each
+          const cards = stack.querySelectorAll<HTMLElement>(".bento-block");
+          if (cards.length > 0) {
+            gsap.set(stack, { opacity: 1, y: 0, scale: 1, pointerEvents: "auto", willChange: "auto" });
+            gsap.fromTo(
+              Array.from(cards),
+              { opacity: 0, y: 20, scale: 0.97 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: IN_DUR,
+                ease: "power3.out",
+                stagger: 0.04,
+                willChange: "transform, opacity",
+                overwrite: "auto",
+                onComplete: () => {
+                  cards.forEach((c) => gsap.set(c, { willChange: "auto" }));
+                },
+              }
+            );
+          } else {
+            gsap.fromTo(
+              stack,
+              { opacity: 0, y: 20, scale: 0.97 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: IN_DUR,
+                ease: "power3.out",
+                pointerEvents: "auto",
+                willChange: "transform, opacity",
+                overwrite: "auto",
+                onComplete: () => gsap.set(stack, { willChange: "auto" }),
+              }
+            );
+          }
+        }
       });
-    });
+    };
+
+    animate(stackContainersRef.current.filter(Boolean) as HTMLDivElement[]);
+    animate(mobileStackContainersRef.current.filter(Boolean) as HTMLDivElement[]);
   }, []);
 
   const startTimer = useCallback(() => {
-    if (timerRef.current !== null) {
-      clearInterval(timerRef.current);
-    }
-    timerRef.current = setInterval(() => {
-      if (!isPausedRef.current) {
-        const nextIdx = (currentStackIdxRef.current + 1) % 3;
-        showStack(nextIdx);
-      }
-    }, HOLD_DURATION + 350);
+    clearTimeout(timerRef.current ?? undefined);
+    // Schedule next switch only after hold + full incoming animation
+    const cycle = () => {
+      timerRef.current = setTimeout(() => {
+        if (!isPausedRef.current) {
+          const nextIdx = (currentStackIdxRef.current + 1) % 3;
+          showStack(nextIdx);
+        }
+        cycle(); // reschedule
+      }, HOLD_MS + IN_DUR * 1000);
+    };
+    cycle();
   }, [showStack]);
 
   const handleNotchClick = (idx: number) => {
     showStack(idx);
     startTimer();
   };
+
 
   useEffect(() => {
     if (prefersReduced) return;
@@ -122,9 +176,7 @@ export function SkillsGrid() {
     }
 
     return () => {
-      if (timerRef.current !== null) {
-        clearInterval(timerRef.current);
-      }
+      clearTimeout(timerRef.current ?? undefined);
       document.removeEventListener("visibilitychange", handleVisibility);
       observer.disconnect();
     };

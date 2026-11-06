@@ -291,7 +291,7 @@ export default function PortfolioPage() {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors px-2 py-1"
+                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white active:opacity-70 transition-colors px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded"
                             >
                               <span>{project.isArchived ? t.work.viewArchive : t.work.visitLive}</span>
                               <ArrowUpRight className="w-3.5 h-3.5" />

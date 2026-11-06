@@ -404,7 +404,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           {/* Mobile Menu / Close Text Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="sm:hidden text-white hover:text-neutral-300 font-medium text-sm tracking-tight cursor-pointer px-1 py-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] select-none"
+            className="sm:hidden text-white hover:text-neutral-300 active:opacity-70 font-medium text-sm tracking-tight cursor-pointer px-1 py-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded transition-opacity duration-150"
             aria-label="Toggle navigation menu"
           >
             <div className="relative h-[1.2em] w-14 overflow-hidden text-right flex items-center justify-end">

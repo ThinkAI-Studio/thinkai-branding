@@ -77,7 +77,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
                 >
                   <Github className="w-3.5 h-3.5" />
                 </a>
@@ -87,7 +87,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                 </a>
@@ -95,7 +95,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <a
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
                 >
                   <Mail className="w-3.5 h-3.5" />
                 </a>
@@ -105,7 +105,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
                 >
                   <Twitter className="w-3.5 h-3.5" />
                 </a>
@@ -127,7 +127,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
                       aria-label={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] transition-colors cursor-pointer select-none"
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
                     >
                       <IconComponent className="w-3.5 h-3.5" />
                     </button>
@@ -150,7 +150,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/thinkai-ui"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       ThinkAI UI
@@ -161,7 +161,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/wind"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       Wind Digital Folio
@@ -172,7 +172,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/homelab"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       HostDeck Console
@@ -183,7 +183,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/products/thinkai"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       ThinkAI Learning
@@ -206,7 +206,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   <button
                     type="button"
                     onClick={onOpenAbout}
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       {language === "vi" ? "Về Studio (Drawer)" : "About Studio (Drawer)"}
@@ -217,7 +217,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <li>
                   <Link
                     href="/about"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       {language === "vi" ? "Hồ sơ (/about)" : "Full Dossier (/about)"}
@@ -229,7 +229,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   <button
                     type="button"
                     onClick={onOpenContact}
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       {language === "vi" ? "Bắt đầu dự án" : "Start a Project"}
@@ -242,7 +242,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                     href="/NguyenBinhMinh-DevOpsEngineer-2026.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white transition-colors group cursor-pointer"
+                    className="w-full flex items-center justify-start text-left min-h-[44px] sm:min-h-[32px] py-1 text-[#F7EFDC] hover:text-white active:opacity-70 transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
                   >
                     <span>
                       DevOps CV (PDF)
@@ -266,7 +266,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
 
           <a
             href="#top"
-            className="hover:text-white transition-colors whitespace-nowrap"
+            className="hover:text-white active:opacity-70 transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/50 rounded"
             style={{ color: "rgba(247, 239, 220, 0.90)" }}
           >
             {t.footer.backToTop}

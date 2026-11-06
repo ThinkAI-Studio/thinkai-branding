@@ -184,24 +184,22 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         // Compute normalized caustic intensity [0.0 .. 1.0]
         float intensity = smoothstep(-0.35, 0.35, wave) * 0.4 + caustics * 0.6;
 
-        // Paler muted blue haze. Base #06090D (vec3(0.024, 0.035, 0.051)).
-        // Peak: desaturated slate vec3(0.060, 0.125, 0.260). Mean B-R ≈ 10-18, B > R.
-        vec3 baseCol = vec3(0.024, 0.035, 0.051);
-        vec3 peakCol = vec3(0.060, 0.125, 0.260);
+        // Venice Adriatic Emerald palette (restored from pre-PR33 commit a47de1e).
+        // Rich teal/blue caustics — not grey, not neon.
+        vec3 cAdriaticDeep  = vec3(0.04, 0.14, 0.22);
+        vec3 cEmeraldLagoon = vec3(0.12, 0.46, 0.48);
+        vec3 cSapphireBlue  = vec3(0.16, 0.52, 0.72);
+        vec3 cCrystalAqua   = vec3(0.32, 0.68, 0.76);
+        vec3 cSunlightFoam  = vec3(0.55, 0.85, 0.90);
 
-        // Power-curved caustic intensity lifts highlights cleanly while retaining deep ocean base
-        float lift = pow(clamp(intensity, 0.0, 1.0), 2.6);
-        vec3 col = mix(baseCol, peakCol, lift);
+        vec3 col = cAdriaticDeep;
+        col = mix(col, cEmeraldLagoon, smoothstep(-0.35, 0.35, wave) * 0.92);
+        col = mix(col, cSapphireBlue,  smoothstep(0.0, 0.65, caustics) * 0.88);
+        col = mix(col, cCrystalAqua,   caustics * 0.78);
+        col = mix(col, cSunlightFoam,  pow(smoothstep(0.45, 0.90, wave + caustics * 0.45), 2.8) * 0.65);
 
-        // Apply Rotated Halftone Print Screen with constant CSS-space pitch (4.4 CSS px).
-        // Halftone dots darken toward deep navy-black #030508 (vec3(0.012, 0.020, 0.031)).
-        float pitch = 4.4 * u_pixel_scale;
-        vec2 rotCoord = rotate2D(gl_FragCoord.xy, 0.785398);
-        vec2 cell = fract(rotCoord / pitch) - 0.5;
-        float dist = length(cell);
-        float mask = 1.0 - smoothstep(0.23 - 0.11, 0.23 + 0.11, dist);
-        vec3 dotCol = vec3(0.012, 0.020, 0.031);
-        col = mix(col, dotCol, mask * 0.45);
+        // Halftone grain at 0.30 — adds texture without muting the blue.
+        col = applyRotatedHalftone(col, gl_FragCoord.xy, 4.4 * u_pixel_scale, 0.23, 0.30);
 
         gl_FragColor = vec4(col, 1.0);
       }
