@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useSyncExternalStore } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { useLanguage } from "@/context/LanguageContext";
+import { BrandMark } from "./BrandMark";
 import { cn } from "@/lib/utils";
 
 const LUXURY_EASE = [0.16, 1, 0.3, 1] as const;
@@ -96,16 +96,9 @@ export function PagePreloader() {
               initial={{ scale: 0.85, opacity: 0 }}
               animate={count >= 96 ? { scale: 0.9, opacity: 0, y: -20 } : { scale: 1, opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: LUXURY_EASE }}
-              className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center drop-shadow-[0_0_24px_rgba(255,255,255,0.4)] mb-2"
+              className="relative flex items-center justify-center drop-shadow-[0_0_24px_rgba(255,255,255,0.4)] mb-2"
             >
-              <Image
-                src="/images/thinkai_studio_logo.png"
-                alt="ThinkAI Studio"
-                fill
-                sizes="56px"
-                className="object-contain"
-                priority
-              />
+              <BrandMark size={56} framed={false} priority />
             </motion.div>
 
             {/* Staggered Animated Phrase: Nhảy ra từ từ và chạy biến mất theo thanh tiến độ */}

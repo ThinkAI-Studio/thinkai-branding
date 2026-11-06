@@ -14,7 +14,7 @@
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   --radius-card: 12px;
-  --radius-btn: 12px;
+  --radius-btn: clamp(9px, calc(var(--btn-h, 36px) * 0.28), 16px);
   --radius-tag: 12px;
   --radius-input: 12px;
   --radius-container: 12px;
@@ -34,12 +34,22 @@
   --tai-border-strong: rgba(255, 255, 255, 0.28);
   --tai-accent-green: #4ade80;
   --radius-card: 12px;
-  --radius-btn: 12px;
+  --radius-btn: clamp(9px, calc(var(--btn-h, 36px) * 0.28), 16px);
   --radius-tag: 12px;
   --radius-input: 12px;
   --radius-container: 12px;
   --radius-tuck: 0 0 12px 12px;
   --radius: 12px;
+}
+
+.r-btn {
+  --radius-btn: clamp(9px, calc(var(--btn-h, 36px) * 0.28), 16px);
+  border-radius: var(--radius-btn);
+}
+
+/* Concentric nested surfaces: inner = outer - (padding + border) */
+.r-btn-inner {
+  border-radius: max(0px, calc(clamp(9px, calc(var(--btn-h, 36px) * 0.28), 16px) - var(--nest-inset, 4px)));
 }
 
 * {

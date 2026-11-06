@@ -113,7 +113,8 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
           <div className="flex items-center gap-3">
             <Link
               href="/#products"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 px-3 py-1.5 r-btn bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors"
+              style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>{language === "vi" ? "Tất cả sản phẩm" : "All Products"}</span>
@@ -128,7 +129,8 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="px-2.5 py-1 rounded-xl bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              className="px-2.5 py-1 r-btn bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              style={{ "--btn-h": "28px" } as React.CSSProperties}
             >
               {language === "en" ? "VI" : "EN"}
             </button>
@@ -138,7 +140,8 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white text-black font-mono text-xs font-bold  tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 r-btn bg-white text-black font-mono text-xs font-bold  tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
+                style={{ "--btn-h": "32px" } as React.CSSProperties}
               >
                 <span>{language === "vi" ? "Truy cập hệ thống" : "Visit System"}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -325,44 +328,48 @@ export function ProductCaseStudy({ project }: ProductCaseStudyProps) {
             <button
               type="button"
               onClick={() => setActiveTab("narrative")}
-              className={`px-4 py-2 rounded-xl transition-all cursor-pointer font-bold whitespace-nowrap ${
+              className={`px-4 py-2 r-btn transition-all cursor-pointer font-bold whitespace-nowrap ${
                 activeTab === "narrative"
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
+              style={{ "--btn-h": "36px" } as React.CSSProperties}
             >
               {language === "vi" ? "01. Báo cáo kỹ thuật" : "01. Case Study"}
             </button>
             <button
               type="button"
               onClick={() => setActiveTab("diagram")}
-              className={`px-4 py-2 rounded-xl transition-all cursor-pointer font-bold whitespace-nowrap ${
+              className={`px-4 py-2 r-btn transition-all cursor-pointer font-bold whitespace-nowrap ${
                 activeTab === "diagram"
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
+              style={{ "--btn-h": "36px" } as React.CSSProperties}
             >
               {language === "vi" ? "02. Luồng kiến trúc" : "02. Delivery Flow"}
             </button>
             <button
               type="button"
               onClick={() => setActiveTab("security")}
-              className={`px-4 py-2 rounded-xl transition-all cursor-pointer font-bold whitespace-nowrap ${
+              className={`px-4 py-2 r-btn transition-all cursor-pointer font-bold whitespace-nowrap ${
                 activeTab === "security"
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
+              style={{ "--btn-h": "36px" } as React.CSSProperties}
             >
               {language === "vi" ? "03. Bảo mật & QA" : "03. Security & QA"}
             </button>
             <button
               type="button"
               onClick={() => setActiveTab("provenance")}
-              className={`px-4 py-2 rounded-xl transition-all cursor-pointer font-bold whitespace-nowrap ${
+              className={`px-4 py-2 r-btn transition-all cursor-pointer font-bold whitespace-nowrap ${
                 activeTab === "provenance"
                   ? "bg-white text-black shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
+              style={{ "--btn-h": "36px" } as React.CSSProperties}
             >
               {language === "vi" ? "04. Bằng chứng Git" : "04. Git Ledger"}
             </button>

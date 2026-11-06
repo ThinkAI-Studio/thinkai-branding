@@ -144,8 +144,8 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
 
                   <button
                     onClick={onClose}
-                    className="group flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0a0a0c] text-white text-xs font-mono font-bold hover:bg-neutral-800 transition-colors cursor-pointer shadow-sm select-none"
-                    style={{ backgroundColor: "#0a0a0c", color: "#ffffff" }}
+                    className="group flex items-center justify-center gap-2 px-3.5 py-1.5 r-btn bg-[#0a0a0c] text-white text-xs font-mono font-bold hover:bg-neutral-800 transition-colors cursor-pointer shadow-sm select-none"
+                    style={{ backgroundColor: "#0a0a0c", color: "#ffffff", "--btn-h": "28px" } as React.CSSProperties}
                   >
                     <ButtonTextRoll
                       text={t.close}
@@ -190,7 +190,8 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                         hoverTextColor="#ffffff"
                         borderColor="rgba(0, 0, 0, 0.2)"
                         hoverBorderColor="#0a0a0c"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/[0.05] border border-black/15 text-xs font-mono font-bold cursor-pointer text-[#0a0a0c] shadow-sm select-none"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 r-btn bg-black/[0.05] border border-black/15 text-xs font-mono font-bold cursor-pointer text-[#0a0a0c] shadow-sm select-none"
+                        style={{ "--btn-h": "28px" } as React.CSSProperties}
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>{t.downloadCv}</span>
@@ -295,7 +296,8 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                     hoverTextColor="#ffffff"
                     borderColor="rgba(0, 0, 0, 0.15)"
                     hoverBorderColor="#0a0a0c"
-                    className="px-3 py-1.5 rounded-xl bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    className="px-3 py-1.5 r-btn bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    style={{ "--btn-h": "28px" } as React.CSSProperties}
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>CV (PDF)</span>
@@ -310,7 +312,8 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                     hoverTextColor="#ffffff"
                     borderColor="rgba(0, 0, 0, 0.15)"
                     hoverBorderColor="#0a0a0c"
-                    className="px-3.5 py-1.5 rounded-xl bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    className="px-3.5 py-1.5 r-btn bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    style={{ "--btn-h": "28px" } as React.CSSProperties}
                   >
                     <span>GitHub</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -325,7 +328,8 @@ export function AboutDrawer({ isOpen, onClose, lang }: AboutDrawerProps) {
                     hoverTextColor="#ffffff"
                     borderColor="rgba(0, 0, 0, 0.15)"
                     hoverBorderColor="#0a0a0c"
-                    className="px-3.5 py-1.5 rounded-xl bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    className="px-3.5 py-1.5 r-btn bg-black/[0.05] flex items-center gap-1 text-xs font-mono font-bold cursor-pointer select-none border border-black/15 shadow-sm"
+                    style={{ "--btn-h": "28px" } as React.CSSProperties}
                   >
                     <span>LinkedIn</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />

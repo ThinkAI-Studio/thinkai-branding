@@ -43,7 +43,8 @@ export function ReviewMarquee() {
             onClick={() => setIsPaused((v) => !v)}
             aria-pressed={isPaused}
             aria-label={isPaused ? (language === "vi" ? "Tiếp tục chuyển động" : "Resume motion") : (language === "vi" ? "Dừng chuyển động" : "Pause motion")}
-            className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-4 text-xs font-semibold text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414]"
+            className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-2 r-btn border border-white/20 px-4 text-xs font-semibold text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414]"
+            style={{ "--btn-h": "44px" } as React.CSSProperties}
           >
             {isPaused ? (
               <span aria-hidden="true" className="text-[10px]">▶</span>

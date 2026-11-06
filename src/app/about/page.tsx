@@ -19,7 +19,8 @@ export default function AboutPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 px-3 py-1.5 r-btn bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors"
+              style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>{language === "vi" ? "Trang chủ" : "Studio Home"}</span>
@@ -34,7 +35,8 @@ export default function AboutPage() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="px-2.5 py-1 rounded-xl bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              className="px-2.5 py-1 r-btn bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-mono font-bold text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              style={{ "--btn-h": "28px" } as React.CSSProperties}
             >
               {language === "en" ? "VI" : "EN"}
             </button>
@@ -44,7 +46,8 @@ export default function AboutPage() {
               target="_blank"
               rel="noreferrer"
               download="NguyenBinhMinh-DevOpsEngineer-2026.pdf"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white text-black font-mono text-xs font-bold  tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 r-btn bg-white text-black font-mono text-xs font-bold  tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
+              style={{ "--btn-h": "32px" } as React.CSSProperties}
             >
               <Download className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{language === "vi" ? "Tải CV (PDF)" : "Download CV"}</span>

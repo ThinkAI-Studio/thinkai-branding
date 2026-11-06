@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -13,6 +12,7 @@ import {
   PerplexityIcon,
   ManusIcon,
 } from "./AiBrandIcons";
+import { BrandMark } from "./BrandMark";
 
 interface StudioFooterProps {
   onOpenAbout?: () => void;
@@ -44,21 +44,7 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
           <div className="lg:col-span-6 space-y-4">
             {/* Wordmark */}
             <div className="flex items-center gap-3">
-              <div
-                className="relative w-7 h-7 p-1 flex items-center justify-center border shadow-sm"
-                style={{
-                  backgroundColor: "rgba(247, 239, 220, 0.12)",
-                  borderColor: "rgba(247, 239, 220, 0.28)",
-                }}
-              >
-                <Image
-                  src="/images/thinkai_studio_logo.png"
-                  alt="ThinkAI Studio"
-                  fill
-                  sizes="28px"
-                  className="object-contain"
-                />
-              </div>
+              <BrandMark size={28} framed />
               <span className="font-mono font-extrabold text-lg sm:text-xl tracking-tight text-[#F7EFDC] uppercase">THINKAI STUDIO</span>
             </div>
 
@@ -77,7 +63,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] r-btn text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  style={{ "--btn-h": "32px" } as React.CSSProperties}
                 >
                   <Github className="w-3.5 h-3.5" />
                 </a>
@@ -87,7 +74,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] r-btn text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  style={{ "--btn-h": "32px" } as React.CSSProperties}
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                 </a>
@@ -95,7 +83,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                 <a
                   href={`mailto:${profile.email}`}
                   aria-label="Email"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] r-btn text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  style={{ "--btn-h": "32px" } as React.CSSProperties}
                 >
                   <Mail className="w-3.5 h-3.5" />
                 </a>
@@ -105,7 +94,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X"
-                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] r-btn text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                  style={{ "--btn-h": "32px" } as React.CSSProperties}
                 >
                   <Twitter className="w-3.5 h-3.5" />
                 </a>
@@ -127,7 +117,8 @@ export function StudioFooter({ onOpenAbout, onOpenContact }: StudioFooterProps) 
                         window.open(platform.url, "_blank", "noopener,noreferrer");
                       }}
                       aria-label={`Ask ${platform.name} about ThinkAI`}
-                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] rounded-xl text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                      className="w-8 h-8 flex items-center justify-center border border-[rgba(247,239,220,0.4)] r-btn text-[#F7EFDC] hover:text-white hover:border-[#F7EFDC] hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7EFDC]/60"
+                      style={{ "--btn-h": "32px" } as React.CSSProperties}
                     >
                       <IconComponent className="w-3.5 h-3.5" />
                     </button>

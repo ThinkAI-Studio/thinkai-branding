@@ -16,6 +16,8 @@ import { AboutDrawer } from "@/components/tai-ui/AboutDrawer";
 import { ContactModal } from "@/components/tai-ui/ContactModal";
 import { SmoothScroll } from "@/components/tai-ui/SmoothScroll";
 import { WipeButton } from "@/components/tai-ui/WipeButton";
+import { ButtonTextRoll } from "@/components/tai-ui/ButtonTextRoll";
+import { ArrowRoll } from "@/components/tai-ui/ArrowRoll";
 import { LanguageTransition } from "@/components/tai-ui/LanguageTransition";
 import { ScrollTextReveal } from "@/components/tai-ui/ScrollTextReveal";
 import { PagePreloader } from "@/components/tai-ui/PagePreloader";
@@ -117,7 +119,8 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-2">
                   <WipeButton
                     onClick={handlePrevSlide}
-                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 r-btn flex items-center justify-center cursor-pointer text-sm font-mono"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -127,7 +130,8 @@ export default function PortfolioPage() {
                   </WipeButton>
                   <WipeButton
                     onClick={handleNextSlide}
-                    className="w-8 h-8 rounded-xl flex items-center justify-center cursor-pointer text-sm font-mono"
+                    className="w-8 h-8 r-btn flex items-center justify-center cursor-pointer text-sm font-mono"
+                    style={{ "--btn-h": "32px" } as React.CSSProperties}
                     wipeColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#05070a"
@@ -280,7 +284,8 @@ export default function PortfolioPage() {
                             hoverTextColor="#05070a"
                             borderColor="rgba(255, 255, 255, 0.25)"
                             hoverBorderColor="#ffffff"
-                            className="px-5 py-2.5 rounded-xl bg-white/10 text-xs font-semibold shadow-md"
+                            className="px-5 py-2.5 r-btn bg-white/10 text-xs font-semibold shadow-md"
+                            style={{ "--btn-h": "36px" } as React.CSSProperties}
                           >
                             <span>{t.work.exploreCaseStudy}</span>
                             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -328,6 +333,28 @@ export default function PortfolioPage() {
               className="tai-heading-xl text-white tracking-tighter drop-shadow-[0_12px_40px_rgba(0,0,0,0.85)]"
             />
           </LanguageTransition>
+
+          {/* Start a project Button with Forward Directional Wipe, Arrow Roll & Bounce */}
+          <div className="pt-6">
+            <WipeButton
+              onClick={() => setIsContactOpen(true)}
+              wipeColor="#05070a"
+              textColor="#05070a"
+              hoverTextColor="#ffffff"
+              borderColor="#ffffff"
+              hoverBorderColor="rgba(255,255,255,0.4)"
+              className="group r-btn h-14 sm:h-16 inline-flex items-center justify-center gap-3 px-8 sm:px-12 text-lg sm:text-xl font-extrabold cursor-pointer shadow-2xl select-none bg-white border border-white active:scale-[0.96] transition-transform duration-150 leading-none"
+              style={{ "--btn-h": "64px" } as React.CSSProperties}
+            >
+              <LanguageTransition langKey={language} as="span">
+                <ButtonTextRoll
+                  text={t.cta.startProject}
+                  className="font-extrabold text-lg sm:text-xl tracking-tight leading-none"
+                />
+              </LanguageTransition>
+              <ArrowRoll size="md" />
+            </WipeButton>
+          </div>
 
         </div>
       </section>
