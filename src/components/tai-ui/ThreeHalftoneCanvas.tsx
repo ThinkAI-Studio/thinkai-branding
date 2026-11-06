@@ -198,6 +198,11 @@ export function ThreeHalftoneCanvas({ className = "" }: ThreeHalftoneCanvasProps
         col = mix(col, cCrystalAqua,   caustics * 0.78);
         col = mix(col, cSunlightFoam,  pow(smoothstep(0.45, 0.90, wave + caustics * 0.45), 2.8) * 0.65);
 
+        // Tone map: desaturation + dim to match pre-PR33 hero look (#334349)
+        float luma = dot(col, vec3(0.2126, 0.7152, 0.0722));
+        col = mix(vec3(luma), col, 0.42);
+        col = col * 0.68;
+
         // Halftone grain at 0.30 — adds texture without muting the blue.
         col = applyRotatedHalftone(col, gl_FragCoord.xy, 4.4 * u_pixel_scale, 0.23, 0.30);
 
