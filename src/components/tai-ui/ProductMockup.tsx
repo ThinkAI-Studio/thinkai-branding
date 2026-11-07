@@ -47,7 +47,7 @@ export function ProductMockup({
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full rounded-xl overflow-hidden border border-white/[0.08] bg-[#0a0a0c] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_24px_60px_-15px_rgba(0,0,0,0.9)] group transition-all duration-500 hover:border-white/[0.22] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_32px_80px_-15px_rgba(0,0,0,0.95)]"
+      className="relative w-full r-panel overflow-hidden border border-white/[0.08] bg-[#0a0a0c] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_24px_60px_-15px_rgba(0,0,0,0.9)] group transition-all duration-500 hover:border-white/[0.22] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_32px_80px_-15px_rgba(0,0,0,0.95)]"
     >
       {/* ─── LUXURY BROWSER WINDOW HEADER ─── */}
       <div className="px-4 sm:px-5 py-3 border-b border-white/[0.06] bg-[#0c0c0e] flex items-center justify-between gap-3 select-none">
@@ -70,7 +70,8 @@ export function ProductMockup({
             href={`https://${domain}`}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center gap-2 px-3.5 py-1 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.06] hover:border-white/[0.18] text-white/70 hover:text-white transition-all duration-300 font-mono text-[11px] truncate shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] group/url"
+            className="flex items-center justify-center gap-2 px-3.5 py-1 r-btn bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.06] hover:border-white/[0.18] text-white/70 hover:text-white transition-all duration-300 font-mono text-[11px] truncate shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] group/url"
+            style={{ "--btn-h": "28px" } as React.CSSProperties}
           >
             <Lock className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
             <span className="truncate font-semibold tracking-tight text-white/80 group-hover/url:text-white">
@@ -82,7 +83,7 @@ export function ProductMockup({
 
         {/* Right: Telemetry Latency Indicator */}
         <div className="hidden sm:flex items-center gap-2 shrink-0 text-[10.5px] font-mono text-white/50">
-          <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+          <span className="flex items-center gap-1.5 px-2 py-0.5 r-chip bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold" style={{ "--chip-h": "21px" } as React.CSSProperties}>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse tai-led-glow" />
             LIVE
           </span>
@@ -118,7 +119,7 @@ export function ProductMockup({
 
         {/* Floating Quick Action Badge on Hover */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/45">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-mono font-bold text-xs tracking-wider shadow-2xl transform scale-95 group-hover:scale-100 transition-transform duration-300">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 r-btn bg-white text-black font-mono font-bold text-xs tracking-wider shadow-2xl transform scale-95 group-hover:scale-100 transition-transform duration-300" style={{ "--btn-h": "36px" } as React.CSSProperties}>
             <span>VISIT {domain.toUpperCase()}</span>
             <ArrowUpRight className="w-4 h-4 text-black shrink-0" />
           </div>

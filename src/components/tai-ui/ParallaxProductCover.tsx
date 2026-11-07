@@ -43,7 +43,7 @@ export function ParallaxProductCover({
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[16/10] w-full bg-[#0a0a0d] border border-white/10 hover:border-white/25 transition-colors duration-500 rounded-xl overflow-hidden group shadow-2xl select-none"
+      className="relative aspect-[16/10] w-full bg-[#0a0a0d] border border-white/10 hover:border-white/25 transition-colors duration-500 r-panel overflow-hidden group shadow-2xl select-none"
     >
       {/* Parallax Image Layer with 1.15 Scale for Edge-to-Edge Scrubbing */}
       <motion.div
@@ -61,13 +61,14 @@ export function ParallaxProductCover({
       </motion.div>
 
       {/* Hairline Specular Inset Border */}
-      <div className="absolute inset-0 pointer-events-none rounded-xl border border-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
+      <div className="absolute inset-0 pointer-events-none r-inner border border-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" style={{ "--nest-inset": "0px" } as React.CSSProperties} />
 
       {/* Floating Status Pill (Top Right) */}
       <div
-        className={`tai-product-pill absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-white/15 font-mono text-[10px] font-bold tracking-wider ${
+        className={`tai-product-pill absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 r-chip border border-white/15 font-mono text-[10px] font-bold tracking-wider ${
           isArchived ? "text-amber-400" : "text-emerald-400"
         }`}
+        style={{ "--chip-h": "25px" } as React.CSSProperties}
       >
         <span
           className={`w-1.5 h-1.5 rounded-full ${
@@ -78,7 +79,7 @@ export function ParallaxProductCover({
       </div>
 
       {/* Floating Mark Pill (Top Left) */}
-      <div className="tai-product-pill absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5 px-2 py-0.5 rounded-xl border border-white/15 font-mono text-[10px] text-neutral-300 font-bold ">
+      <div className="tai-product-pill absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5 px-2 py-0.5 r-chip border border-white/15 font-mono text-[10px] text-neutral-300 font-bold " style={{ "--chip-h": "21px" } as React.CSSProperties}>
         <span>{mark}</span>
       </div>
       {/* Floating Domain Pill (Bottom Left) */}
@@ -88,7 +89,8 @@ export function ParallaxProductCover({
             href={liveUrl}
             target="_blank"
             rel="noreferrer"
-            className="tai-product-pill-link flex items-center gap-2 px-3 py-1.5 rounded-xl border border-white/20 hover:border-white font-mono text-xs text-neutral-200 hover:text-white transition-all shadow-lg group/link"
+            className="tai-product-pill-link flex items-center gap-2 px-3 py-1.5 r-btn border border-white/20 hover:border-white font-mono text-xs text-neutral-200 hover:text-white transition-all shadow-lg group/link"
+            style={{ "--btn-h": "32px" } as React.CSSProperties}
           >
             <Lock className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
             <span className="truncate max-w-[200px] sm:max-w-[280px]">

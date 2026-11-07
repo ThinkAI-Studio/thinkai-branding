@@ -15,12 +15,12 @@ export function StickyMobileCTA({ isContactOpen, onOpenContact }: StickyMobileCT
   const t = copy[language];
   const [isPastHero, setIsPastHero] = useState(false);
   const [isNearFooter, setIsNearFooter] = useState(false);
-
+  const [isContactInView, setIsContactInView] = useState(false);
   useEffect(() => {
     const hero = document.getElementById("top");
     const footer = document.querySelector("footer");
-    if (!hero && !footer) return;
-
+    const contact = document.getElementById("contact");
+    if (!hero && !footer && !contact) return;
     const update = () => {
       const scrollY = window.scrollY;
       const heroHeight = hero ? hero.offsetHeight : window.innerHeight * 0.85;
@@ -35,6 +35,15 @@ export function StickyMobileCTA({ isContactOpen, onOpenContact }: StickyMobileCT
       } else {
         setIsNearFooter(false);
       }
+
+      if (contact) {
+        const rect = contact.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const contactVisible = rect.top < vh && rect.bottom > 0;
+        setIsContactInView(contactVisible);
+      } else {
+        setIsContactInView(false);
+      }
     };
 
     update();
@@ -46,7 +55,7 @@ export function StickyMobileCTA({ isContactOpen, onOpenContact }: StickyMobileCT
     };
   }, []);
 
-  const visible = isPastHero && !isNearFooter && !isContactOpen;
+  const visible = isPastHero && !isNearFooter && !isContactInView && !isContactOpen;
 
   return (
     <div
@@ -62,7 +71,8 @@ export function StickyMobileCTA({ isContactOpen, onOpenContact }: StickyMobileCT
           type="button"
           onClick={onOpenContact}
           tabIndex={visible ? 0 : -1}
-          className="pointer-events-auto w-full h-14 rounded-xl bg-white text-black text-base font-bold shadow-2xl flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.98] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          className="pointer-events-auto w-full h-14 r-btn bg-white text-black text-base font-bold shadow-2xl flex items-center justify-center gap-2 cursor-pointer select-none active:scale-[0.98] transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          style={{ "--btn-h": "56px" } as React.CSSProperties}
         >
           <span>{t.cta.startProject}</span>
           <span aria-hidden="true">→</span>

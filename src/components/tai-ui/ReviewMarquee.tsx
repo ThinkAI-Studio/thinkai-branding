@@ -9,7 +9,7 @@ const LOOPS = 2; // duplicate list for seamless -50% loop
 
 function ReviewCard({ review, language }: { review: (typeof reviews)[number]; language: "en" | "vi" }) {
   return (
-    <figure className="w-[85vw] max-w-[420px] shrink-0 sm:w-[400px] rounded-xl border border-white/10 bg-[#1E1E1E] p-6 sm:p-7">
+    <figure className="w-[85vw] max-w-[420px] shrink-0 sm:w-[400px] r-panel border border-white/10 bg-[#1E1E1E] p-6 sm:p-7">
       <blockquote className="text-sm sm:text-[15px] leading-[1.7] text-neutral-100 font-light">
         “{review.quote[language]}”
       </blockquote>
@@ -43,7 +43,8 @@ export function ReviewMarquee() {
             onClick={() => setIsPaused((v) => !v)}
             aria-pressed={isPaused}
             aria-label={isPaused ? (language === "vi" ? "Tiếp tục chuyển động" : "Resume motion") : (language === "vi" ? "Dừng chuyển động" : "Pause motion")}
-            className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-4 text-xs font-semibold text-white hover:bg-white hover:text-black transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414]"
+            className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-2 r-btn border border-white/20 px-4 text-xs font-semibold text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414]"
+            style={{ "--btn-h": "44px" } as React.CSSProperties}
           >
             {isPaused ? (
               <span aria-hidden="true" className="text-[10px]">▶</span>

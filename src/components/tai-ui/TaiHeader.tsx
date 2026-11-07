@@ -10,6 +10,7 @@ import { ButtonTextRoll } from "./ButtonTextRoll";
 import { ArrowRoll } from "./ArrowRoll";
 import { LanguageTransition } from "./LanguageTransition";
 import { useLanguage } from "@/context/LanguageContext";
+import { BrandMark } from "./BrandMark";
 import { copy } from "@/data/portfolio";
 
 interface TaiHeaderProps {
@@ -257,18 +258,12 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           }`}
           aria-label="ThinkAI Studio"
         >
-          <div className="relative w-6 h-6 sm:w-7 sm:h-7 shrink-0 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-            <Image
-              src="/images/thinkai_studio_logo_opt.png"
-              alt="ThinkAI Studio"
-              fill
-              sizes="28px"
-              className="object-contain"
-              priority
-              fetchPriority="high"
-              unoptimized
-            />
-          </div>
+          <span className="sm:hidden text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] inline-flex items-center justify-center">
+            <BrandMark size={24} framed={false} priority />
+          </span>
+          <span className="hidden sm:inline-flex text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] items-center justify-center">
+            <BrandMark size={26} framed={false} priority />
+          </span>
         </button>
 
         {/* Center: Floating Navigation Links with Signature Directional Wipe Motion */}
@@ -284,7 +279,8 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             hoverTextColor="#ffffff"
             borderColor="transparent"
             hoverBorderColor="transparent"
-            className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 rounded-xl text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+            className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 r-btn text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <LanguageTransition langKey={language}>
               {t.nav.about}
@@ -299,7 +295,8 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             hoverTextColor="#ffffff"
             borderColor="transparent"
             hoverBorderColor="transparent"
-            className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 rounded-xl text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+            className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 r-btn text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <LanguageTransition langKey={language}>
               {t.nav.work}
@@ -313,7 +310,8 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             hoverTextColor="#ffffff"
             borderColor="transparent"
             hoverBorderColor="transparent"
-            className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 rounded-xl text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+            className="group h-8.5 sm:h-9 inline-flex items-center justify-center px-3.5 sm:px-4 r-btn text-sm sm:text-[15px] font-bold tracking-tight cursor-pointer select-none bg-transparent border-0 active:scale-[0.96] transition-transform duration-150 leading-none shadow-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]"
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <LanguageTransition langKey={language}>
               {t.nav.contact}
@@ -334,7 +332,8 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             aria-label={t.nav.switchLangAria}
             onClick={toggleLanguage}
             title={t.nav.switchLangAria}
-            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] rounded-xl bg-[#141414]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
+            className="group relative h-8 sm:h-8.5 hidden sm:inline-flex items-center p-[3px] r-btn bg-[#141414]/90 backdrop-blur-md border border-white/15 hover:border-white/30 transition-colors cursor-pointer select-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.97]"
+            style={{ "--btn-h": "34px", "--nest-inset": "4px" } as React.CSSProperties}
           >
             <button
               type="button"
@@ -346,14 +345,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               data-lang="en"
               aria-pressed={language === "en"}
               aria-label="EN - Switch to English"
-              className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider rounded-xl transition-colors cursor-pointer ${
+              className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider r-btn-inner transition-colors cursor-pointer ${
                 language === "en" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
               }`}
             >
               {language === "en" && (
                 <motion.span
                   layoutId="active-header-lang-slider"
-                  className="absolute inset-0 bg-white shadow-sm rounded-xl"
+                  className="absolute inset-0 bg-white shadow-sm r-btn-inner"
                   transition={sliderTransition}
                 />
               )}
@@ -370,14 +369,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               data-lang="vi"
               aria-pressed={language === "vi"}
               aria-label="VI - Chuyển sang Tiếng Việt"
-              className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider rounded-xl transition-colors cursor-pointer ${
+              className={`relative z-10 h-full w-8 sm:w-9 flex items-center justify-center font-mono text-[11px] sm:text-xs font-bold tracking-wider r-btn-inner transition-colors cursor-pointer ${
                 language === "vi" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
               }`}
             >
               {language === "vi" && (
                 <motion.span
                   layoutId="active-header-lang-slider"
-                  className="absolute inset-0 bg-white shadow-sm rounded-xl"
+                  className="absolute inset-0 bg-white shadow-sm r-btn-inner"
                   transition={sliderTransition}
                 />
               )}
@@ -392,7 +391,8 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
             hoverTextColor="#ffffff"
             borderColor="#ffffff"
             hoverBorderColor="rgba(255, 255, 255, 0.4)"
-            className="group h-8.5 sm:h-9.5 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 rounded-xl text-xs sm:text-[13.5px] font-bold cursor-pointer shadow-lg select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none shrink-0"
+            className="group h-8.5 sm:h-9.5 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 r-btn text-xs sm:text-[13.5px] font-bold cursor-pointer shadow-lg select-none bg-white border border-white active:scale-[0.94] transition-transform duration-150 leading-none shrink-0"
+            style={{ "--btn-h": "34px" } as React.CSSProperties}
           >
             <ButtonTextRoll
               text={t.hero.primary}
@@ -404,7 +404,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
           {/* Mobile Menu / Close Text Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="sm:hidden text-white hover:text-neutral-300 font-medium text-sm tracking-tight cursor-pointer px-1 py-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] select-none"
+            className="sm:hidden text-white hover:text-neutral-300 active:opacity-70 font-medium text-sm tracking-tight cursor-pointer px-1 py-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded transition-opacity duration-150"
             aria-label="Toggle navigation menu"
           >
             <div className="relative h-[1.2em] w-14 overflow-hidden text-right flex items-center justify-end">
@@ -486,7 +486,7 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                   <span>{language === "vi" ? "NGÔN NGỮ" : "LANGUAGE"}</span>
                 </LanguageTransition>
               </div>
-              <div className="relative inline-flex items-center p-[3px] bg-[#141414] border border-white/15 rounded-xl shadow-inner">
+              <div className="relative inline-flex items-center p-[3px] bg-[#141414] border border-white/15 r-btn shadow-inner" style={{ "--btn-h": "30px", "--nest-inset": "4px" } as React.CSSProperties}>
                 <button
                   type="button"
                   onClick={() => {
@@ -495,14 +495,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                   }}
                   data-lang-mobile="en"
                   aria-label="EN - Switch to English"
-                  className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider rounded-xl transition-colors cursor-pointer select-none ${
+                  className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider r-btn-inner transition-colors cursor-pointer select-none ${
                     language === "en" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
                   }`}
                 >
                   {language === "en" && (
                     <motion.span
                       layoutId="active-mobile-lang-slider"
-                      className="absolute inset-0 bg-white shadow-sm rounded-xl"
+                      className="absolute inset-0 bg-white shadow-sm r-btn-inner"
                       transition={sliderTransition}
                     />
                   )}
@@ -516,14 +516,14 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
                   }}
                   data-lang-mobile="vi"
                   aria-label="VI - Chuyển sang Tiếng Việt"
-                  className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider rounded-xl transition-colors cursor-pointer select-none ${
+                  className={`relative z-10 w-9 h-7 flex items-center justify-center text-xs font-mono font-bold tracking-wider r-btn-inner transition-colors cursor-pointer select-none ${
                     language === "vi" ? "text-black font-extrabold" : "text-neutral-400 hover:text-white"
                   }`}
                 >
                   {language === "vi" && (
                     <motion.span
                       layoutId="active-mobile-lang-slider"
-                      className="absolute inset-0 bg-white shadow-sm rounded-xl"
+                      className="absolute inset-0 bg-white shadow-sm r-btn-inner"
                       transition={sliderTransition}
                     />
                   )}
@@ -537,10 +537,10 @@ export function TaiHeader({ onOpenAbout, onOpenContact }: TaiHeaderProps) {
               <a
                 href="https://hostdeck.thinkai.id.vn"
                 target="_blank"
-                className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-3 group hover:bg-white/[0.08] transition-all"
+                className="p-3.5 r-panel bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-3 group hover:bg-white/[0.08] transition-all"
               >
                 <div className="flex items-center gap-3 overflow-hidden">
-                  <div className="relative w-12 h-10 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-[#161619]">
+                  <div className="relative w-12 h-10 r-inner overflow-hidden border border-white/10 shrink-0 bg-[#161619]" style={{ "--nest-inset": "4px" } as React.CSSProperties}>
                     <Image
                       src="/images/products/hostdeck-screen.png"
                       alt="HostDeck Console"
